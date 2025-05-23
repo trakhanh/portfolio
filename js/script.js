@@ -113,7 +113,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Form submission with validation and animation
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', function(e) {
+contactForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     
     // Get form values
@@ -123,32 +123,107 @@ contactForm.addEventListener('submit', function(e) {
     
     // Basic validation
     if (!name || !email || !message) {
-        showNotification('Please fill in all fields', 'error');
+        showNotification('Vui lòng điền đầy đủ tất cả các trường', 'error');
         return;
     }
     
     if (!isValidEmail(email)) {
-        showNotification('Please enter a valid email address', 'error');
+        showNotification('Vui lòng nhập địa chỉ email hợp lệ', 'error');
         return;
     }
     
-    // Here you would typically send the data to a server
-    console.log('Form submitted:', { name, email, message });
+    // Get submit button for loading state
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalBtnContent = submitBtn.innerHTML;
     
-    // Show success message
-    showNotification('Thank you for your message! I will get back to you soon.', 'success');
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Đang gửi...';
     
-    // Reset form with animation
-    const formElements = contactForm.elements;
-    for (let element of formElements) {
-        if (element.type !== 'submit') {
-            element.style.transition = 'all 0.3s ease';
-            element.style.opacity = '0';
-            setTimeout(() => {
-                element.value = '';
-                element.style.opacity = '1';
-            }, 300);
+    try {
+        // Create FormData to send to Formspree
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('message', message);
+        
+        console.log('Sending form to:', this.action);
+        console.log('Form data:', { name, email, message });
+        
+        // Send to Formspree
+        const response = await fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
+        
+        if (response.ok) {
+            showNotification('Cảm ơn bạn đã liên hệ! Tôi sẽ phản hồi trong thời gian sớm nhất.', 'success');
+            
+            // Reset form with animation
+            const formElements = contactForm.elements;
+            for (let element of formElements) {
+                if (element.type !== 'submit') {
+                    element.style.transition = 'all 0.3s ease';
+                    element.style.opacity = '0';
+                    setTimeout(() => {
+                        element.value = '';
+                        element.style.opacity = '1';
+                    }, 300);
+                }
+            }
+        } else {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Không thể gửi tin nhắn');
         }
+    } catch (error) {
+        console.error('Form submission error:', error);
+        
+        // Fallback: try submitting the form normally if fetch fails
+        try {
+            // Create a temporary form to submit normally
+            const tempForm = document.createElement('form');
+            tempForm.action = contactForm.action;
+            tempForm.method = 'POST';
+            tempForm.style.display = 'none';
+            
+            // Add form data as hidden inputs
+            const nameInput = document.createElement('input');
+            nameInput.type = 'hidden';
+            nameInput.name = 'name';
+            nameInput.value = name;
+            tempForm.appendChild(nameInput);
+            
+            const emailInput = document.createElement('input');
+            emailInput.type = 'hidden';
+            emailInput.name = 'email';
+            emailInput.value = email;
+            tempForm.appendChild(emailInput);
+            
+            const messageInput = document.createElement('input');
+            messageInput.type = 'hidden';
+            messageInput.name = 'message';
+            messageInput.value = message;
+            tempForm.appendChild(messageInput);
+            
+            document.body.appendChild(tempForm);
+            tempForm.submit();
+            
+            showNotification('Đang chuyển hướng để gửi tin nhắn...', 'success');
+            
+        } catch (fallbackError) {
+            console.error('Fallback submission error:', fallbackError);
+            showNotification('Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại sau hoặc liên hệ trực tiếp qua email: khanhtra229@gmail.com', 'error');
+        }
+    } finally {
+        // Restore button state
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnContent;
     }
 });
 
@@ -187,26 +262,51 @@ function isValidEmail(email) {
 }
 
 function showNotification(message, type = 'success') {
+    // Remove any existing notifications first
+    const existingNotifications = document.querySelectorAll('.notification-toast');
+    existingNotifications.forEach(notif => notif.remove());
+    
     const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full ${
-        type === 'success' ? 'bg-green-500' : 'bg-red-500'
-    } text-white z-50`;
-    notification.textContent = message;
+    notification.className = `notification-toast fixed top-4 right-4 p-4 rounded-lg shadow-xl transform transition-all duration-500 translate-x-full ${
+        type === 'success' 
+            ? 'bg-green-500 border-l-4 border-green-600' 
+            : 'bg-red-500 border-l-4 border-red-600'
+    } text-white z-[9999] max-w-sm`;
+    
+    // Create notification content with icon
+    const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
+    notification.innerHTML = `
+        <div class="flex items-start space-x-3">
+            <i class="${icon} mt-0.5 flex-shrink-0"></i>
+            <div class="flex-1">
+                <p class="text-sm font-medium leading-relaxed">${message}</p>
+            </div>
+            <button class="notification-close ml-2 text-white/80 hover:text-white transition-colors" onclick="this.parentElement.parentElement.remove()">
+                <i class="fas fa-times text-sm"></i>
+            </button>
+        </div>
+    `;
     
     document.body.appendChild(notification);
     
     // Animate in
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
+        notification.style.opacity = '1';
     }, 100);
     
-    // Remove after 3 seconds
+    // Auto remove after 5 seconds
     setTimeout(() => {
-        notification.style.transform = 'translateX(full)';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
+        if (notification.parentElement) {
+            notification.style.transform = 'translateX(100%)';
+            notification.style.opacity = '0';
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 500);
+        }
+    }, 5000);
 }
 
 // Add hover effect to project cards

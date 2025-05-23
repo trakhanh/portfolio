@@ -3699,3 +3699,109 @@ p.text-lg {
         transform: rotate(360deg);
     }
 }
+
+/* ===== NOTIFICATION TOAST STYLES ===== */
+
+/* Notification Toast */
+.notification-toast {
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.4;
+}
+
+.notification-toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notification-close {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.notification-close:hover {
+    transform: scale(1.1);
+}
+
+/* Dark mode support for notifications */
+.dark-mode .notification-toast {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Mobile responsive notifications */
+@media (max-width: 640px) {
+    .notification-toast {
+        right: 8px !important;
+        left: 8px !important;
+        max-width: calc(100vw - 16px) !important;
+        position: fixed;
+        top: 20px !important;
+        transform: translateY(-100%) !important;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    
+    .notification-toast.show {
+        transform: translateY(0) !important;
+    }
+}
+
+/* Animation for success/error states */
+@keyframes notificationSlideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes notificationSlideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Enhanced notification styles */
+.notification-toast {
+    will-change: transform, opacity;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.notification-toast .fas {
+    flex-shrink: 0;
+    font-size: 16px;
+}
+
+/* Loading state for form button */
+.btn-loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.btn-loading .fas.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Form validation states */
+.form-error {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.form-success {
+    border-color: #10b981 !important;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+}
