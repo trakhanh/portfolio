@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khánh Trà Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="font-sans bg-gray-50 dark-mode gradient-animate">
+    <header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg shadow-sm sticky top-0 z-50 border-b border-gray-200/50 dark:border-slate-700/50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo/Brand -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center transform transition-transform duration-300 group-hover:scale-110">
+                    <span class="text-white font-bold text-lg">K</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Khánh Trà</span>
+                    <span class="text-xs text-gray-500 dark:text-gray-400">Porfolio</span>
+                </div>
+            </a>
+
+            <div class="flex items-center space-x-6">
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="nav-link group flex items-center space-x-2">
+                        <i class="fas fa-user text-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        <span>Giới thiệu</span>
+                    </a>
+                    <a href="#skills" class="nav-link group flex items-center space-x-2">
+                        <i class="fas fa-code text-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        <span>Kỹ năng</span>
+                    </a>
+                    <a href="#certificates" class="nav-link group flex items-center space-x-2">
+                        <i class="fas fa-certificate text-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        <span>Chứng chỉ</span>
+                    </a>
+                    <a href="#projects" class="nav-link group flex items-center space-x-2">
+                        <i class="fas fa-folder-open text-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        <span>Dự án</span>
+                    </a>
+                    <a href="#contact" class="nav-link group flex items-center space-x-2">
+                        <i class="fas fa-envelope text-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300"></i>
+                        <span>Liên hệ</span>
+                    </a>
+                </div>
+
+                <!-- Modern Theme Toggle -->
+                <div class="theme-toggle-container">
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+                        <div class="theme-toggle-track">
+                            <div class="theme-toggle-thumb">
+                                <i class="fas fa-sun theme-icon sun-icon"></i>
+                                <i class="fas fa-moon theme-icon moon-icon"></i>
+                            </div>
+                        </div>
+                </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors duration-300">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Enhanced Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden mobile-menu">
+            <div class="mobile-menu-overlay"></div>
+            <div class="mobile-menu-content">
+                <div class="flex flex-col space-y-4 p-6">
+                    <a href="#about" class="mobile-nav-link group flex items-center space-x-3">
+                        <i class="fas fa-user text-blue-600"></i>
+                        <span>Giới thiệu</span>
+                    </a>
+                    <a href="#skills" class="mobile-nav-link group flex items-center space-x-3">
+                        <i class="fas fa-code text-blue-600"></i>
+                        <span>Kỹ năng</span>
+                    </a>
+                    <a href="#certificates" class="mobile-nav-link group flex items-center space-x-3">
+                        <i class="fas fa-certificate text-blue-600"></i>
+                        <span>Chứng chỉ</span>
+                    </a>
+                    <a href="#projects" class="mobile-nav-link group flex items-center space-x-3">
+                        <i class="fas fa-folder-open text-blue-600"></i>
+                        <span>Dự án</span>
+                    </a>
+                    <a href="#contact" class="mobile-nav-link group flex items-center space-x-3">
+                        <i class="fas fa-envelope text-blue-600"></i>
+                        <span>Liên hệ</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden hero-section">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 hero-grid-pattern bg-[size:60px_60px]"></div>
+        <div class="absolute inset-0 hero-overlay"></div>
+        
+        <!-- Animated circles -->
+        <div class="absolute top-1/4 left-1/4 w-72 h-72 hero-circle-1 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+        <div class="absolute top-1/3 right-1/4 w-72 h-72 hero-circle-2 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-1/4 left-1/3 w-72 h-72 hero-circle-3 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="animate-fade-in space-y-8">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                    <span class="text-white">Xin chào, tôi là</span><br>
+                    <span class="hero-name-gradient">Trà Nguyễn Gia Khánh</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 hero-subtitle max-w-3xl mx-auto leading-relaxed">
+                    Chào mừng bạn đến với trang Porfolio của tôi, tôi là một sinh viên sắp tốt nghiệp từ trường Đại học Huflit chuyên ngành Khoa Học Dữ Liệu (Data Science)
+                </p>
+                <p class="text-xl md:text-2xl mb-12 hero-subtitle max-w-3xl mx-auto leading-relaxed">
+                    Tôi có một niềm đam mê về AI và hỗ trợ và hướng dẫn người dùng mong bạn hãy xem qua trang Portfolio của tôi
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#contact" class="group relative px-8 py-4 hero-btn-primary rounded-full font-medium transition-all duration-300 hover:-translate-y-1">
+                        <span class="relative z-10">Liên hệ</span>
+                    </a>
+                    <a href="#projects" class="group relative px-8 py-4 hero-btn-secondary rounded-full font-medium transition-all duration-300 hover:-translate-y-1">
+                        <span class="relative z-10">Xem dự án</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 hero-scroll-indicator rounded-full flex justify-center">
+                <div class="w-1 h-3 scroll-dot rounded-full mt-2 animate-scroll"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 about-section glass-effect">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 about-title relative gradient-text">
+                Giới thiệu bản thân
+            </h2>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/3 flex justify-center">
+                    <div class="relative group">
+                        <div class="w-64 h-64 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 p-1 transform transition-transform duration-500 group-hover:scale-105">
+                            <div class="w-full h-full rounded-full profile-image p-1">
+                                <div class="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+                                    <div class="w-full h-full flex items-center justify-center profile-icon">
+                                        <img src="../img/profile.png" alt="Khánh Trà Profile" class="w-full h-full object-cover rounded-full transform transition-transform duration-500 group-hover:scale-130">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-yellow-400 rounded-full flex items-center justify-center text-2xl transform transition-transform duration-500 group-hover:rotate-12">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="absolute -top-4 -left-4 w-16 h-16 bg-blue-400 rounded-full flex items-center justify-center text-xl transform transition-transform duration-500 group-hover:-rotate-12">
+                            <i class="fas fa-code"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <div class="space-y-6 about-card p-8 rounded-2xl shadow-xl transform transition-transform duration-500 hover:scale-[1.02]">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-12 h-12 about-icon rounded-full flex items-center justify-center">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold about-title">Giới thiệu bản thân</h3>
+                        </div>
+                        <p class="text-lg about-text leading-relaxed">
+                            Tôi tên là Trà Nguyễn Gia Khánh sinh ngày 22/09/2003, một sinh viên sắp tốt nghiệp về chuyên ngành Khoa Học Dữ Liệu (Data Science) với niềm đam mê mãnh liệt dành cho trí tuệ nhân tạo và hỗ trợ kỹ thuật. 
+                            Trong quá trình học tập, tôi đã trau dồi kỹ năng lập trình Python, phát triển kỹ năng về AI thông qua nhiều dự án và các bài tập thực hành.
+                            tôi cũng trau dồi được kỹ năng hỗ trợ người dùng thông qua việc thực hành giải quyết vấn đề cho bạn bè và cũng nhờ vào chứng chỉ IT Support từ Google.
+                        </p>
+                        
+                        <div class="flex items-center space-x-4 mb-6 mt-8">
+                            <div class="w-12 h-12 achievement-icon rounded-full flex items-center justify-center">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold about-title">Thành tựu</h3>
+                        </div>
+                        <p class="text-lg about-text leading-relaxed">
+                            Đồ án tốt nghiệp của tôi về nhận diện đối tượng trên băng chuyền đạt số điểm 9.5/10, thể hiện năng lực áp dụng các kiến thức về AI vào các vấn đề thực tiễn. 
+                            Tôi luôn khao khát học hỏi, cải thiện bản thân và đóng góp vào những dự án đổi mới sáng tạo. Bạn có thể xem qua đồ án của tôi ở phía dưới phần dự án.
+                        </p>
+                        
+                        <div class="flex items-center space-x-4 mb-6 mt-8">
+                            <div class="w-12 h-12 goal-icon rounded-full flex items-center justify-center">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold about-title">Mục tiêu nghề nghiệp</h3>
+                        </div>
+                        <p class="text-lg about-text leading-relaxed">
+                            Tôi hướng đến việc tìm kiếm một vị trí liên quan đến phát triển AI hoặc hỗ trợ kỹ thuật CNTT, 
+                            nơi tôi có thể vận dụng hiệu quả kỹ năng chuyên môn của mình để giải quyết vấn đề và hỗ trợ cộng đồng một cách thiết thực.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-4 mt-8">
+                            <a href="#contact" class="contact-button px-8 py-4 rounded-full font-medium hover:bg-blue-700 transition duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-2">
+                                <i class="fas fa-envelope"></i>
+                                <span>Liên hệ tôi</span>
+                            </a>
+                            <a href="https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing" class="download-button px-8 py-4 rounded-full font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition duration-300 transform hover:scale-105 hover:shadow-lg flex items-center space-x-2">
+                                <i class="fas fa-download"></i>
+                                <span>Xem và tải CV của tôi</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 bg-gray-50 glass-effect">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Kỹ năng của tôi</h2>
+                <p class="text-lg text-gray-600 dark:text-black-300 max-w-2xl mx-auto">
+                    Những công nghệ và kỹ năng mà tôi đã phát triển qua quá trình học tập
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                <!-- Programming Languages -->
+                <div class="skill-category-card group">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon programming">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="skill-category-title">Ngôn ngữ lập trình</h3>
+                    </div>
+                    
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">Python</h4>
+                                <p class="skill-item-description">Sử dụng ngôn ngữ Python, phát triển AI, xử lý dữ liệu, hình ảnh và tự động hóa</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Data Science</span>
+                                    <span class="skill-tag">Data Analysis</span>
+                                    <span class="skill-tag">AI/ML</span>
+                                    <span class="skill-tag">Automation</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">SQL</h4>
+                                <p class="skill-item-description">Thiết kế, truy vấn và quản lý cơ sở dữ liệu</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">SQL Server</span>
+                                    <span class="skill-tag">MySQL</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">HTML/CSS (Markup Language)</h4>
+                                <p class="skill-item-description">Phát triển web cơ bản hiểu được cơ bản và thiết kế giao diện</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Responsive Design</span>
+                                    <span class="skill-tag">Bootstrap</span>
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fab fa-microsoft"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">C#</h4>
+                                <p class="skill-item-description">Hiểu biết cơ bản về C# và ASP.NET</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">ASP.NET</span>
+                                    <span class="skill-tag">.NET</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Libraries & Frameworks -->
+                <div class="skill-category-card group">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon ai">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="skill-category-title">Thư viện và Framework</h3>
+                    </div>
+                    
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">AI/ML Frameworks</h4>
+                                <p class="skill-item-description">Hiểu biết cơ bản về AI/ML và các thư viện</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">TensorFlow</span>
+                                    <span class="skill-tag">Keras</span>
+                                    <span class="skill-tag">PyTorch</span>
+                                    <span class="skill-tag">OpenCV</span>
+                                    <span class="skill-tag">scikit-learn</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">Computer Vision</h4>
+                                <p class="skill-item-description">Hiểu biết cơ bản về xử lý ảnh và ứng dụng</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">OpenCV</span>
+                                    <span class="skill-tag">Object Detection</span>
+                                    <span class="skill-tag">Object Tracking</span>
+                                    <span class="skill-tag">Object Recognition</span>
+                                    <span class="skill-tag">Object Segmentation</span>
+                                    <span class="skill-tag">Image Processing</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">Data Analysis</h4>
+                                <p class="skill-item-description">Hiểu biết cơ bản về xử lý dữ liệu và trực quan hóa dữ liệu</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Pandas</span>
+                                    <span class="skill-tag">NumPy</span>
+                                    <span class="skill-tag">Matplotlib</span>
+                                    <span class="skill-tag">Seaborn</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & Platforms -->
+                <div class="skill-category-card group">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon tools">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="skill-category-title">Công cụ và Platform</h3>
+                    </div>
+                    
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">Automation & AI Tools</h4>
+                                <p class="skill-item-description">Hiểu biết cơ bản về tự động hóa và phát triển các công cụ AI nhận diện </p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">N8N</span>
+                                    <span class="skill-tag">Roboflow</span>
+                                    <span class="skill-tag">OpenAI</span>
+                                    <span class="skill-tag">ChatGPT</span>
+                                    <span class="skill-tag">Gemini</span>
+                                    <span class="skill-tag">Grok</span>
+                                    <span class="skill-tag">Claude</span>
+                                    <span class="skill-tag">Automation</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fab fa-microsoft"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">Microsoft Office Suite</h4>
+                                <p class="skill-item-description">Hiểu biết về các ứng dụng văn phòng và các công cụ văn phòng</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Word</span>
+                                    <span class="skill-tag">Excel</span>
+                                    <span class="skill-tag">PowerPoint</span>
+                                    <span class="skill-tag">Outlook</span>
+                                    <span class="skill-tag">OneDrive</span>
+                                    <span class="skill-tag">Teams</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">Operating Systems</h4>
+                                <p class="skill-item-description">Hiểu biết cơ bản về hệ điều hành và khắc phục vấn đề với hệ điều hành, phần cứng và phần mềm</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Windows 10/11</span>
+                                    <span class="skill-tag">Ubuntu Linux Basic</span>
+                                    <span class="skill-tag">Hardware</span>
+                                    <span class="skill-tag">Docker</span>
+                                    <span class="skill-tag">Android</span>
+                                    <span class="skill-tag">IOS</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">Networking</h4>
+                                <p class="skill-item-description">Hiểu biết cơ bản về mạng máy tính và bảo mật mạng</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">TCP/IP</span>
+                                    <span class="skill-tag">DNS</span>
+                                    <span class="skill-tag">DHCP</span>
+                                    <span class="skill-tag">VPN</span>
+                                    <span class="skill-tag">Cyber Security</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="skill-category-card group">
+                    <div class="skill-category-header">
+                        <div class="skill-category-icon soft">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="skill-category-title">Kỹ năng mềm</h3>
+                    </div>
+                    
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">Giao tiếp hiệu quả</h4>
+                                <p class="skill-item-description">Giao tiếp và truyền đạt thông tin</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Thuyết trình</span>
+                                    <span class="skill-tag">Viết báo cáo</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">Làm việc nhóm</h4>
+                                <p class="skill-item-description">Làm việc nhóm và hợp tác trong nhóm</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Giải quyết vấn đề trong nhóm</span>
+                                    <span class="skill-tag">Có kỹ năng lãnh đạo</span>
+                                    <span class="skill-tag">Có kỹ năng làm việc nhóm</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">Quản lý thời gian</h4>
+                                <p class="skill-item-description">Quản lý thời gian một cách hiệu quả và tối ưu</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Có khả năng lên kế hoạch</span>
+                                    <span class="skill-tag">Có khả năng ưu tiên công việc</span>
+                                    <span class="skill-tag">Có khả năng tập trung</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-item-icon">
+                                <i class="fas fa-puzzle-piece"></i>
+                            </div>
+                            <div class="skill-item-content">
+                                <h4 class="skill-item-title">Giải quyết vấn đề</h4>
+                                <p class="skill-item-description">Có khả năng phân tích và tìm ra giải pháp</p>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Có khả năng phân tích vấn đề</span>
+                                    <span class="skill-tag">Có khả năng tìm ra giải pháp</span>
+                                    <span class="skill-tag">Có khả năng tự học</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certificates" class="py-20 bg-white glass-effect">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Chứng chỉ của tôi</h2>
+                <p class="text-lg text-gray-600 dark:text-black-300 max-w-2xl mx-auto">
+                    Một vài chứng chỉ và bằng cấp tôi đã đạt được trong quá trình học tập và phát triển nghề nghiệp, ngoài ra tôi còn đang học thêm về 
+                    chứng chỉ Data Analysis và IT Security từ Google, bạn có thể xem thêm ở CV của tôi ở trên.
+                </p>
+            </div>
+            
+            <!-- Certificate Slideshow -->
+            <div class="w-full max-w-5xl mx-auto px-8">
+                <div class="relative bg-gradient-to-tr from-blue-50/80 via-white/90 to-indigo-50/80 dark:from-[#1e293b] dark:via-[#0f172a] dark:to-[#1e293b] dark:border dark:border-blue-400/20 dark:shadow-2xl rounded-3xl shadow-xl overflow-hidden">
+                    <div class="certificate-slides flex transition-transform duration-500" style="will-change: transform;">
+                        
+                        <!-- Certificate 1: Google IT Support -->
+                        <div class="certificate-slide w-full flex flex-col lg:flex-row items-center min-w-full p-8 lg:p-12">
+                            <div class="lg:w-2/5 w-full flex items-center justify-center mb-6 lg:mb-0">
+                                <div class="certificate-image-container">
+                                    <img src="../img/Coursera_IT Support.jpg" alt="Google IT Support Certificate" class="certificate-image rounded-xl shadow-lg">
+                                    <div class="certificate-badge">
+                                        <i class="fab fa-google text-4xl text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:w-3/5 w-full lg:pl-8">
+                                <div class="certificate-content">
+                                    <div class="certificate-header mb-4">
+                                        <h3 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-black mb-2">Google IT Support Professional Certificate</h3>
+                                        <div class="certificate-meta">
+                                            <span class="certificate-issuer">Google Career Certificates</span>
+                                            <span class="certificate-date">Ngày hoàn thành: 05-2025</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-600 dark:text-black-200 mb-6 leading-relaxed">
+                                        Chứng chỉ IT Support từ Google. Chương trình này trang bị 
+                                        những kỹ năng thiết yếu để làm việc trong lĩnh vực IT Support.
+                                    </p>
+                                    <div class="certificate-skills mb-6">
+                                        <h4 class="font-semibold text-gray-800 dark:text-black-200 mb-3">Kỹ năng đạt được:</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="skill-tag">System Administration</span>
+                                            <span class="skill-tag">Network Troubleshooting</span>
+                                            <span class="skill-tag">Customer Service</span>
+                                            <span class="skill-tag">Operating Systems</span>
+                                            <span class="skill-tag">IT Security</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row gap-4">
+                                        <a href="https://coursera.org/share/63ea0eb22d1fb2e525a023d8f36841bf" target="_blank" class="certificate-verify-btn">
+                                            <i class="fas fa-certificate mr-2"></i>
+                                            Xác thực chứng chỉ
+                                        </a>
+                                        <a href="https://coursera.org/professional-certificates/google-it-support" target="_blank" class="certificate-info-btn">
+                                            <i class="fas fa-info-circle mr-2"></i>
+                                            Thông tin khóa học
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 2: AI Essential Degree -->
+                        <div class="certificate-slide w-full flex flex-col lg:flex-row items-center min-w-full p-8 lg:p-12">
+                            <div class="lg:w-2/5 w-full flex items-center justify-center mb-6 lg:mb-0">
+                                <div class="certificate-image-container">
+                                    <img src="../img/Coursera_AI Essentials.jpg" alt="Google AI Essentials Certificate" class="certificate-image rounded-xl shadow-lg">
+                                    <div class="certificate-badge">
+                                        <i class="fab fa-google text-4xl text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:w-3/5 w-full lg:pl-8">
+                                <div class="certificate-content">
+                                    <div class="certificate-header mb-4">
+                                        <h3 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-black mb-2">Google AI Essentials Certificate</h3>
+                                        <div class="certificate-meta">
+                                            <span class="certificate-issuer">Google Career Certificates</span>
+                                            <span class="certificate-date">Ngày hoàn thành: 04-2025</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-600 dark:text-black-200 mb-6 leading-relaxed">
+                                        Chứng chỉ AI Essentials từ Google. Chương trình này trang bị 
+                                        những kỹ năng thiết yếu về AI và cách vận dụng AI.
+                                    </p>
+                                    <div class="certificate-skills mb-6">
+                                        <h4 class="font-semibold text-gray-800 dark:text-black-200 mb-3">Kỹ năng đạt được:</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="skill-tag">AI</span>
+                                            <span class="skill-tag">AI Applications</span>
+                                            <span class="skill-tag">AI Tools</span>
+                                            <span class="skill-tag">AI Best Practices</span>
+                                            <span class="skill-tag">AI Techniques</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row gap-4">
+                                        <a href="https://coursera.org/share/ae887854314f490f27c020c8d0621665" target="_blank" class="certificate-verify-btn">
+                                            <i class="fas fa-certificate mr-2"></i>
+                                            Xác thực chứng chỉ
+                                        </a>
+                                        <a href="https://www.coursera.org/specializations/ai-essentials-google#courses" target="_blank" class="certificate-info-btn">
+                                            <i class="fas fa-info-circle mr-2"></i>
+                                            Thông tin khóa học
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certificate 3: AI Prompt Engineering -->
+                        <div class="certificate-slide w-full flex flex-col lg:flex-row items-center min-w-full p-8 lg:p-12">
+                            <div class="lg:w-2/5 w-full flex items-center justify-center mb-6 lg:mb-0">
+                                <div class="certificate-image-container">
+                                    <img src="../img/Coursera_Prompt AI.jpg" alt="Google Prompting Essentials Certificate" class="certificate-image rounded-xl shadow-lg">
+                                    <div class="certificate-badge">
+                                        <i class="fab fa-google text-4xl text-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:w-3/5 w-full lg:pl-8">
+                                <div class="certificate-content">
+                                    <div class="certificate-header mb-4">
+                                        <h3 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-black mb-2">Google Prompting Essentials Certificate</h3>
+                                        <div class="certificate-meta">
+                                            <span class="certificate-issuer">Google Career Certificates</span>
+                                            <span class="certificate-date">Ngày hoàn thành: 04-2025</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-600 dark:text-black-200 mb-6 leading-relaxed">
+                                        Chứng chỉ Prompting Essentials từ Google. Chương trình này trang bị 
+                                        những kỹ năng thiết yếu để làm việc với AI và cách vận dụng AI viết prompt tối ưu nhất.
+                                    </p>
+                                    <div class="certificate-skills mb-6">
+                                        <h4 class="font-semibold text-gray-800 dark:text-black-200 mb-3">Kỹ năng đạt được:</h4>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="skill-tag">Prompt Engineering</span>
+                                            <span class="skill-tag">AI Prompting</span>
+                                            <span class="skill-tag">AI Prompting Techniques</span>
+                                            <span class="skill-tag">AI Prompting Best Practices</span>
+                                            <span class="skill-tag">AI Prompting Tools</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row gap-4">
+                                        <a href="https://coursera.org/share/d9a2cf7bbbd45a52c5de029c5c1e0514" target="_blank" class="certificate-verify-btn">
+                                            <i class="fas fa-certificate mr-2"></i>
+                                            Xác thực chứng chỉ
+                                        </a>
+                                        <a href="https://www.coursera.org/specializations/prompting-essentials-google" target="_blank" class="certificate-info-btn">
+                                            <i class="fas fa-info-circle mr-2"></i>
+                                            Thông tin khóa học
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <button class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-800/90 hover:bg-blue-50 dark:hover:bg-blue-900 text-blue-700 dark:text-blue-200 p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110 z-10" id="prevCertificate">
+                        <i class="fas fa-chevron-left text-xl"></i>
+                    </button>
+                    <button class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-800/90 hover:bg-blue-50 dark:hover:bg-blue-900 text-blue-700 dark:text-blue-200 p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110 z-10" id="nextCertificate">
+                        <i class="fas fa-chevron-right text-xl"></i>
+                    </button>
+
+                    <!-- Certificate Indicators -->
+                    <div id="certificateIndicators" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+                        <button class="w-3 h-3 rounded-full bg-blue-400/60 hover:bg-blue-500 transition-all duration-300 focus:outline-none" data-index="0"></button>
+                        <button class="w-3 h-3 rounded-full bg-blue-400/60 hover:bg-blue-500 transition-all duration-300 focus:outline-none" data-index="1"></button>
+                        <button class="w-3 h-3 rounded-full bg-blue-400/60 hover:bg-blue-500 transition-all duration-300 focus:outline-none" data-index="2"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-16 bg-white glass-effect">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 gradient-text">Những dự án mà tôi đã thực hiện</h2>
+            <!-- Redesigned Project Slideshow with all slides -->
+            <div class="w-full max-w-6xl mx-auto px-12">
+                <div class="relative bg-gradient-to-tr from-blue-100/80 via-white/80 to-purple-100/80 dark:from-[#1e293b] dark:via-[#0f172a] dark:to-[#1e293b] dark:border dark:border-blue-400/20 dark:shadow-2xl rounded-3xl shadow-2xl overflow-hidden p-6 md:p-12 pb-20 flex flex-col">
+                    <div class="project-slides flex transition-transform duration-500" style="will-change: transform;">
+                        <!-- Project 1 -->
+                        <div class="project-slide w-full flex flex-col md:flex-row items-center md:items-stretch min-w-full">
+                            <div class="md:w-5/12 w-full flex items-center justify-center p-4 md:p-0">
+                                <div class="flex items-center justify-center">
+                                    <img src="/img/doantotnghiep.png" alt="Object Recognition Project" class="max-w-[420px] w-full max-h-[400px] object-contain object-center transition-transform duration-500 rounded-xl">
+                                </div>
+                            </div>
+                            <div class="md:w-7/12 w-full flex flex-col justify-center p-6 md:p-10">
+                                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800 dark:text-white">Object Recognition on Conveyor Belt</h3>
+                                <p class="text-gray-600 dark:text-gray-200 mb-6">A sophisticated computer vision system that detects and classifies objects moving on industrial conveyor belts. Achieved 95% accuracy in real-time object detection.</p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm dark:bg-blue-900/60 dark:text-blue-200 dark:border dark:border-blue-400/30">Python</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm dark:bg-blue-900/60 dark:text-blue-200 dark:border dark:border-blue-400/30">OpenCV</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm dark:bg-blue-900/60 dark:text-blue-200 dark:border dark:border-blue-400/30">PyTorch</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm dark:bg-blue-900/60 dark:text-blue-200 dark:border dark:border-blue-400/30">YOLO v8 & SORT</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm dark:bg-blue-900/60 dark:text-blue-200 dark:border dark:border-blue-400/30">Color Detection</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm dark:bg-blue-900/60 dark:text-blue-200 dark:border dark:border-blue-400/30">Background Subtraction</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm dark:bg-blue-900/60 dark:text-blue-200 dark:border dark:border-blue-400/30">Object Measurement </span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm dark:bg-blue-900/60 dark:text-blue-200 dark:border dark:border-blue-400/30">Object Dêtction & Tracking</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm dark:bg-blue-900/60 dark:text-blue-200 dark:border dark:border-blue-400/30">Object Classification & Counting </span>
+                                
+                                </div>
+                                <div class="space-y-4">
+                                    <h4 class="font-semibold text-gray-800 dark:text-blue-200">Key Features:</h4>
+                                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-200 space-y-2">
+                                        <li>Real-time object detection and classification</li>
+                                        <li>Multi-object tracking capability</li>
+                                        <li>Custom dataset training and optimization</li>
+                                        <li>Integration with industrial control systems</li>
+                                    </ul>
+                                    <div class="mt-6 flex justify-end">
+                                        <a href="https://github.com/trakhanh/AppDetectAndMeasureObject.git" target="_blank" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition duration-300 transform hover:scale-105 hover:shadow-lg">
+                                            <i class="fab fa-github mr-2"></i>
+                                            Xem dự án
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 2 -->
+                        <div class="project-slide w-full flex flex-col md:flex-row items-center md:items-stretch min-w-full">
+                            <div class="md:w-5/12 w-full flex items-center justify-center p-4 md:p-0">
+                                <div class="flex items-center justify-center">
+                                    <img src="../img/fingercount.png" alt="Finger Counting App" class="max-w-[420px] w-full max-h-[400px] object-contain object-center transition-transform duration-500 rounded-xl">
+                                </div>
+                            </div>
+                            <div class="md:w-7/12 w-full flex flex-col justify-center p-6 md:p-10">
+                                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800 dark:text-white">Finger Counting Web App</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-6">An interactive web application that uses computer vision to count fingers in real-time. Features a user-friendly interface and high accuracy detection.</p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Python</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Flask</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">OpenCV</span>
+                                </div>
+                                <div class="space-y-4">
+                                    <h4 class="font-semibold text-gray-800 dark:text-white">Key Features:</h4>
+                                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                                        <li>Real-time finger detection and counting</li>
+                                        <li>Responsive web interface</li>
+                                        <li>Multiple hand gesture recognition</li>
+                                        <li>Cross-platform compatibility</li>
+                                    </ul>
+                                    <div class="mt-6 flex justify-end">
+                                        <a href="https://github.com/your-username/project2" target="_blank" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition duration-300 transform hover:scale-105 hover:shadow-lg">
+                                            <i class="fab fa-github mr-2"></i>
+                                            Xem dự án
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 3 -->
+                        <div class="project-slide w-full flex flex-col md:flex-row items-center md:items-stretch min-w-full">
+                            <div class="md:w-5/12 w-full flex items-center justify-center p-4 md:p-0">
+                                <div class="flex items-center justify-center">
+                                    <img src="../img/multi_task.png" alt="Multi-Task Learning Research" class="max-w-[420px] w-full max-h-[400px] object-contain object-center transition-transform duration-500 rounded-xl">
+                                </div>
+                            </div>
+                            <div class="md:w-7/12 w-full flex flex-col justify-center p-6 md:p-10">
+                                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800 dark:text-white">Multi-Task Learning Research</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-6">Research project exploring multi-task learning approaches using BDD100K and KITTI datasets. Implemented novel architectures for simultaneous object detection and segmentation.</p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Python</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">PyTorch</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Data Analysis</span>
+                                </div>
+                                <div class="space-y-4">
+                                    <h4 class="font-semibold text-gray-800 dark:text-white">Key Features:</h4>
+                                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                                        <li>Multi-task neural network architecture</li>
+                                        <li>Dataset preprocessing and augmentation</li>
+                                        <li>Performance optimization techniques</li>
+                                        <li>Comprehensive evaluation metrics</li>
+                                    </ul>
+                                    <div class="mt-6 flex justify-end">
+                                        <a href="https://github.com/your-username/project3" target="_blank" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition duration-300 transform hover:scale-105 hover:shadow-lg">
+                                            <i class="fab fa-google mr-2"></i>
+                                            Xem dự án
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 4 -->
+                        <div class="project-slide w-full flex flex-col md:flex-row items-center md:items-stretch min-w-full">
+                            <div class="md:w-5/12 w-full flex items-center justify-center p-4 md:p-0">
+                                <div class="flex items-center justify-center">
+                                    <img src="path/to/project4-image.jpg" alt="Smart Parking System" class="max-w-[420px] w-full max-h-[400px] object-contain object-center transition-transform duration-500 rounded-xl">
+                                </div>
+                            </div>
+                            <div class="md:w-7/12 w-full flex flex-col justify-center p-6 md:p-10">
+                                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800 dark:text-white">Smart Parking System</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-6">An IoT-based smart parking solution that uses computer vision to detect available parking spots and provides real-time parking guidance to users through a mobile app.</p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Python</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">OpenCV</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">IoT</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Flutter</span>
+                                </div>
+                                <div class="space-y-4">
+                                    <h4 class="font-semibold text-gray-800 dark:text-white">Key Features:</h4>
+                                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                                        <li>Real-time parking spot detection</li>
+                                        <li>Mobile app for parking guidance</li>
+                                        <li>IoT sensor integration</li>
+                                        <li>Parking analytics dashboard</li>
+                                    </ul>
+                                    <div class="mt-6 flex justify-end">
+                                        <a href="https://github.com/your-username/project4" target="_blank" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition duration-300 transform hover:scale-105 hover:shadow-lg">
+                                            <i class="fab fa-github mr-2"></i>
+                                            Xem dự án
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 5 -->
+                        <div class="project-slide w-full flex flex-col md:flex-row items-center md:items-stretch min-w-full">
+                            <div class="md:w-5/12 w-full flex items-center justify-center p-4 md:p-0">
+                                <div class="flex items-center justify-center">
+                                    <img src="path/to/project5-image.jpg" alt="AI Chatbot" class="max-w-[420px] w-full max-h-[400px] object-contain object-center transition-transform duration-500 rounded-xl">
+                                </div>
+                            </div>
+                            <div class="md:w-7/12 w-full flex flex-col justify-center p-6 md:p-10">
+                                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800 dark:text-white">AI-Powered Customer Service Chatbot</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-6">A natural language processing chatbot that handles customer inquiries, provides product information, and assists with basic troubleshooting.</p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Python</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">NLP</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">TensorFlow</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Flask</span>
+                                </div>
+                                <div class="space-y-4">
+                                    <h4 class="font-semibold text-gray-800 dark:text-white">Key Features:</h4>
+                                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                                        <li>Natural language understanding</li>
+                                        <li>Context-aware responses</li>
+                                        <li>Multi-language support</li>
+                                        <li>Integration with CRM systems</li>
+                                    </ul>
+                                    <div class="mt-6 flex justify-end">
+                                        <a href="https://github.com/your-username/project5" target="_blank" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition duration-300 transform hover:scale-105 hover:shadow-lg">
+                                            <i class="fab fa-kaggle mr-2"></i>
+                                            Xem dự án
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 6 -->
+                        <div class="project-slide w-full flex flex-col md:flex-row items-center md:items-stretch min-w-full">
+                            <div class="md:w-5/12 w-full flex items-center justify-center p-4 md:p-0">
+                                <div class="flex items-center justify-center">
+                                    <img src="path/to/project6-image.jpg" alt="Data Visualization Dashboard" class="max-w-[420px] w-full max-h-[400px] object-contain object-center transition-transform duration-500 rounded-xl">
+                                </div>
+                            </div>
+                            <div class="md:w-7/12 w-full flex flex-col justify-center p-6 md:p-10">
+                                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-800 dark:text-white">Interactive Data Visualization Dashboard</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-6">A comprehensive data visualization platform that transforms complex datasets into interactive charts and graphs, enabling better business insights.</p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Python</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">D3.js</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">React</span>
+                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                                </div>
+                                <div class="space-y-4">
+                                    <h4 class="font-semibold text-gray-800 dark:text-white">Key Features:</h4>
+                                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
+                                        <li>Real-time data updates</li>
+                                        <li>Customizable dashboards</li>
+                                        <li>Advanced filtering options</li>
+                                        <li>Export and sharing capabilities</li>
+                                    </ul>
+                                    <div class="mt-6 flex justify-end">
+                                        <a href="https://github.com/your-username/project6" target="_blank" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition duration-300 transform hover:scale-105 hover:shadow-lg">
+                                            <i class="fab fa-github mr-2"></i>
+                                            Xem dự án
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Navigation Buttons -->
+                    <button class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 hover:bg-blue-200 dark:hover:bg-blue-900 text-blue-700 dark:text-blue-200 p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110 z-10" id="prevProject">
+                        <i class="fas fa-chevron-left text-2xl"></i>
+                    </button>
+                    <button class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 hover:bg-blue-200 dark:hover:bg-blue-900 text-blue-700 dark:text-blue-200 p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110 z-10" id="nextProject">
+                        <i class="fas fa-chevron-right text-2xl"></i>
+                    </button>
+                    <!-- Project Indicators -->
+                    <div id="projectIndicators" class="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+                        <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 focus:outline-none" data-index="0"></button>
+                        <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 focus:outline-none" data-index="1"></button>
+                        <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 focus:outline-none" data-index="2"></button>
+                        <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 focus:outline-none" data-index="3"></button>
+                        <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 focus:outline-none" data-index="4"></button>
+                        <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 focus:outline-none" data-index="5"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 bg-gray-50 glass-effect">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 gradient-text">Liên hệ tôi</h2>
+            
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg">
+                <form id="contactForm" class="space-y-6">
+                        <!-- Name Field -->
+                    <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-dark-300 mb-2">
+                                <i class="fas fa-user mr-2 text-blue-600"></i>Your Name
+                            </label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200" 
+                                placeholder="Enter your name"
+                                required
+                            >
+                    </div>
+
+                        <!-- Email Field -->
+                    <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-dark-300 mb-2">
+                                <i class="fas fa-envelope mr-2 text-blue-600"></i>Email Address
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200" 
+                                placeholder="Enter your email"
+                                required
+                            >
+                    </div>
+
+                        <!-- Message Field -->
+                    <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-dark-300 mb-2">
+                                <i class="fas fa-comment-dots mr-2 text-blue-600"></i>Your Message
+                            </label>
+                            <textarea 
+                                id="message" 
+                                rows="4" 
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none" 
+                                placeholder="Enter your message"
+                                required
+                            ></textarea>
+                    </div>
+
+                        <!-- Submit Button -->
+                        <button 
+                            type="submit" 
+                            class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 group"
+                        >
+                            <i class="fas fa-paper-plane group-hover:translate-x-1 transition-transform duration-300"></i>
+                            <span>Send Message</span>
+                    </button>
+                </form>
+                
+                    <!-- Contact Info -->
+                    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
+                        <h3 class="text-lg font-semibold mb-6 text-gray-800 dark:text-dark text-center">
+                            Hoặc liên hệ với tôi thông qua
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Email -->
+                            <a href="mailto:khanhtra229@gmail.com" class="contact-card group">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <span class="contact-text">khanhtra229@gmail.com</span>
+                            </a>
+                            
+                            <!-- LinkedIn -->
+                            <a href="https://www.facebook.com/kthietkek/" class="contact-card group">
+                                <div class="contact-icon">
+                                    <i class="fab fa-facebook"></i>
+                                </div>
+                                <span class="contact-text">Gia Khánh</span>
+                            </a>
+                            
+                            <!-- Phone -->
+                            <a href="tel:+84792661744" class="contact-card group">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <span class="contact-text">+84 792 661 744</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; Website này được xây dựng hơn 90% bằng AI - Tra Nguyen Gia Khanh.</p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <a href="#" class="hover:text-blue-400"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-blue-400"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-blue-400"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CV Download Popup -->
+    <div id="cvPopup" class="cv-popup-overlay hidden">
+        <div class="cv-popup-container">
+            <div class="cv-popup-content">
+                <div class="cv-popup-header">
+                    <div class="cv-popup-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3 class="cv-popup-title">Đang chuẩn bị CV của tôi</h3>
+                    <p class="cv-popup-subtitle">Kính gửi Anh/Chị tuyển dụng,
+                        Em là Trà Nguyễn Gia Khánh, rất cảm ơn Anh/Chị đã dành thời gian xem qua CV của em. 
+                        Nếu hồ sơ phù hợp, em hy vọng sẽ có cơ hội được trao đổi thêm qua email: khanhtra229@gmail.com. 
+                        Anh/Chị cũng có thể góp ý cho em qua địa chỉ này.
+                        Em xin chân thành cảm ơn và chúc Anh/Chị một ngày làm việc hiệu quả và nhiều niềm vui!</p>
+                </div>
+                
+                <div class="cv-popup-progress">
+                    <div class="cv-progress-bar">
+                        <div class="cv-progress-fill"></div>
+                    </div>
+                    <div class="cv-progress-text">
+                        <span id="cvProgressPercent">0%</span>
+                        <span class="cv-progress-status" id="cvProgressStatus">Đang tải...</span>
+                    </div>
+                </div>
+                
+                <div class="cv-popup-info">
+                    <div class="cv-info-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>CV được cập nhật mới nhất</span>
+                    </div>
+                    <div class="cv-info-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>An toàn và bảo mật</span>
+                    </div>
+                    <div class="cv-info-item">
+                        <i class="fas fa-download"></i>
+                        <span>Có thể tải xuống trực tiếp</span>
+                    </div>
+                </div>
+                
+                <div class="cv-popup-footer">
+                    <button id="cvPopupClose" class="cv-close-btn">
+                        <i class="fas fa-times"></i>
+                        Đóng
+                    </button>
+                    <button id="cvOpenNow" class="cv-open-now-btn">
+                        <i class="fas fa-external-link-alt"></i>
+                        Mở ngay
+                    </button>
+                    <div class="cv-countdown">
+                        Chuyển hướng sau <span id="cvCountdown">15</span> giây
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
