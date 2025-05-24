@@ -1,3 +1,269 @@
+// Splash Screen Management - Initialize Immediately
+// ================================================
+
+class SplashScreenManager {
+    constructor() {
+        this.splashScreen = document.getElementById('splashScreen');
+        this.loadingText = document.getElementById('splashLoadingText');
+        this.isPageLoaded = false;
+        this.isResourcesLoaded = false;
+        this.minimumDisplayTime = 3000; // Minimum 3 seconds display
+        this.startTime = Date.now();
+        
+        this.loadingMessages = [
+            "Đang tải portfolio...",
+            "Đang chuẩn bị nội dung...",
+            "Đang tải thông tin...",
+            "Đang hoàn thành...",
+            "Chào mừng bạn!"
+        ];
+        
+        this.currentMessageIndex = 0;
+        this.messageInterval = null;
+        
+        this.init();
+    }
+    
+    init() {
+        // Prevent page scroll while splash screen is active
+        document.body.style.overflow = 'hidden';
+        
+        // Start loading message rotation
+        this.startLoadingMessages();
+        
+        // Listen for page load events
+        this.setupEventListeners();
+        
+        // Check if page is already loaded (for browsers that cache)
+        if (document.readyState === 'complete') {
+            this.handlePageLoad();
+        }
+    }
+    
+    setupEventListeners() {
+        // Page loaded event
+        window.addEventListener('load', () => {
+            this.handlePageLoad();
+        });
+        
+        // DOM loaded event
+        document.addEventListener('DOMContentLoaded', () => {
+            this.handleDOMLoad();
+        });
+        
+        // Resource loading
+        this.preloadCriticalResources();
+    }
+    
+    handleDOMLoad() {
+        console.log('DOM loaded');
+        // Start checking for images and other resources
+        this.checkResourcesLoaded();
+    }
+    
+    handlePageLoad() {
+        console.log('Page fully loaded');
+        this.isPageLoaded = true;
+        this.checkReadyToHide();
+    }
+    
+    preloadCriticalResources() {
+        // Preload critical images
+        const criticalImages = [
+            '/img/profile.png',
+            '/img/doantotnghiepj2_3.png',
+            '/img/fingercount.png'
+        ];
+        
+        let loadedCount = 0;
+        const totalImages = criticalImages.length;
+        
+        criticalImages.forEach(src => {
+            const img = new Image();
+            img.onload = () => {
+                loadedCount++;
+                this.updateLoadingProgress(loadedCount, totalImages);
+                
+                if (loadedCount === totalImages) {
+                    this.isResourcesLoaded = true;
+                    this.checkReadyToHide();
+                }
+            };
+            img.onerror = () => {
+                loadedCount++;
+                this.updateLoadingProgress(loadedCount, totalImages);
+                
+                if (loadedCount === totalImages) {
+                    this.isResourcesLoaded = true;
+                    this.checkReadyToHide();
+                }
+            };
+            img.src = src;
+        });
+        
+        // Fallback: assume resources loaded after 2 seconds
+        setTimeout(() => {
+            if (!this.isResourcesLoaded) {
+                this.isResourcesLoaded = true;
+                this.checkReadyToHide();
+            }
+        }, 2000);
+    }
+    
+    updateLoadingProgress(loaded, total) {
+        const progress = (loaded / total) * 100;
+        console.log(`Loading progress: ${progress}%`);
+        
+        // Update message based on progress
+        if (progress >= 75 && this.currentMessageIndex < 3) {
+            this.currentMessageIndex = 3;
+            this.updateLoadingMessage();
+        } else if (progress >= 50 && this.currentMessageIndex < 2) {
+            this.currentMessageIndex = 2;
+            this.updateLoadingMessage();
+        }
+    }
+    
+    startLoadingMessages() {
+        // Update message every 800ms
+        this.messageInterval = setInterval(() => {
+            this.currentMessageIndex = (this.currentMessageIndex + 1) % (this.loadingMessages.length - 1);
+            this.updateLoadingMessage();
+        }, 800);
+    }
+    
+    updateLoadingMessage() {
+        if (this.loadingText && this.currentMessageIndex < this.loadingMessages.length) {
+            this.loadingText.textContent = this.loadingMessages[this.currentMessageIndex];
+        }
+    }
+    
+    checkResourcesLoaded() {
+        // Check if all images are loaded
+        const images = document.querySelectorAll('img');
+        let loadedImages = 0;
+        
+        images.forEach(img => {
+            if (img.complete) {
+                loadedImages++;
+            } else {
+                img.addEventListener('load', () => {
+                    loadedImages++;
+                    if (loadedImages === images.length) {
+                        this.isResourcesLoaded = true;
+                        this.checkReadyToHide();
+                    }
+                });
+                
+                img.addEventListener('error', () => {
+                    loadedImages++;
+                    if (loadedImages === images.length) {
+                        this.isResourcesLoaded = true;
+                        this.checkReadyToHide();
+                    }
+                });
+            }
+        });
+        
+        if (loadedImages === images.length) {
+            this.isResourcesLoaded = true;
+            this.checkReadyToHide();
+        }
+    }
+    
+    checkReadyToHide() {
+        const elapsedTime = Date.now() - this.startTime;
+        const minTimeElapsed = elapsedTime >= this.minimumDisplayTime;
+        
+        console.log('Check ready to hide:', {
+            pageLoaded: this.isPageLoaded,
+            resourcesLoaded: this.isResourcesLoaded,
+            minTimeElapsed,
+            elapsedTime
+        });
+        
+        if (this.isPageLoaded && this.isResourcesLoaded && minTimeElapsed) {
+            this.hideSplashScreen();
+        } else if (this.isPageLoaded && this.isResourcesLoaded) {
+            // Wait for minimum time
+            const remainingTime = this.minimumDisplayTime - elapsedTime;
+            setTimeout(() => {
+                this.hideSplashScreen();
+            }, remainingTime);
+        }
+    }
+    
+    hideSplashScreen() {
+        // Clear message interval
+        if (this.messageInterval) {
+            clearInterval(this.messageInterval);
+        }
+        
+        // Show final message
+        this.currentMessageIndex = this.loadingMessages.length - 1;
+        this.updateLoadingMessage();
+        
+        // Hide splash screen after a short delay
+        setTimeout(() => {
+            this.splashScreen.classList.add('hidden');
+            
+            // Restore page scroll
+            setTimeout(() => {
+                document.body.style.overflow = '';
+                
+                // Trigger any page load animations
+                this.triggerPageAnimations();
+                
+                // Remove splash screen from DOM after transition
+                setTimeout(() => {
+                    if (this.splashScreen && this.splashScreen.parentNode) {
+                        this.splashScreen.parentNode.removeChild(this.splashScreen);
+                    }
+                }, 800);
+            }, 300);
+        }, 500);
+    }
+    
+    triggerPageAnimations() {
+        // Trigger fade-in animations for main content
+        const animatedElements = document.querySelectorAll('.animate-fade-in');
+        animatedElements.forEach((element, index) => {
+            setTimeout(() => {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+        
+        // Initialize other animations
+        if (typeof updateActiveNav === 'function') {
+            updateActiveNav();
+        }
+    }
+    
+    // Manual trigger for debugging
+    forceHide() {
+        this.isPageLoaded = true;
+        this.isResourcesLoaded = true;
+        this.hideSplashScreen();
+    }
+}
+
+// Initialize splash screen manager immediately
+let splashManager;
+
+// Initialize as soon as script loads
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        splashManager = new SplashScreenManager();
+    });
+} else {
+    // DOM already loaded
+    splashManager = new SplashScreenManager();
+}
+
+// Debug helper - remove in production
+// window.hideSplash = () => splashManager?.forceHide();
+
 // Enhanced Mobile menu toggle with animation
 const mobileMenuButton = document.getElementById('mobileMenuButton');
 const mobileMenu = document.getElementById('mobileMenu');
