@@ -1373,3 +1373,100 @@ document.addEventListener('visibilitychange', () => {
         }
     }
 });
+
+// External Monitor Detection và Layout Fix
+class ExternalMonitorHandler {
+    constructor() {
+        this.isExternalMonitor = false;
+        this.screenWidth = window.screen.width;
+        this.screenHeight = window.screen.height;
+        this.devicePixelRatio = window.devicePixelRatio || 1;
+        this.init();
+    }
+
+    init() {
+        this.detectExternalMonitor();
+        this.applyMonitorFixes();
+        this.setupResizeHandler();
+    }
+
+    detectExternalMonitor() {
+        // Detect nếu đang dùng màn hình rời
+        const isLargeScreen = this.screenWidth >= 1920;
+        const isHighDPI = this.devicePixelRatio >= 1.5;
+        const isWideAspectRatio = (this.screenWidth / this.screenHeight) >= 1.6;
+        
+        // Common external monitor resolutions
+        const externalResolutions = [
+            [2560, 1440], // 1440p
+            [3840, 2160], // 4K
+            [2560, 1080], // Ultrawide
+            [3440, 1440], // Ultrawide 1440p
+            [1920, 1080], // 1080p external
+        ];
+        
+        this.isExternalMonitor = externalResolutions.some(([w, h]) => 
+            this.screenWidth === w && this.screenHeight === h
+        ) || (isLargeScreen && isWideAspectRatio);
+
+        console.log('External Monitor Detected:', this.isExternalMonitor);
+        console.log('Screen Resolution:', this.screenWidth, 'x', this.screenHeight);
+        console.log('Device Pixel Ratio:', this.devicePixelRatio);
+    }
+
+    applyMonitorFixes() {
+        if (this.isExternalMonitor) {
+            document.body.classList.add('external-monitor');
+            this.forceLayoutRecalculation();
+            this.optimizeForExternalDisplay();
+        }
+    }
+
+    forceLayoutRecalculation() {
+        // Force browser layout recalculation
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            skillsSection.style.display = 'none';
+            skillsSection.offsetHeight; // Trigger reflow
+            skillsSection.style.display = '';
+            
+            // Force grid recalculation
+            const grid = skillsSection.querySelector('.grid');
+            if (grid) {
+                grid.style.transform = 'translateZ(0)';
+                grid.style.willChange = 'transform';
+            }
+        }
+    }
+
+    optimizeForExternalDisplay() {
+        // Add CSS class cho external monitor
+        document.documentElement.style.setProperty('--external-monitor', '1');
+        
+        // Fix viewport issues
+        const viewport = document.querySelector('meta[name="viewport"]');
+        if (viewport && this.screenWidth >= 2560) {
+            viewport.setAttribute('content', 
+                'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover'
+            );
+        }
+    }
+
+    setupResizeHandler() {
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                this.screenWidth = window.screen.width;
+                this.screenHeight = window.screen.height;
+                this.detectExternalMonitor();
+                this.applyMonitorFixes();
+            }, 250);
+        });
+    }
+}
+
+// Initialize External Monitor Handler
+document.addEventListener('DOMContentLoaded', () => {
+    new ExternalMonitorHandler();
+});
