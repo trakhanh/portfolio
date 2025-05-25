@@ -825,7 +825,13 @@
 
     <section id="projects" class="py-12 sm:py-16 bg-white glass-effect">
         <div class="container mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 gradient-text">Những dự án mà tôi đã thực hiện</h2>
+            <div class="text-center mb-8 sm:mb-12">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">Dự án nổi bật</h2>
+                <p class="text-base sm:text-lg text-gray-600 dark:text-dark-300 max-w-2xl mx-auto">
+                    Khám phá những dự án AI và Data Science tôi đã thực hiện trong quá trình học tập
+                </p>
+            </div>
+            
             <div class="w-full max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
                 <div class="project-slideshow relative bg-gradient-to-tr from-blue-100/80 via-white/80 to-purple-100/80 dark:from-[#1e293b] dark:via-[#0f172a] dark:to-[#1e293b] dark:border dark:border-blue-400/20 dark:shadow-2xl rounded-3xl shadow-2xl overflow-hidden p-1 sm:p-2 md:p-3 lg:p-4 pb-4 sm:pb-6 flex flex-col">
                     <div class="project-slides flex transition-transform duration-500" style="will-change: transform;">
@@ -840,174 +846,282 @@
                                 </figure>
                             </div>
                             <div class="lg:w-7/12 w-full flex flex-col justify-between p-6 sm:p-8 lg:p-12 h-full">
-                                <h3 class="text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800 dark:text-white">Nhận dạng và đo kích thước vật thể trên băng chuyền (Đồ án tốt nghiệp)</h3>
-                                <p class="text-base text-gray-600 dark:text-gray-200 mb-4 sm:mb-6">Một hệ thống thị giác máy tính tiên tiến được phát triển bằng Python, OpenCV và PyTorch, chuyên phát hiện, phân loại và đo kích thước các vật thể di chuyển trên băng chuyền công nghiệp. Bằng cách sử dụng mô hình YOLO v8 cho nhận dạng và thuật toán SORT để theo dõi đa đối tượng, hệ thống đạt độ chính xác 95% trong việc phát hiện và ước tính kích thước vật thể theo thời gian thực. Dự án bao gồm việc huấn luyện trên bộ dữ liệu tùy chỉnh và có khả năng tích hợp với các hệ thống điều khiển công nghiệp.</p>
+                                <div>
+                                    <h3 class="text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800 dark:text-white">Nhận dạng và đo kích thước vật thể trên băng chuyền</h3>
+                                    <div class="mb-4 px-3 py-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm rounded-full w-fit">
+                                        🏆 Đồ án tốt nghiệp
+                                    </div>
+                                    <p class="text-base text-gray-600 dark:text-gray-200 mb-4 sm:mb-6 leading-relaxed">
+                                        Hệ thống AI tiên tiến sử dụng <strong>YOLO v8</strong> và <strong>SORT</strong> để phát hiện, theo dõi và đo kích thước vật thể trên băng chuyền công nghiệp với độ chính xác <strong>95%</strong>. Tích hợp giao diện PySimpleGUI và khả năng huấn luyện mô hình trực tiếp.
+                                    </p>
+                                </div>
+                                
                                 <div class="flex flex-wrap gap-2 mb-4 sm:mb-6">
                                     <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">YOLO v8</span>
                                     <span class="tech-tag">OpenCV</span>
                                     <span class="tech-tag">PyTorch</span>
-                                    <span class="tech-tag">PySimpleGUI</span>
-                                    <span class="tech-tag">YOLO v8 & SORT</span>
                                     <span class="tech-tag">Computer Vision</span>
                                 </div>
-                                <ul class="feature-list mb-6 text-base text-gray-600 dark:text-gray-200 pl-4">
-                                    <li>Phát hiện và phân loại vật thể theo thời gian thực</li>
-                                    <li>Khả năng theo dõi đa vật thể (Multi-object tracking)</li>
-                                    <li>Đo kích thước vật thể</li>
-                                    <li>Đếm số lượng vật thể</li>
-                                    <li>Huấn luyện và tối ưu hóa trên bộ dữ liệu tùy chỉnh</li>
-                                    <li>Khả năng train trực tiếp trên ứng dụng</li>
-                                    <li>Tích hợp với các hệ thống điều khiển công nghiệp</li>
-                                </ul>
-                                <div class="mt-auto flex flex-wrap gap-3 justify-end">
+                                
+                                <div class="grid grid-cols-2 gap-3 mb-6 text-sm text-gray-600 dark:text-gray-200">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-eye text-blue-500"></i>
+                                        <span>Phát hiện real-time</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-ruler text-green-500"></i>
+                                        <span>Đo kích thước chính xác</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-chart-line text-purple-500"></i>
+                                        <span>Theo dõi đa đối tượng</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-cogs text-orange-500"></i>
+                                        <span>Tích hợp công nghiệp</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex flex-wrap gap-3 justify-end">
                                     <a href="https://github.com/trakhanh/AppDetectAndMeasureObject.git" target="_blank" class="inline-flex items-center px-5 py-2.5 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 hover:scale-105 hover:shadow-lg transition-all text-base">
-                                        <i class="fab fa-github mr-2"></i>Xem dự án
+                                        <i class="fab fa-github mr-2"></i>Xem code
                                     </a>
                                     <a href="https://youtu.be/L07IJW2GpZo" target="_blank" class="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-full font-semibold shadow-md hover:from-green-500 hover:to-blue-600 hover:scale-105 hover:shadow-lg transition-all text-base">
                                         <i class="fas fa-play-circle mr-2"></i>Xem Demo
-                                        </a>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                        
                         <!-- Project 2 -->
                         <div class="project-slide w-full flex flex-col lg:flex-row items-center lg:items-stretch min-w-full">
                             <div class="lg:w-5/12 w-full flex items-center justify-center p-2 sm:p-4 lg:p-0 mb-4 lg:mb-0">
                                 <figure class="flex flex-col items-center w-full h-full">
                                     <img src="./img/fingercount.png" alt="Finger Counting App" class="object-cover rounded-2xl shadow-xl mx-auto max-w-[420px] max-h-[400px] w-full h-auto">
                                     <figcaption class="mt-3 text-sm text-green-800 dark:text-green-100 bg-gradient-to-r from-green-50 to-emerald-100 dark:from-green-900 dark:to-emerald-900 px-4 py-2 rounded-lg shadow-md border border-green-200 dark:border-green-700 w-fit mx-auto text-center font-medium">
-                                        ✋ Sử dụng CNN, VGG16, ResNet50 để nhận diện cử chỉ tay
+                                        ✋ Deep Learning với CNN, VGG16, ResNet50
                                     </figcaption>
                                 </figure>
                             </div>
                             <div class="lg:w-7/12 w-full flex flex-col justify-between p-6 sm:p-8 lg:p-12 h-full">
-                                <h3 class="text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800 dark:text-white">Ứng dụng App đếm số lượng ngón tay</h3>
-                                <p class="text-base text-gray-600 dark:text-gray-200 mb-4 sm:mb-6">Một ứng dụng web tương tác được xây dựng bằng Python, OpenCV và Streamlit, sử dụng các kỹ thuật Thị giác Máy tính và Học Sâu (Deep Learning) để phát hiện và đếm số lượng ngón tay trong thời gian thực. Ứng dụng tập trung vào các giải pháp phân đoạn (Segmentation) và phát hiện (Detection) để đảm bảo độ chính xác cao, đồng thời cung cấp giao diện người dùng thân thiện và có khả năng nhận diện nhiều cử chỉ tay khác nhau.</p>
+                                <div>
+                                    <h3 class="text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800 dark:text-white">Ứng dụng đếm ngón tay thông minh</h3>
+                                    <div class="mb-4 px-3 py-1 bg-gradient-to-r from-green-500 to-teal-500 text-white text-sm rounded-full w-fit">
+                                        🤖 Computer Vision
+                                    </div>
+                                    <p class="text-base text-gray-600 dark:text-gray-200 mb-4 sm:mb-6 leading-relaxed">
+                                        Ứng dụng web tương tác sử dụng <strong>Streamlit</strong> và nhiều mô hình Deep Learning (<strong>CNN, VGG16, ResNet50</strong>) để nhận diện và đếm ngón tay real-time. Tích hợp kỹ thuật phân đoạn <strong>U-NET</strong> cho độ chính xác cao.
+                                    </p>
+                                </div>
+                                
                                 <div class="flex flex-wrap gap-2 mb-4 sm:mb-6">
                                     <span class="tech-tag">Python</span>
                                     <span class="tech-tag">Streamlit</span>
-                                    <span class="tech-tag">Segmentation & Detection</span>
-                                    <span class="tech-tag">Deep Learning</span>
+                                    <span class="tech-tag">CNN/VGG16</span>
+                                    <span class="tech-tag">U-NET</span>
                                     <span class="tech-tag">OpenCV</span>
                                 </div>
-                                <ul class="feature-list mb-6 text-base text-gray-600 dark:text-gray-200 pl-4">
-                                    <li>Phát hiện và đếm ngón tay dùng nhiều mô hình như CNN, VGG16, ResNet50, MLP</li>
-                                    <li>Giao diện web sử dụng Streamlit để triển khai</li>
-                                    <li>Khả năng nhận diện nhiều cử chỉ tay</li>
-                                    <li>Phân đoạn ngón tay bằng mô hình U-NET</li>
-                                </ul>
-                                <div class="mt-auto flex flex-wrap gap-3 justify-end">
+                                
+                                <div class="grid grid-cols-2 gap-3 mb-6 text-sm text-gray-600 dark:text-gray-200">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-hand-paper text-green-500"></i>
+                                        <span>Nhận diện cử chỉ</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-brain text-purple-500"></i>
+                                        <span>Multi-model AI</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-globe text-blue-500"></i>
+                                        <span>Web interface</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-cut text-orange-500"></i>
+                                        <span>Segmentation</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex flex-wrap gap-3 justify-end">
                                     <a href="https://github.com/trakhanh/UngDungDemNgonTay5-9.git" target="_blank" class="inline-flex items-center px-5 py-2.5 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 hover:scale-105 hover:shadow-lg transition-all text-base">
-                                        <i class="fab fa-github mr-2"></i>Xem dự án
+                                        <i class="fab fa-github mr-2"></i>Xem code
                                     </a>
                                     <a href="https://youtu.be/NEbpUe2FScA" target="_blank" class="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-green-400 to-blue-500 text-white rounded-full font-semibold shadow-md hover:from-green-500 hover:to-blue-600 hover:scale-105 hover:shadow-lg transition-all text-base">
                                         <i class="fas fa-play-circle mr-2"></i>Xem Demo
-                                        </a>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                        
                         <!-- Project 3 -->
                         <div class="project-slide w-full flex flex-col lg:flex-row items-center lg:items-stretch min-w-full">
                             <div class="lg:w-5/12 w-full flex items-center justify-center p-2 sm:p-4 lg:p-0 mb-4 lg:mb-0">
                                 <figure class="flex flex-col items-center w-full h-full">
                                     <img src="./img/multi_task.png" alt="Multi-Task Learning Research" class="object-cover rounded-2xl shadow-xl mx-auto max-w-[420px] max-h-[400px] w-full h-auto">
                                     <figcaption class="mt-3 text-sm text-purple-800 dark:text-purple-100 bg-gradient-to-r from-purple-50 to-violet-100 dark:from-purple-900 dark:to-violet-900 px-4 py-2 rounded-lg shadow-md border border-purple-200 dark:border-purple-700 w-fit mx-auto text-center font-medium">
-                                        🧠 Nghiên cứu Multi-Task Learning với bộ dữ liệu BDD100K & KITTI
+                                        🧠 Nghiên cứu với BDD100K & KITTI
                                     </figcaption>
                                 </figure>
                             </div>
                             <div class="lg:w-7/12 w-full flex flex-col justify-between p-6 sm:p-8 lg:p-12 h-full">
-                                <h3 class="text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800 dark:text-white">Nghiên cứu về Multi-Task Learning</h3>
-                                <p class="text-base text-gray-600 dark:text-gray-200 mb-4 sm:mb-6">Dự án nghiên cứu chuyên sâu về các phương pháp học đa nhiệm (Multi-Task Learning) trong lĩnh vực Thị giác Máy tính, sử dụng Python và PyTorch. Nghiên cứu tập trung vào việc phát triển các kiến trúc mạng nơ-ron học sâu (Deep Learning) mới có khả năng thực hiện đồng thời nhiều tác vụ như phát hiện đối tượng, phân đoạn ảnh (Segmentation) và ước tính độ sâu trường ảnh (DOF - Depth of Field) hoặc các thông tin liên quan đến độ sâu. Dự án đã làm việc với các bộ dữ liệu lớn như BDD100K và KITTI, bao gồm các kỹ thuật tiền xử lý, tăng cường dữ liệu và tối ưu hóa hiệu suất.</p>
+                                <div>
+                                    <h3 class="text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800 dark:text-white">Multi-Task Learning Research</h3>
+                                    <div class="mb-4 px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm rounded-full w-fit">
+                                        🔬 Nghiên cứu khoa học
+                                    </div>
+                                    <p class="text-base text-gray-600 dark:text-gray-200 mb-4 sm:mb-6 leading-relaxed">
+                                        Nghiên cứu chuyên sâu về <strong>Multi-Task Learning</strong> trong Computer Vision, phát triển kiến trúc neural network thực hiện đồng thời nhiều tác vụ: object detection, segmentation và depth estimation trên dataset <strong>BDD100K</strong> và <strong>KITTI</strong>.
+                                    </p>
+                                </div>
+                                
                                 <div class="flex flex-wrap gap-2 mb-4 sm:mb-6">
-                                    <span class="tech-tag">Python</span>
                                     <span class="tech-tag">PyTorch</span>
-                                    <span class="tech-tag">Computer Vision</span>
-                                    <span class="tech-tag">Segmentation & DOF</span>
+                                    <span class="tech-tag">Multi-Task</span>
+                                    <span class="tech-tag">BDD100K</span>
+                                    <span class="tech-tag">KITTI</span>
                                     <span class="tech-tag">Deep Learning</span>
                                 </div>
-                                <ul class="feature-list mb-4 text-base text-gray-600 dark:text-gray-200 pl-4">
-                                    <li>Kiến trúc mạng nơ-ron học đa nhiệm</li>
-                                    <li>Tiền xử lý và tăng cường bộ dữ liệu</li>
-                                    <li>Các kỹ thuật tối ưu hóa hiệu suất</li>
-                                    <li>Đo độ sâu ảnh và Lane Detection</li>
-                                    <li>Hệ thống các chỉ số đánh giá toàn diện</li>
-                                </ul>
-                                <div class="mt-auto flex justify-end">
+                                
+                                <div class="grid grid-cols-2 gap-3 mb-6 text-sm text-gray-600 dark:text-gray-200">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-network-wired text-purple-500"></i>
+                                        <span>Neural Architecture</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-layer-group text-blue-500"></i>
+                                        <span>Multi-task Learning</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-road text-green-500"></i>
+                                        <span>Lane Detection</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-cube text-orange-500"></i>
+                                        <span>Depth Estimation</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-end">
                                     <a href="https://www.kaggle.com/code/khanhtraa/multi-task-bdd100k" target="_blank" class="inline-flex items-center px-5 py-2.5 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition duration-300 hover:scale-105 hover:shadow-lg text-base">
-                                        <i class="fab fa-kaggle mr-2"></i>Xem dự án
-                                        </a>
+                                        <i class="fab fa-kaggle mr-2"></i>Xem nghiên cứu
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                        
                         <!-- Project 4 -->
                         <div class="project-slide w-full flex flex-col lg:flex-row items-center lg:items-stretch min-w-full">
                             <div class="lg:w-5/12 w-full flex items-center justify-center p-2 sm:p-4 lg:p-0 mb-4 lg:mb-0">
                                 <figure class="flex flex-col items-center w-full h-full">
                                     <img src="./img/project4.png" alt="Customer Churn Prediction" class="object-cover rounded-2xl shadow-xl mx-auto max-w-[420px] max-h-[400px] w-full h-auto">
                                     <figcaption class="mt-3 text-sm text-orange-800 dark:text-orange-100 bg-gradient-to-r from-orange-50 to-amber-100 dark:from-orange-900 dark:to-amber-900 px-4 py-2 rounded-lg shadow-md border border-orange-200 dark:border-orange-700 w-fit mx-auto text-center font-medium">
-                                        📊 Dự đoán Customer Churn với Machine Learning
+                                        📊 Machine Learning cho Business
                                     </figcaption>
                                 </figure>
                             </div>
                             <div class="lg:w-7/12 w-full flex flex-col justify-between p-6 sm:p-8 lg:p-12 h-full">
-                                <h3 class="text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800 dark:text-white">Dự đoán khách hàng rời khỏi trung tâm thương mại</h3>
-                                <p class="text-base text-gray-600 dark:text-gray-200 mb-4 sm:mb-6">Một dự án phân tích dữ liệu và học máy nhằm dự đoán khả năng khách hàng rời bỏ (churn) một trung tâm thương mại. Sử dụng Python cùng các thư viện như Pandas để xử lý dữ liệu, Numpy cho tính toán số học, Matplotlib và Seaborn để trực quan hóa dữ liệu. Các mô hình Machine Learning được xây dựng và đánh giá để xác định các yếu tố ảnh hưởng đến quyết định rời đi của khách hàng và đưa ra dự đoán chính xác, giúp trung tâm thương mại có những chiến lược giữ chân khách hàng hiệu quả.</p>
+                                <div>
+                                    <h3 class="text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800 dark:text-white">Dự đoán Customer Churn</h3>
+                                    <div class="mb-4 px-3 py-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm rounded-full w-fit">
+                                        📈 Business Analytics
+                                    </div>
+                                    <p class="text-base text-gray-600 dark:text-gray-200 mb-4 sm:mb-6 leading-relaxed">
+                                        Phân tích dữ liệu khách hàng và xây dựng mô hình <strong>Machine Learning</strong> dự đoán khả năng rời bỏ của khách hàng. Sử dụng <strong>Pandas, Seaborn</strong> cho EDA và các thuật toán ML để tối ưu chiến lược giữ chân khách hàng.
+                                    </p>
+                                </div>
+                                
                                 <div class="flex flex-wrap gap-2 mb-4 sm:mb-6">
                                     <span class="tech-tag">Python</span>
-                                    <span class="tech-tag">Pandas & Numpy</span>
-                                    <span class="tech-tag">Matplotlib & Seaborn</span>
-                                    <span class="tech-tag">Machine Learning</span>
+                                    <span class="tech-tag">Pandas</span>
+                                    <span class="tech-tag">Seaborn</span>
+                                    <span class="tech-tag">Scikit-learn</span>
+                                    <span class="tech-tag">EDA</span>
                                 </div>
-                                <ul class="feature-list mb-4 text-base text-gray-600 dark:text-gray-200 pl-4">
-                                    <li>Phân tích chuyên sâu dữ liệu khách hàng</li>
-                                    <li>Tiền xử lý và làm sạch dữ liệu</li>
-                                    <li>Trực quan hóa dữ liệu, khám phá insight</li>
-                                    <li>Xây dựng mô hình dự đoán churn</li>
-                                    <li>Đánh giá và lựa chọn mô hình tối ưu</li>
-                                    <li>Xác định các yếu tố chính gây churn</li>
-                                </ul>
-                                <div class="mt-auto flex justify-end">
+                                
+                                <div class="grid grid-cols-2 gap-3 mb-6 text-sm text-gray-600 dark:text-gray-200">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-chart-pie text-orange-500"></i>
+                                        <span>Data Analysis</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-users text-blue-500"></i>
+                                        <span>Customer Insights</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-robot text-purple-500"></i>
+                                        <span>ML Prediction</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-chart-line text-green-500"></i>
+                                        <span>Business Strategy</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-end">
                                     <a href="https://colab.research.google.com/drive/1FGsrd0j4zfvvju4NXjXqrvxQPKGvEUIU?usp=sharing" target="_blank" class="inline-flex items-center px-5 py-2.5 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition duration-300 hover:scale-105 hover:shadow-lg text-base">
-                                        <i class="fab fa-google mr-2"></i>Xem dự án
-                                        </a>
+                                        <i class="fab fa-google mr-2"></i>Xem phân tích
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                        
                         <!-- Project 5 -->
                         <div class="project-slide w-full flex flex-col lg:flex-row items-center lg:items-stretch min-w-full">
                             <div class="lg:w-5/12 w-full flex items-center justify-center p-2 sm:p-4 lg:p-0 mb-4 lg:mb-0">
                                 <figure class="flex flex-col items-center w-full h-full">
                                     <img src="./img/project5.png" alt="Sales Data Analysis" class="object-cover rounded-2xl shadow-xl mx-auto max-w-[420px] max-h-[400px] w-full h-auto">
                                     <figcaption class="mt-3 text-sm text-teal-800 dark:text-teal-100 bg-gradient-to-r from-teal-50 to-cyan-100 dark:from-teal-900 dark:to-cyan-900 px-4 py-2 rounded-lg shadow-md border border-teal-200 dark:border-teal-700 w-fit mx-auto text-center font-medium">
-                                        📈 Phân tích dữ liệu bán hàng với Python & Visualization
+                                        📈 Data Visualization & Analytics
                                     </figcaption>
                                 </figure>
                             </div>
                             <div class="lg:w-7/12 w-full flex flex-col justify-between p-6 sm:p-8 lg:p-12 h-full">
-                                <h3 class="text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800 dark:text-white">Phân tích dữ liệu bán hàng</h3>
-                                <p class="text-base text-gray-600 dark:text-gray-200 mb-4 sm:mb-6">Dự án tập trung vào việc phân tích chuyên sâu dữ liệu bán hàng để khám phá các xu hướng, mẫu hình và insight quan trọng. Sử dụng Python và các thư viện cốt lõi như Pandas để thao tác và làm sạch dữ liệu, Numpy cho các phép tính hiệu suất cao, cùng Matplotlib và Seaborn để tạo ra các biểu đồ trực quan hóa dữ liệu đa dạng. Các kỹ thuật Machine Learning cũng có thể được áp dụng để dự báo doanh số, phân khúc khách hàng hoặc xác định các yếu tố tác động đến hiệu quả bán hàng, từ đó hỗ trợ việc ra quyết định kinh doanh dựa trên dữ liệu.</p>
+                                <div>
+                                    <h3 class="text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 text-gray-800 dark:text-white">Phân tích dữ liệu bán hàng</h3>
+                                    <div class="mb-4 px-3 py-1 bg-gradient-to-r from-teal-500 to-cyan-500 text-white text-sm rounded-full w-fit">
+                                        📊 Data Analytics
+                                    </div>
+                                    <p class="text-base text-gray-600 dark:text-gray-200 mb-4 sm:mb-6 leading-relaxed">
+                                        Phân tích chuyên sâu dữ liệu bán hàng để khám phá xu hướng và insights quan trọng. Sử dụng <strong>Python, Pandas, Matplotlib</strong> để tạo dashboard trực quan và áp dụng ML cho dự báo doanh số và phân khúc khách hàng.
+                                    </p>
+                                </div>
+                                
                                 <div class="flex flex-wrap gap-2 mb-4 sm:mb-6">
                                     <span class="tech-tag">Python</span>
-                                    <span class="tech-tag">Pandas & Numpy</span>
-                                    <span class="tech-tag">Matplotlib & Seaborn</span>
-                                    <span class="tech-tag">Machine Learning</span>
+                                    <span class="tech-tag">Pandas</span>
+                                    <span class="tech-tag">Matplotlib</span>
+                                    <span class="tech-tag">Seaborn</span>
+                                    <span class="tech-tag">Analytics</span>
                                 </div>
-                                <ul class="feature-list mb-4 text-base text-gray-600 dark:text-gray-200 pl-4">
-                                    <li>Thu thập và tổng hợp dữ liệu bán hàng</li>
-                                    <li>Làm sạch, tiền xử lý và chuẩn hóa dữ liệu</li>
-                                    <li>Phân tích khám phá dữ liệu (EDA)</li>
-                                    <li>Trực quan hóa xu hướng và insight bán hàng</li>
-                                    <li>Ứng dụng Machine Learning để dự báo và phân tích</li>
-                                    <li>Tạo báo cáo và dashboard phân tích</li>
-                                </ul>
-                                <div class="mt-auto flex justify-end">
+                                
+                                <div class="grid grid-cols-2 gap-3 mb-6 text-sm text-gray-600 dark:text-gray-200">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-chart-bar text-teal-500"></i>
+                                        <span>Sales Analytics</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-eye text-blue-500"></i>
+                                        <span>Data Visualization</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-eye text-blue-500"></i>
+                                        <span>Sales Forecasting</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-dashboard text-orange-500"></i>
+                                        <span>Dashboard</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-end">
                                     <a href="https://colab.research.google.com/drive/1bEOf_b5ZdatBlnio4CHgAGf15kEH8COs?usp=sharing" target="_blank" class="inline-flex items-center px-5 py-2.5 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition duration-300 hover:scale-105 hover:shadow-lg text-base">
-                                        <i class="fab fa-google mr-2"></i>Xem dự án
-                                        </a>
+                                        <i class="fab fa-google mr-2"></i>Xem phân tích
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                     <!-- Navigation Buttons -->
                     <button class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 hover:bg-blue-200 dark:hover:bg-blue-900 text-blue-700 dark:text-blue-200 p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110 z-10" id="prevProject">
                         <i class="fas fa-chevron-left text-2xl"></i>
@@ -1015,6 +1129,7 @@
                     <button class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 hover:bg-blue-200 dark:hover:bg-blue-900 text-blue-700 dark:text-blue-200 p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110 z-10" id="nextProject">
                         <i class="fas fa-chevron-right text-2xl"></i>
                     </button>
+                    
                     <!-- Project Indicators -->
                     <div id="projectIndicators" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
                         <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300 focus:outline-none" data-index="0"></button>
