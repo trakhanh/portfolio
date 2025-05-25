@@ -1903,6 +1903,28 @@ header {
     color: #cbd5e1 !important;
 }
 
+/* Ẩn mobile button hoàn toàn trên màn hình lớn */
+@media (min-width: 1024px) {
+    #mobileMenuButton {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    
+    .hamburger {
+        display: none !important;
+    }
+    
+    /* Ẩn mobile menu trên màn hình lớn */
+    #mobileMenu {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+}
+
 /* Button focus states */
 #themeToggle:focus, #mobileMenuButton:focus {
     outline: none !important;
