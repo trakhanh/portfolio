@@ -532,12 +532,15 @@ function showNotification(message, type = 'success') {
     const existingNotifications = document.querySelectorAll('.notification-toast');
     existingNotifications.forEach(notif => notif.remove());
     
+    // Check if mobile device
+    const isMobile = window.innerWidth <= 640;
+    
     const notification = document.createElement('div');
-    notification.className = `notification-toast fixed top-4 right-4 p-4 rounded-lg shadow-xl transform transition-all duration-500 translate-x-full ${
+    notification.className = `notification-toast fixed ${isMobile ? 'top-20 left-2 right-2' : 'top-4 right-4'} p-4 rounded-lg shadow-xl transform transition-all duration-500 ${isMobile ? 'translate-y-full' : 'translate-x-full'} ${
         type === 'success' 
             ? 'bg-green-500 border-l-4 border-green-600' 
             : 'bg-red-500 border-l-4 border-red-600'
-    } text-white z-[9999] max-w-sm`;
+    } text-white z-[10000] ${isMobile ? 'max-w-none' : 'max-w-sm'}`;
     
     // Create notification content with icon
     const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
@@ -555,17 +558,27 @@ function showNotification(message, type = 'success') {
     
     document.body.appendChild(notification);
     
-    // Animate in
+    // Animate in with proper direction based on device
     setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
+        if (isMobile) {
+            notification.style.transform = 'translateY(0)';
+        } else {
+            notification.style.transform = 'translateX(0)';
+        }
         notification.style.opacity = '1';
+        notification.classList.add('show');
     }, 100);
     
     // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentElement) {
-            notification.style.transform = 'translateX(100%)';
+            if (isMobile) {
+                notification.style.transform = 'translateY(-100%)';
+            } else {
+                notification.style.transform = 'translateX(100%)';
+            }
             notification.style.opacity = '0';
+            notification.classList.remove('show');
             setTimeout(() => {
                 if (notification.parentElement) {
                     notification.remove();

@@ -4038,6 +4038,8 @@ p.text-lg {
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.4;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
 }
 
 .notification-toast.show {
@@ -4068,13 +4070,57 @@ p.text-lg {
         left: 8px !important;
         max-width: calc(100vw - 16px) !important;
         position: fixed;
-        top: 20px !important;
+        top: 80px !important; /* Increased to avoid header overlap */
         transform: translateY(-100%) !important;
         transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        z-index: 10000 !important; /* Ensure it's above everything */
     }
     
     .notification-toast.show {
         transform: translateY(0) !important;
+    }
+}
+
+/* Additional mobile notification adjustments */
+@media (max-width: 480px) {
+    .notification-toast {
+        top: 85px !important; /* Even more space for smaller screens */
+        right: 4px !important;
+        left: 4px !important;
+        max-width: calc(100vw - 8px) !important;
+        font-size: 0.875rem !important;
+        padding: 12px !important;
+    }
+}
+
+/* Landscape mobile adjustments */
+@media (max-width: 640px) and (orientation: landscape) {
+    .notification-toast {
+        top: 70px !important; /* Adjust for landscape mode */
+    }
+}
+
+/* Ensure notification is always visible above header */
+.notification-toast {
+    position: fixed !important;
+    z-index: 10001 !important; /* Higher than header z-index */
+}
+
+/* Mobile notification specific styles */
+@media (max-width: 640px) {
+    .notification-toast {
+        margin-top: 0 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .notification-toast .flex.items-start {
+        align-items: flex-start !important;
+    }
+    
+    .notification-toast p {
+        line-height: 1.5 !important;
+        word-wrap: break-word !important;
     }
 }
 
