@@ -5546,3 +5546,327 @@ body.external-monitor .skill-category-card {
         display: none !important;
     }
 }
+
+/* Footer Styles */
+footer {
+    position: relative;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #3730a3 100%);
+    overflow: hidden;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%), 
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.dark-mode footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+/* Footer animations */
+@keyframes footerFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+footer .animate-pulse {
+    animation: footerFloat 6s ease-in-out infinite;
+}
+
+footer .animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+footer .animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+/* Footer social icons */
+footer .group:hover {
+    transform: translateY(-2px);
+}
+
+footer .group:hover i {
+    transform: scale(1.1);
+}
+
+/* Footer links hover effects */
+footer a:hover {
+    text-decoration: none;
+}
+
+footer .text-gray-300:hover {
+    color: #60a5fa;
+    transition: color 0.3s ease;
+}
+
+/* Footer responsive adjustments */
+@media (max-width: 768px) {
+    /* Ẩn toàn bộ main footer content trên mobile */
+    footer .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-4 {
+        display: none;
+    }
+    
+    /* Ẩn divider đầu tiên */
+    footer .border-t.border-white\/10:first-of-type {
+        display: none;
+    }
+    
+    /* Ẩn margin-bottom của main content */
+    footer .mb-12 {
+        margin-bottom: 0;
+    }
+    
+    /* Ẩn nút Tải CV và scroll to top trên mobile */
+    footer .flex.items-center.space-x-4 {
+        display: none;
+    }
+    
+    /* Điều chỉnh padding container */
+    footer .container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    
+    /* Hiển thị bottom section với layout mobile - chỉ text */
+    footer .flex.flex-col.md\:flex-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    /* Điều chỉnh spacing cho mobile */
+    footer .space-y-4 {
+        gap: 0.75rem;
+    }
+    
+    footer .md\:space-y-0 {
+        gap: 0.75rem;
+    }
+    
+    footer .md\:space-x-6 {
+        gap: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /* Điều chỉnh kích thước text */
+    footer .text-sm {
+        font-size: 0.875rem;
+        line-height: 1.4;
+    }
+    
+    footer .text-xs {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 640px) {
+    /* Tinh chỉnh thêm cho màn hình nhỏ hơn */
+    footer .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+    
+    /* Điều chỉnh spacing */
+    footer .space-y-4 {
+        gap: 0.5rem;
+    }
+    
+    /* Điều chỉnh text size */
+    footer .text-sm {
+        font-size: 0.8rem;
+    }
+    
+    footer .text-xs {
+        font-size: 0.7rem;
+    }
+    
+    /* Điều chỉnh button */
+    footer .bg-gradient-to-r {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    footer button[onclick*="scrollTo"] {
+        width: 2rem;
+        height: 2rem;
+    }
+    
+    footer button[onclick*="scrollTo"] i {
+        font-size: 0.75rem;
+    }
+}
+
+/* Footer button animations */
+footer button:hover,
+footer .group:hover {
+    transform: translateY(-2px) scale(1.05);
+}
+
+footer .group-hover\:animate-bounce:hover {
+    animation: bounce 1s infinite;
+}
+
+/* Footer gradient text */
+footer .bg-gradient-to-r {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Footer scroll to top button */
+footer button[onclick*="scrollTo"] {
+    transition: all 0.3s ease;
+}
+
+footer button[onclick*="scrollTo"]:hover {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Footer achievement cards */
+footer .grid.grid-cols-1.md\:grid-cols-3 > div {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+footer .grid.grid-cols-1.md\:grid-cols-3 > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+footer .grid.grid-cols-1.md\:grid-cols-3 > div:hover .w-12.h-12 {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Footer divider animation */
+footer .border-t.border-white\/10 {
+    position: relative;
+    overflow: hidden;
+}
+
+footer .border-t.border-white\/10::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Footer contact info hover effects */
+footer .flex.items-start.space-x-3:hover .w-8.h-8 {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+footer .flex.items-start.space-x-3:hover .text-gray-300 {
+    color: #60a5fa;
+}
+
+/* Footer brand section */
+footer .flex.items-center.space-x-3 .w-12.h-12:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Footer skills dots animation */
+footer .w-2.h-2 {
+    transition: all 0.3s ease;
+}
+
+footer .flex.items-center.space-x-2:hover .w-2.h-2 {
+    transform: scale(1.5);
+    box-shadow: 0 0 10px currentColor;
+}
+
+/* Footer responsive text sizing */
+@media (max-width: 480px) {
+    footer .text-sm {
+        font-size: 0.8rem;
+    }
+    
+    footer .text-xs {
+        font-size: 0.7rem;
+    }
+    
+    footer .space-x-4 {
+        gap: 0.75rem;
+    }
+    
+    footer .space-x-3 {
+        gap: 0.5rem;
+    }
+}
+
+/* Footer dark mode enhancements */
+.dark-mode footer .bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode footer .border-white\/10 {
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode footer .text-gray-300 {
+    color: #d1d5db;
+}
+
+.dark-mode footer .text-gray-400 {
+    color: #9ca3af;
+}
+
+.dark-mode footer .text-gray-500 {
+    color: #6b7280;
+}
+
+/* Footer loading animation for better UX */
+footer {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Footer print styles */
+@media print {
+    footer {
+        background: white !important;
+        color: black !important;
+        page-break-inside: avoid;
+    }
+    
+    footer .absolute {
+        display: none;
+    }
+    
+    footer .bg-gradient-to-br {
+        background: #f3f4f6 !important;
+    }
+}
