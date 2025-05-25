@@ -1749,3 +1749,270 @@ class ExternalMonitorHandler {
 document.addEventListener('DOMContentLoaded', () => {
     new ExternalMonitorHandler();
 });
+
+// Enhanced mobile navigation for projects
+class MobileProjectNavigation {
+    constructor() {
+        this.isMobile = window.innerWidth <= 767;
+        this.isTouch = 'ontouchstart' in window;
+        this.hideTimeout = null;
+        this.isUserInteracting = false;
+        
+        this.init();
+    }
+    
+    init() {
+        this.setupAutoHide();
+        this.setupSwipeGestures();
+        this.setupTouchOptimizations();
+        this.handleResize();
+    }
+    
+    setupAutoHide() {
+        if (!this.isMobile) return;
+        
+        const prevBtn = document.getElementById('prevProject');
+        const nextBtn = document.getElementById('nextProject');
+        const indicators = document.getElementById('projectIndicators');
+        const slideshow = document.querySelector('.project-slideshow');
+        const toggleBtn = document.getElementById('mobileNavToggle');
+        
+        if (!prevBtn || !nextBtn || !slideshow || !toggleBtn) return;
+        
+        let navigationVisible = true;
+        
+        // Toggle navigation visibility
+        const toggleNavigation = () => {
+            navigationVisible = !navigationVisible;
+            const opacity = navigationVisible ? '1' : '0';
+            const pointerEvents = navigationVisible ? 'auto' : 'none';
+            const toggleIcon = toggleBtn.querySelector('i');
+            
+            prevBtn.style.opacity = opacity;
+            nextBtn.style.opacity = opacity;
+            indicators.style.opacity = opacity;
+            prevBtn.style.pointerEvents = pointerEvents;
+            nextBtn.style.pointerEvents = pointerEvents;
+            indicators.style.pointerEvents = pointerEvents;
+            
+            // Update toggle button icon
+            toggleIcon.className = navigationVisible ? 'fas fa-eye text-sm' : 'fas fa-eye-slash text-sm';
+            toggleBtn.title = navigationVisible ? 'Ẩn điều hướng' : 'Hiện điều hướng';
+            
+            // Save preference
+            localStorage.setItem('mobileNavVisible', navigationVisible);
+        };
+        
+        // Load saved preference
+        const savedPreference = localStorage.getItem('mobileNavVisible');
+        if (savedPreference !== null) {
+            navigationVisible = savedPreference === 'true';
+            if (!navigationVisible) {
+                toggleNavigation();
+            }
+        }
+        
+        toggleBtn.addEventListener('click', toggleNavigation);
+        
+        // Auto-hide navigation after inactivity (only if navigation is visible)
+        const hideNavigation = () => {
+            if (!this.isUserInteracting && navigationVisible) {
+                prevBtn.style.opacity = '0.3';
+                nextBtn.style.opacity = '0.3';
+                prevBtn.style.pointerEvents = 'none';
+                nextBtn.style.pointerEvents = 'none';
+            }
+        };
+        
+        const showNavigation = () => {
+            if (navigationVisible) {
+                prevBtn.style.opacity = '1';
+                nextBtn.style.opacity = '1';
+                prevBtn.style.pointerEvents = 'auto';
+                nextBtn.style.pointerEvents = 'auto';
+            }
+            
+            clearTimeout(this.hideTimeout);
+            this.hideTimeout = setTimeout(hideNavigation, 3000);
+        };
+        
+        // Show navigation on interaction
+        slideshow.addEventListener('touchstart', () => {
+            this.isUserInteracting = true;
+            showNavigation();
+        });
+        
+        slideshow.addEventListener('touchend', () => {
+            this.isUserInteracting = false;
+            this.hideTimeout = setTimeout(hideNavigation, 3000);
+        });
+        
+        // Show navigation on scroll or tap
+        slideshow.addEventListener('scroll', showNavigation);
+        slideshow.addEventListener('click', showNavigation);
+        
+        // Initial hide (only if navigation is visible)
+        if (navigationVisible) {
+            this.hideTimeout = setTimeout(hideNavigation, 3000);
+        }
+    }
+    
+    setupSwipeGestures() {
+        if (!this.isMobile || !this.isTouch) return;
+        
+        const slideshow = document.querySelector('.project-slideshow');
+        if (!slideshow) return;
+        
+        let startX = 0;
+        let startY = 0;
+        let isScrolling = false;
+        
+        slideshow.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isScrolling = false;
+        }, { passive: true });
+        
+        slideshow.addEventListener('touchmove', (e) => {
+            if (!startX || !startY) return;
+            
+            const diffX = Math.abs(e.touches[0].clientX - startX);
+            const diffY = Math.abs(e.touches[0].clientY - startY);
+            
+            if (diffY > diffX) {
+                isScrolling = true;
+            }
+        }, { passive: true });
+        
+        slideshow.addEventListener('touchend', (e) => {
+            if (!startX || !startY || isScrolling) return;
+            
+            const endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+            const threshold = 50;
+            
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
+                    // Swipe left - next slide
+                    nextSlide();
+                } else {
+                    // Swipe right - previous slide
+                    prevSlide();
+                }
+                
+                // Show feedback
+                this.showSwipeFeedback(diffX > 0 ? 'next' : 'prev');
+            }
+            
+            startX = 0;
+            startY = 0;
+        }, { passive: true });
+    }
+    
+    setupTouchOptimizations() {
+        if (!this.isTouch) return;
+        
+        const buttons = document.querySelectorAll('#prevProject, #nextProject, #projectIndicators button');
+        
+        buttons.forEach(button => {
+            // Add touch feedback
+            button.addEventListener('touchstart', () => {
+                button.style.transform = button.style.transform.replace('scale(1)', 'scale(0.95)');
+            }, { passive: true });
+            
+            button.addEventListener('touchend', () => {
+                setTimeout(() => {
+                    button.style.transform = button.style.transform.replace('scale(0.95)', 'scale(1)');
+                }, 150);
+            }, { passive: true });
+        });
+    }
+    
+    showSwipeFeedback(direction) {
+        const slideshow = document.querySelector('.project-slideshow');
+        if (!slideshow) return;
+        
+        // Create feedback element
+        const feedback = document.createElement('div');
+        feedback.className = 'swipe-feedback';
+        feedback.innerHTML = direction === 'next' ? 
+            '<i class="fas fa-chevron-left"></i>' : 
+            '<i class="fas fa-chevron-right"></i>';
+        
+        feedback.style.cssText = `
+            position: absolute;
+            top: 50%;
+            ${direction === 'next' ? 'right: 20px;' : 'left: 20px;'}
+            transform: translateY(-50%);
+            background: rgba(59, 130, 246, 0.9);
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            font-size: 18px;
+            z-index: 1000;
+            animation: swipeFeedback 0.6s ease-out forwards;
+            pointer-events: none;
+        `;
+        
+        slideshow.appendChild(feedback);
+        
+        // Remove after animation
+        setTimeout(() => {
+            if (feedback.parentNode) {
+                feedback.parentNode.removeChild(feedback);
+            }
+        }, 600);
+    }
+    
+    handleResize() {
+        window.addEventListener('resize', () => {
+            const wasMobile = this.isMobile;
+            this.isMobile = window.innerWidth <= 767;
+            
+            if (wasMobile !== this.isMobile) {
+                // Reinitialize if mobile state changed
+                this.init();
+            }
+        });
+    }
+}
+
+// Add swipe feedback animation CSS
+const swipeStyles = document.createElement('style');
+swipeStyles.textContent = `
+    @keyframes swipeFeedback {
+        0% {
+            opacity: 0;
+            transform: translateY(-50%) scale(0.5);
+        }
+        50% {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.1);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-50%) scale(1) translateX(${window.innerWidth <= 767 ? '20px' : '30px'});
+        }
+    }
+    
+    /* Enhanced mobile navigation visibility */
+    @media (max-width: 767px) {
+        .project-slideshow:hover #prevProject,
+        .project-slideshow:hover #nextProject {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+        
+        .project-slideshow.user-interacting #prevProject,
+        .project-slideshow.user-interacting #nextProject {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+    }
+`;
+document.head.appendChild(swipeStyles);
+
+// Initialize mobile navigation
+document.addEventListener('DOMContentLoaded', () => {
+    new MobileProjectNavigation();
+});

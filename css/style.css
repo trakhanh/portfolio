@@ -5938,3 +5938,248 @@ footer {
         background: #f3f4f6 !important;
     }
 }
+
+/* Mobile responsive improvements for project navigation */
+@media (max-width: 767px) {
+    /* Make navigation buttons smaller and less intrusive on mobile */
+    #prevProject, #nextProject {
+        width: 40px !important;
+        height: 40px !important;
+        padding: 8px !important;
+        left: 8px !important;
+        right: 8px !important;
+        background: rgba(255,255,255,0.9) !important;
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(59,130,246,0.3);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    #prevProject {
+        left: 8px !important;
+    }
+    
+    #nextProject {
+        right: 8px !important;
+    }
+    
+    #prevProject i, #nextProject i {
+        font-size: 16px !important;
+    }
+    
+    /* Dark mode adjustments for mobile */
+    .dark-mode #prevProject, .dark-mode #nextProject {
+        background: rgba(15, 23, 42, 0.9) !important;
+        border: 1px solid rgba(59,130,246,0.4);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    
+    /* Move project indicators higher to avoid overlap */
+    #projectIndicators {
+        bottom: 12px !important;
+        padding: 6px 12px !important;
+        border-radius: 20px !important;
+    }
+    
+    #projectIndicators button {
+        width: 8px !important;
+        height: 8px !important;
+        margin: 0 4px !important;
+    }
+    
+    /* Ensure project content has proper spacing */
+    .project-slide {
+        padding: 16px 8px 60px 8px !important; /* Extra bottom padding for indicators */
+    }
+    
+    .project-slide .lg\:w-7\/12 {
+        padding: 16px 12px !important;
+    }
+    
+    /* Make buttons more touch-friendly */
+    #prevProject:hover, #nextProject:hover {
+        transform: scale(1.1) !important;
+        background: rgba(59,130,246,0.15) !important;
+    }
+    
+    .dark-mode #prevProject:hover, .dark-mode #nextProject:hover {
+        background: rgba(59,130,246,0.25) !important;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    #prevProject, #nextProject {
+        width: 36px !important;
+        height: 36px !important;
+        padding: 6px !important;
+        left: 4px !important;
+        right: 4px !important;
+    }
+    
+    #prevProject {
+        left: 4px !important;
+    }
+    
+    #nextProject {
+        right: 4px !important;
+    }
+    
+    #prevProject i, #nextProject i {
+        font-size: 14px !important;
+    }
+    
+    .project-slide {
+        padding: 12px 4px 50px 4px !important;
+    }
+    
+    .project-slide .lg\:w-7\/12 {
+        padding: 12px 8px !important;
+    }
+    
+    #projectIndicators {
+        bottom: 8px !important;
+        padding: 4px 8px !important;
+    }
+    
+    #projectIndicators button {
+        width: 6px !important;
+        height: 6px !important;
+        margin: 0 3px !important;
+    }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 767px) and (orientation: landscape) {
+    #prevProject, #nextProject {
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 32px !important;
+        height: 32px !important;
+        padding: 4px !important;
+    }
+    
+    #prevProject i, #nextProject i {
+        font-size: 12px !important;
+    }
+    
+    #projectIndicators {
+        bottom: 8px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+    
+    .project-slide {
+        padding: 8px 4px 40px 4px !important;
+    }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+    #prevProject, #nextProject {
+        min-width: 44px !important;
+        min-height: 44px !important;
+    }
+    
+    #projectIndicators button {
+        min-width: 32px !important;
+        min-height: 32px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    #projectIndicators button::after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: currentColor;
+        opacity: 0.6;
+        transition: all 0.3s ease;
+    }
+    
+    #projectIndicators button.active::after,
+    #projectIndicators button:hover::after {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Mobile Navigation Toggle Button */
+#mobileNavToggle {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#mobileNavToggle:hover {
+    background: rgba(255, 255, 255, 1) !important;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dark-mode #mobileNavToggle {
+    background: rgba(30, 41, 59, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1 !important;
+}
+
+.dark-mode #mobileNavToggle:hover {
+    background: rgba(30, 41, 59, 1) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Hide toggle button on desktop */
+@media (min-width: 768px) {
+    #mobileNavToggle {
+        display: none !important;
+    }
+}
+
+/* Responsive adjustments for toggle button */
+@media (max-width: 480px) {
+    #mobileNavToggle {
+        top: 8px !important;
+        right: 8px !important;
+        padding: 6px !important;
+        width: 32px !important;
+        height: 32px !important;
+    }
+    
+    #mobileNavToggle i {
+        font-size: 12px !important;
+    }
+}
+
+/* Animation for navigation visibility toggle */
+@keyframes fadeInNav {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOutNav {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.nav-fade-in {
+    animation: fadeInNav 0.3s ease-out forwards;
+}
+
+.nav-fade-out {
+    animation: fadeOutNav 0.3s ease-out forwards;
+}
