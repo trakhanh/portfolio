@@ -5540,3 +5540,9 @@ body.external-monitor .skill-category-card {
         animation: none !important;
     }
 }
+
+@media (max-width: 767px) {
+    #projectIndicators {
+        display: none !important;
+    }
+}
