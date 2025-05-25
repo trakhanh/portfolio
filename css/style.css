@@ -5946,20 +5946,25 @@ footer {
         width: 40px !important;
         height: 40px !important;
         padding: 8px !important;
-        left: 8px !important;
-        right: 8px !important;
         background: rgba(255,255,255,0.9) !important;
         backdrop-filter: blur(8px);
         border: 1px solid rgba(59,130,246,0.3);
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        position: absolute !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
     }
     
     #prevProject {
         left: 8px !important;
+        right: auto !important;
+        z-index: 15 !important;
     }
     
     #nextProject {
         right: 8px !important;
+        left: auto !important;
+        z-index: 15 !important;
     }
     
     #prevProject i, #nextProject i {
@@ -6012,16 +6017,18 @@ footer {
         width: 36px !important;
         height: 36px !important;
         padding: 6px !important;
-        left: 4px !important;
-        right: 4px !important;
     }
     
     #prevProject {
         left: 4px !important;
+        right: auto !important;
+        z-index: 15 !important;
     }
     
     #nextProject {
         right: 4px !important;
+        left: auto !important;
+        z-index: 15 !important;
     }
     
     #prevProject i, #nextProject i {
@@ -6112,6 +6119,7 @@ footer {
     backdrop-filter: blur(8px);
     border: 1px solid rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    z-index: 25 !important;
 }
 
 #mobileNavToggle:hover {
@@ -6146,6 +6154,8 @@ footer {
         padding: 6px !important;
         width: 32px !important;
         height: 32px !important;
+        position: absolute !important;
+        z-index: 30 !important;
     }
     
     #mobileNavToggle i {
@@ -6182,4 +6192,69 @@ footer {
 
 .nav-fade-out {
     animation: fadeOutNav 0.3s ease-out forwards;
+}
+
+/* Ensure proper button positioning and prevent overlap */
+@media (max-width: 767px) {
+    .project-slideshow {
+        position: relative !important;
+    }
+    
+    /* Ensure buttons don't overlap with content */
+    #prevProject {
+        margin-right: auto !important;
+    }
+    
+    #nextProject {
+        margin-left: auto !important;
+    }
+    
+    /* Ensure toggle button doesn't conflict */
+    #mobileNavToggle {
+        position: absolute !important;
+        top: 16px !important;
+        right: 16px !important;
+        z-index: 30 !important;
+    }
+    
+    /* Prevent any transform conflicts */
+    #prevProject:hover {
+        transform: translateY(-50%) scale(1.1) !important;
+    }
+    
+    #nextProject:hover {
+        transform: translateY(-50%) scale(1.1) !important;
+    }
+}
+
+/* Extra safety for very small screens */
+@media (max-width: 480px) {
+    #mobileNavToggle {
+        top: 12px !important;
+        right: 12px !important;
+    }
+    
+    /* Ensure minimum distance between buttons */
+    #prevProject {
+        max-width: 36px !important;
+    }
+    
+    #nextProject {
+        max-width: 36px !important;
+    }
+}
+
+/* Landscape orientation fixes */
+@media (max-width: 767px) and (orientation: landscape) {
+    #mobileNavToggle {
+        top: 8px !important;
+        right: 8px !important;
+        width: 28px !important;
+        height: 28px !important;
+        padding: 4px !important;
+    }
+    
+    #mobileNavToggle i {
+        font-size: 10px !important;
+    }
 }
