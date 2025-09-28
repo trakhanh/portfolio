@@ -9,7 +9,7 @@ class SplashScreenManager {
         this.isResourcesLoaded = false;
         this.minimumDisplayTime = 3000; // Minimum 3 seconds display
         this.startTime = Date.now();
-        
+
         this.loadingMessages = [
             "Đang tải portfolio...",
             "Đang chuẩn bị nội dung...",
@@ -17,56 +17,57 @@ class SplashScreenManager {
             "Đang hoàn thành...",
             "Chào mừng bạn!"
         ];
-        
+
         this.currentMessageIndex = 0;
         this.messageInterval = null;
-        
+
         this.init();
     }
-    
+
     init() {
         // Prevent page scroll while splash screen is active
         document.body.style.overflow = 'hidden';
-        
+
         // Start loading message rotation
         this.startLoadingMessages();
-        
+
         // Listen for page load events
         this.setupEventListeners();
-        
+
         // Check if page is already loaded (for browsers that cache)
         if (document.readyState === 'complete') {
             this.handlePageLoad();
         }
     }
-    
+
     setupEventListeners() {
         // Page loaded event
         window.addEventListener('load', () => {
             this.handlePageLoad();
         });
-        
+
         // DOM loaded event
         document.addEventListener('DOMContentLoaded', () => {
             this.handleDOMLoad();
         });
-        
+
         // Resource loading
         this.preloadCriticalResources();
     }
-    
+
     handleDOMLoad() {
         console.log('DOM loaded');
         // Start checking for images and other resources
         this.checkResourcesLoaded();
     }
-    
+
     handlePageLoad() {
         console.log('Page fully loaded');
         this.isPageLoaded = true;
         this.checkReadyToHide();
+        this.setupReloadScrollHandler();
     }
-    
+
     preloadCriticalResources() {
         // Preload critical images
         const criticalImages = [
@@ -74,16 +75,16 @@ class SplashScreenManager {
             '/img/doantotnghiepj2_3.png',
             '/img/fingercount.png'
         ];
-        
+
         let loadedCount = 0;
         const totalImages = criticalImages.length;
-        
+
         criticalImages.forEach(src => {
             const img = new Image();
             img.onload = () => {
                 loadedCount++;
                 this.updateLoadingProgress(loadedCount, totalImages);
-                
+
                 if (loadedCount === totalImages) {
                     this.isResourcesLoaded = true;
                     this.checkReadyToHide();
@@ -92,7 +93,7 @@ class SplashScreenManager {
             img.onerror = () => {
                 loadedCount++;
                 this.updateLoadingProgress(loadedCount, totalImages);
-                
+
                 if (loadedCount === totalImages) {
                     this.isResourcesLoaded = true;
                     this.checkReadyToHide();
@@ -100,7 +101,7 @@ class SplashScreenManager {
             };
             img.src = src;
         });
-        
+
         // Fallback: assume resources loaded after 2 seconds
         setTimeout(() => {
             if (!this.isResourcesLoaded) {
@@ -109,11 +110,11 @@ class SplashScreenManager {
             }
         }, 2000);
     }
-    
+
     updateLoadingProgress(loaded, total) {
         const progress = (loaded / total) * 100;
         console.log(`Loading progress: ${progress}%`);
-        
+
         // Update message based on progress
         if (progress >= 75 && this.currentMessageIndex < 3) {
             this.currentMessageIndex = 3;
@@ -123,7 +124,7 @@ class SplashScreenManager {
             this.updateLoadingMessage();
         }
     }
-    
+
     startLoadingMessages() {
         // Update message every 800ms
         this.messageInterval = setInterval(() => {
@@ -131,18 +132,18 @@ class SplashScreenManager {
             this.updateLoadingMessage();
         }, 800);
     }
-    
+
     updateLoadingMessage() {
         if (this.loadingText && this.currentMessageIndex < this.loadingMessages.length) {
             this.loadingText.textContent = this.loadingMessages[this.currentMessageIndex];
         }
     }
-    
+
     checkResourcesLoaded() {
         // Check if all images are loaded
         const images = document.querySelectorAll('img');
         let loadedImages = 0;
-        
+
         images.forEach(img => {
             if (img.complete) {
                 loadedImages++;
@@ -154,7 +155,7 @@ class SplashScreenManager {
                         this.checkReadyToHide();
                     }
                 });
-                
+
                 img.addEventListener('error', () => {
                     loadedImages++;
                     if (loadedImages === images.length) {
@@ -164,24 +165,24 @@ class SplashScreenManager {
                 });
             }
         });
-        
+
         if (loadedImages === images.length) {
             this.isResourcesLoaded = true;
             this.checkReadyToHide();
         }
     }
-    
+
     checkReadyToHide() {
         const elapsedTime = Date.now() - this.startTime;
         const minTimeElapsed = elapsedTime >= this.minimumDisplayTime;
-        
+
         console.log('Check ready to hide:', {
             pageLoaded: this.isPageLoaded,
             resourcesLoaded: this.isResourcesLoaded,
             minTimeElapsed,
             elapsedTime
         });
-        
+
         if (this.isPageLoaded && this.isResourcesLoaded && minTimeElapsed) {
             this.hideSplashScreen();
         } else if (this.isPageLoaded && this.isResourcesLoaded) {
@@ -192,28 +193,25 @@ class SplashScreenManager {
             }, remainingTime);
         }
     }
-    
-    hideSplashScreen() {
+
+    hideSplashScreen({ immediate = false } = {}) {
         // Clear message interval
         if (this.messageInterval) {
             clearInterval(this.messageInterval);
         }
-        
+
         // Show final message
         this.currentMessageIndex = this.loadingMessages.length - 1;
         this.updateLoadingMessage();
-        
-        // Hide splash screen after a short delay
-        setTimeout(() => {
-            this.splashScreen.classList.add('hidden');
-            
+
+        const finalizeHide = () => {
             // Restore page scroll
             setTimeout(() => {
                 document.body.style.overflow = '';
-                
+
                 // Trigger any page load animations
                 this.triggerPageAnimations();
-                
+
                 // Remove splash screen from DOM after transition
                 setTimeout(() => {
                     if (this.splashScreen && this.splashScreen.parentNode) {
@@ -221,9 +219,30 @@ class SplashScreenManager {
                     }
                 }, 800);
             }, 300);
-        }, 500);
+        };
+
+        if (immediate) {
+            this.splashScreen.classList.add('hidden');
+            finalizeHide();
+        } else {
+            // Hide splash screen after a short delay
+            setTimeout(() => {
+                this.splashScreen.classList.add('hidden');
+                finalizeHide();
+            }, 500);
+        }
     }
-    
+
+    setupReloadScrollHandler() {
+        window.addEventListener('beforeunload', () => {
+            window.scrollTo(0, 0);
+        });
+
+        if (window.scrollY > 0) {
+            this.hideSplashScreen({ immediate: true });
+        }
+    }
+
     triggerPageAnimations() {
         // Trigger fade-in animations for main content
         const animatedElements = document.querySelectorAll('.animate-fade-in');
@@ -233,13 +252,13 @@ class SplashScreenManager {
                 element.style.transform = 'translateY(0)';
             }, index * 100);
         });
-        
+
         // Initialize other animations
         if (typeof updateActiveNav === 'function') {
             updateActiveNav();
         }
     }
-    
+
     // Manual trigger for debugging
     forceHide() {
         this.isPageLoaded = true;
@@ -272,7 +291,7 @@ const hamburger = document.querySelector('.hamburger');
 mobileMenuButton.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden');
     hamburger.classList.toggle('active');
-    
+
     if (!mobileMenu.classList.contains('hidden')) {
         document.body.style.overflow = 'hidden'; // Prevent scrolling
     } else {
@@ -310,13 +329,13 @@ if (savedTheme === 'dark') {
 themeToggle.addEventListener('click', () => {
     body.classList.add('theme-transition');
     body.classList.toggle('dark-mode');
-    
+
     if (body.classList.contains('dark-mode')) {
         localStorage.setItem('theme', 'dark');
     } else {
         localStorage.setItem('theme', 'light');
     }
-    
+
     // Remove transition class after animation completes
     setTimeout(() => {
         body.classList.remove('theme-transition');
@@ -327,19 +346,29 @@ themeToggle.addEventListener('click', () => {
 function updateActiveNav() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
-    
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
     let current = '';
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        
+
         if (pageYOffset >= sectionTop - 200) {
             current = section.getAttribute('id');
         }
     });
-    
+
+    // Update desktop navigation
     navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
+    });
+
+    // Update mobile navigation
+    mobileNavLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${current}`) {
             link.classList.add('active');
@@ -354,10 +383,10 @@ window.addEventListener('scroll', updateActiveNav);
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        
+
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
-        
+
         if (targetElement) {
             const headerOffset = 100;
             const elementPosition = targetElement.getBoundingClientRect().top;
@@ -367,7 +396,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 top: offsetPosition,
                 behavior: 'smooth'
             });
-            
+
             // Close mobile menu if open
             mobileMenu.classList.add('hidden');
             hamburger.classList.remove('active');
@@ -379,43 +408,43 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Form submission with validation and animation
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', async function(e) {
+contactForm.addEventListener('submit', async function (e) {
     e.preventDefault();
-    
+
     // Get form values
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const message = document.getElementById('message').value.trim();
-    
+
     // Basic validation
     if (!name || !email || !message) {
         showNotification('Vui lòng điền đầy đủ tất cả các trường', 'error');
         return;
     }
-    
+
     if (!isValidEmail(email)) {
         showNotification('Vui lòng nhập địa chỉ email hợp lệ', 'error');
         return;
     }
-    
+
     // Get submit button for loading state
     const submitBtn = this.querySelector('button[type="submit"]');
     const originalBtnContent = submitBtn.innerHTML;
-    
+
     // Show loading state
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Đang gửi...';
-    
+
     try {
         // Create FormData to send to Formspree
         const formData = new FormData();
         formData.append('name', name);
         formData.append('email', email);
         formData.append('message', message);
-        
+
         console.log('Sending form to:', this.action);
         console.log('Form data:', { name, email, message });
-        
+
         // Send to Formspree
         const response = await fetch(this.action, {
             method: 'POST',
@@ -424,13 +453,13 @@ contactForm.addEventListener('submit', async function(e) {
                 'Accept': 'application/json'
             }
         });
-        
+
         console.log('Response status:', response.status);
         console.log('Response headers:', response.headers);
-        
+
         if (response.ok) {
             showNotification('Cảm ơn bạn đã liên hệ! Tôi sẽ phản hồi trong thời gian sớm nhất.', 'success');
-            
+
             // Reset form with animation
             const formElements = contactForm.elements;
             for (let element of formElements) {
@@ -449,7 +478,7 @@ contactForm.addEventListener('submit', async function(e) {
         }
     } catch (error) {
         console.error('Form submission error:', error);
-        
+
         // Fallback: try submitting the form normally if fetch fails
         try {
             // Create a temporary form to submit normally
@@ -457,31 +486,31 @@ contactForm.addEventListener('submit', async function(e) {
             tempForm.action = contactForm.action;
             tempForm.method = 'POST';
             tempForm.style.display = 'none';
-            
+
             // Add form data as hidden inputs
             const nameInput = document.createElement('input');
             nameInput.type = 'hidden';
             nameInput.name = 'name';
             nameInput.value = name;
             tempForm.appendChild(nameInput);
-            
+
             const emailInput = document.createElement('input');
             emailInput.type = 'hidden';
             emailInput.name = 'email';
             emailInput.value = email;
             tempForm.appendChild(emailInput);
-            
+
             const messageInput = document.createElement('input');
             messageInput.type = 'hidden';
             messageInput.name = 'message';
             messageInput.value = message;
             tempForm.appendChild(messageInput);
-            
+
             document.body.appendChild(tempForm);
             tempForm.submit();
-            
+
             showNotification('Đang chuyển hướng để gửi tin nhắn...', 'success');
-            
+
         } catch (fallbackError) {
             console.error('Fallback submission error:', fallbackError);
             showNotification('Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại sau hoặc liên hệ trực tiếp qua email: khanhtra229@gmail.com', 'error');
@@ -531,17 +560,16 @@ function showNotification(message, type = 'success') {
     // Remove any existing notifications first
     const existingNotifications = document.querySelectorAll('.notification-toast');
     existingNotifications.forEach(notif => notif.remove());
-    
+
     // Check if mobile device
     const isMobile = window.innerWidth <= 640;
-    
+
     const notification = document.createElement('div');
-    notification.className = `notification-toast fixed ${isMobile ? 'top-20 left-2 right-2' : 'top-4 right-4'} p-4 rounded-lg shadow-xl transform transition-all duration-500 ${isMobile ? 'translate-y-full' : 'translate-x-full'} ${
-        type === 'success' 
-            ? 'bg-green-500 border-l-4 border-green-600' 
-            : 'bg-red-500 border-l-4 border-red-600'
-    } text-white z-[10000] ${isMobile ? 'max-w-none' : 'max-w-sm'}`;
-    
+    notification.className = `notification-toast fixed ${isMobile ? 'top-20 left-2 right-2' : 'top-4 right-4'} p-4 rounded-lg shadow-xl transform transition-all duration-500 ${isMobile ? 'translate-y-full' : 'translate-x-full'} ${type === 'success'
+        ? 'bg-green-500 border-l-4 border-green-600'
+        : 'bg-red-500 border-l-4 border-red-600'
+        } text-white z-[10000] ${isMobile ? 'max-w-none' : 'max-w-sm'}`;
+
     // Create notification content with icon
     const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
     notification.innerHTML = `
@@ -555,9 +583,9 @@ function showNotification(message, type = 'success') {
             </button>
         </div>
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     // Animate in with proper direction based on device
     setTimeout(() => {
         if (isMobile) {
@@ -568,7 +596,7 @@ function showNotification(message, type = 'success') {
         notification.style.opacity = '1';
         notification.classList.add('show');
     }, 100);
-    
+
     // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentElement) {
@@ -593,7 +621,7 @@ document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mouseenter', () => {
         card.classList.add('hover-lift');
     });
-    
+
     card.addEventListener('mouseleave', () => {
         card.classList.remove('hover-lift');
     });
@@ -622,7 +650,7 @@ function updateSlide() {
 
     // Update transform with smooth transition
     projectSlides.style.transform = `translateX(-${currentSlide * 100}%)`;
-    
+
     // Update indicators with animation
     indicators.forEach((indicator, index) => {
         if (index === currentSlide) {
@@ -744,7 +772,7 @@ projectSlides.addEventListener('touchmove', (e) => {
 
 projectSlides.addEventListener('touchend', () => {
     const swipeDistance = touchEndX - touchStartX;
-    
+
     if (Math.abs(swipeDistance) > swipeThreshold) {
         if (swipeDistance > 0) {
             prevSlide();
@@ -752,7 +780,7 @@ projectSlides.addEventListener('touchend', () => {
             nextSlide();
         }
     }
-    
+
     if (!isHovering) {
         slideInterval = setInterval(nextSlide, 5000);
     }
@@ -794,7 +822,7 @@ function updateCertificateSlide() {
 
     // Update transform with smooth transition
     certificateSlides.style.transform = `translateX(-${currentCertificateSlide * 100}%)`;
-    
+
     // Update certificate indicators with animation
     certificateIndicators.forEach((indicator, index) => {
         if (index === currentCertificateSlide) {
@@ -915,7 +943,7 @@ if (certificateSlides) {
 
     certificateSlides.addEventListener('touchend', () => {
         const swipeDistance = certificateTouchEndX - certificateTouchStartX;
-        
+
         if (Math.abs(swipeDistance) > 50) {
             if (swipeDistance > 0) {
                 prevCertificateSlide();
@@ -923,7 +951,7 @@ if (certificateSlides) {
                 nextCertificateSlide();
             }
         }
-        
+
         if (!isCertificateHovering) {
             certificateSlideInterval = setInterval(nextCertificateSlide, 6000);
         }
@@ -938,9 +966,9 @@ if (certificateSlides) {
 document.addEventListener('keydown', (e) => {
     // Handle certificate slideshow when focused
     const certificateSection = document.getElementById('certificates');
-    const isInViewport = certificateSection.getBoundingClientRect().top < window.innerHeight && 
-                        certificateSection.getBoundingClientRect().bottom > 0;
-    
+    const isInViewport = certificateSection.getBoundingClientRect().top < window.innerHeight &&
+        certificateSection.getBoundingClientRect().bottom > 0;
+
     if (isInViewport) {
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
@@ -950,7 +978,7 @@ document.addEventListener('keydown', (e) => {
             nextCertificateSlide();
         }
     }
-    
+
     // Original project slideshow keyboard navigation
     if (e.key === 'ArrowLeft') {
         prevSlide();
@@ -980,45 +1008,45 @@ const progressMessages = [
 
 function showCVPopup(originalHref) {
     if (isPopupActive) return;
-    
+
     isPopupActive = true;
     currentCVUrl = originalHref;
     linkAlreadyOpened = false;
     cvPopup.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
-    
+
     // Add active class with slight delay for animation
     setTimeout(() => {
         cvPopup.classList.add('active');
     }, 10);
-    
+
     // Reset progress
     const progressFill = document.querySelector('.cv-progress-fill');
     const progressPercent = document.getElementById('cvProgressPercent');
     const progressStatus = document.getElementById('cvProgressStatus');
     const countdown = document.getElementById('cvCountdown');
-    
+
     progressFill.style.width = '0%';
     progressPercent.textContent = '0%';
     progressStatus.textContent = progressMessages[0];
-    
+
     // Animate progress
     let progress = 0;
     let messageIndex = 0;
     let countdownTime = 15;
     countdown.textContent = countdownTime;
-    
+
     const progressInterval = setInterval(() => {
         progress += Math.random() * 25 + 10; // Random progress increase
-        
+
         if (progress > 100) {
             progress = 100;
             clearInterval(progressInterval);
         }
-        
+
         progressFill.style.width = progress + '%';
         progressPercent.textContent = Math.round(progress) + '%';
-        
+
         // Update message based on progress
         const newMessageIndex = Math.min(Math.floor((progress / 100) * (progressMessages.length - 1)), progressMessages.length - 1);
         if (newMessageIndex > messageIndex) {
@@ -1026,12 +1054,12 @@ function showCVPopup(originalHref) {
             progressStatus.textContent = progressMessages[messageIndex];
         }
     }, 200);
-    
+
     // Countdown timer
     cvCountdownInterval = setInterval(() => {
         countdownTime--;
         countdown.textContent = countdownTime;
-        
+
         if (countdownTime <= 0) {
             clearInterval(cvCountdownInterval);
             // Only open link if it hasn't been opened already
@@ -1053,20 +1081,20 @@ function openLinkSafely(url) {
         tempLink.target = '_blank';
         tempLink.rel = 'noopener noreferrer';
         tempLink.style.display = 'none';
-        
+
         // Add to DOM temporarily
         document.body.appendChild(tempLink);
-        
+
         // Trigger click event
         tempLink.click();
-        
+
         // Clean up - remove from DOM
         setTimeout(() => {
             if (document.body.contains(tempLink)) {
                 document.body.removeChild(tempLink);
             }
         }, 100);
-        
+
     } catch (error) {
         console.log('Link opening failed, using fallback');
         // Fallback - open in same window
@@ -1076,17 +1104,17 @@ function openLinkSafely(url) {
 
 function closeCVPopup() {
     if (!isPopupActive) return;
-    
+
     cvPopup.classList.remove('active');
     document.body.style.overflow = '';
-    
+
     setTimeout(() => {
         cvPopup.classList.add('hidden');
         isPopupActive = false;
         currentCVUrl = '';
         linkAlreadyOpened = false;
     }, 300);
-    
+
     if (cvCountdownInterval) {
         clearInterval(cvCountdownInterval);
     }
@@ -1094,7 +1122,7 @@ function closeCVPopup() {
 
 // Event listeners for CV popup
 if (cvDownloadButton) {
-    cvDownloadButton.addEventListener('click', function(e) {
+    cvDownloadButton.addEventListener('click', function (e) {
         e.preventDefault();
         const originalHref = this.getAttribute('href');
         showCVPopup(originalHref);
@@ -1107,7 +1135,7 @@ if (cvPopupClose) {
 
 // Event listener for "Open Now" button
 if (cvOpenNow) {
-    cvOpenNow.addEventListener('click', function() {
+    cvOpenNow.addEventListener('click', function () {
         if (currentCVUrl && !linkAlreadyOpened) {
             linkAlreadyOpened = true;
             // Clear the countdown interval to prevent auto-open
@@ -1123,14 +1151,14 @@ if (cvOpenNow) {
 }
 
 // Close popup when clicking overlay
-cvPopup.addEventListener('click', function(e) {
+cvPopup.addEventListener('click', function (e) {
     if (e.target === cvPopup) {
         closeCVPopup();
     }
 });
 
 // Close popup with Escape key
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && isPopupActive) {
         closeCVPopup();
     }
@@ -1153,28 +1181,28 @@ function setCooldown() {
 const viewportUtils = {
     // Get current viewport width
     getViewportWidth: () => Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0),
-    
+
     // Get current viewport height
     getViewportHeight: () => Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0),
-    
+
     // Check if mobile device
     isMobile: () => viewportUtils.getViewportWidth() < 768,
-    
+
     // Check if tablet device
     isTablet: () => viewportUtils.getViewportWidth() >= 768 && viewportUtils.getViewportWidth() < 1024,
-    
+
     // Check if desktop device
     isDesktop: () => viewportUtils.getViewportWidth() >= 1024,
-    
+
     // Check if ultra-wide screen
     isUltraWide: () => viewportUtils.getViewportWidth() >= 1920,
-    
+
     // Check if very small mobile
     isVerySmallMobile: () => viewportUtils.getViewportWidth() < 375,
-    
+
     // Check if touch device
     isTouchDevice: () => 'ontouchstart' in window || navigator.maxTouchPoints > 0,
-    
+
     // Get device orientation
     getOrientation: () => window.innerHeight > window.innerWidth ? 'portrait' : 'landscape'
 };
@@ -1182,13 +1210,13 @@ const viewportUtils = {
 // Responsive behavior manager
 const responsiveManager = {
     currentBreakpoint: '',
-    
+
     init() {
         this.updateBreakpoint();
         this.setupEventListeners();
         this.optimizeForDevice();
     },
-    
+
     setupEventListeners() {
         // Throttled resize handler
         let resizeTimeout;
@@ -1199,14 +1227,14 @@ const responsiveManager = {
                 this.handleResize();
             }, 100);
         });
-        
+
         // Orientation change handler
         window.addEventListener('orientationchange', () => {
             setTimeout(() => {
                 this.handleOrientationChange();
             }, 100);
         });
-        
+
         // Scroll performance optimization
         let scrollTimeout;
         window.addEventListener('scroll', () => {
@@ -1216,11 +1244,11 @@ const responsiveManager = {
             }, 16); // ~60fps
         }, { passive: true });
     },
-    
+
     updateBreakpoint() {
         const width = viewportUtils.getViewportWidth();
         let newBreakpoint = '';
-        
+
         if (width < 375) newBreakpoint = 'xs';
         else if (width < 480) newBreakpoint = 'sm';
         else if (width < 640) newBreakpoint = 'md';
@@ -1230,37 +1258,37 @@ const responsiveManager = {
         else if (width < 1440) newBreakpoint = 'desktop';
         else if (width < 1920) newBreakpoint = 'large';
         else newBreakpoint = 'ultra';
-        
+
         if (newBreakpoint !== this.currentBreakpoint) {
             this.currentBreakpoint = newBreakpoint;
             this.handleBreakpointChange(newBreakpoint);
         }
     },
-    
+
     handleBreakpointChange(breakpoint) {
         document.body.setAttribute('data-breakpoint', breakpoint);
-        
+
         // Optimize slideshow behavior based on breakpoint
         this.optimizeSlideshow();
-        
+
         // Adjust navigation behavior
         this.optimizeNavigation();
-        
+
         // Update touch targets if needed
         if (viewportUtils.isTouchDevice()) {
             this.optimizeTouchTargets();
         }
     },
-    
+
     optimizeSlideshow() {
         const slides = document.querySelectorAll('.project-slide, .certificate-slide');
-        
+
         if (viewportUtils.isMobile()) {
             // Enable touch scrolling for mobile
             slides.forEach(slide => {
                 slide.style.touchAction = 'pan-x';
             });
-            
+
             // Adjust autoplay timing for mobile
             if (slideInterval) {
                 clearInterval(slideInterval);
@@ -1273,11 +1301,11 @@ const responsiveManager = {
             });
         }
     },
-    
+
     optimizeNavigation() {
         const mobileMenu = document.getElementById('mobileMenu');
         const hamburger = document.querySelector('.hamburger');
-        
+
         if (viewportUtils.isDesktop() && !mobileMenu.classList.contains('hidden')) {
             // Auto-close mobile menu on desktop
             mobileMenu.classList.add('hidden');
@@ -1285,13 +1313,13 @@ const responsiveManager = {
             document.body.style.overflow = '';
         }
     },
-    
+
     optimizeTouchTargets() {
         // Ensure minimum touch target size (44px x 44px)
         const touchTargets = document.querySelectorAll(
             '.nav-link, .mobile-nav-link, .project-nav-button, button, .contact-card'
         );
-        
+
         touchTargets.forEach(target => {
             const rect = target.getBoundingClientRect();
             if (rect.width < 44 || rect.height < 44) {
@@ -1303,7 +1331,7 @@ const responsiveManager = {
             }
         });
     },
-    
+
     handleResize() {
         // Recalculate hero section height on mobile
         if (viewportUtils.isMobile()) {
@@ -1313,36 +1341,36 @@ const responsiveManager = {
                 heroSection.style.setProperty('--vh', `${vh}px`);
             }
         }
-        
+
         // Update skill grid columns
         this.updateSkillGrid();
-        
+
         // Optimize text sizing
         this.optimizeTextSizing();
     },
-    
+
     updateSkillGrid() {
         const skillsGrid = document.querySelector('#skills .grid');
         if (!skillsGrid) return;
-        
+
         const width = viewportUtils.getViewportWidth();
         let columns = 1;
-        
+
         if (width >= 1920) columns = 4;
         else if (width >= 1280) columns = 3;
         else if (width >= 640) columns = 2;
         else columns = 1;
-        
+
         skillsGrid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
     },
-    
+
     optimizeTextSizing() {
         // Dynamic text scaling for better readability
         const heroTitle = document.querySelector('.hero-section h1');
         if (heroTitle) {
             const width = viewportUtils.getViewportWidth();
             let fontSize = '2rem';
-            
+
             if (width < 375) fontSize = '1.75rem';
             else if (width < 480) fontSize = '2rem';
             else if (width < 640) fontSize = '2.25rem';
@@ -1352,41 +1380,41 @@ const responsiveManager = {
             else if (width < 1440) fontSize = '4rem';
             else if (width < 1920) fontSize = '4.5rem';
             else fontSize = '5rem';
-            
+
             heroTitle.style.fontSize = fontSize;
         }
     },
-    
+
     handleOrientationChange() {
         const orientation = viewportUtils.getOrientation();
         document.body.setAttribute('data-orientation', orientation);
-        
+
         if (orientation === 'landscape' && viewportUtils.isMobile()) {
             // Optimize for landscape mobile
             this.optimizeLandscapeMobile();
         }
-        
+
         // Force recalculation after orientation change
         setTimeout(() => {
             this.updateBreakpoint();
             this.handleResize();
         }, 300);
     },
-    
+
     optimizeLandscapeMobile() {
         const heroSection = document.querySelector('.hero-section');
         if (heroSection) {
             heroSection.style.minHeight = '100vh';
             heroSection.style.padding = '1rem 0';
         }
-        
+
         // Hide scroll indicator in landscape
         const scrollIndicator = document.querySelector('.hero-scroll-indicator');
         if (scrollIndicator) {
             scrollIndicator.style.display = 'none';
         }
     },
-    
+
     handleScroll() {
         // Optimize scroll performance
         if (viewportUtils.isMobile()) {
@@ -1398,34 +1426,34 @@ const responsiveManager = {
             }
         }
     },
-    
+
     optimizeForDevice() {
         // Device-specific optimizations
         if (viewportUtils.isTouchDevice()) {
             document.body.classList.add('touch-device');
-            
+
             // Remove hover effects on touch devices
             const hoverElements = document.querySelectorAll('.hover-lift, .card-3d');
             hoverElements.forEach(el => {
                 el.classList.remove('hover-lift', 'card-3d');
             });
         }
-        
+
         // High DPI display optimizations
         if (window.devicePixelRatio > 1) {
             document.body.classList.add('high-dpi');
         }
-        
+
         // Reduce animations on lower-end devices
         if (this.isLowEndDevice()) {
             document.body.classList.add('reduce-animations');
         }
     },
-    
+
     isLowEndDevice() {
         // Simple heuristic for low-end device detection
-        return navigator.hardwareConcurrency <= 2 || 
-               (navigator.deviceMemory && navigator.deviceMemory <= 2);
+        return navigator.hardwareConcurrency <= 2 ||
+            (navigator.deviceMemory && navigator.deviceMemory <= 2);
     }
 };
 
@@ -1436,7 +1464,7 @@ const performanceOptimizer = {
         this.setupIntersectionObservers();
         this.optimizeAnimations();
     },
-    
+
     optimizeImages() {
         // Lazy load images that are not in viewport
         const images = document.querySelectorAll('img[data-src]');
@@ -1450,14 +1478,14 @@ const performanceOptimizer = {
                 }
             });
         });
-        
+
         images.forEach(img => imageObserver.observe(img));
     },
-    
+
     setupIntersectionObservers() {
         // Optimize animations to only run when in viewport
         const animatedElements = document.querySelectorAll('.animate-fade-in, .skill-category-card');
-        
+
         const animationObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1467,10 +1495,10 @@ const performanceOptimizer = {
                 }
             });
         }, { threshold: 0.1 });
-        
+
         animatedElements.forEach(el => animationObserver.observe(el));
     },
-    
+
     optimizeAnimations() {
         // Reduce animations on slower devices
         if (responsiveManager.isLowEndDevice()) {
@@ -1490,32 +1518,32 @@ const performanceOptimizer = {
 const touchManager = {
     init() {
         if (!viewportUtils.isTouchDevice()) return;
-        
+
         this.setupSwipeGestures();
         this.optimizeTouchScrolling();
     },
-    
+
     setupSwipeGestures() {
         let startX, startY, endX, endY;
-        
+
         document.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
             startY = e.touches[0].clientY;
         }, { passive: true });
-        
+
         document.addEventListener('touchend', (e) => {
             endX = e.changedTouches[0].clientX;
             endY = e.changedTouches[0].clientY;
-            
+
             this.handleSwipe(startX, startY, endX, endY);
         }, { passive: true });
     },
-    
+
     handleSwipe(startX, startY, endX, endY) {
         const deltaX = endX - startX;
         const deltaY = endY - startY;
         const minSwipeDistance = 50;
-        
+
         if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
             // Horizontal swipe
             if (deltaX > 0) {
@@ -1527,11 +1555,11 @@ const touchManager = {
             }
         }
     },
-    
+
     optimizeTouchScrolling() {
         // Enable smooth scrolling for touch devices
         document.documentElement.style.webkitOverflowScrolling = 'touch';
-        
+
         // Prevent zoom on double tap for iOS
         let lastTouchEnd = 0;
         document.addEventListener('touchend', (e) => {
@@ -1551,13 +1579,13 @@ const accessibilityManager = {
         this.setupScreenReaderOptimizations();
         this.setupFocusManagement();
     },
-    
+
     setupKeyboardNavigation() {
         // Enhanced keyboard navigation for slideshows
         document.addEventListener('keydown', (e) => {
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-            
-            switch(e.key) {
+
+            switch (e.key) {
                 case 'ArrowLeft':
                     if (typeof prevSlide === 'function') {
                         e.preventDefault();
@@ -1581,7 +1609,7 @@ const accessibilityManager = {
             }
         });
     },
-    
+
     setupScreenReaderOptimizations() {
         // Add ARIA labels and descriptions
         const projectSlides = document.querySelectorAll('.project-slide');
@@ -1589,7 +1617,7 @@ const accessibilityManager = {
             slide.setAttribute('aria-label', `Project ${index + 1} of ${projectSlides.length}`);
             slide.setAttribute('role', 'tabpanel');
         });
-        
+
         // Add live region for slide changes
         const liveRegion = document.createElement('div');
         liveRegion.setAttribute('aria-live', 'polite');
@@ -1598,12 +1626,12 @@ const accessibilityManager = {
         liveRegion.id = 'slideshow-announcer';
         document.body.appendChild(liveRegion);
     },
-    
+
     setupFocusManagement() {
         // Manage focus for mobile menu
         const mobileMenuButton = document.getElementById('mobileMenuButton');
         const mobileMenu = document.getElementById('mobileMenu');
-        
+
         if (mobileMenuButton && mobileMenu) {
             mobileMenuButton.addEventListener('click', () => {
                 if (!mobileMenu.classList.contains('hidden')) {
@@ -1624,10 +1652,10 @@ document.addEventListener('DOMContentLoaded', () => {
     performanceOptimizer.init();
     touchManager.init();
     accessibilityManager.init();
-    
+
     // Add loading class to body initially
     document.body.classList.add('loading');
-    
+
     // Remove loading class after page is fully loaded
     window.addEventListener('load', () => {
         setTimeout(() => {
@@ -1674,7 +1702,7 @@ class ExternalMonitorHandler {
         const isLargeScreen = this.screenWidth >= 1920;
         const isHighDPI = this.devicePixelRatio >= 1.5;
         const isWideAspectRatio = (this.screenWidth / this.screenHeight) >= 1.6;
-        
+
         // Common external monitor resolutions
         const externalResolutions = [
             [2560, 1440], // 1440p
@@ -1683,8 +1711,8 @@ class ExternalMonitorHandler {
             [3440, 1440], // Ultrawide 1440p
             [1920, 1080], // 1080p external
         ];
-        
-        this.isExternalMonitor = externalResolutions.some(([w, h]) => 
+
+        this.isExternalMonitor = externalResolutions.some(([w, h]) =>
             this.screenWidth === w && this.screenHeight === h
         ) || (isLargeScreen && isWideAspectRatio);
 
@@ -1708,7 +1736,7 @@ class ExternalMonitorHandler {
             skillsSection.style.display = 'none';
             skillsSection.offsetHeight; // Trigger reflow
             skillsSection.style.display = '';
-            
+
             // Force grid recalculation
             const grid = skillsSection.querySelector('.grid');
             if (grid) {
@@ -1721,11 +1749,11 @@ class ExternalMonitorHandler {
     optimizeForExternalDisplay() {
         // Add CSS class cho external monitor
         document.documentElement.style.setProperty('--external-monitor', '1');
-        
+
         // Fix viewport issues
         const viewport = document.querySelector('meta[name="viewport"]');
         if (viewport && this.screenWidth >= 2560) {
-            viewport.setAttribute('content', 
+            viewport.setAttribute('content',
                 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover'
             );
         }
@@ -1757,52 +1785,52 @@ class MobileProjectNavigation {
         this.isTouch = 'ontouchstart' in window;
         this.hideTimeout = null;
         this.isUserInteracting = false;
-        
+
         this.init();
     }
-    
+
     init() {
         this.setupAutoHide();
         this.setupSwipeGestures();
         this.setupTouchOptimizations();
         this.handleResize();
     }
-    
+
     setupAutoHide() {
         if (!this.isMobile) return;
-        
+
         const prevBtn = document.getElementById('prevProject');
         const nextBtn = document.getElementById('nextProject');
         const indicators = document.getElementById('projectIndicators');
         const slideshow = document.querySelector('.project-slideshow');
         const toggleBtn = document.getElementById('mobileNavToggle');
-        
+
         if (!prevBtn || !nextBtn || !slideshow || !toggleBtn) return;
-        
+
         let navigationVisible = true;
-        
+
         // Toggle navigation visibility
         const toggleNavigation = () => {
             navigationVisible = !navigationVisible;
             const opacity = navigationVisible ? '1' : '0';
             const pointerEvents = navigationVisible ? 'auto' : 'none';
             const toggleIcon = toggleBtn.querySelector('i');
-            
+
             prevBtn.style.opacity = opacity;
             nextBtn.style.opacity = opacity;
             indicators.style.opacity = opacity;
             prevBtn.style.pointerEvents = pointerEvents;
             nextBtn.style.pointerEvents = pointerEvents;
             indicators.style.pointerEvents = pointerEvents;
-            
+
             // Update toggle button icon
             toggleIcon.className = navigationVisible ? 'fas fa-eye text-sm' : 'fas fa-eye-slash text-sm';
             toggleBtn.title = navigationVisible ? 'Ẩn điều hướng' : 'Hiện điều hướng';
-            
+
             // Save preference
             localStorage.setItem('mobileNavVisible', navigationVisible);
         };
-        
+
         // Load saved preference
         const savedPreference = localStorage.getItem('mobileNavVisible');
         if (savedPreference !== null) {
@@ -1811,9 +1839,9 @@ class MobileProjectNavigation {
                 toggleNavigation();
             }
         }
-        
+
         toggleBtn.addEventListener('click', toggleNavigation);
-        
+
         // Auto-hide navigation after inactivity (only if navigation is visible)
         const hideNavigation = () => {
             if (!this.isUserInteracting && navigationVisible) {
@@ -1823,7 +1851,7 @@ class MobileProjectNavigation {
                 nextBtn.style.pointerEvents = 'none';
             }
         };
-        
+
         const showNavigation = () => {
             if (navigationVisible) {
                 prevBtn.style.opacity = '1';
@@ -1831,66 +1859,66 @@ class MobileProjectNavigation {
                 prevBtn.style.pointerEvents = 'auto';
                 nextBtn.style.pointerEvents = 'auto';
             }
-            
+
             clearTimeout(this.hideTimeout);
             this.hideTimeout = setTimeout(hideNavigation, 3000);
         };
-        
+
         // Show navigation on interaction
         slideshow.addEventListener('touchstart', () => {
             this.isUserInteracting = true;
             showNavigation();
         });
-        
+
         slideshow.addEventListener('touchend', () => {
             this.isUserInteracting = false;
             this.hideTimeout = setTimeout(hideNavigation, 3000);
         });
-        
+
         // Show navigation on scroll or tap
         slideshow.addEventListener('scroll', showNavigation);
         slideshow.addEventListener('click', showNavigation);
-        
+
         // Initial hide (only if navigation is visible)
         if (navigationVisible) {
             this.hideTimeout = setTimeout(hideNavigation, 3000);
         }
     }
-    
+
     setupSwipeGestures() {
         if (!this.isMobile || !this.isTouch) return;
-        
+
         const slideshow = document.querySelector('.project-slideshow');
         if (!slideshow) return;
-        
+
         let startX = 0;
         let startY = 0;
         let isScrolling = false;
-        
+
         slideshow.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
             startY = e.touches[0].clientY;
             isScrolling = false;
         }, { passive: true });
-        
+
         slideshow.addEventListener('touchmove', (e) => {
             if (!startX || !startY) return;
-            
+
             const diffX = Math.abs(e.touches[0].clientX - startX);
             const diffY = Math.abs(e.touches[0].clientY - startY);
-            
+
             if (diffY > diffX) {
                 isScrolling = true;
             }
         }, { passive: true });
-        
+
         slideshow.addEventListener('touchend', (e) => {
             if (!startX || !startY || isScrolling) return;
-            
+
             const endX = e.changedTouches[0].clientX;
             const diffX = startX - endX;
             const threshold = 50;
-            
+
             if (Math.abs(diffX) > threshold) {
                 if (diffX > 0) {
                     // Swipe left - next slide
@@ -1899,27 +1927,27 @@ class MobileProjectNavigation {
                     // Swipe right - previous slide
                     prevSlide();
                 }
-                
+
                 // Show feedback
                 this.showSwipeFeedback(diffX > 0 ? 'next' : 'prev');
             }
-            
+
             startX = 0;
             startY = 0;
         }, { passive: true });
     }
-    
+
     setupTouchOptimizations() {
         if (!this.isTouch) return;
-        
+
         const buttons = document.querySelectorAll('#prevProject, #nextProject, #projectIndicators button');
-        
+
         buttons.forEach(button => {
             // Add touch feedback
             button.addEventListener('touchstart', () => {
                 button.style.transform = button.style.transform.replace('scale(1)', 'scale(0.95)');
             }, { passive: true });
-            
+
             button.addEventListener('touchend', () => {
                 setTimeout(() => {
                     button.style.transform = button.style.transform.replace('scale(0.95)', 'scale(1)');
@@ -1927,18 +1955,18 @@ class MobileProjectNavigation {
             }, { passive: true });
         });
     }
-    
+
     showSwipeFeedback(direction) {
         const slideshow = document.querySelector('.project-slideshow');
         if (!slideshow) return;
-        
+
         // Create feedback element
         const feedback = document.createElement('div');
         feedback.className = 'swipe-feedback';
-        feedback.innerHTML = direction === 'next' ? 
-            '<i class="fas fa-chevron-left"></i>' : 
+        feedback.innerHTML = direction === 'next' ?
+            '<i class="fas fa-chevron-left"></i>' :
             '<i class="fas fa-chevron-right"></i>';
-        
+
         feedback.style.cssText = `
             position: absolute;
             top: 50%;
@@ -1953,9 +1981,9 @@ class MobileProjectNavigation {
             animation: swipeFeedback 0.6s ease-out forwards;
             pointer-events: none;
         `;
-        
+
         slideshow.appendChild(feedback);
-        
+
         // Remove after animation
         setTimeout(() => {
             if (feedback.parentNode) {
@@ -1963,12 +1991,12 @@ class MobileProjectNavigation {
             }
         }, 600);
     }
-    
+
     handleResize() {
         window.addEventListener('resize', () => {
             const wasMobile = this.isMobile;
             this.isMobile = window.innerWidth <= 767;
-            
+
             if (wasMobile !== this.isMobile) {
                 // Reinitialize if mobile state changed
                 this.init();
