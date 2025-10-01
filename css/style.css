@@ -1871,6 +1871,382 @@ footer {
     }
 }
 
+/* ===================================
+   Language Toggle Button Styling - Premium Design
+   =================================== */
+
+.language-toggle-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.language-toggle {
+    position: relative;
+    min-width: 80px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+        0 4px 15px rgba(102, 126, 234, 0.4),
+        0 1px 3px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+.language-toggle:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow:
+        0 8px 30px rgba(102, 126, 234, 0.6),
+        0 3px 10px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.language-toggle-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    padding: 0 12px;
+}
+
+.language-flag {
+    font-size: 20px;
+    line-height: 1;
+    display: inline-block;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+}
+
+.language-text {
+    font-size: 13px;
+    font-weight: 800;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Animated gradient background */
+.language-toggle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+
+.language-toggle:hover::before {
+    opacity: 1;
+}
+
+/* Glowing border effect */
+.language-toggle::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
+    background-size: 300% 300%;
+    opacity: 0;
+    z-index: 0;
+    animation: gradientShift 3s ease infinite;
+}
+
+.language-toggle:hover::after {
+    opacity: 0.8;
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Dark mode language toggle - Premium */
+.dark-mode .language-toggle {
+    background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%);
+    box-shadow:
+        0 4px 15px rgba(139, 92, 246, 0.5),
+        0 1px 3px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .language-toggle:hover {
+    box-shadow:
+        0 8px 30px rgba(139, 92, 246, 0.7),
+        0 3px 10px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .language-toggle::before {
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+}
+
+.dark-mode .language-toggle::after {
+    background: linear-gradient(135deg, #818cf8, #a78bfa, #c084fc, #e879f9);
+}
+
+/* Active state animation */
+.language-toggle:active {
+    transform: translateY(-1px) scale(0.96);
+}
+
+/* Flag animation on hover */
+.language-toggle:hover .language-flag {
+    transform: scale(1.3) rotate(12deg);
+    filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.5));
+}
+
+/* Text glow on hover */
+.language-toggle:hover .language-text {
+    color: #ffffff;
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.5),
+        0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1.5px;
+}
+
+.dark-mode .language-toggle:hover .language-text {
+    text-shadow:
+        0 0 15px rgba(255, 255, 255, 0.9),
+        0 0 25px rgba(167, 139, 250, 0.6),
+        0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Focus state - Accessibility */
+.language-toggle:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5), 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: #3b82f6;
+}
+
+.dark-mode .language-toggle:focus {
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: #60a5fa;
+}
+
+/* Language switch animation */
+@keyframes languageSwitch {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    25% {
+        transform: rotate(-15deg) scale(0.9);
+    }
+
+    50% {
+        transform: rotate(0deg) scale(1.1);
+    }
+
+    75% {
+        transform: rotate(15deg) scale(0.9);
+    }
+
+    100% {
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+.language-toggle.switching .language-flag {
+    animation: languageSwitch 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Tooltip on hover */
+.language-toggle-container::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+    background: #1e293b;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+}
+
+.language-toggle-container::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-bottom-color: #1e293b;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.language-toggle:hover+.language-toggle-container::before,
+.language-toggle:hover+.language-toggle-container::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dark-mode .language-toggle-container::before {
+    background: #475569;
+}
+
+.dark-mode .language-toggle-container::after {
+    border-bottom-color: #475569;
+}
+
+/* Responsive adjustments for language toggle */
+@media (max-width: 640px) {
+    .language-toggle {
+        min-width: 72px;
+        height: 36px;
+    }
+
+    .language-flag {
+        font-size: 18px;
+    }
+
+    .language-text {
+        font-size: 12px;
+        letter-spacing: 0.8px;
+    }
+
+    .language-toggle-container::before {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    .language-toggle-content {
+        padding: 0 10px;
+        gap: 6px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 375px) {
+    .language-toggle {
+        min-width: 64px;
+        height: 32px;
+    }
+
+    .language-flag {
+        font-size: 16px;
+    }
+
+    .language-text {
+        font-size: 11px;
+        letter-spacing: 0.5px;
+    }
+
+    .language-toggle-content {
+        padding: 0 8px;
+        gap: 5px;
+    }
+}
+
+/* Premium shine effect */
+@keyframes shine {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 150%;
+        opacity: 0;
+    }
+}
+
+.language-toggle-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.6),
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0.6),
+            transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+    z-index: 3;
+}
+
+.language-toggle:hover .language-toggle-shine {
+    animation: shine 1.2s ease-in-out infinite;
+}
+
+/* Particles effect */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    33% {
+        transform: translateY(-10px) rotate(120deg);
+    }
+
+    66% {
+        transform: translateY(-5px) rotate(240deg);
+    }
+}
+
+.language-toggle-content::before {
+    content: '✨';
+    position: absolute;
+    left: 5px;
+    font-size: 10px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.language-toggle-content::after {
+    content: '✨';
+    position: absolute;
+    right: 5px;
+    font-size: 10px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.language-toggle:hover .language-toggle-content::before,
+.language-toggle:hover .language-toggle-content::after {
+    opacity: 1;
+    animation: float 2s ease-in-out infinite;
+}
+
 /* Hamburger Menu */
 .hamburger {
     display: flex;

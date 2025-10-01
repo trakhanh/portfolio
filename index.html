@@ -21,6 +21,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/modern-enhancements.css">
 </head>
 
 <body class="font-sans bg-gray-50 dark-mode gradient-animate overflow-x-hidden">
@@ -134,32 +135,44 @@
                 <a href="#about" class="nav-link group flex items-center space-x-2">
                     <i
                         class="fas fa-user text-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300"></i>
-                    <span>Giới thiệu</span>
+                    <span data-i18n="nav.about">Giới thiệu</span>
                 </a>
                 <a href="#skills" class="nav-link group flex items-center space-x-2">
                     <i
                         class="fas fa-code text-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300"></i>
-                    <span>Kỹ năng</span>
+                    <span data-i18n="nav.skills">Kỹ năng</span>
                 </a>
                 <a href="#certificates" class="nav-link group flex items-center space-x-2">
                     <i
                         class="fas fa-certificate text-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300"></i>
-                    <span>Chứng chỉ</span>
+                    <span data-i18n="nav.certificates">Chứng chỉ</span>
                 </a>
                 <a href="#projects" class="nav-link group flex items-center space-x-2">
                     <i
                         class="fas fa-folder-open text-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300"></i>
-                    <span>Dự án</span>
+                    <span data-i18n="nav.projects">Dự án</span>
                 </a>
                 <a href="#contact" class="nav-link group flex items-center space-x-2">
                     <i
                         class="fas fa-envelope text-sm opacity-70 group-hover:opacity-100 transition-opacity duration-300"></i>
-                    <span>Liên hệ</span>
+                    <span data-i18n="nav.contact">Liên hệ</span>
                 </a>
             </div>
 
             <!-- Right section - Controls -->
             <div class="flex items-center space-x-3 sm:space-x-4">
+                <!-- Language Toggle -->
+                <div class="language-toggle-container" data-tooltip="Switch language">
+                    <button id="languageToggle" class="language-toggle" aria-label="Toggle language"
+                        title="Chuyển đổi ngôn ngữ">
+                        <div class="language-toggle-content">
+                            <span class="language-flag">🇻🇳</span>
+                            <span class="language-text">VI</span>
+                        </div>
+                        <div class="language-toggle-shine"></div>
+                    </button>
+                </div>
+
                 <!-- Modern Theme Toggle -->
                 <div class="theme-toggle-container">
                     <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
@@ -191,23 +204,23 @@
                 <div class="flex flex-col space-y-4 p-6">
                     <a href="#about" class="mobile-nav-link group flex items-center space-x-3">
                         <i class="fas fa-user text-blue-600"></i>
-                        <span>Giới thiệu</span>
+                        <span data-i18n="nav.about">Giới thiệu</span>
                     </a>
                     <a href="#skills" class="mobile-nav-link group flex items-center space-x-3">
                         <i class="fas fa-code text-blue-600"></i>
-                        <span>Kỹ năng</span>
+                        <span data-i18n="nav.skills">Kỹ năng</span>
                     </a>
                     <a href="#certificates" class="mobile-nav-link group flex items-center space-x-3">
                         <i class="fas fa-certificate text-blue-600"></i>
-                        <span>Chứng chỉ</span>
+                        <span data-i18n="nav.certificates">Chứng chỉ</span>
                     </a>
                     <a href="#projects" class="mobile-nav-link group flex items-center space-x-3">
                         <i class="fas fa-folder-open text-blue-600"></i>
-                        <span>Dự án</span>
+                        <span data-i18n="nav.projects">Dự án</span>
                     </a>
                     <a href="#contact" class="mobile-nav-link group flex items-center space-x-3">
                         <i class="fas fa-envelope text-blue-600"></i>
-                        <span>Liên hệ</span>
+                        <span data-i18n="nav.contact">Liên hệ</span>
                     </a>
                 </div>
             </div>
@@ -240,11 +253,12 @@
                     <p
                         class="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 font-medium tracking-wide uppercase px-2">
                         <i class="fas fa-graduation-cap mr-1 sm:mr-2"></i>
-                        Sinh viên chuyên ngành Data Science - Trường Đại học Huflit
+                        <span data-i18n="hero.student">Sinh viên chuyên ngành Data Science - Trường Đại học
+                            Huflit</span>
                     </p>
                     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight px-2">
-                        <span class="text-white block mb-1 sm:mb-2">Xin chào, tôi là</span>
-                        <span class="hero-name-gradient block">Trà Nguyễn Gia Khánh</span>
+                        <span class="text-white block mb-1 sm:mb-2" data-i18n="hero.greeting">Xin chào, tôi là</span>
+                        <span class="hero-name-gradient block" data-i18n="hero.name">Trà Nguyễn Gia Khánh</span>
                     </h1>
                 </div>
 
@@ -288,17 +302,17 @@
                     <a href="#contact"
                         class="group relative px-6 sm:px-8 py-3 sm:py-4 hero-btn-primary rounded-full font-semibold transition-all duration-300 hover:-translate-y-1 w-full sm:w-auto text-center">
                         <i class="fas fa-envelope mr-2"></i>
-                        <span class="relative z-10">Liên hệ với tôi</span>
+                        <span class="relative z-10" data-i18n="hero.contactMe">Liên hệ với tôi</span>
                     </a>
                     <a href="#projects"
                         class="group relative px-6 sm:px-8 py-3 sm:py-4 hero-btn-secondary rounded-full font-semibold transition-all duration-300 hover:-translate-y-1 w-full sm:w-auto text-center">
                         <i class="fas fa-folder-open mr-2"></i>
-                        <span class="relative z-10">Xem dự án</span>
+                        <span class="relative z-10" data-i18n="hero.viewWork">Xem dự án</span>
                     </a>
                     <a href="#about"
                         class="group relative px-5 sm:px-6 py-2.5 sm:py-3 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-full font-medium transition-all duration-300 hover:bg-white/20 hover:-translate-y-1 w-full sm:w-auto text-center">
                         <i class="fas fa-user mr-2"></i>
-                        <span>Tìm hiểu thêm</span>
+                        <span data-i18n="hero.learnMore">Tìm hiểu thêm</span>
                     </a>
                 </div>
 
@@ -335,8 +349,8 @@
          ===================================== -->
     <section id="about" class="py-16 sm:py-20 lg:py-24 about-section glass-effect">
         <div class="container mx-auto px-4 sm:px-6">
-            <h2
-                class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 about-title relative gradient-text">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16 about-title relative gradient-text"
+                data-i18n="about.title">
                 Giới thiệu bản thân
             </h2>
             <div class="flex flex-col lg:flex-row items-center gap-8 sm:gap-12">
@@ -371,16 +385,14 @@
                                 class="w-10 h-10 sm:w-12 sm:h-12 about-icon rounded-full flex items-center justify-center">
                                 <i class="fas fa-user-tie text-sm sm:text-base"></i>
                             </div>
-                            <h3 class="text-xl sm:text-2xl font-bold about-title">Giới thiệu bản thân</h3>
+                            <h3 class="text-xl sm:text-2xl font-bold about-title" data-i18n="about.heading">Giới thiệu
+                                bản thân</h3>
                         </div>
-                        <p class="text-base sm:text-lg about-text leading-relaxed">
-                            Tôi là Trà Nguyễn Gia Khánh tôi sinh sống tại TP.HCM, là một sinh viên với chuyên ngành Khoa
-                            học Dữ liệu (Data Science) chuẩn bị tốt nghiệp, với
-                            định hướng phát triển sự nghiệp trong lĩnh vực Trí tuệ Nhân tạo (AI) và Hỗ trợ Kỹ thuật.
-                            Với nền tảng về lập trình Python và kinh nghiệm phát triển các giải pháp AI qua nhiều dự án
-                            học tập,
-                            tôi đồng thời đã củng cố kỹ năng hỗ trợ người dùng thông qua chứng chỉ Google IT Support và
-                            kinh nghiệm thực tiễn.
+                        <p class="text-base sm:text-lg about-text leading-relaxed" data-i18n="about.intro">
+                            Tôi là Trà Nguyễn Gia Khánh, tốt nghiệp chuyên ngành Khoa học Dữ liệu (Data Science) trường Đại Học Ngoại Ngữ Và Tin Học (HUFLIT) tại TP.HCM, định
+                            hướng phát triển trong lĩnh vực AI, AI Automation và Hỗ trợ Kỹ thuật. Tôi có nền tảng
+                            Python, chứng chỉ Google IT Support, cùng kinh nghiệm thực tập tại Bông Trà F&B, nơi tôi
+                            tham gia phát triển chatbot, giải pháp AI nội bộ và công cụ tự động hóa quy trình.
                         </p>
 
                         <div class="flex items-center space-x-3 sm:space-x-4 mb-6 mt-6 sm:mt-8">
@@ -388,9 +400,10 @@
                                 class="w-10 h-10 sm:w-12 sm:h-12 achievement-icon rounded-full flex items-center justify-center">
                                 <i class="fas fa-trophy text-sm sm:text-base"></i>
                             </div>
-                            <h3 class="text-xl sm:text-2xl font-bold about-title">Thành tựu</h3>
+                            <h3 class="text-xl sm:text-2xl font-bold about-title" data-i18n="about.achievement">Thành
+                                tựu</h3>
                         </div>
-                        <p class="text-base sm:text-lg about-text leading-relaxed">
+                        <p class="text-base sm:text-lg about-text leading-relaxed" data-i18n="about.achievementDesc">
                             Thành tựu nổi bật của tôi là đồ án tốt nghiệp "Nhận diện đối tượng trên băng chuyền", đạt
                             điểm số ấn tượng 9.5/10.
                             Dự án này không chỉ minh chứng cho khả năng ứng dụng kiến thức AI vào giải quyết bài toán
@@ -404,9 +417,10 @@
                                 class="w-10 h-10 sm:w-12 sm:h-12 goal-icon rounded-full flex items-center justify-center">
                                 <i class="fas fa-bullseye text-sm sm:text-base"></i>
                             </div>
-                            <h3 class="text-xl sm:text-2xl font-bold about-title">Mục tiêu nghề nghiệp</h3>
+                            <h3 class="text-xl sm:text-2xl font-bold about-title" data-i18n="about.goal">Mục tiêu nghề
+                                nghiệp</h3>
                         </div>
-                        <p class="text-base sm:text-lg about-text leading-relaxed">
+                        <p class="text-base sm:text-lg about-text leading-relaxed" data-i18n="about.goalDesc">
                             Tôi tìm kiếm cơ hội nghề nghiệp trong lĩnh vực phát triển, ứng dụng AI hoặc Hỗ trợ Kỹ thuật
                             CNTT. Với những kỹ năng đã được trang bị,
                             tôi mong muốn được vận dụng chuyên môn để giải quyết các thách thức công nghệ, đồng thời
@@ -437,8 +451,10 @@
     <section id="skills" class="py-16 sm:py-20 lg:py-24 bg-gray-50 glass-effect">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center mb-12 sm:mb-16">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">Kỹ năng của tôi</h2>
-                <p class="text-base sm:text-lg text-gray-600 dark:text-black-300 max-w-2xl mx-auto px-4">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text" data-i18n="skills.title">Kỹ
+                    năng của tôi</h2>
+                <p class="text-base sm:text-lg text-gray-600 dark:text-black-300 max-w-2xl mx-auto px-4"
+                    data-i18n="skills.subtitle">
                     Những công nghệ và kỹ năng mà tôi đã phát triển qua quá trình học tập
                 </p>
             </div>
@@ -450,7 +466,7 @@
                         <div class="skill-category-icon programming">
                             <i class="fas fa-code"></i>
                         </div>
-                        <h3 class="skill-category-title">Lập trình</h3>
+                        <h3 class="skill-category-title" data-i18n="skills.programming">Lập trình</h3>
                     </div>
 
                     <div class="skill-items">
@@ -515,7 +531,7 @@
                         <div class="skill-category-icon ai">
                             <i class="fas fa-brain"></i>
                         </div>
-                        <h3 class="skill-category-title">AI & Data Science</h3>
+                        <h3 class="skill-category-title" data-i18n="skills.dataScience">AI & Data Science</h3>
                     </div>
 
                     <div class="skill-items">
@@ -590,7 +606,7 @@
                         <div class="skill-category-icon tools">
                             <i class="fas fa-tools"></i>
                         </div>
-                        <h3 class="skill-category-title">Kỹ năng & Hệ thống</h3>
+                        <h3 class="skill-category-title" data-i18n="skills.tools">Kỹ năng & Hệ thống</h3>
                     </div>
 
                     <div class="skill-items">
@@ -664,8 +680,10 @@
     <section id="certificates" class="py-16 sm:py-20 lg:py-24 bg-white glass-effect">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center mb-12 sm:mb-16">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">Chứng chỉ của tôi</h2>
-                <p class="text-base sm:text-lg text-gray-600 dark:text-black-300 max-w-2xl mx-auto px-4">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text"
+                    data-i18n="certificates.title">Chứng chỉ của tôi</h2>
+                <p class="text-base sm:text-lg text-gray-600 dark:text-black-300 max-w-2xl mx-auto px-4"
+                    data-i18n="certificates.subtitle">
                     Một vài chứng chỉ và bằng cấp tôi đã đạt được trong quá trình học tập và phát triển nghề nghiệp,
                     ngoài ra tôi còn đang học thêm về
                     chứng chỉ Data Analysis và IT Security từ Google, bạn có thể xem thêm ở CV của tôi ở trên.
@@ -937,8 +955,10 @@
     <section id="projects" class="py-16 sm:py-20 lg:py-24 bg-white glass-effect">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center mb-8 sm:mb-12">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">Dự án nổi bật</h2>
-                <p class="text-base sm:text-lg text-gray-600 dark:text-dark-300 max-w-2xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text" data-i18n="projects.title">Dự
+                    án nổi bật</h2>
+                <p class="text-base sm:text-lg text-gray-600 dark:text-dark-300 max-w-2xl mx-auto"
+                    data-i18n="projects.subtitle">
                     Khám phá những dự án AI và Data Science tôi đã thực hiện trong quá trình học tập
                 </p>
             </div>
@@ -1340,7 +1360,8 @@
          ===================================== -->
     <section id="contact" class="py-16 sm:py-20 lg:py-24 bg-gray-50 glass-effect">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 gradient-text">Liên hệ tôi</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 gradient-text" data-i18n="contact.title">Liên hệ
+                tôi</h2>
 
             <div class="max-w-2xl mx-auto">
                 <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg">
@@ -1348,32 +1369,38 @@
                         <!-- Name Field -->
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 dark:text-dark-300 mb-2">
-                                <i class="fas fa-user mr-2 text-blue-600"></i>Tên của bạn
+                                <i class="fas fa-user mr-2 text-blue-600"></i><span data-i18n="contact.form.name">Tên
+                                    của bạn</span>
                             </label>
                             <input type="text" id="name" name="name"
                                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                                placeholder="Nhập tên của bạn" required>
+                                placeholder="Nhập tên của bạn" data-i18n="contact.form.namePlaceholder"
+                                data-i18n-target="placeholder" required>
                         </div>
 
                         <!-- Email Field -->
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 dark:text-dark-300 mb-2">
-                                <i class="fas fa-envelope mr-2 text-blue-600"></i>Email của bạn
+                                <i class="fas fa-envelope mr-2 text-blue-600"></i><span
+                                    data-i18n="contact.form.email">Email của bạn</span>
                             </label>
                             <input type="email" id="email" name="email"
                                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                                placeholder="Nhập Email của bạn" required>
+                                placeholder="Nhập Email của bạn" data-i18n="contact.form.emailPlaceholder"
+                                data-i18n-target="placeholder" required>
                         </div>
 
                         <!-- Message Field -->
                         <div>
                             <label for="message"
                                 class="block text-sm font-medium text-gray-700 dark:text-dark-300 mb-2">
-                                <i class="fas fa-comment-dots mr-2 text-blue-600"></i>Tin nhắn của bạn
+                                <i class="fas fa-comment-dots mr-2 text-blue-600"></i><span
+                                    data-i18n="contact.form.message">Tin nhắn của bạn</span>
                             </label>
                             <textarea id="message" name="message" rows="4"
                                 class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
-                                placeholder="Nhập tin nhắn của bạn" required></textarea>
+                                placeholder="Nhập tin nhắn của bạn" data-i18n="contact.form.messagePlaceholder"
+                                data-i18n-target="placeholder" required></textarea>
                         </div>
 
                         <!-- Submit Button -->
@@ -1381,7 +1408,7 @@
                             class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 group">
                             <i
                                 class="fas fa-paper-plane group-hover:translate-x-1 transition-transform duration-300"></i>
-                            <span>Gửi tin nhắn cho tôi</span>
+                            <span data-i18n="contact.form.send">Gửi tin nhắn cho tôi</span>
                         </button>
                     </form>
 
@@ -1691,6 +1718,7 @@
         </div>
     </div>
 
+    <script src="./js/language.js"></script>
     <script src="./js/script.js"></script>
 </body>
 

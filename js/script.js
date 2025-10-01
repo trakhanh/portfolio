@@ -418,12 +418,12 @@ contactForm.addEventListener('submit', async function (e) {
 
     // Basic validation
     if (!name || !email || !message) {
-        showNotification('Vui lòng điền đầy đủ tất cả các trường', 'error');
+        showNotification(window.__('notification.fillAll'), 'error');
         return;
     }
 
     if (!isValidEmail(email)) {
-        showNotification('Vui lòng nhập địa chỉ email hợp lệ', 'error');
+        showNotification(window.__('notification.invalidEmail'), 'error');
         return;
     }
 
@@ -433,7 +433,7 @@ contactForm.addEventListener('submit', async function (e) {
 
     // Show loading state
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Đang gửi...';
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>' + window.__('contact.form.sending');
 
     try {
         // Create FormData to send to Formspree
@@ -458,7 +458,7 @@ contactForm.addEventListener('submit', async function (e) {
         console.log('Response headers:', response.headers);
 
         if (response.ok) {
-            showNotification('Cảm ơn bạn đã liên hệ! Tôi sẽ phản hồi trong thời gian sớm nhất.', 'success');
+            showNotification(window.__('notification.success'), 'success');
 
             // Reset form with animation
             const formElements = contactForm.elements;
@@ -513,7 +513,7 @@ contactForm.addEventListener('submit', async function (e) {
 
         } catch (fallbackError) {
             console.error('Fallback submission error:', fallbackError);
-            showNotification('Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại sau hoặc liên hệ trực tiếp qua email: khanhtra229@gmail.com', 'error');
+            showNotification(window.__('notification.sendError'), 'error');
         }
     } finally {
         // Restore button state
