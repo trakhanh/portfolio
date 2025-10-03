@@ -1578,6 +1578,11 @@ footer {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
+/* Override for specific job titles */
+.dark-mode h3.text-gray-900.dark\\:text-white {
+    color: white !important;
+}
+
 .project-slide p {
     color: #475569 !important;
 }
@@ -7207,4 +7212,50 @@ footer {
     #mobileNavToggle i {
         font-size: 10px !important;
     }
+}
+
+/* =========================================================
+   EXPERIENCE SECTION STYLES
+   ========================================================= */
+
+/* Light mode - nền trắng sáng giống Skills section */
+#experience {
+    background-color: #ffffff !important;
+}
+
+/* Dark mode - nền tối */
+.dark-mode #experience {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+}
+
+/* Experience cards light mode - nền đậm hơn */
+#experience .bg-white {
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(241, 245, 249, 0.95) 100%) !important;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+}
+
+/* Experience cards dark mode */
+.dark-mode #experience .bg-white {
+    background: linear-gradient(135deg, rgba(51, 65, 85, 0.95) 0%, rgba(71, 85, 105, 0.95) 100%) !important;
+    border: 1px solid rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Experience text - Light mode - màu chữ đậm để dễ đọc */
+#experience .text-gray-800 {
+    color: #1f2937 !important;
+}
+
+#experience .text-gray-600 {
+    color: #4b5563 !important;
+}
+
+#experience .text-gray-700 {
+    color: #374151 !important;
+}
+
+/* Experience text - Dark mode */
+.dark-mode #experience .text-gray-800,
+.dark-mode #experience .text-gray-700,
+.dark-mode #experience .text-gray-600 {
+    color: #e5e7eb !important;
 }
