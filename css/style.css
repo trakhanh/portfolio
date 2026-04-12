@@ -294,14 +294,8 @@ h6:focus {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
 }
 
-.dark-mode .bg-gradient-to-r {
-    background-image: linear-gradient(to right, #1e40af, #1e3a8a) !important;
-}
-
-.dark-mode .fas,
-.dark-mode .fab {
-    color: #ffffff !important;
-}
+/* Removed: .dark-mode .bg-gradient-to-r override - conflicts with Tailwind */
+/* Removed: .dark-mode .fas/.fab blanket white - breaks icons on white buttons */
 
 .dark-mode .text-gray-600 i {
     color: #9ca3af !important;
@@ -1122,101 +1116,209 @@ body {
     color: #60a5fa;
 }
 
-/* About Me Section Styles - Consolidated */
+/* ===================================
+   About Section - Bento Grid Design
+   =================================== */
 
 #about {
     transition: all 0.3s ease;
 }
 
-#about .about-card {
-    background-color: #ffffff;
+/* Bento Card Base */
+.about-bento-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 24px;
+    padding: 28px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.04),
+        0 8px 30px rgba(0, 0, 0, 0.06);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.about-bento-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about-bento-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.06),
+        0 20px 50px rgba(99, 102, 241, 0.12);
+    border-color: rgba(99, 102, 241, 0.15);
+}
+
+.about-bento-card.revealed:hover {
+    transform: translateY(-6px);
+}
+
+.dark-mode .about-bento-card {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.2),
+        0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .about-bento-card:hover {
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        0 20px 50px rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+/* Profile Ring - Animated Gradient Border */
+.about-profile-ring {
+    background: conic-gradient(
+        from 0deg,
+        #3b82f6, #8b5cf6, #ec4899, #f59e0b, #10b981, #3b82f6
+    );
+    background-size: 200% 200%;
+    animation: profile-ring-spin 4s linear infinite;
+    border-radius: 50%;
+}
+
+@keyframes profile-ring-spin {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Highlight Tags */
+.about-highlight-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.08));
+    color: #6366f1;
+    border: 1px solid rgba(99, 102, 241, 0.15);
     transition: all 0.3s ease;
 }
 
-.dark-mode #about .about-card {
-    background-color: #1f2937;
+.about-highlight-tag:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
 }
 
-#about .about-icon {
-    background-color: #eff6ff;
-    color: #3b82f6;
+.dark-mode .about-highlight-tag {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.12));
+    color: #a5b4fc;
+    border-color: rgba(99, 102, 241, 0.2);
 }
 
-.dark-mode #about .about-icon {
-    background-color: #1e3a8a;
-    color: #93c5fd;
+.dark-mode .about-highlight-tag:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.2));
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
 }
 
-#about .about-title {
-    color: #1f2937;
+/* Goal Tags */
+.about-goal-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(168, 85, 247, 0.06);
+    color: #7c3aed;
+    border: 1px solid rgba(168, 85, 247, 0.12);
+    transition: all 0.3s ease;
 }
 
-.dark-mode #about .about-title {
-    color: #f3f4f6;
+.about-goal-tag:hover {
+    background: rgba(168, 85, 247, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.12);
 }
 
-#about .about-text {
-    color: #4b5563;
+.dark-mode .about-goal-tag {
+    background: rgba(168, 85, 247, 0.1);
+    color: #c4b5fd;
+    border-color: rgba(168, 85, 247, 0.2);
 }
 
-.dark-mode #about .about-text {
-    color: #d1d5db;
+.dark-mode .about-goal-tag:hover {
+    background: rgba(168, 85, 247, 0.18);
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.15);
 }
 
-#about .profile-image {
-    background-color: #ffffff;
+/* Stat Item Hover */
+.about-stat-item {
+    transition: all 0.3s ease;
 }
 
-.dark-mode #about .profile-image {
-    background-color: #1f2937;
+.about-stat-item:hover {
+    transform: translateX(4px);
 }
 
-#about .profile-icon {
-    color: #6b7280;
+/* Stagger Animation - Reveal on Scroll */
+@keyframes bento-reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
-.dark-mode #about .profile-icon {
-    color: #9ca3af;
+.about-bento-card.revealed {
+    animation: bento-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--stagger, 0) * 0.1s);
 }
 
-#about .achievement-icon {
-    background-color: #dcfce7;
-    color: #16a34a;
+/* CTA Row */
+.about-bento-cta {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.dark-mode #about .achievement-icon {
-    background-color: #064e3b;
-    color: #4ade80;
+.about-bento-cta.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(var(--stagger, 0) * 0.1s);
 }
 
-#about .goal-icon {
-    background-color: #f3e8ff;
-    color: #9333ea;
+/* Counter Animation */
+.about-counter {
+    font-variant-numeric: tabular-nums;
 }
 
-.dark-mode #about .goal-icon {
-    background-color: #581c87;
-    color: #c084fc;
+/* About Section Background */
+.about-section {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 249, 255, 0.9) 100%) !important;
 }
 
-#about .contact-button {
-    background-color: #3b82f6;
-    color: #ffffff;
+.dark-mode .about-section {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%) !important;
 }
 
-.dark-mode #about .contact-button {
-    background-color: #1e40af;
-    color: #ffffff;
+/* ===================================
+   About Section - Responsive
+   =================================== */
+@media (max-width: 1024px) {
+    .about-bento-card {
+        padding: 24px;
+    }
 }
 
-#about .download-button {
-    background-color: #f3f4f6;
-    color: #1f2937;
-}
-
-.dark-mode #about .download-button {
-    background-color: #374151;
-    color: #f3f4f6;
+@media (max-width: 640px) {
+    .about-bento-card {
+        padding: 20px;
+        border-radius: 20px;
+    }
 }
 
 /* Hero Section Animations */
@@ -1519,6 +1621,13 @@ footer {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    padding-top: 0.15em;
+    padding-bottom: 0.15em;
+    line-height: 1.4;
+    overflow: visible;
+    display: inline-block;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
 }
 
 .dark-mode .gradient-text {
@@ -1526,6 +1635,13 @@ footer {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    padding-top: 0.15em;
+    padding-bottom: 0.15em;
+    line-height: 1.4;
+    overflow: visible;
+    display: inline-block;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
 }
 
 /* Project Slideshow Enhanced Contrast */
@@ -2782,6 +2898,13 @@ header {
     background-clip: text;
     margin: 0;
     transition: all 0.3s ease;
+    padding-top: 0.15em;
+    padding-bottom: 0.15em;
+    line-height: 1.4;
+    overflow: visible;
+    display: inline-block;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
 }
 
 .dark-mode .skill-category-title {
@@ -2789,6 +2912,13 @@ header {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    padding-top: 0.15em;
+    padding-bottom: 0.15em;
+    line-height: 1.4;
+    overflow: visible;
+    display: inline-block;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
 }
 
 /* Enhanced Skill Items */

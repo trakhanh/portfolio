@@ -7,7 +7,7 @@ class SplashScreenManager {
         this.loadingText = document.getElementById('splashLoadingText');
         this.isPageLoaded = false;
         this.isResourcesLoaded = false;
-        this.minimumDisplayTime = 3000; // Minimum 3 seconds display
+        this.minimumDisplayTime = 800; // Reduced minimum display time for faster loading
         this.startTime = Date.now();
 
         this.loadingMessages = [
@@ -102,13 +102,13 @@ class SplashScreenManager {
             img.src = src;
         });
 
-        // Fallback: assume resources loaded after 2 seconds
+        // Fallback: assume resources loaded after 1 second
         setTimeout(() => {
             if (!this.isResourcesLoaded) {
                 this.isResourcesLoaded = true;
                 this.checkReadyToHide();
             }
-        }, 2000);
+        }, 1000);
     }
 
     updateLoadingProgress(loaded, total) {
@@ -314,21 +314,22 @@ const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 
 // Set light mode as default
-body.classList.remove('dark-mode');
-localStorage.setItem('theme', 'light');
+body.classList.remove('dark-mode', 'dark');
+localStorage.setItem('theme', 'dark'); // Change default to dark
 
-// Check for saved theme preference or default to light mode
+// Check for saved theme preference or default to dark mode
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-    body.classList.add('dark-mode');
+if (savedTheme === 'dark' || !savedTheme) { // Default to dark
+    body.classList.add('dark-mode', 'dark');
 } else {
-    body.classList.remove('dark-mode');
+    body.classList.remove('dark-mode', 'dark');
     localStorage.setItem('theme', 'light');
 }
 
 themeToggle.addEventListener('click', () => {
     body.classList.add('theme-transition');
     body.classList.toggle('dark-mode');
+    body.classList.toggle('dark');
 
     if (body.classList.contains('dark-mode')) {
         localStorage.setItem('theme', 'dark');
@@ -626,178 +627,6 @@ document.querySelectorAll('.project-card').forEach(card => {
         card.classList.remove('hover-lift');
     });
 });
-
-// Project Slideshow
-const projectSlides = document.querySelector('.project-slides');
-const prevButton = document.getElementById('prevProject');
-const nextButton = document.getElementById('nextProject');
-const indicators = document.querySelectorAll('#projectIndicators button');
-let currentSlide = 0;
-const totalSlides = document.querySelectorAll('.project-slide').length;
-let isAnimating = false;
-
-function updateSlide() {
-    if (isAnimating) return;
-    isAnimating = true;
-
-    // Remove active class from all slides
-    document.querySelectorAll('.project-slide').forEach(slide => {
-        slide.classList.remove('active');
-    });
-
-    // Add active class to current slide
-    document.querySelectorAll('.project-slide')[currentSlide].classList.add('active');
-
-    // Update transform with smooth transition
-    projectSlides.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-    // Update indicators with animation
-    indicators.forEach((indicator, index) => {
-        if (index === currentSlide) {
-            indicator.classList.add('active');
-            indicator.classList.remove('bg-gray-300');
-            indicator.classList.add('bg-blue-500');
-        } else {
-            indicator.classList.remove('active');
-            indicator.classList.remove('bg-blue-500');
-            indicator.classList.add('bg-gray-300');
-        }
-    });
-
-    // Reset animation flag after transition
-    setTimeout(() => {
-        isAnimating = false;
-    }, 500);
-}
-
-function nextSlide() {
-    if (isAnimating) return;
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateSlide();
-}
-
-function prevSlide() {
-    if (isAnimating) return;
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateSlide();
-}
-
-// Event listeners for navigation with hover effects
-prevButton.addEventListener('mouseenter', () => {
-    prevButton.style.transform = 'translateY(-50%) scale(1.1)';
-});
-
-prevButton.addEventListener('mouseleave', () => {
-    prevButton.style.transform = 'translateY(-50%) scale(1)';
-});
-
-nextButton.addEventListener('mouseenter', () => {
-    nextButton.style.transform = 'translateY(-50%) scale(1.1)';
-});
-
-nextButton.addEventListener('mouseleave', () => {
-    nextButton.style.transform = 'translateY(-50%) scale(1)';
-});
-
-// Event listeners for navigation
-prevButton.addEventListener('click', () => {
-    if (!isAnimating) {
-        prevButton.style.transform = 'translateY(-50%) scale(0.95)';
-        setTimeout(() => {
-            prevButton.style.transform = 'translateY(-50%) scale(1)';
-        }, 100);
-        prevSlide();
-    }
-});
-
-nextButton.addEventListener('click', () => {
-    if (!isAnimating) {
-        nextButton.style.transform = 'translateY(-50%) scale(0.95)';
-        setTimeout(() => {
-            nextButton.style.transform = 'translateY(-50%) scale(1)';
-        }, 100);
-        nextSlide();
-    }
-});
-
-// Event listeners for indicators with hover effects
-indicators.forEach((indicator, index) => {
-    indicator.addEventListener('mouseenter', () => {
-        if (index !== currentSlide) {
-            indicator.style.transform = 'scale(1.2)';
-        }
-    });
-
-    indicator.addEventListener('mouseleave', () => {
-        if (index !== currentSlide) {
-            indicator.style.transform = 'scale(1)';
-        }
-    });
-
-    indicator.addEventListener('click', () => {
-        if (!isAnimating && index !== currentSlide) {
-            currentSlide = index;
-            updateSlide();
-        }
-    });
-});
-
-// Auto-advance slides with pause on hover
-let slideInterval = setInterval(nextSlide, 5000);
-let isHovering = false;
-
-projectSlides.addEventListener('mouseenter', () => {
-    isHovering = true;
-    clearInterval(slideInterval);
-});
-
-projectSlides.addEventListener('mouseleave', () => {
-    isHovering = false;
-    slideInterval = setInterval(nextSlide, 5000);
-});
-
-// Touch events for mobile swipe with improved detection
-let touchStartX = 0;
-let touchEndX = 0;
-const swipeThreshold = 50;
-
-projectSlides.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-    clearInterval(slideInterval);
-});
-
-projectSlides.addEventListener('touchmove', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-});
-
-projectSlides.addEventListener('touchend', () => {
-    const swipeDistance = touchEndX - touchStartX;
-
-    if (Math.abs(swipeDistance) > swipeThreshold) {
-        if (swipeDistance > 0) {
-            prevSlide();
-        } else {
-            nextSlide();
-        }
-    }
-
-    if (!isHovering) {
-        slideInterval = setInterval(nextSlide, 5000);
-    }
-});
-
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-        prevSlide();
-    } else if (e.key === 'ArrowRight') {
-        nextSlide();
-    }
-});
-
-// Initialize first slide with animation
-document.querySelectorAll('.project-slide')[0].classList.add('active');
-updateSlide();
 
 // Certificate Slideshow
 const certificateSlides = document.querySelector('.certificate-slides');
@@ -2044,3 +1873,83 @@ document.head.appendChild(swipeStyles);
 document.addEventListener('DOMContentLoaded', () => {
     new MobileProjectNavigation();
 });
+
+// ================================================
+// ABOUT SECTION - Bento Grid Stagger Reveal & Counters
+// ================================================
+(function () {
+    // Stagger reveal animation using IntersectionObserver
+    const aboutCards = document.querySelectorAll('.about-bento-card, .about-bento-cta');
+
+    if (aboutCards.length > 0) {
+        const aboutObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    aboutObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        aboutCards.forEach(card => {
+            aboutObserver.observe(card);
+        });
+    }
+
+    // Animated counter
+    const counters = document.querySelectorAll('.about-counter');
+    let countersAnimated = false;
+
+    function animateCounters() {
+        if (countersAnimated) return;
+        countersAnimated = true;
+
+        counters.forEach(counter => {
+            const target = parseFloat(counter.getAttribute('data-target'));
+            const isDecimal = target % 1 !== 0;
+            const duration = 1500; // ms
+            const startTime = performance.now();
+
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                // Ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const currentValue = eased * target;
+
+                if (isDecimal) {
+                    counter.textContent = currentValue.toFixed(1);
+                } else {
+                    counter.textContent = Math.floor(currentValue);
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = isDecimal ? target.toFixed(1) : target;
+                }
+            }
+
+            requestAnimationFrame(updateCounter);
+        });
+    }
+
+    // Trigger counters when about section is in view
+    const aboutSection = document.getElementById('about');
+    if (aboutSection && counters.length > 0) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Small delay so cards are visible first
+                    setTimeout(animateCounters, 400);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        counterObserver.observe(aboutSection);
+    }
+})();
