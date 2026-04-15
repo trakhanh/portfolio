@@ -20,7 +20,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -33,7 +35,7 @@
                         heading: ['"Be Vietnam Pro"', 'sans-serif']
                     },
                     colors: {
-                        primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a","950":"#172554"}
+                        primary: { "50": "#eff6ff", "100": "#dbeafe", "200": "#bfdbfe", "300": "#93c5fd", "400": "#60a5fa", "500": "#3b82f6", "600": "#2563eb", "700": "#1d4ed8", "800": "#1e40af", "900": "#1e3a8a", "950": "#172554" }
                     }
                 }
             }
@@ -44,7 +46,8 @@
     <link rel="stylesheet" href="./css/modern-enhancements.css">
 </head>
 
-<body class="font-sans antialiased text-slate-800 bg-slate-50 dark:bg-[#0B1120] dark:text-slate-100 dark dark-mode overflow-x-hidden selection:bg-primary-500 selection:text-white">
+<body
+    class="theme-tech-creative font-sans antialiased text-slate-800 bg-slate-50 dark:bg-[#0B1120] dark:text-slate-100 dark dark-mode overflow-x-hidden selection:bg-primary-500 selection:text-white">
     <!-- Splash Screen / Loading Screen -->
     <div id="splashScreen" class="splash-screen">
         <div class="splash-container">
@@ -131,36 +134,46 @@
         </div>
     </div>
 
-    <header class="bg-white/80 dark:bg-[#0B1120]/80 backdrop-blur-xl shadow-sm sticky top-0 z-50 border-b border-slate-200/50 dark:border-slate-800/50 transition-colors duration-300">
+    <header
+        class="bg-white/80 dark:bg-[#0B1120]/80 backdrop-blur-xl shadow-sm sticky top-0 z-50 border-b border-slate-200/50 dark:border-slate-800/50 transition-colors duration-300">
         <nav class="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
             <!-- Left section - Logo/Brand -->
             <div class="flex items-center space-x-3 group">
                 <a href="#" class="flex items-center space-x-3 group">
-                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.5)]">
                         <span class="text-white font-heading font-bold text-xl">K</span>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-[1.1rem] font-heading font-bold bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent leading-tight">Khánh Trà</span>
-                        <span class="text-[0.65rem] uppercase font-medium tracking-[0.15em] text-slate-500 dark:text-slate-400">Portfolio</span>
+                        <span
+                            class="text-[1.1rem] font-heading font-bold bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent leading-tight">Khánh
+                            Trà</span>
+                        <span
+                            class="text-[0.65rem] uppercase font-medium tracking-[0.15em] text-slate-500 dark:text-slate-400">Portfolio</span>
                     </div>
                 </a>
             </div>
 
             <!-- Center section - Navigation Links (Desktop) -->
             <div class="hidden lg:flex items-center space-x-8">
-                <a href="#about" class="nav-link font-medium text-sm text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-cyan-400 transition-colors duration-300">
+                <a href="#about"
+                    class="nav-link font-medium text-sm text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-cyan-400 transition-colors duration-300">
                     <span data-i18n="nav.about">Giới thiệu</span>
                 </a>
-                <a href="#skills" class="nav-link font-medium text-sm text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-cyan-400 transition-colors duration-300">
+                <a href="#skills"
+                    class="nav-link font-medium text-sm text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-cyan-400 transition-colors duration-300">
                     <span data-i18n="nav.skills">Kỹ năng</span>
                 </a>
-                <a href="#experience" class="nav-link font-medium text-sm text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-cyan-400 transition-colors duration-300">
+                <a href="#experience"
+                    class="nav-link font-medium text-sm text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-cyan-400 transition-colors duration-300">
                     <span data-i18n="nav.experience">Kinh nghiệm</span>
                 </a>
-                <a href="#projects" class="nav-link font-medium text-sm text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-cyan-400 transition-colors duration-300">
+                <a href="#projects"
+                    class="nav-link font-medium text-sm text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-cyan-400 transition-colors duration-300">
                     <span data-i18n="nav.projects">Dự án</span>
                 </a>
-                <a href="#contact" class="nav-link font-medium text-sm text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-cyan-400 transition-colors duration-300">
+                <a href="#contact"
+                    class="nav-link font-medium text-sm text-slate-600 hover:text-blue-600 dark:text-slate-300 dark:hover:text-cyan-400 transition-colors duration-300">
                     <span data-i18n="nav.contact">Liên hệ</span>
                 </a>
             </div>
@@ -168,20 +181,23 @@
             <!-- Right section - Controls -->
             <div class="flex items-center space-x-2 sm:space-x-4">
                 <div class="language-toggle-container">
-                    <button id="languageToggle" class="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none">
+                    <button id="languageToggle"
+                        class="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none">
                         <span class="text-sm font-bold">VI</span>
                     </button>
                 </div>
 
                 <div class="theme-toggle-container">
-                    <button id="themeToggle" class="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none">
+                    <button id="themeToggle"
+                        class="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none">
                         <i class="fas fa-moon dark:hidden"></i>
                         <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
                     </button>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobileMenuButton" class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 outline-none">
+                <button id="mobileMenuButton"
+                    class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 outline-none">
                     <div class="hamburger">
                         <!-- Standard HTML so JS doesn't break -->
                         <span></span><span></span><span></span>
@@ -191,75 +207,104 @@
         </nav>
 
         <!-- Enhanced Mobile Menu -->
-        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#0B1120]/95 backdrop-blur-xl absolute w-full left-0">
+        <div id="mobileMenu"
+            class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-[#0B1120]/95 backdrop-blur-xl absolute w-full left-0">
             <div class="flex flex-col px-6 py-8 space-y-6 shadow-xl">
-                <a href="#about" class="mobile-nav-link text-lg text-slate-600 dark:text-slate-300 font-medium flex items-center">
+                <a href="#about"
+                    class="mobile-nav-link text-lg text-slate-600 dark:text-slate-300 font-medium flex items-center">
                     <i class="fas fa-user w-8 text-cyan-500"></i><span data-i18n="nav.about">Giới thiệu</span>
                 </a>
-                <a href="#skills" class="mobile-nav-link text-lg text-slate-600 dark:text-slate-300 font-medium flex items-center">
+                <a href="#skills"
+                    class="mobile-nav-link text-lg text-slate-600 dark:text-slate-300 font-medium flex items-center">
                     <i class="fas fa-code w-8 text-cyan-500"></i><span data-i18n="nav.skills">Kỹ năng</span>
                 </a>
-                <a href="#experience" class="mobile-nav-link text-lg text-slate-600 dark:text-slate-300 font-medium flex items-center">
-                    <i class="fas fa-briefcase w-8 text-cyan-500"></i><span data-i18n="nav.experience">Kinh nghiệm</span>
+                <a href="#experience"
+                    class="mobile-nav-link text-lg text-slate-600 dark:text-slate-300 font-medium flex items-center">
+                    <i class="fas fa-briefcase w-8 text-cyan-500"></i><span data-i18n="nav.experience">Kinh
+                        nghiệm</span>
                 </a>
-                <a href="#projects" class="mobile-nav-link text-lg text-slate-600 dark:text-slate-300 font-medium flex items-center">
+                <a href="#projects"
+                    class="mobile-nav-link text-lg text-slate-600 dark:text-slate-300 font-medium flex items-center">
                     <i class="fas fa-folder-open w-8 text-cyan-500"></i><span data-i18n="nav.projects">Dự án</span>
                 </a>
-                <a href="#contact" class="mobile-nav-link text-lg text-slate-600 dark:text-slate-300 font-medium flex items-center">
+                <a href="#contact"
+                    class="mobile-nav-link text-lg text-slate-600 dark:text-slate-300 font-medium flex items-center">
                     <i class="fas fa-envelope w-8 text-cyan-500"></i><span data-i18n="nav.contact">Liên hệ</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <section class="relative min-h-[95vh] flex items-center justify-center overflow-hidden">
+    <section class="hero-section-shell relative min-h-[95vh] flex items-center justify-center overflow-hidden">
         <!-- Modern Grid & Glow Background -->
         <div class="absolute inset-0 bg-slate-50 dark:bg-[#0B1120]">
-            <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+            <div
+                class="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:32px_32px]">
+            </div>
         </div>
-        
+
         <!-- Animated Orbs (Softer and larger) -->
-        <div class="absolute top-1/4 left-1/4 w-[30rem] h-[30rem] bg-blue-500/10 dark:bg-blue-500/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob hidden md:block"></div>
-        <div class="absolute top-1/3 right-1/4 w-[30rem] h-[30rem] bg-cyan-400/10 dark:bg-cyan-500/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob animation-delay-2000 hidden md:block"></div>
-        <div class="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[35rem] h-[35rem] bg-purple-500/10 dark:bg-purple-600/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob animation-delay-4000"></div>
+        <div
+            class="absolute top-1/4 left-1/4 w-[30rem] h-[30rem] bg-blue-500/10 dark:bg-blue-500/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob hidden md:block">
+        </div>
+        <div
+            class="absolute top-1/3 right-1/4 w-[30rem] h-[30rem] bg-cyan-400/10 dark:bg-cyan-500/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob animation-delay-2000 hidden md:block">
+        </div>
+        <div
+            class="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[35rem] h-[35rem] bg-purple-500/10 dark:bg-purple-600/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[120px] animate-blob animation-delay-4000">
+        </div>
 
         <div class="container mx-auto px-4 z-10 text-center relative">
             <div class="max-w-4xl mx-auto space-y-8 animate-fade-in pt-10">
-                
+
                 <!-- Eyebrow/Tag -->
-                <div class="inline-flex items-center px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-700/50 bg-white/60 dark:bg-slate-800/40 backdrop-blur-md shadow-sm">
-                    <span class="flex h-2.5 w-2.5 rounded-full bg-cyan-500 mr-3 animate-pulse shadow-[0_0_10px_rgba(6,182,212,0.8)]"></span>
-                    <span class="text-sm md:text-base font-medium text-slate-700 dark:text-slate-300" data-i18n="hero.student">Sinh viên Data Science - Đại học HUFLIT</span>
+                <div
+                    class="inline-flex items-center px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-700/50 bg-white/60 dark:bg-slate-800/40 backdrop-blur-md shadow-sm">
+                    <span
+                        class="flex h-2.5 w-2.5 rounded-full bg-cyan-500 mr-3 animate-pulse shadow-[0_0_10px_rgba(6,182,212,0.8)]"></span>
+                    <span class="text-sm md:text-base font-medium text-slate-700 dark:text-slate-300"
+                        data-i18n="hero.student">Sinh viên Data Science - Đại học HUFLIT</span>
                 </div>
 
                 <!-- Main Headline -->
                 <div class="space-y-4">
-                    <span class="block text-2xl md:text-3xl font-medium text-slate-500 dark:text-slate-400 fade-in-up" data-i18n="hero.greeting">Xin chào, tôi là</span>
-                    <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.2] pt-2">
-                        <span class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-cyan-400 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent drop-shadow-sm">Trà Nguyễn Gia Khánh</span>
+                    <span class="block text-2xl md:text-3xl font-medium text-slate-500 dark:text-slate-400 fade-in-up"
+                        data-i18n="hero.greeting">Xin chào, tôi là</span>
+                    <h1
+                        class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.2] pt-2">
+                        <span
+                            class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-cyan-400 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent drop-shadow-sm">Trà
+                            Nguyễn Gia Khánh</span>
                     </h1>
                 </div>
 
                 <!-- Subtitle -->
-                <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-light leading-relaxed pt-2">
-                    Tôi là người đam mê <strong class="font-medium text-indigo-600 dark:text-cyan-400">Nghiên cứu AI & Tự động hoá</strong>. Luôn tìm tòi và kiến tạo những nền tảng, công cụ thông minh để hỗ trợ và tối ưu hóa quy trình làm việc.
+                <p
+                    class="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-light leading-relaxed pt-2">
+                    Tôi là người đam mê <strong class="font-medium text-indigo-600 dark:text-cyan-400">Nghiên cứu AI &
+                        Tự động hoá</strong>. Luôn tìm tòi và kiến tạo những nền tảng, công cụ thông minh để hỗ trợ và
+                    tối ưu hóa quy trình làm việc.
                 </p>
 
                 <!-- Skill Tags Grid -->
                 <div class="flex flex-wrap items-center justify-center gap-3 pt-4">
-                    <div class="px-5 py-2 rounded-xl bg-white/80 dark:bg-[#1e293b]/60 border border-slate-200 dark:border-slate-700/50 backdrop-blur-md shadow-sm flex items-center space-x-2 transition-transform hover:-translate-y-1">
+                    <div
+                        class="px-5 py-2 rounded-xl bg-white/80 dark:bg-[#1e293b]/60 border border-slate-200 dark:border-slate-700/50 backdrop-blur-md shadow-sm flex items-center space-x-2 transition-transform hover:-translate-y-1">
                         <i class="fas fa-brain text-purple-500"></i>
                         <span class="text-sm font-medium text-slate-700 dark:text-slate-200">AI Enthusiast</span>
                     </div>
-                    <div class="px-5 py-2 rounded-xl bg-white/80 dark:bg-[#1e293b]/60 border border-slate-200 dark:border-slate-700/50 backdrop-blur-md shadow-sm flex items-center space-x-2 transition-transform hover:-translate-y-1">
+                    <div
+                        class="px-5 py-2 rounded-xl bg-white/80 dark:bg-[#1e293b]/60 border border-slate-200 dark:border-slate-700/50 backdrop-blur-md shadow-sm flex items-center space-x-2 transition-transform hover:-translate-y-1">
                         <i class="fas fa-robot text-blue-500"></i>
                         <span class="text-sm font-medium text-slate-700 dark:text-slate-200">AI Automation</span>
                     </div>
-                    <div class="px-5 py-2 rounded-xl bg-white/80 dark:bg-[#1e293b]/60 border border-slate-200 dark:border-slate-700/50 backdrop-blur-md shadow-sm flex items-center space-x-2 transition-transform hover:-translate-y-1">
+                    <div
+                        class="px-5 py-2 rounded-xl bg-white/80 dark:bg-[#1e293b]/60 border border-slate-200 dark:border-slate-700/50 backdrop-blur-md shadow-sm flex items-center space-x-2 transition-transform hover:-translate-y-1">
                         <i class="fas fa-chart-pie text-cyan-500"></i>
                         <span class="text-sm font-medium text-slate-700 dark:text-slate-200">Data Science</span>
                     </div>
-                     <div class="px-5 py-2 rounded-xl bg-white/80 dark:bg-[#1e293b]/60 border border-slate-200 dark:border-slate-700/50 backdrop-blur-md shadow-sm flex items-center space-x-2 transition-transform hover:-translate-y-1">
+                    <div
+                        class="px-5 py-2 rounded-xl bg-white/80 dark:bg-[#1e293b]/60 border border-slate-200 dark:border-slate-700/50 backdrop-blur-md shadow-sm flex items-center space-x-2 transition-transform hover:-translate-y-1">
                         <i class="fab fa-python text-yellow-500"></i>
                         <span class="text-sm font-medium text-slate-700 dark:text-slate-200">Python</span>
                     </div>
@@ -267,10 +312,12 @@
 
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8 pb-12">
-                    <a href="#projects" class="w-full sm:w-auto px-8 py-3.5 rounded-full font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-lg shadow-blue-500/30 transition-all hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]">
+                    <a href="#projects"
+                        class="w-full sm:w-auto px-8 py-3.5 rounded-full font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-lg shadow-blue-500/30 transition-all hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]">
                         <i class="fas fa-rocket mr-2"></i> Khám Phá Dự Án
                     </a>
-                    <a href="#about" class="w-full sm:w-auto px-8 py-3.5 rounded-full font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/80 shadow-sm transition-all hover:-translate-y-0.5">
+                    <a href="#about"
+                        class="w-full sm:w-auto px-8 py-3.5 rounded-full font-medium text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/80 shadow-sm transition-all hover:-translate-y-0.5">
                         <i class="fas fa-user mr-2"></i> Về Tôi
                     </a>
                 </div>
@@ -283,13 +330,18 @@
          ===================================== -->
     <section id="about" class="py-16 sm:py-20 lg:py-28 about-section relative overflow-hidden">
         <!-- Ambient Background Orbs -->
-        <div class="absolute top-10 left-10 w-[25rem] h-[25rem] bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-        <div class="absolute bottom-10 right-10 w-[20rem] h-[20rem] bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div
+            class="absolute top-10 left-10 w-[25rem] h-[25rem] bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-[100px] pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-10 right-10 w-[20rem] h-[20rem] bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-[100px] pointer-events-none">
+        </div>
 
         <div class="container mx-auto px-4 sm:px-6 relative z-10">
             <!-- Section Header -->
             <div class="text-center mb-14 sm:mb-20">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold gradient-text" data-i18n="about.title">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold gradient-text"
+                    data-i18n="about.title">
                     Giới thiệu bản thân
                 </h2>
             </div>
@@ -302,35 +354,47 @@
 
                     <!-- Profile Card -->
                     <div class="lg:col-span-2 about-bento-card about-profile-card group" style="--stagger: 1">
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10 rounded-3xl pointer-events-none"></div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 dark:from-blue-500/10 dark:to-purple-500/10 rounded-3xl pointer-events-none">
+                        </div>
                         <div class="relative z-10 flex flex-col items-center text-center py-4">
                             <!-- Profile Image -->
                             <div class="relative mb-6 group/photo">
-                                <div class="w-36 h-36 sm:w-44 sm:h-44 rounded-full p-[3px] bg-gradient-to-br from-blue-500 to-purple-600">
-                                    <div class="w-full h-full rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800">
+                                <div
+                                    class="w-36 h-36 sm:w-44 sm:h-44 rounded-full p-[3px] bg-gradient-to-br from-blue-500 to-purple-600">
+                                    <div
+                                        class="w-full h-full rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800">
                                         <img src="./img/profile.png" alt="Khánh Trà Profile"
                                             class="w-full h-full object-cover rounded-full transition-transform duration-700 group-hover/photo:scale-110">
                                     </div>
                                 </div>
                                 <!-- Status Badge -->
-                                <div class="absolute -bottom-1 -right-1 w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30 border-[3px] border-white dark:border-slate-900">
+                                <div
+                                    class="absolute -bottom-1 -right-1 w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-lg shadow-green-500/30 border-[3px] border-white dark:border-slate-900">
                                     <i class="fas fa-check text-white text-xs"></i>
                                 </div>
                             </div>
 
                             <!-- Name & Title -->
-                            <h3 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mb-1.5">Trà Nguyễn Gia Khánh</h3>
-                            <p class="text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-purple-400 bg-clip-text text-transparent mb-5">Data Science • AI Enthusiast</p>
+                            <h3 class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mb-1.5">Trà Nguyễn
+                                Gia Khánh</h3>
+                            <p
+                                class="text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 dark:from-cyan-400 dark:to-purple-400 bg-clip-text text-transparent mb-5">
+                                Data Science • AI Enthusiast</p>
 
                             <!-- Info Pills -->
                             <div class="flex flex-col gap-2.5 w-full px-2">
-                                <div class="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/40">
+                                <div
+                                    class="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/40">
                                     <i class="fas fa-map-marker-alt text-xs text-blue-500"></i>
-                                    <span class="text-xs sm:text-sm text-slate-600 dark:text-slate-300" data-i18n="about.locationValue">TP.HCM, Việt Nam</span>
+                                    <span class="text-xs sm:text-sm text-slate-600 dark:text-slate-300"
+                                        data-i18n="about.locationValue">TP.HCM, Việt Nam</span>
                                 </div>
-                                <div class="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/40">
+                                <div
+                                    class="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-slate-50/80 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700/40">
                                     <i class="fas fa-graduation-cap text-xs text-purple-500"></i>
-                                    <span class="text-xs sm:text-sm text-slate-600 dark:text-slate-300" data-i18n="about.educationValue">Đại học Huflit - Data Science</span>
+                                    <span class="text-xs sm:text-sm text-slate-600 dark:text-slate-300"
+                                        data-i18n="about.educationValue">Đại học Huflit - Data Science</span>
                                 </div>
                             </div>
 
@@ -354,19 +418,27 @@
 
                     <!-- Bio Card -->
                     <div class="lg:col-span-3 about-bento-card about-bio-card group" style="--stagger: 2">
-                        <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 via-purple-500 to-cyan-500 rounded-full opacity-60"></div>
+                        <div
+                            class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 via-purple-500 to-cyan-500 rounded-full opacity-60">
+                        </div>
                         <div class="relative z-10 pl-2">
                             <div class="flex items-center gap-3 mb-6">
-                                <div class="w-11 h-11 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                                <div
+                                    class="w-11 h-11 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                                     <i class="fas fa-user-astronaut text-white text-sm"></i>
                                 </div>
                                 <div>
-                                    <h3 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white" data-i18n="about.heading">Giới thiệu bản thân</h3>
-                                    <p class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">About Me</p>
+                                    <h3 class="text-lg sm:text-xl font-bold text-slate-800 dark:text-white"
+                                        data-i18n="about.heading">Giới thiệu bản thân</h3>
+                                    <p
+                                        class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-medium">
+                                        About Me</p>
                                 </div>
                             </div>
-                            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-6" data-i18n="about.intro">
-                                Tôi là Trà Nguyễn Gia Khánh, tốt nghiệp chuyên ngành Khoa học Dữ liệu (Data Science) trường
+                            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-6"
+                                data-i18n="about.intro">
+                                Tôi là Trà Nguyễn Gia Khánh, tốt nghiệp chuyên ngành Khoa học Dữ liệu (Data Science)
+                                trường
                                 Đại Học Ngoại Ngữ Và Tin Học (HUFLIT) tại TP.HCM, định
                                 hướng phát triển trong lĩnh vực AI, AI Automation và Hỗ trợ Kỹ thuật. Tôi có nền tảng
                                 Python, chứng chỉ Google IT Support, cùng kinh nghiệm thực tập tại Bông Trà F&B, nơi tôi
@@ -378,7 +450,8 @@
                                 <span class="about-highlight-tag"><i class="fas fa-brain mr-1.5"></i>AI / ML</span>
                                 <span class="about-highlight-tag"><i class="fas fa-robot mr-1.5"></i>Automation</span>
                                 <span class="about-highlight-tag"><i class="fas fa-headset mr-1.5"></i>IT Support</span>
-                                <span class="about-highlight-tag"><i class="fas fa-chart-bar mr-1.5"></i>Data Science</span>
+                                <span class="about-highlight-tag"><i class="fas fa-chart-bar mr-1.5"></i>Data
+                                    Science</span>
                             </div>
                         </div>
                     </div>
@@ -389,24 +462,33 @@
 
                     <!-- Achievement Card -->
                     <div class="about-bento-card about-achievement-card group" style="--stagger: 3">
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-amber-500/10 to-transparent rounded-bl-full pointer-events-none"></div>
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-amber-500/10 to-transparent rounded-bl-full pointer-events-none">
+                        </div>
                         <div class="relative z-10">
                             <div class="flex items-center gap-3 mb-5">
-                                <div class="w-11 h-11 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
+                                <div
+                                    class="w-11 h-11 bg-gradient-to-br from-amber-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
                                     <i class="fas fa-trophy text-white text-sm"></i>
                                 </div>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-white" data-i18n="about.achievement">Thành tựu</h3>
+                                <h3 class="text-lg font-bold text-slate-800 dark:text-white"
+                                    data-i18n="about.achievement">Thành tựu</h3>
                             </div>
                             <!-- Big Score -->
                             <div class="flex items-baseline gap-1 mb-3">
-                                <span class="text-5xl sm:text-6xl font-extrabold bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent leading-none about-counter" data-target="9.5">0</span>
+                                <span
+                                    class="text-5xl sm:text-6xl font-extrabold bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent leading-none about-counter"
+                                    data-target="9.5">0</span>
                                 <span class="text-2xl font-bold text-slate-400 dark:text-slate-500">/10</span>
                             </div>
-                            <div class="inline-flex items-center px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-500/10 border border-amber-200/60 dark:border-amber-500/20 mb-3">
+                            <div
+                                class="inline-flex items-center px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-500/10 border border-amber-200/60 dark:border-amber-500/20 mb-3">
                                 <i class="fas fa-award text-amber-500 text-xs mr-1.5"></i>
-                                <span class="text-xs font-semibold text-amber-700 dark:text-amber-400" data-i18n="about.thesisLabel">Đồ án tốt nghiệp</span>
+                                <span class="text-xs font-semibold text-amber-700 dark:text-amber-400"
+                                    data-i18n="about.thesisLabel">Đồ án tốt nghiệp</span>
                             </div>
-                            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed" data-i18n="about.achievementShort">
+                            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed"
+                                data-i18n="about.achievementShort">
                                 Nhận diện đối tượng trên băng chuyền công nghiệp bằng Computer Vision & AI
                             </p>
                         </div>
@@ -416,42 +498,56 @@
                     <div class="about-bento-card about-stats-card group" style="--stagger: 4">
                         <div class="relative z-10">
                             <div class="flex items-center gap-3 mb-6">
-                                <div class="w-11 h-11 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                                <div
+                                    class="w-11 h-11 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
                                     <i class="fas fa-chart-line text-white text-sm"></i>
                                 </div>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-white" data-i18n="about.statsTitle">Tổng quan</h3>
+                                <h3 class="text-lg font-bold text-slate-800 dark:text-white"
+                                    data-i18n="about.statsTitle">Tổng quan</h3>
                             </div>
                             <div class="space-y-4">
                                 <!-- Stat Item 1 -->
-                                <div class="about-stat-item flex items-center gap-4 p-3 rounded-2xl bg-slate-50/60 dark:bg-slate-800/40 border border-slate-100/80 dark:border-slate-700/30 hover:border-blue-300/50 dark:hover:border-blue-500/30 transition-all duration-300">
-                                    <div class="w-10 h-10 bg-blue-50 dark:bg-blue-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="about-stat-item flex items-center gap-4 p-3 rounded-2xl bg-slate-50/60 dark:bg-slate-800/40 border border-slate-100/80 dark:border-slate-700/30 hover:border-blue-300/50 dark:hover:border-blue-500/30 transition-all duration-300">
+                                    <div
+                                        class="w-10 h-10 bg-blue-50 dark:bg-blue-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
                                         <i class="fas fa-folder-open text-blue-500 text-sm"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <span class="text-2xl font-bold text-slate-800 dark:text-white about-counter" data-target="8">0</span>
+                                        <span class="text-2xl font-bold text-slate-800 dark:text-white about-counter"
+                                            data-target="8">0</span>
                                         <span class="text-xl font-bold text-blue-500">+</span>
-                                        <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="about.stats.projects">Dự án</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400"
+                                            data-i18n="about.stats.projects">Dự án</p>
                                     </div>
                                 </div>
                                 <!-- Stat Item 2 -->
-                                <div class="about-stat-item flex items-center gap-4 p-3 rounded-2xl bg-slate-50/60 dark:bg-slate-800/40 border border-slate-100/80 dark:border-slate-700/30 hover:border-purple-300/50 dark:hover:border-purple-500/30 transition-all duration-300">
-                                    <div class="w-10 h-10 bg-purple-50 dark:bg-purple-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="about-stat-item flex items-center gap-4 p-3 rounded-2xl bg-slate-50/60 dark:bg-slate-800/40 border border-slate-100/80 dark:border-slate-700/30 hover:border-purple-300/50 dark:hover:border-purple-500/30 transition-all duration-300">
+                                    <div
+                                        class="w-10 h-10 bg-purple-50 dark:bg-purple-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
                                         <i class="fas fa-certificate text-purple-500 text-sm"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <span class="text-2xl font-bold text-slate-800 dark:text-white about-counter" data-target="3">0</span>
+                                        <span class="text-2xl font-bold text-slate-800 dark:text-white about-counter"
+                                            data-target="3">0</span>
                                         <span class="text-xl font-bold text-purple-500">+</span>
-                                        <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="about.stats.certificates">Chứng chỉ</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400"
+                                            data-i18n="about.stats.certificates">Chứng chỉ</p>
                                     </div>
                                 </div>
                                 <!-- Stat Item 3 -->
-                                <div class="about-stat-item flex items-center gap-4 p-3 rounded-2xl bg-slate-50/60 dark:bg-slate-800/40 border border-slate-100/80 dark:border-slate-700/30 hover:border-green-300/50 dark:hover:border-green-500/30 transition-all duration-300">
-                                    <div class="w-10 h-10 bg-green-50 dark:bg-green-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <div
+                                    class="about-stat-item flex items-center gap-4 p-3 rounded-2xl bg-slate-50/60 dark:bg-slate-800/40 border border-slate-100/80 dark:border-slate-700/30 hover:border-green-300/50 dark:hover:border-green-500/30 transition-all duration-300">
+                                    <div
+                                        class="w-10 h-10 bg-green-50 dark:bg-green-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
                                         <i class="fas fa-building text-green-500 text-sm"></i>
                                     </div>
                                     <div class="flex-1 min-w-0">
-                                        <span class="text-2xl font-bold text-slate-800 dark:text-white about-counter" data-target="2">0</span>
-                                        <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="about.stats.internships">Công ty thực tập</p>
+                                        <span class="text-2xl font-bold text-slate-800 dark:text-white about-counter"
+                                            data-target="2">0</span>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400"
+                                            data-i18n="about.stats.internships">Công ty thực tập</p>
                                     </div>
                                 </div>
                             </div>
@@ -459,17 +555,24 @@
                     </div>
 
                     <!-- Career Goal Card -->
-                    <div class="md:col-span-2 lg:col-span-1 about-bento-card about-goal-card group" style="--stagger: 5">
-                        <div class="absolute bottom-0 left-0 w-28 h-28 bg-gradient-to-tr from-purple-500/10 to-transparent rounded-tr-full pointer-events-none"></div>
+                    <div class="md:col-span-2 lg:col-span-1 about-bento-card about-goal-card group"
+                        style="--stagger: 5">
+                        <div
+                            class="absolute bottom-0 left-0 w-28 h-28 bg-gradient-to-tr from-purple-500/10 to-transparent rounded-tr-full pointer-events-none">
+                        </div>
                         <div class="relative z-10">
                             <div class="flex items-center gap-3 mb-5">
-                                <div class="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
+                                <div
+                                    class="w-11 h-11 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
                                     <i class="fas fa-bullseye text-white text-sm"></i>
                                 </div>
-                                <h3 class="text-lg font-bold text-slate-800 dark:text-white" data-i18n="about.goal">Mục tiêu nghề nghiệp</h3>
+                                <h3 class="text-lg font-bold text-slate-800 dark:text-white" data-i18n="about.goal">Mục
+                                    tiêu nghề nghiệp</h3>
                             </div>
-                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5" data-i18n="about.goalDesc">
-                                Tôi tìm kiếm cơ hội nghề nghiệp trong lĩnh vực phát triển, ứng dụng AI hoặc Hỗ trợ Kỹ thuật
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-5"
+                                data-i18n="about.goalDesc">
+                                Tôi tìm kiếm cơ hội nghề nghiệp trong lĩnh vực phát triển, ứng dụng AI hoặc Hỗ trợ Kỹ
+                                thuật
                                 CNTT. Với những kỹ năng đã được trang bị,
                                 tôi mong muốn được vận dụng chuyên môn để giải quyết các thách thức công nghệ, đồng thời
                                 mang lại giá trị thiết thực cho tổ chức và cộng đồng.
@@ -484,16 +587,19 @@
                 </div>
 
                 <!-- Row 3: CTA Buttons -->
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 about-bento-cta" style="--stagger: 6">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 about-bento-cta"
+                    style="--stagger: 6">
                     <a href="#contact"
                         class="w-full sm:w-auto px-8 py-4 rounded-2xl font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-lg shadow-blue-500/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/40 flex items-center justify-center gap-2.5 group">
-                        <i class="fas fa-paper-plane text-sm group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"></i>
+                        <i
+                            class="fas fa-paper-plane text-sm group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"></i>
                         <span data-i18n="about.contactBtn">Liên hệ tôi</span>
                     </a>
                     <a href="https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
                         target="_blank" rel="noopener"
                         class="w-full sm:w-auto px-8 py-4 rounded-2xl font-semibold text-slate-700 dark:text-slate-200 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border border-slate-200/60 dark:border-slate-700/50 hover:bg-white dark:hover:bg-slate-700/80 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2.5 group">
-                        <i class="fas fa-file-download text-sm text-blue-500 group-hover:translate-y-0.5 transition-transform duration-300"></i>
+                        <i
+                            class="fas fa-file-download text-sm text-blue-500 group-hover:translate-y-0.5 transition-transform duration-300"></i>
                         <span data-i18n="about.downloadCV">Xem và tải CV của tôi</span>
                     </a>
                 </div>
@@ -517,7 +623,8 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 max-w-5xl xl:max-w-6xl mx-auto">
                 <!-- Programming & Languages -->
-                <div class="skill-category-card group bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-500 hover:-translate-y-2">
+                <div
+                    class="skill-category-card group bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-3xl p-6 sm:p-8 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-500 hover:-translate-y-2">
                     <div class="skill-category-header">
                         <div class="skill-category-icon programming">
                             <i class="fas fa-code"></i>
@@ -746,15 +853,19 @@
 
             <div class="max-w-4xl mx-auto space-y-8">
                 <!-- Experience Item 1 -->
-                <div class="group bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-cyan-500/10 transition-all duration-500 relative overflow-hidden">
+                <div
+                    class="group bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-cyan-500/10 transition-all duration-500 relative overflow-hidden">
                     <!-- Subtle background glow -->
-                    <div class="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full bg-blue-500/10 dark:bg-blue-500/20 blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-                    
+                    <div
+                        class="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full bg-blue-500/10 dark:bg-blue-500/20 blur-2xl group-hover:scale-150 transition-transform duration-700">
+                    </div>
+
                     <!-- Header -->
                     <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-8 relative z-10">
                         <div class="flex-1">
                             <div class="flex items-center space-x-4 mb-4">
-                                <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 flex-shrink-0">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 flex-shrink-0">
                                     <i class="fas fa-robot text-white text-xl"></i>
                                 </div>
                                 <div>
@@ -763,7 +874,8 @@
                                     </h3>
                                     <div class="flex items-center space-x-2">
                                         <i class="fas fa-building text-blue-600 dark:text-blue-400"></i>
-                                        <span class="text-sm sm:text-base font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide">
+                                        <span
+                                            class="text-sm sm:text-base font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide">
                                             CÔNG TY CỔ PHẦN BÔNG TRÀ F&B
                                         </span>
                                     </div>
@@ -772,7 +884,8 @@
                         </div>
                         <div class="mt-4 md:mt-0 flex-shrink-0">
                             <!-- Badge with good contrast for both light and dark mode -->
-                            <div class="inline-flex items-center px-4 py-2 bg-blue-50 dark:bg-slate-700/50 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold border border-blue-200 dark:border-slate-600 shadow-sm">
+                            <div
+                                class="inline-flex items-center px-4 py-2 bg-blue-50 dark:bg-slate-700/50 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold border border-blue-200 dark:border-slate-600 shadow-sm">
                                 <i class="fas fa-calendar-alt mr-2"></i>
                                 Tháng 7 2025 – Tháng 9 2025
                             </div>
@@ -782,31 +895,40 @@
                     <!-- Achievements -->
                     <div class="space-y-4 relative z-10">
                         <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div
+                                class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                 <i class="fas fa-check text-xs"></i>
                             </div>
                             <p class="text-slate-700 dark:text-slate-300 leading-relaxed flex-1">
-                                Phát triển công cụ tự động hoá bằng <strong class="text-blue-700 dark:text-blue-400">n8n & Google Apps Script</strong> (chatbot đa kênh, tiện ích HR), giúp giảm <strong class="text-green-600 dark:text-green-400">40% khối lượng xử lý thủ công và 80% phản hồi ứng viên trong tuyển dụng</strong>.
+                                Phát triển công cụ tự động hoá bằng <strong class="text-blue-700 dark:text-blue-400">n8n
+                                    & Google Apps Script</strong> (chatbot đa kênh, tiện ích HR), giúp giảm <strong
+                                    class="text-green-600 dark:text-green-400">40% khối lượng xử lý thủ công và 80% phản
+                                    hồi ứng viên trong tuyển dụng</strong>.
                             </p>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div
+                                class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                 <i class="fas fa-check text-xs"></i>
                             </div>
                             <p class="text-slate-700 dark:text-slate-300 leading-relaxed flex-1">
-                                Thiết kế giao diện cơ bản cho website Pre-order và Workshop, hỗ trợ đội Marketing triển khai nhanh chiến dịch.
+                                Thiết kế giao diện cơ bản cho website Pre-order và Workshop, hỗ trợ đội Marketing triển
+                                khai nhanh chiến dịch.
                             </p>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div
+                                class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                 <i class="fas fa-check text-xs"></i>
                             </div>
                             <p class="text-slate-700 dark:text-slate-300 leading-relaxed flex-1">
-                                Đề xuất ý tưởng ERP (Odoo Online) và triển khai demo thử nghiệm tạo cơ sở cho quyết định áp dụng toàn công ty.
+                                Đề xuất ý tưởng ERP (Odoo Online) và triển khai demo thử nghiệm tạo cơ sở cho quyết định
+                                áp dụng toàn công ty.
                             </p>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div
+                                class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                 <i class="fas fa-check text-xs"></i>
                             </div>
                             <p class="text-slate-700 dark:text-slate-300 leading-relaxed flex-1">
@@ -817,15 +939,19 @@
                 </div>
 
                 <!-- Experience Item 2 -->
-                <div class="group bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/10 transition-all duration-500 relative overflow-hidden">
+                <div
+                    class="group bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 rounded-3xl p-6 sm:p-8 md:p-10 shadow-lg hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/10 transition-all duration-500 relative overflow-hidden">
                     <!-- Subtle background glow -->
-                    <div class="absolute top-0 left-0 -ml-16 -mt-16 w-32 h-32 rounded-full bg-purple-500/10 dark:bg-purple-500/20 blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+                    <div
+                        class="absolute top-0 left-0 -ml-16 -mt-16 w-32 h-32 rounded-full bg-purple-500/10 dark:bg-purple-500/20 blur-2xl group-hover:scale-150 transition-transform duration-700">
+                    </div>
 
                     <!-- Header -->
                     <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-8 relative z-10">
                         <div class="flex-1">
                             <div class="flex items-center space-x-4 mb-4">
-                                <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300 flex-shrink-0">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300 flex-shrink-0">
                                     <i class="fas fa-cogs text-white text-xl"></i>
                                 </div>
                                 <div>
@@ -834,7 +960,8 @@
                                     </h3>
                                     <div class="flex items-center space-x-2">
                                         <i class="fas fa-building text-purple-600 dark:text-purple-400"></i>
-                                        <span class="text-sm sm:text-base font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wide">
+                                        <span
+                                            class="text-sm sm:text-base font-semibold text-purple-600 dark:text-purple-400 uppercase tracking-wide">
                                             CÔNG TY TNHH KHOA HỌC KỸ THUẬT VẠN THỊNH
                                         </span>
                                     </div>
@@ -843,7 +970,8 @@
                         </div>
                         <div class="mt-4 md:mt-0 flex-shrink-0">
                             <!-- Badge with good contrast for both light and dark mode -->
-                            <div class="inline-flex items-center px-4 py-2 bg-purple-50 dark:bg-slate-700/50 text-purple-700 dark:text-purple-300 rounded-full text-sm font-semibold border border-purple-200 dark:border-slate-600 shadow-sm">
+                            <div
+                                class="inline-flex items-center px-4 py-2 bg-purple-50 dark:bg-slate-700/50 text-purple-700 dark:text-purple-300 rounded-full text-sm font-semibold border border-purple-200 dark:border-slate-600 shadow-sm">
                                 <i class="fas fa-calendar-alt mr-2"></i>
                                 Tháng 4 2025 – Tháng 6 2025
                             </div>
@@ -853,7 +981,8 @@
                     <!-- Achievements -->
                     <div class="space-y-4 relative z-10">
                         <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div
+                                class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                 <i class="fas fa-check text-xs"></i>
                             </div>
                             <p class="text-slate-700 dark:text-slate-300 leading-relaxed flex-1">
@@ -861,19 +990,24 @@
                             </p>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div
+                                class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                 <i class="fas fa-check text-xs"></i>
                             </div>
                             <p class="text-slate-700 dark:text-slate-300 leading-relaxed flex-1">
-                                Tham gia triển khai ERP (AMIS MISA), đặc biệt module <strong class="text-purple-700 dark:text-purple-400">AI Marketing</strong>, giúp đội ngũ Sales tăng hiệu quả lead tracking.
+                                Tham gia triển khai ERP (AMIS MISA), đặc biệt module <strong
+                                    class="text-purple-700 dark:text-purple-400">AI Marketing</strong>, giúp đội ngũ
+                                Sales tăng hiệu quả lead tracking.
                             </p>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div
+                                class="w-6 h-6 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                 <i class="fas fa-check text-xs"></i>
                             </div>
                             <p class="text-slate-700 dark:text-slate-300 leading-relaxed flex-1">
-                                Soạn thảo tài liệu hướng dẫn và hỗ trợ đào tạo sales về CRM, đảm bảo chuyển đổi mượt mà sang hệ thống mới.
+                                Soạn thảo tài liệu hướng dẫn và hỗ trợ đào tạo sales về CRM, đảm bảo chuyển đổi mượt mà
+                                sang hệ thống mới.
                             </p>
                         </div>
                     </div>
@@ -924,11 +1058,21 @@
                             việc trong lĩnh vực IT Support.
                         </p>
                         <div class="certificate-skills mb-4 flex flex-wrap justify-center gap-2">
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">System Admin</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Network Trouble</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Customer Service</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Operating System</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">IT Security</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">System
+                                Admin</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Network
+                                Trouble</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Customer
+                                Service</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Operating
+                                System</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">IT
+                                Security</span>
                         </div>
                         <div class="flex flex-col sm:flex-row gap-2 justify-center">
                             <a href="https://coursera.org/share/63ea0eb22d1fb2e525a023d8f36841bf" target="_blank"
@@ -967,11 +1111,21 @@
                             những đổi mới của AI học về cách AI làm việc và cách vận dụng AI.
                         </p>
                         <div class="certificate-skills mb-4 flex flex-wrap justify-center gap-2">
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI Fundamentals</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI Applications</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI Tools</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI Best Practices</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI Techniques</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI
+                                Fundamentals</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI
+                                Applications</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI
+                                Tools</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI
+                                Best Practices</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI
+                                Techniques</span>
                         </div>
                         <div class="flex flex-col sm:flex-row gap-2 justify-center">
                             <a href="https://coursera.org/share/ae887854314f490f27c020c8d0621665" target="_blank"
@@ -1010,11 +1164,21 @@
                             để làm việc với AI và cách vận dụng AI viết prompt tối ưu nhất.
                         </p>
                         <div class="certificate-skills mb-4 flex flex-wrap justify-center gap-2">
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Prompt Engineering</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI Prompting</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Prompt Techniques</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Prompt Best Practice</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI Tools</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Prompt
+                                Engineering</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI
+                                Prompting</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Prompt
+                                Techniques</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Prompt
+                                Best Practice</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">AI
+                                Tools</span>
                         </div>
                         <div class="flex flex-col sm:flex-row gap-2 justify-center">
                             <a href="https://coursera.org/share/d9a2cf7bbbd45a52c5de029c5c1e0514" target="_blank"
@@ -1053,11 +1217,21 @@
                             chắc về an ninh mạng và các nguyên tắc bảo mật cơ bản.
                         </p>
                         <div class="certificate-skills mb-4 flex flex-wrap justify-center gap-2">
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Cyber Basics</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Risk Management</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Security Framework</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Threat Analysis</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Network Security</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Cyber
+                                Basics</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Risk
+                                Management</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Security
+                                Framework</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Threat
+                                Analysis</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Network
+                                Security</span>
                         </div>
                         <div class="flex flex-col sm:flex-row gap-2 justify-center">
                             <a href="#" target="_blank" class="certificate-verify-btn text-center">
@@ -1095,11 +1269,20 @@
                             khái niệm cơ bản về phân tích dữ liệu và data analytics.
                         </p>
                         <div class="certificate-skills mb-4 flex flex-wrap justify-center gap-2">
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Data Analytics</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Data Viz</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Spreadsheets</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">SQL Basics</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Data Ethics</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Data
+                                Analytics</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Data
+                                Viz</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Spreadsheets</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">SQL
+                                Basics</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Data
+                                Ethics</span>
                         </div>
                         <div class="flex flex-col sm:flex-row gap-2 justify-center">
                             <a href="#" target="_blank" class="certificate-verify-btn text-center">
@@ -1137,11 +1320,21 @@
                             đặt câu hỏi hiệu quả và sử dụng dữ liệu để đưa ra quyết định kinh doanh thông minh.
                         </p>
                         <div class="certificate-skills mb-4 flex flex-wrap justify-center gap-2">
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Data-Driven Decision</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Problem Solving</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Critical Thinking</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Business Intel</span>
-                            <span class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Data Analysis</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Data-Driven
+                                Decision</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Problem
+                                Solving</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Critical
+                                Thinking</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Business
+                                Intel</span>
+                            <span
+                                class="inline-block text-xs sm:text-sm px-3 py-1 bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-blue-300 rounded-full border border-blue-200 dark:border-slate-600">Data
+                                Analysis</span>
                         </div>
                         <div class="flex flex-col sm:flex-row gap-2 justify-center">
                             <a href="#" target="_blank" class="certificate-verify-btn text-center">
@@ -1174,256 +1367,458 @@
 
             <!-- Premium Slideshow Container -->
             <div class="w-full max-w-6xl mx-auto px-4 md:px-0">
-                <div id="projectShowcase" class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden">
-                    
+                <div id="projectShowcase"
+                    class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden">
+
                     <!-- Project Counter Badge -->
-                    <div class="absolute top-5 right-5 z-30 px-4 py-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-full border border-slate-200 dark:border-slate-700 shadow-lg">
-                        <span id="projectCounter" class="text-sm font-bold text-slate-800 dark:text-white">01 / 08</span>
+                    <div
+                        class="absolute top-5 right-5 z-30 px-4 py-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-full border border-slate-200 dark:border-slate-700 shadow-lg">
+                        <span id="projectCounter" class="text-sm font-bold text-slate-800 dark:text-white">01 /
+                            08</span>
                     </div>
 
                     <!-- Slides Container -->
-                    <div id="slidesWrapper" class="relative overflow-hidden min-h-[580px] sm:min-h-[550px] lg:min-h-[480px]">
+                    <div id="slidesWrapper"
+                        class="relative overflow-hidden min-h-[580px] sm:min-h-[550px] lg:min-h-[480px]">
 
                         <!-- Slide 1 -->
-                        <div class="project-slide-item absolute inset-0 opacity-100 transition-all duration-700 ease-in-out z-10" data-index="0">
+                        <div class="project-slide-item absolute inset-0 opacity-100 transition-all duration-700 ease-in-out z-10"
+                            data-index="0">
                             <div class="flex flex-col lg:flex-row h-full">
                                 <!-- Image -->
-                                <div class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
+                                <div
+                                    class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
                                     <div class="w-full max-w-md">
-                                        <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
-                                            <div class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
-                                                <div class="flex gap-2"><span class="w-3 h-3 rounded-full bg-rose-500"></span><span class="w-3 h-3 rounded-full bg-amber-400"></span><span class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
+                                        <div
+                                            class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
+                                            <div
+                                                class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
+                                                <div class="flex gap-2"><span
+                                                        class="w-3 h-3 rounded-full bg-rose-500"></span><span
+                                                        class="w-3 h-3 rounded-full bg-amber-400"></span><span
+                                                        class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
                                             </div>
-                                            <img src="/img/Notebooklm.png" alt="Chatbot Nội bộ" class="w-full aspect-video object-cover object-top">
+                                            <img src="/img/Notebooklm.png" alt="Chatbot Nội bộ"
+                                                class="w-full aspect-video object-cover object-top">
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Content -->
                                 <div class="lg:w-[55%] w-full p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-                                    <span class="inline-block px-3 py-1 mb-4 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider w-max border border-indigo-200 dark:border-indigo-700/50">🤖 AI Knowledge Assistant</span>
-                                    <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">Chatbot Nội bộ (NotebookLM FAQ)</h3>
-                                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">Giảm <strong class="text-emerald-600 dark:text-emerald-400">40%</strong> câu hỏi lặp lại cho HR nhờ tra cứu tài liệu thông minh. Sử dụng <strong>Google NotebookLM</strong> kết hợp <strong>n8n</strong> và <strong>Gemini AI</strong>.</p>
+                                    <span
+                                        class="inline-block px-3 py-1 mb-4 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider w-max border border-indigo-200 dark:border-indigo-700/50">🤖
+                                        AI Knowledge Assistant</span>
+                                    <h3
+                                        class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
+                                        Chatbot Nội bộ (NotebookLM FAQ)</h3>
+                                    <p
+                                        class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                                        Giảm <strong class="text-emerald-600 dark:text-emerald-400">40%</strong> câu hỏi
+                                        lặp lại cho HR nhờ tra cứu tài liệu thông minh. Sử dụng <strong>Google
+                                            NotebookLM</strong> kết hợp <strong>n8n</strong> và <strong>Gemini
+                                            AI</strong>.</p>
                                     <div class="flex flex-wrap gap-2 mb-6">
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">n8n</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Gemini</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Apps Script</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">NotebookLM</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Supabase</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">n8n</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Gemini</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Apps
+                                            Script</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">NotebookLM</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Supabase</span>
                                     </div>
                                     <div class="flex flex-wrap gap-3">
-                                        <span class="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 border border-slate-200 dark:border-slate-700 font-semibold text-sm inline-flex items-center gap-2 cursor-not-allowed"><i class="fas fa-lock"></i> Internal Tool</span>
+                                        <span
+                                            class="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 border border-slate-200 dark:border-slate-700 font-semibold text-sm inline-flex items-center gap-2 cursor-not-allowed"><i
+                                                class="fas fa-lock"></i> Internal Tool</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Slide 2 -->
-                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none" data-index="1">
+                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none"
+                            data-index="1">
                             <div class="flex flex-col lg:flex-row h-full">
-                                <div class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
+                                <div
+                                    class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
                                     <div class="w-full max-w-md">
-                                        <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
-                                            <div class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
-                                                <div class="flex gap-2"><span class="w-3 h-3 rounded-full bg-rose-500"></span><span class="w-3 h-3 rounded-full bg-amber-400"></span><span class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
+                                        <div
+                                            class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
+                                            <div
+                                                class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
+                                                <div class="flex gap-2"><span
+                                                        class="w-3 h-3 rounded-full bg-rose-500"></span><span
+                                                        class="w-3 h-3 rounded-full bg-amber-400"></span><span
+                                                        class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
                                             </div>
-                                            <img src="/img/N8N.jpg" alt="Chatbot đa kênh" class="w-full aspect-video object-cover object-top">
+                                            <img src="/img/N8N.jpg" alt="Chatbot đa kênh"
+                                                class="w-full aspect-video object-cover object-top">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="lg:w-[55%] w-full p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-                                    <span class="inline-block px-3 py-1 mb-4 rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300 text-xs font-bold uppercase tracking-wider w-max border border-cyan-200 dark:border-cyan-700/50">🚀 Multi-Channel AI</span>
-                                    <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">Chatbot đa kênh Website &amp; Fanpage</h3>
-                                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">Tự động trả lời <strong class="text-emerald-600 dark:text-emerald-400">~80%</strong> câu hỏi ứng viên. Kiến trúc xử lý bằng <strong>n8n</strong>, lưu trữ <strong>Supabase</strong>, AI bằng <strong>GPT &amp; Gemini</strong>.</p>
+                                    <span
+                                        class="inline-block px-3 py-1 mb-4 rounded-full bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300 text-xs font-bold uppercase tracking-wider w-max border border-cyan-200 dark:border-cyan-700/50">🚀
+                                        Multi-Channel AI</span>
+                                    <h3
+                                        class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
+                                        Chatbot đa kênh Website &amp; Fanpage</h3>
+                                    <p
+                                        class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                                        Tự động trả lời <strong
+                                            class="text-emerald-600 dark:text-emerald-400">~80%</strong> câu hỏi ứng
+                                        viên. Kiến trúc xử lý bằng <strong>n8n</strong>, lưu trữ
+                                        <strong>Supabase</strong>, AI bằng <strong>GPT &amp; Gemini</strong>.</p>
                                     <div class="flex flex-wrap gap-2 mb-6">
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">n8n</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">GPT/Gemini</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Supabase</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Webhook</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">n8n</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">GPT/Gemini</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Supabase</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Webhook</span>
                                     </div>
                                     <div class="flex flex-wrap gap-3">
-                                        <a href="https://bongtra.vn" target="_blank" class="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i class="fas fa-globe"></i> Website Demo</a>
-                                        <a href="https://www.facebook.com/bongtratuyendung" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-500 text-white font-semibold shadow-lg hover:bg-emerald-600 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i class="fab fa-facebook"></i> Fanpage Demo</a>
+                                        <a href="https://bongtra.vn" target="_blank"
+                                            class="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i
+                                                class="fas fa-globe"></i> Website Demo</a>
+                                        <a href="https://www.facebook.com/bongtratuyendung" target="_blank"
+                                            class="px-5 py-2.5 rounded-xl bg-emerald-500 text-white font-semibold shadow-lg hover:bg-emerald-600 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i
+                                                class="fab fa-facebook"></i> Fanpage Demo</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Slide 3 -->
-                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none" data-index="2">
+                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none"
+                            data-index="2">
                             <div class="flex flex-col lg:flex-row h-full">
-                                <div class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
+                                <div
+                                    class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
                                     <div class="w-full max-w-md">
-                                        <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
-                                            <div class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
-                                                <div class="flex gap-2"><span class="w-3 h-3 rounded-full bg-rose-500"></span><span class="w-3 h-3 rounded-full bg-amber-400"></span><span class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
+                                        <div
+                                            class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
+                                            <div
+                                                class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
+                                                <div class="flex gap-2"><span
+                                                        class="w-3 h-3 rounded-full bg-rose-500"></span><span
+                                                        class="w-3 h-3 rounded-full bg-amber-400"></span><span
+                                                        class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
                                             </div>
-                                            <img src="/img/appsscripts.jpg" alt="Automation Tools" class="w-full aspect-video object-cover object-top">
+                                            <img src="/img/appsscripts.jpg" alt="Automation Tools"
+                                                class="w-full aspect-video object-cover object-top">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="lg:w-[55%] w-full p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-                                    <span class="inline-block px-3 py-1 mb-4 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider w-max border border-emerald-200 dark:border-emerald-700/50">⚙️ Business Automation</span>
-                                    <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">Hệ thống Tự động hoá Nội bộ</h3>
-                                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">Tool gửi mail hàng loạt (bảng lương, thư báo) bằng <strong>Google Apps Script</strong>. Hệ thống đặt phòng họp chống xung đột lịch bằng <strong>Google Sheets &amp; Calendar API</strong>.</p>
+                                    <span
+                                        class="inline-block px-3 py-1 mb-4 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold uppercase tracking-wider w-max border border-emerald-200 dark:border-emerald-700/50">⚙️
+                                        Business Automation</span>
+                                    <h3
+                                        class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
+                                        Hệ thống Tự động hoá Nội bộ</h3>
+                                    <p
+                                        class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                                        Tool gửi mail hàng loạt (bảng lương, thư báo) bằng <strong>Google Apps
+                                            Script</strong>. Hệ thống đặt phòng họp chống xung đột lịch bằng
+                                        <strong>Google Sheets &amp; Calendar API</strong>.</p>
                                     <div class="flex flex-wrap gap-2 mb-6">
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Apps Script</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Sheets API</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">JavaScript</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">HTML/CSS</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Apps
+                                            Script</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Sheets
+                                            API</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">JavaScript</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">HTML/CSS</span>
                                     </div>
                                     <div class="flex flex-wrap gap-3">
-                                        <span class="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 border border-slate-200 dark:border-slate-700 font-semibold text-sm inline-flex items-center gap-2 cursor-not-allowed"><i class="fas fa-lock"></i> Internal Tool</span>
+                                        <span
+                                            class="px-5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 border border-slate-200 dark:border-slate-700 font-semibold text-sm inline-flex items-center gap-2 cursor-not-allowed"><i
+                                                class="fas fa-lock"></i> Internal Tool</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Slide 4 -->
-                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none" data-index="3">
+                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none"
+                            data-index="3">
                             <div class="flex flex-col lg:flex-row h-full">
-                                <div class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
+                                <div
+                                    class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
                                     <div class="w-full max-w-md">
-                                        <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
-                                            <div class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
-                                                <div class="flex gap-2"><span class="w-3 h-3 rounded-full bg-rose-500"></span><span class="w-3 h-3 rounded-full bg-amber-400"></span><span class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
+                                        <div
+                                            class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
+                                            <div
+                                                class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
+                                                <div class="flex gap-2"><span
+                                                        class="w-3 h-3 rounded-full bg-rose-500"></span><span
+                                                        class="w-3 h-3 rounded-full bg-amber-400"></span><span
+                                                        class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
                                             </div>
-                                            <img src="./img/doantotnghiepj2_3.png" alt="Object Detection" class="w-full aspect-video object-cover object-top">
+                                            <img src="./img/doantotnghiepj2_3.png" alt="Object Detection"
+                                                class="w-full aspect-video object-cover object-top">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="lg:w-[55%] w-full p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-                                    <span class="inline-block px-3 py-1 mb-4 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-xs font-bold uppercase tracking-wider w-max border border-amber-200 dark:border-amber-700/50">🏆 Đồ án tốt nghiệp — 9.5/10</span>
-                                    <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">Nhận dạng &amp; Đo kích thước Vật thể</h3>
-                                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">Hệ thống AI sử dụng <strong>YOLOv8</strong> và <strong>SORT</strong> phát hiện, theo dõi, đo kích thước vật thể trên băng chuyền công nghiệp với độ chính xác <strong class="text-emerald-600 dark:text-emerald-400">95%</strong>.</p>
+                                    <span
+                                        class="inline-block px-3 py-1 mb-4 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 text-xs font-bold uppercase tracking-wider w-max border border-amber-200 dark:border-amber-700/50">🏆
+                                        Đồ án tốt nghiệp — 9.5/10</span>
+                                    <h3
+                                        class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
+                                        Nhận dạng &amp; Đo kích thước Vật thể</h3>
+                                    <p
+                                        class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                                        Hệ thống AI sử dụng <strong>YOLOv8</strong> và <strong>SORT</strong> phát hiện,
+                                        theo dõi, đo kích thước vật thể trên băng chuyền công nghiệp với độ chính xác
+                                        <strong class="text-emerald-600 dark:text-emerald-400">95%</strong>.</p>
                                     <div class="flex flex-wrap gap-2 mb-6">
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Python</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">YOLOv8</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">OpenCV</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">PyTorch</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Python</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">YOLOv8</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">OpenCV</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">PyTorch</span>
                                     </div>
                                     <div class="flex flex-wrap gap-3">
-                                        <a href="https://github.com/trakhanh/AppDetectAndMeasureObject.git" target="_blank" class="px-5 py-2.5 rounded-xl bg-[#24292e] text-white font-semibold shadow-lg hover:bg-[#1b1f23] hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> Mã nguồn</a>
-                                        <a href="https://youtu.be/L07IJW2GpZo" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-500 text-white font-semibold shadow-lg hover:bg-emerald-600 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i class="fas fa-play-circle"></i> Video Demo</a>
+                                        <a href="https://github.com/trakhanh/AppDetectAndMeasureObject.git"
+                                            target="_blank"
+                                            class="px-5 py-2.5 rounded-xl bg-[#24292e] text-white font-semibold shadow-lg hover:bg-[#1b1f23] hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><svg
+                                                class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                            </svg> Mã nguồn</a>
+                                        <a href="https://youtu.be/L07IJW2GpZo" target="_blank"
+                                            class="px-5 py-2.5 rounded-xl bg-emerald-500 text-white font-semibold shadow-lg hover:bg-emerald-600 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i
+                                                class="fas fa-play-circle"></i> Video Demo</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Slide 5 -->
-                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none" data-index="4">
+                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none"
+                            data-index="4">
                             <div class="flex flex-col lg:flex-row h-full">
-                                <div class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
+                                <div
+                                    class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
                                     <div class="w-full max-w-md">
-                                        <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
-                                            <div class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
-                                                <div class="flex gap-2"><span class="w-3 h-3 rounded-full bg-rose-500"></span><span class="w-3 h-3 rounded-full bg-amber-400"></span><span class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
+                                        <div
+                                            class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
+                                            <div
+                                                class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
+                                                <div class="flex gap-2"><span
+                                                        class="w-3 h-3 rounded-full bg-rose-500"></span><span
+                                                        class="w-3 h-3 rounded-full bg-amber-400"></span><span
+                                                        class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
                                             </div>
-                                            <img src="./img/fingercount.png" alt="Finger Counting" class="w-full aspect-video object-cover object-top">
+                                            <img src="./img/fingercount.png" alt="Finger Counting"
+                                                class="w-full aspect-video object-cover object-top">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="lg:w-[55%] w-full p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-                                    <span class="inline-block px-3 py-1 mb-4 rounded-full bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 text-xs font-bold uppercase tracking-wider w-max border border-green-200 dark:border-green-700/50">🤖 Computer Vision</span>
-                                    <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">Đếm Ngón Tay Bằng Deep Learning</h3>
-                                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">Ứng dụng web real-time sử dụng <strong>Streamlit</strong> và đa mô hình (<strong>CNN, VGG16, ResNet50</strong>). Tích hợp <strong>U-NET</strong> phân đoạn ảnh chính xác.</p>
+                                    <span
+                                        class="inline-block px-3 py-1 mb-4 rounded-full bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 text-xs font-bold uppercase tracking-wider w-max border border-green-200 dark:border-green-700/50">🤖
+                                        Computer Vision</span>
+                                    <h3
+                                        class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
+                                        Đếm Ngón Tay Bằng Deep Learning</h3>
+                                    <p
+                                        class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                                        Ứng dụng web real-time sử dụng <strong>Streamlit</strong> và đa mô hình
+                                        (<strong>CNN, VGG16, ResNet50</strong>). Tích hợp <strong>U-NET</strong> phân
+                                        đoạn ảnh chính xác.</p>
                                     <div class="flex flex-wrap gap-2 mb-6">
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Streamlit</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">CNN/VGG16</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">U-NET</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">OpenCV</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Streamlit</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">CNN/VGG16</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">U-NET</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">OpenCV</span>
                                     </div>
                                     <div class="flex flex-wrap gap-3">
-                                        <a href="https://github.com/trakhanh/UngDungDemNgonTay5-9.git" target="_blank" class="px-5 py-2.5 rounded-xl bg-[#24292e] text-white font-semibold shadow-lg hover:bg-[#1b1f23] hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> Mã nguồn</a>
-                                        <a href="https://youtu.be/NEbpUe2FScA" target="_blank" class="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i class="fas fa-play-circle"></i> Demo Trực Tiếp</a>
+                                        <a href="https://github.com/trakhanh/UngDungDemNgonTay5-9.git" target="_blank"
+                                            class="px-5 py-2.5 rounded-xl bg-[#24292e] text-white font-semibold shadow-lg hover:bg-[#1b1f23] hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><svg
+                                                class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                            </svg> Mã nguồn</a>
+                                        <a href="https://youtu.be/NEbpUe2FScA" target="_blank"
+                                            class="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i
+                                                class="fas fa-play-circle"></i> Demo Trực Tiếp</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Slide 6 -->
-                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none" data-index="5">
+                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none"
+                            data-index="5">
                             <div class="flex flex-col lg:flex-row h-full">
-                                <div class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
+                                <div
+                                    class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
                                     <div class="w-full max-w-md">
-                                        <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
-                                            <div class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
-                                                <div class="flex gap-2"><span class="w-3 h-3 rounded-full bg-rose-500"></span><span class="w-3 h-3 rounded-full bg-amber-400"></span><span class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
+                                        <div
+                                            class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
+                                            <div
+                                                class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
+                                                <div class="flex gap-2"><span
+                                                        class="w-3 h-3 rounded-full bg-rose-500"></span><span
+                                                        class="w-3 h-3 rounded-full bg-amber-400"></span><span
+                                                        class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
                                             </div>
-                                            <img src="./img/multi_task.png" alt="Multi-Task Learning" class="w-full aspect-video object-cover object-top">
+                                            <img src="./img/multi_task.png" alt="Multi-Task Learning"
+                                                class="w-full aspect-video object-cover object-top">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="lg:w-[55%] w-full p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-                                    <span class="inline-block px-3 py-1 mb-4 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 text-xs font-bold uppercase tracking-wider w-max border border-purple-200 dark:border-purple-700/50">🔬 Nghiên cứu khoa học</span>
-                                    <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">Multi-Task Learning Research</h3>
-                                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">Nghiên cứu <strong>Multi-Task Learning</strong> trong Computer Vision — thực hiện đồng thời Object Detection, Segmentation và Depth Estimation trên <strong>BDD100K</strong> và <strong>KITTI</strong>.</p>
+                                    <span
+                                        class="inline-block px-3 py-1 mb-4 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 text-xs font-bold uppercase tracking-wider w-max border border-purple-200 dark:border-purple-700/50">🔬
+                                        Nghiên cứu khoa học</span>
+                                    <h3
+                                        class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
+                                        Multi-Task Learning Research</h3>
+                                    <p
+                                        class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                                        Nghiên cứu <strong>Multi-Task Learning</strong> trong Computer Vision — thực
+                                        hiện đồng thời Object Detection, Segmentation và Depth Estimation trên
+                                        <strong>BDD100K</strong> và <strong>KITTI</strong>.</p>
                                     <div class="flex flex-wrap gap-2 mb-6">
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">PyTorch</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">BDD100K/KITTI</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Deep Learning</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">PyTorch</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">BDD100K/KITTI</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Deep
+                                            Learning</span>
                                     </div>
                                     <div class="flex flex-wrap gap-3">
-                                        <a href="https://www.kaggle.com/code/khanhtraa/multi-task-bdd100k" target="_blank" class="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i class="fab fa-kaggle"></i> Xem Nghiên cứu</a>
+                                        <a href="https://www.kaggle.com/code/khanhtraa/multi-task-bdd100k"
+                                            target="_blank"
+                                            class="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i
+                                                class="fab fa-kaggle"></i> Xem Nghiên cứu</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Slide 7 -->
-                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none" data-index="6">
+                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none"
+                            data-index="6">
                             <div class="flex flex-col lg:flex-row h-full">
-                                <div class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
+                                <div
+                                    class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
                                     <div class="w-full max-w-md">
-                                        <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
-                                            <div class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
-                                                <div class="flex gap-2"><span class="w-3 h-3 rounded-full bg-rose-500"></span><span class="w-3 h-3 rounded-full bg-amber-400"></span><span class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
+                                        <div
+                                            class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
+                                            <div
+                                                class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
+                                                <div class="flex gap-2"><span
+                                                        class="w-3 h-3 rounded-full bg-rose-500"></span><span
+                                                        class="w-3 h-3 rounded-full bg-amber-400"></span><span
+                                                        class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
                                             </div>
-                                            <img src="./img/project4.png" alt="Customer Churn" class="w-full aspect-video object-cover object-top">
+                                            <img src="./img/project4.png" alt="Customer Churn"
+                                                class="w-full aspect-video object-cover object-top">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="lg:w-[55%] w-full p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-                                    <span class="inline-block px-3 py-1 mb-4 rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300 text-xs font-bold uppercase tracking-wider w-max border border-orange-200 dark:border-orange-700/50">📈 Business Analytics</span>
-                                    <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">Dự đoán Customer Churn</h3>
-                                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">Phân tích dữ liệu khách hàng với <strong>Pandas, Seaborn</strong> và xây dựng mô hình <strong>Machine Learning</strong> dự đoán khả năng rời bỏ. Tối ưu chiến lược giữ chân khách hàng.</p>
+                                    <span
+                                        class="inline-block px-3 py-1 mb-4 rounded-full bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300 text-xs font-bold uppercase tracking-wider w-max border border-orange-200 dark:border-orange-700/50">📈
+                                        Business Analytics</span>
+                                    <h3
+                                        class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
+                                        Dự đoán Customer Churn</h3>
+                                    <p
+                                        class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                                        Phân tích dữ liệu khách hàng với <strong>Pandas, Seaborn</strong> và xây dựng mô
+                                        hình <strong>Machine Learning</strong> dự đoán khả năng rời bỏ. Tối ưu chiến
+                                        lược giữ chân khách hàng.</p>
                                     <div class="flex flex-wrap gap-2 mb-6">
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Pandas</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Scikit-learn</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Seaborn</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">EDA</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Pandas</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Scikit-learn</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Seaborn</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">EDA</span>
                                     </div>
                                     <div class="flex flex-wrap gap-3">
-                                        <a href="https://colab.research.google.com/drive/1FGsrd0j4zfvvju4NXjXqrvxQPKGvEUIU?usp=sharing" target="_blank" class="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i class="fab fa-google"></i> Xem Phân tích</a>
+                                        <a href="https://colab.research.google.com/drive/1FGsrd0j4zfvvju4NXjXqrvxQPKGvEUIU?usp=sharing"
+                                            target="_blank"
+                                            class="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i
+                                                class="fab fa-google"></i> Xem Phân tích</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Slide 8 -->
-                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none" data-index="7">
+                        <div class="project-slide-item absolute inset-0 opacity-0 transition-all duration-700 ease-in-out z-0 pointer-events-none"
+                            data-index="7">
                             <div class="flex flex-col lg:flex-row h-full">
-                                <div class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
+                                <div
+                                    class="lg:w-[45%] w-full bg-slate-100 dark:bg-slate-800/50 p-5 sm:p-8 flex items-center justify-center">
                                     <div class="w-full max-w-md">
-                                        <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
-                                            <div class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
-                                                <div class="flex gap-2"><span class="w-3 h-3 rounded-full bg-rose-500"></span><span class="w-3 h-3 rounded-full bg-amber-400"></span><span class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
+                                        <div
+                                            class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
+                                            <div
+                                                class="h-9 bg-slate-100 dark:bg-slate-800 flex items-center px-4 border-b border-slate-200 dark:border-slate-700">
+                                                <div class="flex gap-2"><span
+                                                        class="w-3 h-3 rounded-full bg-rose-500"></span><span
+                                                        class="w-3 h-3 rounded-full bg-amber-400"></span><span
+                                                        class="w-3 h-3 rounded-full bg-emerald-500"></span></div>
                                             </div>
-                                            <img src="./img/project5.png" alt="Sales Analytics" class="w-full aspect-video object-cover object-top">
+                                            <img src="./img/project5.png" alt="Sales Analytics"
+                                                class="w-full aspect-video object-cover object-top">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="lg:w-[55%] w-full p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-                                    <span class="inline-block px-3 py-1 mb-4 rounded-full bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300 text-xs font-bold uppercase tracking-wider w-max border border-teal-200 dark:border-teal-700/50">📊 Data Analytics</span>
-                                    <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">Phân Tích Dữ Liệu Bán Hàng</h3>
-                                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">Phân tích chuyên sâu xu hướng kinh doanh bằng <strong>Python, Pandas, Matplotlib</strong>. Triển khai dashboard trực quan và dự báo doanh số bằng Machine Learning.</p>
+                                    <span
+                                        class="inline-block px-3 py-1 mb-4 rounded-full bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300 text-xs font-bold uppercase tracking-wider w-max border border-teal-200 dark:border-teal-700/50">📊
+                                        Data Analytics</span>
+                                    <h3
+                                        class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight">
+                                        Phân Tích Dữ Liệu Bán Hàng</h3>
+                                    <p
+                                        class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                                        Phân tích chuyên sâu xu hướng kinh doanh bằng <strong>Python, Pandas,
+                                            Matplotlib</strong>. Triển khai dashboard trực quan và dự báo doanh số bằng
+                                        Machine Learning.</p>
                                     <div class="flex flex-wrap gap-2 mb-6">
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Python</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Matplotlib</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Pandas</span>
-                                        <span class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Seaborn</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Python</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Matplotlib</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Pandas</span>
+                                        <span
+                                            class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Seaborn</span>
                                     </div>
                                     <div class="flex flex-wrap gap-3">
-                                        <a href="https://colab.research.google.com/drive/1bEOf_b5ZdatBlnio4CHgAGf15kEH8COs?usp=sharing" target="_blank" class="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i class="fab fa-google"></i> Notebook Colab</a>
+                                        <a href="https://colab.research.google.com/drive/1bEOf_b5ZdatBlnio4CHgAGf15kEH8COs?usp=sharing"
+                                            target="_blank"
+                                            class="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 hover:-translate-y-0.5 transition-all text-sm inline-flex items-center gap-2"><i
+                                                class="fab fa-google"></i> Notebook Colab</a>
                                     </div>
                                 </div>
                             </div>
@@ -1432,43 +1827,63 @@
                     </div>
 
                     <!-- Navigation Arrows -->
-                    <button id="projPrev" class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl flex items-center justify-center text-slate-700 dark:text-white hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:scale-110 transition-all">
+                    <button id="projPrev"
+                        class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl flex items-center justify-center text-slate-700 dark:text-white hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:scale-110 transition-all">
                         <i class="fas fa-chevron-left text-sm sm:text-base"></i>
                     </button>
-                    <button id="projNext" class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl flex items-center justify-center text-slate-700 dark:text-white hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:scale-110 transition-all">
+                    <button id="projNext"
+                        class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl flex items-center justify-center text-slate-700 dark:text-white hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:scale-110 transition-all">
                         <i class="fas fa-chevron-right text-sm sm:text-base"></i>
                     </button>
 
                     <!-- Progress Bar -->
                     <div class="absolute bottom-0 left-0 right-0 h-1 bg-slate-200 dark:bg-slate-800 z-20">
-                        <div id="projProgress" class="h-full bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-700" style="width: 12.5%"></div>
+                        <div id="projProgress"
+                            class="h-full bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-700"
+                            style="width: 12.5%"></div>
                     </div>
                 </div>
 
                 <!-- Thumbnail Navigation Strip -->
                 <div class="mt-6 flex gap-2 sm:gap-3 justify-center overflow-x-auto pb-2 scrollbar-hide">
-                    <button class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-blue-500 shadow-lg transition-all hover:scale-110 ring-2 ring-blue-500/30" data-goto="0">
+                    <button
+                        class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-blue-500 shadow-lg transition-all hover:scale-110 ring-2 ring-blue-500/30"
+                        data-goto="0">
                         <img src="/img/Notebooklm.png" alt="" class="w-full h-full object-cover">
                     </button>
-                    <button class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110" data-goto="1">
+                    <button
+                        class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110"
+                        data-goto="1">
                         <img src="/img/N8N.jpg" alt="" class="w-full h-full object-cover">
                     </button>
-                    <button class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110" data-goto="2">
+                    <button
+                        class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110"
+                        data-goto="2">
                         <img src="/img/appsscripts.jpg" alt="" class="w-full h-full object-cover">
                     </button>
-                    <button class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110" data-goto="3">
+                    <button
+                        class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110"
+                        data-goto="3">
                         <img src="./img/doantotnghiepj2_3.png" alt="" class="w-full h-full object-cover">
                     </button>
-                    <button class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110" data-goto="4">
+                    <button
+                        class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110"
+                        data-goto="4">
                         <img src="./img/fingercount.png" alt="" class="w-full h-full object-cover">
                     </button>
-                    <button class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110" data-goto="5">
+                    <button
+                        class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110"
+                        data-goto="5">
                         <img src="./img/multi_task.png" alt="" class="w-full h-full object-cover">
                     </button>
-                    <button class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110" data-goto="6">
+                    <button
+                        class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110"
+                        data-goto="6">
                         <img src="./img/project4.png" alt="" class="w-full h-full object-cover">
                     </button>
-                    <button class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110" data-goto="7">
+                    <button
+                        class="proj-thumb flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 border-transparent opacity-60 hover:opacity-100 transition-all hover:scale-110"
+                        data-goto="7">
                         <img src="./img/project5.png" alt="" class="w-full h-full object-cover">
                     </button>
                 </div>
@@ -1476,72 +1891,72 @@
 
             <!-- Inline Slideshow Script -->
             <script>
-            (function() {
-                const slides = document.querySelectorAll('.project-slide-item');
-                const thumbs = document.querySelectorAll('.proj-thumb');
-                const counter = document.getElementById('projectCounter');
-                const progress = document.getElementById('projProgress');
-                const total = slides.length;
-                let current = 0;
-                let autoTimer = null;
-                let isAnimating = false;
+                    (function () {
+                        const slides = document.querySelectorAll('.project-slide-item');
+                        const thumbs = document.querySelectorAll('.proj-thumb');
+                        const counter = document.getElementById('projectCounter');
+                        const progress = document.getElementById('projProgress');
+                        const total = slides.length;
+                        let current = 0;
+                        let autoTimer = null;
+                        let isAnimating = false;
 
-                function goTo(idx) {
-                    if (isAnimating || idx === current) return;
-                    isAnimating = true;
-                    // Hide current
-                    slides[current].classList.remove('opacity-100', 'z-10');
-                    slides[current].classList.add('opacity-0', 'z-0', 'pointer-events-none');
-                    // Show new
-                    slides[idx].classList.remove('opacity-0', 'z-0', 'pointer-events-none');
-                    slides[idx].classList.add('opacity-100', 'z-10');
-                    // Update thumbs
-                    thumbs.forEach((t, i) => {
-                        if (i === idx) {
-                            t.classList.add('border-blue-500', 'opacity-100', 'ring-2', 'ring-blue-500/30', 'shadow-lg');
-                            t.classList.remove('border-transparent', 'opacity-60');
-                        } else {
-                            t.classList.remove('border-blue-500', 'opacity-100', 'ring-2', 'ring-blue-500/30', 'shadow-lg');
-                            t.classList.add('border-transparent', 'opacity-60');
+                        function goTo(idx) {
+                            if (isAnimating || idx === current) return;
+                            isAnimating = true;
+                            // Hide current
+                            slides[current].classList.remove('opacity-100', 'z-10');
+                            slides[current].classList.add('opacity-0', 'z-0', 'pointer-events-none');
+                            // Show new
+                            slides[idx].classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+                            slides[idx].classList.add('opacity-100', 'z-10');
+                            // Update thumbs
+                            thumbs.forEach((t, i) => {
+                                if (i === idx) {
+                                    t.classList.add('border-blue-500', 'opacity-100', 'ring-2', 'ring-blue-500/30', 'shadow-lg');
+                                    t.classList.remove('border-transparent', 'opacity-60');
+                                } else {
+                                    t.classList.remove('border-blue-500', 'opacity-100', 'ring-2', 'ring-blue-500/30', 'shadow-lg');
+                                    t.classList.add('border-transparent', 'opacity-60');
+                                }
+                            });
+                            // Update counter & progress
+                            counter.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+                            progress.style.width = ((idx + 1) / total * 100) + '%';
+                            current = idx;
+                            setTimeout(() => { isAnimating = false; }, 700);
                         }
-                    });
-                    // Update counter & progress
-                    counter.textContent = String(idx + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
-                    progress.style.width = ((idx + 1) / total * 100) + '%';
-                    current = idx;
-                    setTimeout(() => { isAnimating = false; }, 700);
-                }
 
-                function next() { goTo((current + 1) % total); }
-                function prev() { goTo((current - 1 + total) % total); }
+                        function next() { goTo((current + 1) % total); }
+                        function prev() { goTo((current - 1 + total) % total); }
 
-                function startAuto() { stopAuto(); autoTimer = setInterval(next, 6000); }
-                function stopAuto() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+                        function startAuto() { stopAuto(); autoTimer = setInterval(next, 6000); }
+                        function stopAuto() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
 
-                document.getElementById('projNext').addEventListener('click', () => { next(); startAuto(); });
-                document.getElementById('projPrev').addEventListener('click', () => { prev(); startAuto(); });
+                        document.getElementById('projNext').addEventListener('click', () => { next(); startAuto(); });
+                        document.getElementById('projPrev').addEventListener('click', () => { prev(); startAuto(); });
 
-                thumbs.forEach(t => {
-                    t.addEventListener('click', () => { goTo(parseInt(t.dataset.goto)); startAuto(); });
-                });
+                        thumbs.forEach(t => {
+                            t.addEventListener('click', () => { goTo(parseInt(t.dataset.goto)); startAuto(); });
+                        });
 
-                // Touch swipe
-                let touchX = 0;
-                const wrapper = document.getElementById('slidesWrapper');
-                wrapper.addEventListener('touchstart', e => { touchX = e.changedTouches[0].screenX; stopAuto(); }, {passive: true});
-                wrapper.addEventListener('touchend', e => {
-                    const diff = e.changedTouches[0].screenX - touchX;
-                    if (Math.abs(diff) > 50) { diff > 0 ? prev() : next(); }
-                    startAuto();
-                }, {passive: true});
+                        // Touch swipe
+                        let touchX = 0;
+                        const wrapper = document.getElementById('slidesWrapper');
+                        wrapper.addEventListener('touchstart', e => { touchX = e.changedTouches[0].screenX; stopAuto(); }, { passive: true });
+                        wrapper.addEventListener('touchend', e => {
+                            const diff = e.changedTouches[0].screenX - touchX;
+                            if (Math.abs(diff) > 50) { diff > 0 ? prev() : next(); }
+                            startAuto();
+                        }, { passive: true });
 
-                // Hover pause
-                const showcase = document.getElementById('projectShowcase');
-                showcase.addEventListener('mouseenter', stopAuto);
-                showcase.addEventListener('mouseleave', startAuto);
+                        // Hover pause
+                        const showcase = document.getElementById('projectShowcase');
+                        showcase.addEventListener('mouseenter', stopAuto);
+                        showcase.addEventListener('mouseleave', startAuto);
 
-                startAuto();
-            })();
+                        startAuto();
+                    })();
             </script>
         </div>
     </section>
@@ -1553,7 +1968,8 @@
     <section id="contact" class="py-16 sm:py-20 lg:py-24 bg-gray-50 glass-effect">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center mb-12 sm:mb-16">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text" data-i18n="contact.title">Liên hệ
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text" data-i18n="contact.title">Liên
+                    hệ
                     tôi</h2>
                 <p class="text-base sm:text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
                     Hãy liên hệ với tôi nếu bạn muốn hợp tác hoặc có bất kỳ câu hỏi nào
@@ -1561,7 +1977,8 @@
             </div>
 
             <div class="max-w-2xl mx-auto">
-                <div class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 p-5 sm:p-8 md:p-10 rounded-3xl shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/10">
+                <div
+                    class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 p-5 sm:p-8 md:p-10 rounded-3xl shadow-xl transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/10">
                     <form action="https://formspree.io/f/xgvkbjvd" method="POST" id="contactForm" class="space-y-6">
                         <!-- Name Field -->
                         <div>
@@ -1617,27 +2034,36 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <!-- Email -->
-                            <a href="mailto:khanhtra229@gmail.com" class="flex flex-col items-center justify-center p-4 sm:p-6 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group">
-                                <div class="w-12 h-12 bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-cyan-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <a href="mailto:khanhtra229@gmail.com"
+                                class="flex flex-col items-center justify-center p-4 sm:p-6 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group">
+                                <div
+                                    class="w-12 h-12 bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-cyan-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                                     <i class="fas fa-envelope text-xl"></i>
                                 </div>
-                                <span class="text-slate-700 dark:text-slate-300 font-medium text-sm break-all text-center">khanhtra229@gmail.com</span>
+                                <span
+                                    class="text-slate-700 dark:text-slate-300 font-medium text-sm break-all text-center">khanhtra229@gmail.com</span>
                             </a>
 
                             <!-- LinkedIn -->
-                            <a href="https://www.facebook.com/kthietkek/" class="flex flex-col items-center justify-center p-4 sm:p-6 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group">
-                                <div class="w-12 h-12 bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-cyan-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <a href="https://www.facebook.com/kthietkek/"
+                                class="flex flex-col items-center justify-center p-4 sm:p-6 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group">
+                                <div
+                                    class="w-12 h-12 bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-cyan-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                                     <i class="fab fa-facebook text-xl"></i>
                                 </div>
-                                <span class="text-slate-700 dark:text-slate-300 font-medium text-sm text-center">Gia Khánh</span>
+                                <span class="text-slate-700 dark:text-slate-300 font-medium text-sm text-center">Gia
+                                    Khánh</span>
                             </a>
 
                             <!-- Phone -->
-                            <a href="tel:+84792661744" class="flex flex-col items-center justify-center p-4 sm:p-6 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group">
-                                <div class="w-12 h-12 bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-cyan-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <a href="tel:+84792661744"
+                                class="flex flex-col items-center justify-center p-4 sm:p-6 bg-slate-100 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group">
+                                <div
+                                    class="w-12 h-12 bg-blue-100 dark:bg-slate-700 text-blue-600 dark:text-cyan-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                                     <i class="fas fa-phone text-xl"></i>
                                 </div>
-                                <span class="text-slate-700 dark:text-slate-300 font-medium text-sm text-center">+84 792 661 744</span>
+                                <span class="text-slate-700 dark:text-slate-300 font-medium text-sm text-center">+84 792
+                                    661 744</span>
                             </a>
                         </div>
                     </div>
@@ -1832,7 +2258,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
                 <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
                     <p class="text-gray-400 text-sm text-center md:text-left">
-                        &copy; 2025 Trà Nguyễn Gia Khánh. Tất cả quyền được bảo lưu.
+                        &copy; 2026 Trà Nguyễn Gia Khánh. Tất cả quyền được bảo lưu.
                     </p>
                     <div class="flex items-center space-x-2 text-xs text-gray-500">
                         <i class="fas fa-robot"></i>
