@@ -266,6 +266,62 @@ class LanguageManager {
             }
         };
 
+        this.documentMeta = {
+            vi: { title: 'Khanh Tra Portfolio' },
+            en: { title: 'Gia Khanh Tra Nguyen Portfolio' }
+        };
+
+        this.staticTranslations = {
+            vi: {
+                '.splash-footer-text': 'Portfolio 2025',
+                '#contact .text-center p:not([data-i18n])': 'Hay lien he voi toi neu ban muon hop tac hoac co bat ky cau hoi nao',
+                '#contact .mt-8 h3': 'Hoac lien he voi toi thong qua',
+                '.certificate-verify-btn': '<i class="fas fa-certificate mr-2"></i>Xac thuc',
+                '.certificate-info-btn': '<i class="fas fa-info-circle mr-2"></i>Thong tin',
+                '.certificate-date': 'Ngay hoan thanh: {value}',
+                '.about-goal-tag:nth-of-type(1)': 'AI Development',
+                '.about-goal-tag:nth-of-type(2)': 'IT Support',
+                '.about-goal-tag:nth-of-type(3)': 'Automation',
+                '#projects [data-project-label="internal"]': 'Internal Tool',
+                '#projects [data-project-label="website"]': 'Website Demo',
+                '#projects [data-project-label="fanpage"]': 'Fanpage Demo',
+                '#projects [data-project-label="video"]': 'Video Demo',
+                '#projects [data-project-label="source"]': 'Ma nguon',
+                'footer .lg\\:col-span-1:first-child > p': 'Sinh vien Data Science voi dam me AI va IT Support. Luon san sang hoc hoi va ap dung cong nghe de giai quyet cac van de thuc tien.',
+                'footer .lg\\:col-span-1:nth-child(2) h4': 'Lien ket nhanh',
+                'footer .lg\\:col-span-1:nth-child(3) h4': 'Chuyen mon',
+                'footer .lg\\:col-span-1:nth-child(4) h4': 'Thong tin lien he',
+                '#cvPopup .cv-popup-title': 'Dang chuan bi CV cua toi',
+                '#cvPopup .cv-popup-subtitle': 'Kinh gui Anh/Chi tuyen dung,',
+                '#cvPopup .cv-popup-note': 'He thong dang chuan bi va mo CV trong giay lat.',
+                '#cvPopup .cv-popup-timer': 'Chuyen huong sau <span id="cvCountdown">15</span> giay'
+            },
+            en: {
+                '.splash-footer-text': 'Portfolio 2025',
+                '#contact .text-center p:not([data-i18n])': 'Reach out if you would like to collaborate or have any questions.',
+                '#contact .mt-8 h3': 'Or connect with me through',
+                '.certificate-verify-btn': '<i class="fas fa-certificate mr-2"></i>Verify',
+                '.certificate-info-btn': '<i class="fas fa-info-circle mr-2"></i>Details',
+                '.certificate-date': 'Completed: {value}',
+                '.about-goal-tag:nth-of-type(1)': 'AI Development',
+                '.about-goal-tag:nth-of-type(2)': 'IT Support',
+                '.about-goal-tag:nth-of-type(3)': 'Automation',
+                '#projects [data-project-label="internal"]': 'Internal Tool',
+                '#projects [data-project-label="website"]': 'Website Demo',
+                '#projects [data-project-label="fanpage"]': 'Fanpage Demo',
+                '#projects [data-project-label="video"]': 'Video Demo',
+                '#projects [data-project-label="source"]': 'Source Code',
+                'footer .lg\\:col-span-1:first-child > p': 'Data Science student with a strong interest in AI and IT Support. Always eager to learn and apply technology to solve practical problems.',
+                'footer .lg\\:col-span-1:nth-child(2) h4': 'Quick Links',
+                'footer .lg\\:col-span-1:nth-child(3) h4': 'Core Expertise',
+                'footer .lg\\:col-span-1:nth-child(4) h4': 'Contact Info',
+                '#cvPopup .cv-popup-title': 'Preparing My CV',
+                '#cvPopup .cv-popup-subtitle': 'Dear Hiring Team,',
+                '#cvPopup .cv-popup-note': 'The system is preparing and opening my CV in a few seconds.',
+                '#cvPopup .cv-popup-timer': 'Redirecting in <span id="cvCountdown">15</span> seconds'
+            }
+        };
+
         this.init();
     }
 

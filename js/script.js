@@ -312,24 +312,30 @@ if (mobileMenuOverlay) {
 // Enhanced theme toggle with smooth transition
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
+const htmlEl = document.documentElement;
 
 // Set light mode as default
 body.classList.remove('dark-mode', 'dark');
-localStorage.setItem('theme', 'dark'); // Change default to dark
+htmlEl.classList.remove('dark');
 
-// Check for saved theme preference or default to dark mode
+// Check for saved theme preference or default to light mode
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark' || !savedTheme) { // Default to dark
+if (savedTheme === 'dark') {
     body.classList.add('dark-mode', 'dark');
+    htmlEl.classList.add('dark');
 } else {
     body.classList.remove('dark-mode', 'dark');
-    localStorage.setItem('theme', 'light');
+    htmlEl.classList.remove('dark');
+    if (!savedTheme) {
+        localStorage.setItem('theme', 'light');
+    }
 }
 
 themeToggle.addEventListener('click', () => {
     body.classList.add('theme-transition');
     body.classList.toggle('dark-mode');
     body.classList.toggle('dark');
+    htmlEl.classList.toggle('dark');
 
     if (body.classList.contains('dark-mode')) {
         localStorage.setItem('theme', 'dark');
@@ -820,7 +826,7 @@ document.addEventListener('keydown', (e) => {
 const cvPopup = document.getElementById('cvPopup');
 const cvPopupClose = document.getElementById('cvPopupClose');
 const cvOpenNow = document.getElementById('cvOpenNow');
-const cvDownloadButton = document.querySelector('a[href*="drive.google.com"]');
+const cvDownloadButtons = document.querySelectorAll('[data-cv-trigger]');
 let cvCountdownInterval;
 let isPopupActive = false;
 let currentCVUrl = '';
@@ -836,7 +842,7 @@ const progressMessages = [
 ];
 
 function showCVPopup(originalHref) {
-    if (isPopupActive) return;
+    if (isPopupActive || !cvPopup || !originalHref) return;
 
     isPopupActive = true;
     currentCVUrl = originalHref;
@@ -854,6 +860,11 @@ function showCVPopup(originalHref) {
     const progressPercent = document.getElementById('cvProgressPercent');
     const progressStatus = document.getElementById('cvProgressStatus');
     const countdown = document.getElementById('cvCountdown');
+
+    if (!progressFill || !progressPercent || !progressStatus || !countdown) {
+        cvPopup.classList.add('active');
+        return;
+    }
 
     progressFill.style.width = '0%';
     progressPercent.textContent = '0%';
@@ -932,7 +943,7 @@ function openLinkSafely(url) {
 }
 
 function closeCVPopup() {
-    if (!isPopupActive) return;
+    if (!isPopupActive || !cvPopup) return;
 
     cvPopup.classList.remove('active');
     document.body.style.overflow = '';
@@ -950,13 +961,13 @@ function closeCVPopup() {
 }
 
 // Event listeners for CV popup
-if (cvDownloadButton) {
-    cvDownloadButton.addEventListener('click', function (e) {
+cvDownloadButtons.forEach((button) => {
+    button.addEventListener('click', function (e) {
         e.preventDefault();
         const originalHref = this.getAttribute('href');
         showCVPopup(originalHref);
     });
-}
+});
 
 if (cvPopupClose) {
     cvPopupClose.addEventListener('click', closeCVPopup);
@@ -980,11 +991,13 @@ if (cvOpenNow) {
 }
 
 // Close popup when clicking overlay
-cvPopup.addEventListener('click', function (e) {
-    if (e.target === cvPopup) {
-        closeCVPopup();
-    }
-});
+if (cvPopup) {
+    cvPopup.addEventListener('click', function (e) {
+        if (e.target === cvPopup) {
+            closeCVPopup();
+        }
+    });
+}
 
 // Close popup with Escape key
 document.addEventListener('keydown', function (e) {

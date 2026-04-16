@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="overflow-x-hidden">
+<html lang="vi" class="overflow-x-hidden">
 
 <head>
     <meta charset="UTF-8">
@@ -47,7 +47,7 @@
 </head>
 
 <body
-    class="theme-tech-creative font-sans antialiased text-slate-800 bg-slate-50 dark:bg-[#0B1120] dark:text-slate-100 dark dark-mode overflow-x-hidden selection:bg-primary-500 selection:text-white">
+    class="theme-tech-creative font-sans antialiased text-slate-800 bg-slate-50 dark:bg-[#0B1120] dark:text-slate-100 overflow-x-hidden selection:bg-primary-500 selection:text-white">
     <!-- Splash Screen / Loading Screen -->
     <div id="splashScreen" class="splash-screen">
         <div class="splash-container">
@@ -182,8 +182,10 @@
             <div class="flex items-center space-x-2 sm:space-x-4">
                 <div class="language-toggle-container">
                     <button id="languageToggle"
-                        class="w-10 h-10 rounded-full flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none">
-                        <span class="text-sm font-bold">VI</span>
+                        class="flex items-center gap-1 px-2.5 h-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none"
+                        title="Chuyển sang tiếng Anh">
+                        <span class="language-flag text-base">🇻🇳</span>
+                        <span class="language-text text-sm font-bold">VI</span>
                     </button>
                 </div>
 
@@ -596,7 +598,7 @@
                         <span data-i18n="about.contactBtn">Liên hệ tôi</span>
                     </a>
                     <a href="https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
-                        target="_blank" rel="noopener"
+                        target="_blank" rel="noopener" data-cv-trigger="primary"
                         class="w-full sm:w-auto px-8 py-4 rounded-2xl font-semibold text-slate-700 dark:text-slate-200 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md border border-slate-200/60 dark:border-slate-700/50 hover:bg-white dark:hover:bg-slate-700/80 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center justify-center gap-2.5 group">
                         <i
                             class="fas fa-file-download text-sm text-blue-500 group-hover:translate-y-0.5 transition-transform duration-300"></i>
@@ -1365,8 +1367,10 @@
                 </p>
             </div>
 
+            <div id="mobileProjectFeed" class="projects-mobile-feed lg:hidden"></div>
+
             <!-- Premium Slideshow Container -->
-            <div class="w-full max-w-6xl mx-auto px-4 md:px-0">
+            <div class="hidden lg:block w-full max-w-6xl mx-auto px-4 md:px-0">
                 <div id="projectShowcase"
                     class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl overflow-hidden">
 
@@ -1472,7 +1476,8 @@
                                         Tự động trả lời <strong
                                             class="text-emerald-600 dark:text-emerald-400">~80%</strong> câu hỏi ứng
                                         viên. Kiến trúc xử lý bằng <strong>n8n</strong>, lưu trữ
-                                        <strong>Supabase</strong>, AI bằng <strong>GPT &amp; Gemini</strong>.</p>
+                                        <strong>Supabase</strong>, AI bằng <strong>GPT &amp; Gemini</strong>.
+                                    </p>
                                     <div class="flex flex-wrap gap-2 mb-6">
                                         <span
                                             class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">n8n</span>
@@ -1527,7 +1532,8 @@
                                         class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
                                         Tool gửi mail hàng loạt (bảng lương, thư báo) bằng <strong>Google Apps
                                             Script</strong>. Hệ thống đặt phòng họp chống xung đột lịch bằng
-                                        <strong>Google Sheets &amp; Calendar API</strong>.</p>
+                                        <strong>Google Sheets &amp; Calendar API</strong>.
+                                    </p>
                                     <div class="flex flex-wrap gap-2 mb-6">
                                         <span
                                             class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Apps
@@ -1581,7 +1587,8 @@
                                         class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
                                         Hệ thống AI sử dụng <strong>YOLOv8</strong> và <strong>SORT</strong> phát hiện,
                                         theo dõi, đo kích thước vật thể trên băng chuyền công nghiệp với độ chính xác
-                                        <strong class="text-emerald-600 dark:text-emerald-400">95%</strong>.</p>
+                                        <strong class="text-emerald-600 dark:text-emerald-400">95%</strong>.
+                                    </p>
                                     <div class="flex flex-wrap gap-2 mb-6">
                                         <span
                                             class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Python</span>
@@ -1698,7 +1705,8 @@
                                         class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
                                         Nghiên cứu <strong>Multi-Task Learning</strong> trong Computer Vision — thực
                                         hiện đồng thời Object Detection, Segmentation và Depth Estimation trên
-                                        <strong>BDD100K</strong> và <strong>KITTI</strong>.</p>
+                                        <strong>BDD100K</strong> và <strong>KITTI</strong>.
+                                    </p>
                                     <div class="flex flex-wrap gap-2 mb-6">
                                         <span
                                             class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">PyTorch</span>
@@ -1896,10 +1904,54 @@
                         const thumbs = document.querySelectorAll('.proj-thumb');
                         const counter = document.getElementById('projectCounter');
                         const progress = document.getElementById('projProgress');
+                        const mobileFeed = document.getElementById('mobileProjectFeed');
                         const total = slides.length;
+                        const isDesktopProjects = window.matchMedia('(min-width: 1024px)').matches;
                         let current = 0;
                         let autoTimer = null;
                         let isAnimating = false;
+
+                        function buildMobileFeed() {
+                            if (!mobileFeed || !slides.length || mobileFeed.children.length) return;
+
+                            slides.forEach((slide, index) => {
+                                const shell = slide.querySelector(':scope > div');
+                                if (!shell || shell.children.length < 2) return;
+
+                                const card = document.createElement('article');
+                                card.className = 'mobile-project-card';
+
+                                const number = document.createElement('div');
+                                number.className = 'mobile-project-number';
+                                number.textContent = `Project ${String(index + 1).padStart(2, '0')}`;
+
+                                const clonedShell = shell.cloneNode(true);
+                                clonedShell.className = 'mobile-project-shell';
+
+                                const media = clonedShell.children[0];
+                                const content = clonedShell.children[1];
+
+                                if (media) {
+                                    media.className = 'mobile-project-media';
+                                }
+
+                                if (content) {
+                                    content.className = 'mobile-project-content';
+                                    const badge = content.querySelector('span');
+                                    if (badge) badge.classList.add('mobile-project-badge');
+
+                                    const tags = content.querySelector('.flex.flex-wrap.gap-2.mb-6');
+                                    if (tags) tags.classList.add('mobile-project-tags');
+
+                                    const actions = content.querySelector('.flex.flex-wrap.gap-3');
+                                    if (actions) actions.classList.add('mobile-project-actions');
+                                }
+
+                                card.appendChild(number);
+                                card.appendChild(clonedShell);
+                                mobileFeed.appendChild(card);
+                            });
+                        }
 
                         function goTo(idx) {
                             if (isAnimating || idx === current) return;
@@ -1933,8 +1985,11 @@
                         function startAuto() { stopAuto(); autoTimer = setInterval(next, 6000); }
                         function stopAuto() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
 
-                        document.getElementById('projNext').addEventListener('click', () => { next(); startAuto(); });
-                        document.getElementById('projPrev').addEventListener('click', () => { prev(); startAuto(); });
+                        const nextButton = document.getElementById('projNext');
+                        const prevButton = document.getElementById('projPrev');
+
+                        if (nextButton) nextButton.addEventListener('click', () => { next(); startAuto(); });
+                        if (prevButton) prevButton.addEventListener('click', () => { prev(); startAuto(); });
 
                         thumbs.forEach(t => {
                             t.addEventListener('click', () => { goTo(parseInt(t.dataset.goto)); startAuto(); });
@@ -1943,19 +1998,24 @@
                         // Touch swipe
                         let touchX = 0;
                         const wrapper = document.getElementById('slidesWrapper');
-                        wrapper.addEventListener('touchstart', e => { touchX = e.changedTouches[0].screenX; stopAuto(); }, { passive: true });
-                        wrapper.addEventListener('touchend', e => {
-                            const diff = e.changedTouches[0].screenX - touchX;
-                            if (Math.abs(diff) > 50) { diff > 0 ? prev() : next(); }
-                            startAuto();
-                        }, { passive: true });
+                        if (wrapper) {
+                            wrapper.addEventListener('touchstart', e => { touchX = e.changedTouches[0].screenX; stopAuto(); }, { passive: true });
+                            wrapper.addEventListener('touchend', e => {
+                                const diff = e.changedTouches[0].screenX - touchX;
+                                if (Math.abs(diff) > 50) { diff > 0 ? prev() : next(); }
+                                startAuto();
+                            }, { passive: true });
+                        }
 
                         // Hover pause
                         const showcase = document.getElementById('projectShowcase');
-                        showcase.addEventListener('mouseenter', stopAuto);
-                        showcase.addEventListener('mouseleave', startAuto);
+                        if (showcase) {
+                            showcase.addEventListener('mouseenter', stopAuto);
+                            showcase.addEventListener('mouseleave', startAuto);
+                        }
 
-                        startAuto();
+                        buildMobileFeed();
+                        if (isDesktopProjects) startAuto();
                     })();
             </script>
         </div>
@@ -2268,7 +2328,7 @@
 
                 <div class="flex items-center space-x-4">
                     <a href="https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
-                        target="_blank"
+                        target="_blank" data-cv-trigger="footer"
                         class="group flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg">
                         <i class="fas fa-download group-hover:animate-bounce"></i>
                         <span>Tải CV</span>
