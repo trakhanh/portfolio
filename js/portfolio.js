@@ -246,6 +246,18 @@
     setText("#certificatesTitle", copy.certificates.title);
     setText("#certificatesIntro", copy.certificates.intro);
 
+    const more = $("#certificateMore");
+    if (more) {
+      more.innerHTML = `
+        <span class="certificate-more-label">${copy.certificates.moreLabel}</span>
+        <div class="certificate-more-list">
+          ${copy.certificates.moreItems
+            .map((item) => `<span>${item}</span>`)
+            .join("")}
+        </div>
+      `;
+    }
+
     const grid = $("#certificateGrid");
     if (!grid) return;
 

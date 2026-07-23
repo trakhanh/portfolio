@@ -1266,6 +1266,43 @@ html[data-theme="dark"] .theme-icon-on {
   color: var(--accent);
 }
 
+.certificate-more {
+  margin-top: 20px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 82%, var(--accent) 18%);
+}
+
+.certificate-more-label {
+  flex: 0 0 auto;
+  color: var(--text-soft);
+  font: 600 9px var(--display);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.certificate-more-list {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.certificate-more-list span {
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 8px;
+  font-weight: 600;
+}
+
 .about-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(420px, 0.8fr);
@@ -1583,6 +1620,15 @@ html[data-theme="dark"] .contact-card .button-primary {
   .project-card,
   .certificate-card {
     flex-basis: 100%;
+  }
+
+  .certificate-more {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .certificate-more-list {
+    justify-content: flex-start;
   }
 
   .carousel-previous {

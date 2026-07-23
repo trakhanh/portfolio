@@ -277,9 +277,11 @@ window.PORTFOLIO_CONTENT = {
     },
     certificates: {
       eyebrow: "05 · CHỨNG CHỈ",
-      title: "Chứng chỉ và quá trình học tập liên tục.",
+      title: "Một số chứng chỉ tiêu biểu.",
       intro:
-        "Các chứng chỉ bổ sung cho nền tảng Data Science và phản ánh quá trình tôi chủ động mở rộng kiến thức về AI, IT Support, Data Analytics và Cybersecurity.",
+        "Đây là một phần trong bộ chứng chỉ tôi đã hoàn thành, phản ánh quá trình học tập liên tục về Data Science, AI, IT Support, Data Analytics và Cybersecurity.",
+      moreLabel: "Ngoài danh sách đang hiển thị",
+      moreItems: ["HackerRank SQL", "HackerRank Python", "Và nhiều chứng chỉ khác"],
       verify: "Xác thực",
       course: "Thông tin khóa học",
       items: [
@@ -670,9 +672,11 @@ window.PORTFOLIO_CONTENT = {
     },
     certificates: {
       eyebrow: "05 · CERTIFICATES",
-      title: "Certificates and continuous learning.",
+      title: "Selected certificates.",
       intro:
-        "These certificates complement my Data Science foundation and reflect continuous learning across AI, IT Support, Data Analytics and Cybersecurity.",
+        "This is a selected part of the certificates I have completed, reflecting continuous learning across Data Science, AI, IT Support, Data Analytics and Cybersecurity.",
+      moreLabel: "Also completed",
+      moreItems: ["HackerRank SQL", "HackerRank Python", "And more certificates"],
       verify: "Verify",
       course: "Course information",
       items: [
