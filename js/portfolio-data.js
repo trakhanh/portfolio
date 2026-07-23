@@ -3,7 +3,7 @@ window.PORTFOLIO_CONTENT = {
     meta: {
       title: "Trà Nguyễn Gia Khánh — Data Science, AI & Digital Transformation",
       description:
-        "Portfolio của Trà Nguyễn Gia Khánh: nền tảng Data Science; kinh nghiệm ứng dụng AI trong chuyển đổi số, xây dựng HRM và quy trình sản xuất video bằng AI."
+        "Portfolio của Trà Nguyễn Gia Khánh: nền tảng Data Science; kinh nghiệm ứng dụng AI trong chuyển đổi số theo định hướng ERP, xây dựng HRM và quy trình sản xuất video bằng AI."
     },
     nav: {
       journey: "Hành trình",
@@ -18,7 +18,7 @@ window.PORTFOLIO_CONTENT = {
       name: "TRÀ NGUYỄN GIA KHÁNH",
       title: "Từ Data Science đến AI và chuyển đổi số.",
       intro:
-        "Tôi học Data Science, xây nền tảng về AI, Machine Learning và Computer Vision. Trong công việc, tôi phát triển kinh nghiệm ứng dụng AI vào chuyển đổi số: thiết kế ERD, xây dựng ứng dụng HRM và hỗ trợ toàn bộ quy trình sản xuất video bằng AI.",
+        "Tôi học Data Science, xây nền tảng về AI, Machine Learning và Computer Vision. Trong công việc, tôi phát triển kinh nghiệm ứng dụng AI vào chuyển đổi số theo định hướng ERP, từng xây dựng ứng dụng HRM và hỗ trợ toàn bộ quy trình sản xuất video bằng AI.",
       primary: "Xem hành trình",
       secondary: "Khám phá dự án",
       status: "Sẵn sàng trao đổi cơ hội hợp tác",
@@ -49,9 +49,9 @@ window.PORTFOLIO_CONTENT = {
         {
           number: "03",
           label: "HƯỚNG PHÁT TRIỂN KHI ĐI LÀM",
-          title: "Digital Transformation & HRM",
+          title: "ERP & Digital Transformation",
           description:
-            "Phân tích nghiệp vụ, thiết kế ERD và mô hình dữ liệu, sau đó triển khai thành ứng dụng HRM cùng các workflow số hóa phục vụ nhân sự và vận hành.",
+            "Phân tích và số hóa quy trình doanh nghiệp theo định hướng ERP, tổ chức dữ liệu tập trung, kết nối các luồng vận hành; trong đó tôi từng xây dựng một ứng dụng HRM.",
           meta: "Professional direction 02"
         }
       ]
@@ -79,18 +79,18 @@ window.PORTFOLIO_CONTENT = {
         },
         {
           index: "B",
-          title: "Digital Transformation & HRM",
+          title: "ERP & Digital Transformation",
           description:
-            "Tôi từng trực tiếp xây dựng một ứng dụng HRM theo hướng chuyển đổi số: từ phân tích quy trình, thiết kế ERD và cấu trúc dữ liệu đến giao diện, phân quyền và tự động hóa vận hành.",
+            "Tôi có kinh nghiệm ứng dụng AI vào chuyển đổi số theo hướng ERP và từng trực tiếp xây dựng một ứng dụng HRM: từ phân tích nghiệp vụ, chuẩn hóa dữ liệu và phân hệ đến giao diện, phân quyền và tự động hóa vận hành.",
           capabilities: [
-            "Business process analysis",
-            "ERD · relational data modeling",
+            "Business process mapping",
+            "ERP modules · centralized data",
+            "HRM application development",
             "JavaScript · Web App · API",
-            "Role-based access control",
-            "n8n · Google Apps Script",
-            "Supabase · workflow automation"
+            "RBAC · workflow integration",
+            "n8n · Apps Script · Supabase"
           ],
-          note: "Process → ERD → product → operations"
+          note: "Process → modules → integration → operations"
         }
       ]
     },
@@ -198,12 +198,12 @@ window.PORTFOLIO_CONTENT = {
           id: "hrm-application",
           phase: "professional",
           phaseLabel: "CÔNG VIỆC · CHUYỂN ĐỔI SỐ",
-          title: "Thiết kế ERD & xây dựng ứng dụng HRM",
+          title: "Ứng dụng HRM theo định hướng ERP",
           description:
-            "Trực tiếp xây dựng ứng dụng HRM từ phân tích nghiệp vụ, thiết kế ERD và mô hình dữ liệu đến phân quyền, giao diện quản trị và số hóa quy trình nhân sự. Chi tiết module được giới hạn theo phạm vi có thể công khai.",
-          result: "Digital transformation · HRM product",
+            "Trực tiếp xây dựng ứng dụng HRM như một sản phẩm chuyển đổi số theo định hướng ERP: số hóa quy trình nhân sự, tập trung dữ liệu, phân quyền theo vai trò, xây dựng giao diện quản trị và kết nối workflow vận hành. Chi tiết module được giới hạn theo phạm vi có thể công khai.",
+          result: "ERP-oriented transformation · HRM product",
           image: "./img/project5.png",
-          tags: ["ERD", "Data Modeling", "Web App", "Role-based Access"],
+          tags: ["ERP", "HRM", "Workflow", "Role-based Access"],
           links: []
         },
         {
@@ -308,7 +308,7 @@ window.PORTFOLIO_CONTENT = {
       eyebrow: "05 · CAPABILITIES",
       title: "Tôi kết nối dữ liệu, AI và chuyển đổi số.",
       intro:
-        "Tôi có thể đi từ bài toán nghiệp vụ và dữ liệu đến ERD, workflow, giao diện và sản phẩm thực tế; đồng thời biết cách chọn công cụ AI phù hợp để tăng tốc sáng tạo và vận hành.",
+        "Tôi có thể đi từ bài toán nghiệp vụ và dữ liệu đến quy trình ERP, phân hệ, tích hợp, giao diện và sản phẩm thực tế; đồng thời biết cách chọn công cụ AI phù hợp để tăng tốc sáng tạo và vận hành.",
       groups: [
         {
           title: "Data & AI",
@@ -320,7 +320,7 @@ window.PORTFOLIO_CONTENT = {
         },
         {
           title: "Digital Products & Automation",
-          items: ["ERD", "Data Modeling", "JavaScript", "Web App", "n8n", "Google Apps Script", "API", "Supabase", "HRM", "RBAC"]
+          items: ["ERP", "HRM", "Business Process", "Centralized Data", "JavaScript", "Web App", "n8n", "Google Apps Script", "API", "Supabase", "RBAC"]
         }
       ],
       cv: "Xem CV",
@@ -342,7 +342,7 @@ window.PORTFOLIO_CONTENT = {
     meta: {
       title: "Tra Nguyen Gia Khanh — Data Science, AI & Digital Transformation",
       description:
-        "Portfolio of Tra Nguyen Gia Khanh: a Data Science foundation applied to digital transformation, HRM systems and AI-powered video production."
+        "Portfolio of Tra Nguyen Gia Khanh: a Data Science foundation applied to ERP-oriented digital transformation, HRM systems and AI-powered video production."
     },
     nav: {
       journey: "Journey",
@@ -357,7 +357,7 @@ window.PORTFOLIO_CONTENT = {
       name: "TRA NGUYEN GIA KHANH",
       title: "From Data Science to AI-driven transformation.",
       intro:
-        "I studied Data Science and built a foundation in AI, Machine Learning and Computer Vision. At work, I expanded into AI-enabled digital transformation: designing ERDs, building an HRM application and supporting end-to-end AI video production.",
+        "I studied Data Science and built a foundation in AI, Machine Learning and Computer Vision. At work, I expanded into AI-enabled, ERP-oriented digital transformation, built an HRM application and supported end-to-end AI video production.",
       primary: "See my journey",
       secondary: "Explore projects",
       status: "Open to relevant collaborations",
@@ -388,9 +388,9 @@ window.PORTFOLIO_CONTENT = {
         {
           number: "03",
           label: "PROFESSIONAL GROWTH",
-          title: "Digital Transformation & HRM",
+          title: "ERP & Digital Transformation",
           description:
-            "Analyzing business processes, designing ERDs and data models, then turning them into an HRM application and digitized operational workflows.",
+            "Analyzing and digitizing enterprise processes with an ERP-oriented approach, centralizing data and connecting operational flows; this includes an HRM application I built.",
           meta: "Professional direction 02"
         }
       ]
@@ -418,18 +418,18 @@ window.PORTFOLIO_CONTENT = {
         },
         {
           index: "B",
-          title: "Digital Transformation & HRM",
+          title: "ERP & Digital Transformation",
           description:
-            "I built an HRM application as a digital-transformation product, moving from process analysis and ERD design to data structure, interface, access control and workflow automation.",
+            "I have experience applying AI to ERP-oriented digital transformation and directly built an HRM application, covering process analysis, standardized data, functional modules, interfaces, access control and workflow automation.",
           capabilities: [
-            "Business process analysis",
-            "ERD · relational data modeling",
+            "Business process mapping",
+            "ERP modules · centralized data",
+            "HRM application development",
             "JavaScript · Web App · API",
-            "Role-based access control",
-            "n8n · Google Apps Script",
-            "Supabase · workflow automation"
+            "RBAC · workflow integration",
+            "n8n · Apps Script · Supabase"
           ],
-          note: "Process → ERD → product → operations"
+          note: "Process → modules → integration → operations"
         }
       ]
     },
@@ -537,12 +537,12 @@ window.PORTFOLIO_CONTENT = {
           id: "hrm-application",
           phase: "professional",
           phaseLabel: "PROFESSIONAL · DIGITAL TRANSFORMATION",
-          title: "ERD design & HRM application",
+          title: "ERP-oriented HRM application",
           description:
-            "Built an HRM application from business-process analysis, ERD and data modeling through role-based access, administration interfaces and digitized HR workflows. Module details remain limited to publicly shareable information.",
-          result: "Digital transformation · HRM product",
+            "Built an HRM application as an ERP-oriented digital-transformation product: digitizing HR processes, centralizing data, implementing role-based access, building administration interfaces and connecting operational workflows. Module details remain limited to publicly shareable information.",
+          result: "ERP-oriented transformation · HRM product",
           image: "./img/project5.png",
-          tags: ["ERD", "Data Modeling", "Web App", "Role-based Access"],
+          tags: ["ERP", "HRM", "Workflow", "Role-based Access"],
           links: []
         },
         {
@@ -647,7 +647,7 @@ window.PORTFOLIO_CONTENT = {
       eyebrow: "05 · CAPABILITIES",
       title: "I connect data, AI and digital transformation.",
       intro:
-        "I move from business problems and data to ERDs, workflows, interfaces and working products, while choosing the right AI tools to accelerate creative and operational work.",
+        "I move from business problems and data to ERP processes, functional modules, integrations, interfaces and working products, while choosing the right AI tools to accelerate creative and operational work.",
       groups: [
         {
           title: "Data & AI",
@@ -659,7 +659,7 @@ window.PORTFOLIO_CONTENT = {
         },
         {
           title: "Digital Products & Automation",
-          items: ["ERD", "Data Modeling", "JavaScript", "Web App", "n8n", "Google Apps Script", "API", "Supabase", "HRM", "RBAC"]
+          items: ["ERP", "HRM", "Business Process", "Centralized Data", "JavaScript", "Web App", "n8n", "Google Apps Script", "API", "Supabase", "RBAC"]
         }
       ],
       cv: "View CV",
