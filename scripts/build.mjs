@@ -11,7 +11,7 @@ await rm(dist, { recursive: true, force: true });
 await mkdir(path.join(dist, "server"), { recursive: true });
 await mkdir(client, { recursive: true });
 
-for (const entry of ["index.html", "css", "js", "img"]) {
+for (const entry of ["index.html", "css", "js", "img", "files"]) {
   const source = path.join(root, entry);
   if (!existsSync(source)) continue;
   await cp(source, path.join(client, entry), { recursive: true });

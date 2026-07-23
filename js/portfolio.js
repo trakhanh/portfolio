@@ -152,6 +152,42 @@
         `
       )
       .join("");
+
+    const recommendation = $("#recommendationCard");
+    if (recommendation) {
+      const letter = copy.experience.recommendation;
+      recommendation.innerHTML = `
+        <a
+          class="recommendation-preview"
+          href="${letter.file}"
+          target="_blank"
+          rel="noopener"
+          aria-label="${letter.view}"
+        >
+          <img src="${letter.preview}" alt="${letter.previewAlt}" loading="lazy" />
+          <span>PDF · 02</span>
+        </a>
+        <div class="recommendation-content">
+          <p class="eyebrow">${letter.eyebrow}</p>
+          <h3>${letter.title}</h3>
+          <p class="recommendation-description">${letter.description}</p>
+          <div class="recommendation-highlights">
+            ${letter.highlights.map((item) => `<span>${item}</span>`).join("")}
+          </div>
+          <div class="recommendation-signature">
+            <div>
+              <strong>${letter.issuer}</strong>
+              <small>${letter.issuerRole}</small>
+            </div>
+            <span>${letter.date}</span>
+          </div>
+          <div class="recommendation-actions">
+            <a class="button button-primary" href="${letter.file}" target="_blank" rel="noopener">${letter.view} ↗</a>
+            <a class="button button-quiet" href="${letter.file}" download>${letter.download} ↓</a>
+          </div>
+        </div>
+      `;
+    }
   }
 
   function renderProjectFilters(copy) {

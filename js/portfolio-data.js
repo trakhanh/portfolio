@@ -118,6 +118,27 @@ window.PORTFOLIO_CONTENT = {
       title: "Từ triển khai hệ thống đến R&D AI.",
       intro:
         "Hành trình làm việc của tôi phát triển theo một mạch liên tục: hỗ trợ triển khai ERP, xây công cụ AI và automation, sau đó đi sâu hơn vào ứng dụng AI và nghiên cứu phát triển.",
+      recommendation: {
+        eyebrow: "THƯ GIỚI THIỆU ĐÃ KÝ",
+        title: "Năng lực được xác nhận bởi lãnh đạo Bông Trà F&B.",
+        description:
+          "Thư giới thiệu do bà Nguyễn Lê Thùy Dương, Founder & CEO Công ty Cổ phần Bông Trà F&B, ký ngày 22/09/2025. Tài liệu xác nhận quá trình Thực tập sinh IT của tôi và ghi nhận tinh thần trách nhiệm, khả năng học hỏi, tư duy giải quyết vấn đề cùng những đóng góp thực tế cho hoạt động chuyển đổi số của công ty.",
+        issuer: "Nguyễn Lê Thùy Dương",
+        issuerRole: "Founder & CEO · Công ty Cổ phần Bông Trà F&B",
+        date: "Ký ngày 22/09/2025",
+        highlights: [
+          "Website & AI Chatbot",
+          "HR & Operations Automation",
+          "Recruitment Chatbot",
+          "Marketing Landing Pages"
+        ],
+        preview: "./img/recommendation-letter-preview.jpg",
+        previewAlt:
+          "Trang đầu thư giới thiệu có chữ ký và con dấu của Công ty Cổ phần Bông Trà F&B",
+        file: "./files/thu-gioi-thieu-tra-nguyen-gia-khanh.pdf",
+        view: "Xem thư gốc",
+        download: "Tải bản PDF"
+      },
       items: [
         {
           date: "Tháng 10/2025 — Hiện tại",
@@ -551,6 +572,27 @@ window.PORTFOLIO_CONTENT = {
       title: "From system implementation to AI R&D.",
       intro:
         "My experience follows a continuous path: supporting ERP implementation, building AI and automation tools, then moving deeper into applied AI and research and development.",
+      recommendation: {
+        eyebrow: "SIGNED RECOMMENDATION",
+        title: "Endorsed by the leadership of Bong Tra F&B.",
+        description:
+          "This recommendation letter was signed on September 22, 2025 by Nguyen Le Thuy Duong, Founder & CEO of Bong Tra F&B Joint Stock Company. It confirms my IT internship and recognizes my responsibility, ability to learn, problem-solving mindset and practical contributions to the company’s digital-transformation initiatives.",
+        issuer: "Nguyen Le Thuy Duong",
+        issuerRole: "Founder & CEO · Bong Tra F&B Joint Stock Company",
+        date: "Signed September 22, 2025",
+        highlights: [
+          "Website & AI Chatbot",
+          "HR & Operations Automation",
+          "Recruitment Chatbot",
+          "Marketing Landing Pages"
+        ],
+        preview: "./img/recommendation-letter-preview.jpg",
+        previewAlt:
+          "First page of the signed and stamped recommendation letter from Bong Tra F&B",
+        file: "./files/thu-gioi-thieu-tra-nguyen-gia-khanh.pdf",
+        view: "View original Vietnamese letter",
+        download: "Download PDF"
+      },
       items: [
         {
           date: "Oct 2025 — Present",
