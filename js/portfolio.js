@@ -371,10 +371,28 @@
     $$("main section[id]").forEach((section) => observer.observe(section));
   }
 
+  function setupSplash() {
+    const splash = $("#splash");
+    if (!splash) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const displayTime = reducedMotion ? 220 : 1350;
+    const exitTime = reducedMotion ? 20 : 500;
+
+    window.setTimeout(() => {
+      splash.classList.add("is-leaving");
+      document.body.classList.remove("is-splashing");
+      window.setTimeout(() => splash.remove(), exitTime);
+    }, displayTime);
+  }
+
   function initialize() {
     renderLanguage();
     setupControls();
     setupNavigation();
+    setupSplash();
     setText("#currentYear", String(new Date().getFullYear()));
   }
 

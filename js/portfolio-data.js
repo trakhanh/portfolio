@@ -1,9 +1,9 @@
 window.PORTFOLIO_CONTENT = {
   vi: {
     meta: {
-      title: "Trà Nguyễn Gia Khánh — Data Science, AI & Automation",
+      title: "Trà Nguyễn Gia Khánh — Data Science, AI & Digital Transformation",
       description:
-        "Portfolio của Trà Nguyễn Gia Khánh: nền tảng Data Science, AI & Computer Vision; kinh nghiệm phát triển AI Creative Production, Automation và HRM."
+        "Portfolio của Trà Nguyễn Gia Khánh: nền tảng Data Science; kinh nghiệm ứng dụng AI trong chuyển đổi số, xây dựng HRM và quy trình sản xuất video bằng AI."
     },
     nav: {
       journey: "Hành trình",
@@ -16,9 +16,9 @@ window.PORTFOLIO_CONTENT = {
     hero: {
       eyebrow: "Data Science foundation · Applied AI at work",
       name: "TRÀ NGUYỄN GIA KHÁNH",
-      title: "Từ Data Science đến các hệ thống AI ứng dụng.",
+      title: "Từ Data Science đến AI và chuyển đổi số.",
       intro:
-        "Tôi học Data Science và xây nền tảng về AI, Machine Learning, Computer Vision. Khi đi làm, tôi phát triển thêm hai hướng: sản xuất nội dung bằng AI và xây dựng công cụ vận hành gồm automation, HRM.",
+        "Tôi học Data Science, xây nền tảng về AI, Machine Learning và Computer Vision. Trong công việc, tôi phát triển kinh nghiệm ứng dụng AI vào chuyển đổi số: thiết kế ERD, xây dựng ứng dụng HRM và hỗ trợ toàn bộ quy trình sản xuất video bằng AI.",
       primary: "Xem hành trình",
       secondary: "Khám phá dự án",
       status: "Sẵn sàng trao đổi cơ hội hợp tác",
@@ -41,17 +41,17 @@ window.PORTFOLIO_CONTENT = {
         {
           number: "02",
           label: "HƯỚNG PHÁT TRIỂN KHI ĐI LÀM",
-          title: "AI Creative Production",
+          title: "AI Video Production",
           description:
-            "Ứng dụng AI vào nghiên cứu nội dung, kịch bản, hình ảnh, voice, animation và quy trình sản xuất video.",
+            "Ứng dụng ChatGPT, Claude, Gemini, Antigravity và các công cụ AI vào research, kịch bản, hình ảnh, voice, animation và quy trình sản xuất video.",
           meta: "Professional direction 01"
         },
         {
           number: "03",
           label: "HƯỚNG PHÁT TRIỂN KHI ĐI LÀM",
-          title: "Automation & HRM Systems",
+          title: "Digital Transformation & HRM",
           description:
-            "Phát triển chatbot, workflow automation, công cụ nội bộ và ứng dụng HRM để hỗ trợ con người và vận hành.",
+            "Phân tích nghiệp vụ, thiết kế ERD và mô hình dữ liệu, sau đó triển khai thành ứng dụng HRM cùng các workflow số hóa phục vụ nhân sự và vận hành.",
           meta: "Professional direction 02"
         }
       ]
@@ -60,37 +60,37 @@ window.PORTFOLIO_CONTENT = {
       eyebrow: "02 · WHAT I DO NOW",
       title: "Hai mảng tôi phát triển thêm trong công việc.",
       intro:
-        "Nền tảng Data Science giúp tôi tiếp cận hai mảng mới theo hướng có hệ thống: hiểu dữ liệu, thiết kế quy trình và biến AI thành công cụ có thể sử dụng.",
+        "Nền tảng Data Science giúp tôi tiếp cận chuyển đổi số theo hướng có hệ thống: hiểu dữ liệu, mô hình hóa nghiệp vụ, thiết kế quy trình và đưa AI vào sản phẩm thực tế.",
       areas: [
         {
           index: "A",
-          title: "AI Creative Production",
+          title: "AI Video Production",
           description:
-            "Sản xuất Series YouTube, video quảng cáo và nội dung short-form bằng AI; đồng thời xây tool hỗ trợ từ research đến publishing.",
+            "Tôi có kinh nghiệm ứng dụng AI để hỗ trợ quy trình sản xuất series YouTube, video quảng cáo và nội dung short-form, từ nghiên cứu ý tưởng đến xuất bản.",
           capabilities: [
-            "Research & content structure",
-            "Script & scene breakdown",
-            "AI visual, voice & animation",
-            "Editing & production templates",
-            "Production tracking",
-            "Creative workflow automation"
+            "ChatGPT · Claude · Gemini",
+            "Antigravity · NotebookLM",
+            "Research · script · storyboard",
+            "AI visual · voice · animation",
+            "Editing · production tracking",
+            "Workflow automation · publishing"
           ],
-          note: "Creative output + production system"
+          note: "AI tools + end-to-end video workflow"
         },
         {
           index: "B",
-          title: "Automation & HRM",
+          title: "Digital Transformation & HRM",
           description:
-            "Xây workflow, chatbot, ứng dụng HRM và công cụ nội bộ giúp giảm thao tác lặp, tập trung dữ liệu và làm rõ trạng thái công việc.",
+            "Tôi từng trực tiếp xây dựng một ứng dụng HRM theo hướng chuyển đổi số: từ phân tích quy trình, thiết kế ERD và cấu trúc dữ liệu đến giao diện, phân quyền và tự động hóa vận hành.",
           capabilities: [
-            "HRM application development",
-            "Recruitment chatbot",
-            "Internal workflow automation",
-            "Google Apps Script tools",
-            "n8n & API integration",
-            "Operational product thinking"
+            "Business process analysis",
+            "ERD · relational data modeling",
+            "JavaScript · Web App · API",
+            "Role-based access control",
+            "n8n · Google Apps Script",
+            "Supabase · workflow automation"
           ],
-          note: "People + process + internal tools"
+          note: "Process → ERD → product → operations"
         }
       ]
     },
@@ -197,25 +197,25 @@ window.PORTFOLIO_CONTENT = {
         {
           id: "hrm-application",
           phase: "professional",
-          phaseLabel: "CÔNG VIỆC · HR TECH",
-          title: "Ứng dụng HRM",
+          phaseLabel: "CÔNG VIỆC · CHUYỂN ĐỔI SỐ",
+          title: "Thiết kế ERD & xây dựng ứng dụng HRM",
           description:
-            "Tham gia phát triển ứng dụng quản trị nhân sự và vận hành. Chi tiết module được giới hạn theo phạm vi có thể công khai.",
-          result: "Internal business application",
+            "Trực tiếp xây dựng ứng dụng HRM từ phân tích nghiệp vụ, thiết kế ERD và mô hình dữ liệu đến phân quyền, giao diện quản trị và số hóa quy trình nhân sự. Chi tiết module được giới hạn theo phạm vi có thể công khai.",
+          result: "Digital transformation · HRM product",
           image: "./img/project5.png",
-          tags: ["Web App", "Database", "Role-based Access"],
+          tags: ["ERD", "Data Modeling", "Web App", "Role-based Access"],
           links: []
         },
         {
           id: "ai-creative-production",
           phase: "professional",
           phaseLabel: "CÔNG VIỆC · AI CREATIVE",
-          title: "AI Content Production & Tooling",
+          title: "AI Video Production & Tooling",
           description:
-            "Phát triển quy trình sản xuất nội dung bằng AI và các công cụ hỗ trợ research, script, asset, voice, tracking và publishing.",
+            "Ứng dụng ChatGPT, Claude, Gemini, Antigravity và NotebookLM để hỗ trợ research, script, storyboard, asset, voice, tracking và publishing trong quy trình sản xuất video.",
           result: "Current professional focus",
           image: "./img/Notebooklm.png",
-          tags: ["Generative AI", "Video", "Automation", "Workflow"],
+          tags: ["ChatGPT", "Claude", "Antigravity", "AI Video"],
           links: []
         }
       ]
@@ -306,21 +306,21 @@ window.PORTFOLIO_CONTENT = {
     },
     about: {
       eyebrow: "05 · CAPABILITIES",
-      title: "Tôi kết nối dữ liệu, sản phẩm và vận hành.",
+      title: "Tôi kết nối dữ liệu, AI và chuyển đổi số.",
       intro:
-        "Thế mạnh của tôi không nằm ở một công cụ riêng lẻ. Tôi có thể đi từ bài toán, dữ liệu và thử nghiệm kỹ thuật đến workflow, giao diện và sản phẩm phục vụ người dùng thực tế.",
+        "Tôi có thể đi từ bài toán nghiệp vụ và dữ liệu đến ERD, workflow, giao diện và sản phẩm thực tế; đồng thời biết cách chọn công cụ AI phù hợp để tăng tốc sáng tạo và vận hành.",
       groups: [
         {
           title: "Data & AI",
           items: ["Python", "Data Analysis", "Machine Learning", "Deep Learning", "Computer Vision"]
         },
         {
-          title: "Creative AI",
-          items: ["AI Video", "Script Workflow", "AI Visual", "AI Voice", "Production Systems"]
+          title: "AI Platforms & Creative",
+          items: ["ChatGPT", "Claude", "Gemini", "Antigravity", "NotebookLM", "AI Video", "AI Visual", "AI Voice"]
         },
         {
-          title: "Apps & Automation",
-          items: ["JavaScript", "n8n", "Google Apps Script", "API", "HRM", "Internal Tools"]
+          title: "Digital Products & Automation",
+          items: ["ERD", "Data Modeling", "JavaScript", "Web App", "n8n", "Google Apps Script", "API", "Supabase", "HRM", "RBAC"]
         }
       ],
       cv: "Xem CV",
@@ -331,18 +331,18 @@ window.PORTFOLIO_CONTENT = {
       eyebrow: "06 · CONTACT",
       title: "Cùng trao đổi về một bài toán thực tế.",
       intro:
-        "Tôi quan tâm đến các cơ hội kết hợp Data Science, AI ứng dụng, creative production và hệ thống vận hành.",
+        "Tôi quan tâm đến các cơ hội kết hợp Data Science, AI ứng dụng, chuyển đổi số, sản phẩm HRM và quy trình sản xuất video bằng AI.",
       emailLabel: "Gửi email",
       socialLabel: "Kết nối"
     },
-    footer: "Trà Nguyễn Gia Khánh · Data Science → Applied AI Systems"
+    footer: "Trà Nguyễn Gia Khánh · Data Science → AI → Digital Transformation"
   },
 
   en: {
     meta: {
-      title: "Tra Nguyen Gia Khanh — Data Science, AI & Automation",
+      title: "Tra Nguyen Gia Khanh — Data Science, AI & Digital Transformation",
       description:
-        "Portfolio of Tra Nguyen Gia Khanh: a Data Science, AI and Computer Vision foundation expanded through AI Creative Production, Automation and HRM."
+        "Portfolio of Tra Nguyen Gia Khanh: a Data Science foundation applied to digital transformation, HRM systems and AI-powered video production."
     },
     nav: {
       journey: "Journey",
@@ -355,9 +355,9 @@ window.PORTFOLIO_CONTENT = {
     hero: {
       eyebrow: "Data Science foundation · Applied AI at work",
       name: "TRA NGUYEN GIA KHANH",
-      title: "From Data Science to applied AI systems.",
+      title: "From Data Science to AI-driven transformation.",
       intro:
-        "I studied Data Science and built a foundation in AI, Machine Learning and Computer Vision. Through work, I expanded into two additional directions: AI-powered content production and operational products including automation and HRM.",
+        "I studied Data Science and built a foundation in AI, Machine Learning and Computer Vision. At work, I expanded into AI-enabled digital transformation: designing ERDs, building an HRM application and supporting end-to-end AI video production.",
       primary: "See my journey",
       secondary: "Explore projects",
       status: "Open to relevant collaborations",
@@ -380,17 +380,17 @@ window.PORTFOLIO_CONTENT = {
         {
           number: "02",
           label: "PROFESSIONAL GROWTH",
-          title: "AI Creative Production",
+          title: "AI Video Production",
           description:
-            "Applying AI to content research, scripting, visuals, voice, animation and end-to-end video production workflows.",
+            "Using ChatGPT, Claude, Gemini, Antigravity and other AI tools for research, scripts, visuals, voice, animation and end-to-end video production.",
           meta: "Professional direction 01"
         },
         {
           number: "03",
           label: "PROFESSIONAL GROWTH",
-          title: "Automation & HRM Systems",
+          title: "Digital Transformation & HRM",
           description:
-            "Building chatbots, workflow automation, internal tools and HRM applications that support people and operations.",
+            "Analyzing business processes, designing ERDs and data models, then turning them into an HRM application and digitized operational workflows.",
           meta: "Professional direction 02"
         }
       ]
@@ -399,37 +399,37 @@ window.PORTFOLIO_CONTENT = {
       eyebrow: "02 · WHAT I DO NOW",
       title: "Two areas I developed through professional work.",
       intro:
-        "My Data Science foundation helps me approach these new areas systematically: understanding data, designing workflows and turning AI into usable tools.",
+        "My Data Science foundation helps me approach digital transformation systematically: understanding data, modeling business processes and turning AI into useful products.",
       areas: [
         {
           index: "A",
-          title: "AI Creative Production",
+          title: "AI Video Production",
           description:
-            "Producing YouTube series, advertising videos and short-form content with AI, while building tools that support the pipeline from research to publishing.",
+            "I apply AI across YouTube series, advertising videos and short-form content, supporting the production pipeline from initial research to publishing.",
           capabilities: [
-            "Research & content structure",
-            "Script & scene breakdown",
-            "AI visual, voice & animation",
-            "Editing & production templates",
-            "Production tracking",
-            "Creative workflow automation"
+            "ChatGPT · Claude · Gemini",
+            "Antigravity · NotebookLM",
+            "Research · script · storyboard",
+            "AI visual · voice · animation",
+            "Editing · production tracking",
+            "Workflow automation · publishing"
           ],
-          note: "Creative output + production system"
+          note: "AI tools + end-to-end video workflow"
         },
         {
           index: "B",
-          title: "Automation & HRM",
+          title: "Digital Transformation & HRM",
           description:
-            "Building workflows, chatbots, HRM applications and internal tools that reduce repetitive work, centralize data and clarify operational status.",
+            "I built an HRM application as a digital-transformation product, moving from process analysis and ERD design to data structure, interface, access control and workflow automation.",
           capabilities: [
-            "HRM application development",
-            "Recruitment chatbot",
-            "Internal workflow automation",
-            "Google Apps Script tools",
-            "n8n & API integration",
-            "Operational product thinking"
+            "Business process analysis",
+            "ERD · relational data modeling",
+            "JavaScript · Web App · API",
+            "Role-based access control",
+            "n8n · Google Apps Script",
+            "Supabase · workflow automation"
           ],
-          note: "People + process + internal tools"
+          note: "Process → ERD → product → operations"
         }
       ]
     },
@@ -536,25 +536,25 @@ window.PORTFOLIO_CONTENT = {
         {
           id: "hrm-application",
           phase: "professional",
-          phaseLabel: "PROFESSIONAL · HR TECH",
-          title: "HRM application",
+          phaseLabel: "PROFESSIONAL · DIGITAL TRANSFORMATION",
+          title: "ERD design & HRM application",
           description:
-            "Contributing to an application for people and operations management. Module details are limited to information that can be shared publicly.",
-          result: "Internal business application",
+            "Built an HRM application from business-process analysis, ERD and data modeling through role-based access, administration interfaces and digitized HR workflows. Module details remain limited to publicly shareable information.",
+          result: "Digital transformation · HRM product",
           image: "./img/project5.png",
-          tags: ["Web App", "Database", "Role-based Access"],
+          tags: ["ERD", "Data Modeling", "Web App", "Role-based Access"],
           links: []
         },
         {
           id: "ai-creative-production",
           phase: "professional",
           phaseLabel: "PROFESSIONAL · AI CREATIVE",
-          title: "AI Content Production & Tooling",
+          title: "AI Video Production & Tooling",
           description:
-            "Developing AI-powered content workflows and tools for research, scripts, assets, voice, tracking and publishing.",
+            "Using ChatGPT, Claude, Gemini, Antigravity and NotebookLM to support research, scripts, storyboards, assets, voice, tracking and publishing across the video-production workflow.",
           result: "Current professional focus",
           image: "./img/Notebooklm.png",
-          tags: ["Generative AI", "Video", "Automation", "Workflow"],
+          tags: ["ChatGPT", "Claude", "Antigravity", "AI Video"],
           links: []
         }
       ]
@@ -645,21 +645,21 @@ window.PORTFOLIO_CONTENT = {
     },
     about: {
       eyebrow: "05 · CAPABILITIES",
-      title: "I connect data, products and operations.",
+      title: "I connect data, AI and digital transformation.",
       intro:
-        "My strength is not a single tool. I can move from a problem, its data and technical experiments to workflows, interfaces and products used by real people.",
+        "I move from business problems and data to ERDs, workflows, interfaces and working products, while choosing the right AI tools to accelerate creative and operational work.",
       groups: [
         {
           title: "Data & AI",
           items: ["Python", "Data Analysis", "Machine Learning", "Deep Learning", "Computer Vision"]
         },
         {
-          title: "Creative AI",
-          items: ["AI Video", "Script Workflow", "AI Visual", "AI Voice", "Production Systems"]
+          title: "AI Platforms & Creative",
+          items: ["ChatGPT", "Claude", "Gemini", "Antigravity", "NotebookLM", "AI Video", "AI Visual", "AI Voice"]
         },
         {
-          title: "Apps & Automation",
-          items: ["JavaScript", "n8n", "Google Apps Script", "API", "HRM", "Internal Tools"]
+          title: "Digital Products & Automation",
+          items: ["ERD", "Data Modeling", "JavaScript", "Web App", "n8n", "Google Apps Script", "API", "Supabase", "HRM", "RBAC"]
         }
       ],
       cv: "View CV",
@@ -670,10 +670,10 @@ window.PORTFOLIO_CONTENT = {
       eyebrow: "06 · CONTACT",
       title: "Let’s discuss a real problem.",
       intro:
-        "I am interested in opportunities that connect Data Science, applied AI, creative production and operational systems.",
+        "I am interested in opportunities connecting Data Science, applied AI, digital transformation, HRM products and AI-powered video production.",
       emailLabel: "Send an email",
       socialLabel: "Connect"
     },
-    footer: "Tra Nguyen Gia Khanh · Data Science → Applied AI Systems"
+    footer: "Tra Nguyen Gia Khanh · Data Science → AI → Digital Transformation"
   }
 };
