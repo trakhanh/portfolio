@@ -1268,9 +1268,9 @@ html[data-theme="dark"] .theme-icon-on {
 
 .certificate-more {
   margin-top: 20px;
-  padding: 16px 18px;
+  padding: 18px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 18px;
   border: 1px solid var(--line);
@@ -1287,20 +1287,58 @@ html[data-theme="dark"] .theme-icon-on {
 }
 
 .certificate-more-list {
+  width: min(100%, 700px);
   display: flex;
   justify-content: flex-end;
-  gap: 8px;
-  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.certificate-more-list span {
-  padding: 7px 10px;
+.certificate-mini {
+  min-width: 0;
+  flex: 1 1 0;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   border: 1px solid var(--line);
-  border-radius: 99px;
+  border-radius: 12px;
   background: var(--surface);
+}
+
+.certificate-mini-code {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--text);
+  color: var(--surface);
+  font: 700 9px var(--display);
+  letter-spacing: -0.02em;
+}
+
+.certificate-mini-copy {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.certificate-mini-copy strong {
+  overflow: hidden;
   color: var(--text);
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.certificate-mini-copy small {
+  overflow: hidden;
+  color: var(--text-faint);
+  font-size: 7px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .about-layout {
@@ -1628,7 +1666,20 @@ html[data-theme="dark"] .contact-card .button-primary {
   }
 
   .certificate-more-list {
+    width: 100%;
     justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .certificate-more-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .certificate-mini {
+    flex: 0 0 min(82%, 230px);
+    scroll-snap-align: start;
   }
 
   .carousel-previous {

@@ -252,7 +252,17 @@
         <span class="certificate-more-label">${copy.certificates.moreLabel}</span>
         <div class="certificate-more-list">
           ${copy.certificates.moreItems
-            .map((item) => `<span>${item}</span>`)
+            .map(
+              (item) => `
+                <article class="certificate-mini">
+                  <span class="certificate-mini-code" aria-hidden="true">${item.code}</span>
+                  <span class="certificate-mini-copy">
+                    <strong>${item.title}</strong>
+                    <small>${item.issuer} · ${item.status}</small>
+                  </span>
+                </article>
+              `
+            )
             .join("")}
         </div>
       `;

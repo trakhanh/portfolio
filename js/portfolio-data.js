@@ -280,8 +280,27 @@ window.PORTFOLIO_CONTENT = {
       title: "Một số chứng chỉ tiêu biểu.",
       intro:
         "Đây là một phần trong bộ chứng chỉ tôi đã hoàn thành, phản ánh quá trình học tập liên tục về Data Science, AI, IT Support, Data Analytics và Cybersecurity.",
-      moreLabel: "Ngoài danh sách đang hiển thị",
-      moreItems: ["HackerRank SQL", "HackerRank Python", "Và nhiều chứng chỉ khác"],
+      moreLabel: "Kỹ năng được chứng nhận khác",
+      moreItems: [
+        {
+          code: "SQL",
+          title: "SQL",
+          issuer: "HackerRank",
+          status: "Đã hoàn thành"
+        },
+        {
+          code: "PY",
+          title: "Python",
+          issuer: "HackerRank",
+          status: "Đã hoàn thành"
+        },
+        {
+          code: "+",
+          title: "Các chứng chỉ khác",
+          issuer: "Học tập liên tục",
+          status: "Đang cập nhật"
+        }
+      ],
       verify: "Xác thực",
       course: "Thông tin khóa học",
       items: [
@@ -675,8 +694,27 @@ window.PORTFOLIO_CONTENT = {
       title: "Selected certificates.",
       intro:
         "This is a selected part of the certificates I have completed, reflecting continuous learning across Data Science, AI, IT Support, Data Analytics and Cybersecurity.",
-      moreLabel: "Also completed",
-      moreItems: ["HackerRank SQL", "HackerRank Python", "And more certificates"],
+      moreLabel: "Additional certified skills",
+      moreItems: [
+        {
+          code: "SQL",
+          title: "SQL",
+          issuer: "HackerRank",
+          status: "Completed"
+        },
+        {
+          code: "PY",
+          title: "Python",
+          issuer: "HackerRank",
+          status: "Completed"
+        },
+        {
+          code: "+",
+          title: "More certificates",
+          issuer: "Continuous learning",
+          status: "Being updated"
+        }
+      ],
       verify: "Verify",
       course: "Course information",
       items: [
