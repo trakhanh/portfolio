@@ -153,20 +153,19 @@
       )
       .join("");
 
+    const letter = copy.experience.recommendation;
     const recommendation = $("#recommendationCard");
     if (recommendation) {
-      const letter = copy.experience.recommendation;
       recommendation.innerHTML = `
-        <a
+        <button
           class="recommendation-preview"
-          href="${letter.file}"
-          target="_blank"
-          rel="noopener"
+          type="button"
+          data-recommendation-open
           aria-label="${letter.view}"
         >
           <img src="${letter.preview}" alt="${letter.previewAlt}" loading="lazy" />
           <span>PDF · 02</span>
-        </a>
+        </button>
         <div class="recommendation-content">
           <p class="eyebrow">${letter.eyebrow}</p>
           <h3>${letter.title}</h3>
@@ -182,10 +181,56 @@
             <span>${letter.date}</span>
           </div>
           <div class="recommendation-actions">
-            <a class="button button-primary" href="${letter.file}" target="_blank" rel="noopener">${letter.view} ↗</a>
+            <button class="button button-primary" type="button" data-recommendation-open>${letter.view} ↗</button>
             <a class="button button-quiet" href="${letter.file}" download>${letter.download} ↓</a>
           </div>
         </div>
+      `;
+    }
+
+    const modal = $("#recommendationModal");
+    if (modal) {
+      modal.innerHTML = `
+        <div class="recommendation-modal-backdrop" data-recommendation-close></div>
+        <section
+          class="recommendation-modal-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="recommendationModalTitle"
+        >
+          <header class="recommendation-modal-header">
+            <div>
+              <p class="eyebrow">${letter.eyebrow}</p>
+              <h2 id="recommendationModalTitle">${letter.modalTitle}</h2>
+              <p>${letter.issuer} · ${letter.date}</p>
+            </div>
+            <div class="recommendation-modal-actions">
+              <a class="button button-quiet" href="${letter.file}" download>${letter.download} ↓</a>
+              <button
+                class="recommendation-modal-close"
+                type="button"
+                data-recommendation-close
+                aria-label="${letter.close}"
+              >×</button>
+            </div>
+          </header>
+          <div class="recommendation-modal-pages">
+            ${letter.pages
+              .map(
+                (page, index) => `
+                  <figure>
+                    <figcaption>${letter.pageLabel} ${String(index + 1).padStart(2, "0")} / ${String(letter.pages.length).padStart(2, "0")}</figcaption>
+                    <img
+                      src="${page}"
+                      alt="${letter.pageLabel} ${index + 1} · ${letter.modalTitle}"
+                      loading="${index === 0 ? "eager" : "lazy"}"
+                    />
+                  </figure>
+                `
+              )
+              .join("")}
+          </div>
+        </section>
       `;
     }
   }
@@ -698,6 +743,72 @@
     updateVisibility();
   }
 
+  function setupRecommendationModal() {
+    const modal = $("#recommendationModal");
+    if (!modal) return;
+
+    let lastFocused = null;
+
+    const openModal = (trigger) => {
+      lastFocused = trigger || document.activeElement;
+      modal.hidden = false;
+      document.body.classList.add("has-modal");
+      requestAnimationFrame(() => {
+        modal.classList.add("is-open");
+        modal.querySelector(".recommendation-modal-close")?.focus();
+      });
+    };
+
+    const closeModal = () => {
+      if (modal.hidden) return;
+      modal.classList.remove("is-open");
+      document.body.classList.remove("has-modal");
+      window.setTimeout(() => {
+        modal.hidden = true;
+        lastFocused?.focus?.();
+      }, 180);
+    };
+
+    document.addEventListener("click", (event) => {
+      const trigger = event.target.closest("[data-recommendation-open]");
+      if (trigger) {
+        openModal(trigger);
+        return;
+      }
+
+      if (event.target.closest("[data-recommendation-close]")) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (modal.hidden) return;
+
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeModal();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+      const focusable = $$(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        modal
+      );
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+  }
+
   function initialize() {
     renderLanguage();
     setupControls();
@@ -705,6 +816,7 @@
     setupNavigation();
     setupSplash();
     setupBackToTop();
+    setupRecommendationModal();
     setText("#currentYear", String(new Date().getFullYear()));
   }
 

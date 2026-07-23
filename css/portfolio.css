@@ -62,6 +62,10 @@ body {
   overflow-x: clip;
 }
 
+body.has-modal {
+  overflow: hidden;
+}
+
 .splash {
   position: fixed;
   inset: 0;
@@ -989,11 +993,14 @@ html[data-theme="dark"] .theme-icon-on {
 .recommendation-preview {
   position: relative;
   min-height: 520px;
+  padding: 0;
   display: block;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 18px;
+  color: inherit;
   background: #f4f1e9;
+  cursor: zoom-in;
 }
 
 .recommendation-preview img {
@@ -1091,6 +1098,137 @@ html[data-theme="dark"] .theme-icon-on {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.recommendation-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 600;
+  padding: 24px;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.recommendation-modal[hidden] {
+  display: none;
+}
+
+.recommendation-modal.is-open {
+  opacity: 1;
+}
+
+.recommendation-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 10, 9, 0.74);
+  backdrop-filter: blur(14px);
+}
+
+.recommendation-modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, 100%);
+  height: min(92vh, 940px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: 0 32px 100px rgba(0, 0, 0, 0.34);
+  transform: translateY(14px) scale(0.985);
+  transition: transform 180ms ease;
+}
+
+.recommendation-modal.is-open .recommendation-modal-panel {
+  transform: translateY(0) scale(1);
+}
+
+.recommendation-modal-header {
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.recommendation-modal-header h2 {
+  margin: 5px 0 3px;
+  font: 600 20px/1.2 var(--display);
+  letter-spacing: -0.03em;
+}
+
+.recommendation-modal-header > div > p:last-child {
+  margin: 0;
+  color: var(--text-faint);
+  font-size: 10px;
+}
+
+.recommendation-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.recommendation-modal-close {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--text);
+  background: transparent;
+  font: 400 24px/1 var(--display);
+  cursor: pointer;
+}
+
+.recommendation-modal-close:hover {
+  color: var(--surface);
+  background: var(--text);
+}
+
+.recommendation-modal-close:focus-visible,
+.recommendation-preview:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.recommendation-modal-pages {
+  padding: 28px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--bg);
+}
+
+.recommendation-modal-pages figure {
+  width: min(820px, 100%);
+  margin: 0 auto 28px;
+}
+
+.recommendation-modal-pages figure:last-child {
+  margin-bottom: 0;
+}
+
+.recommendation-modal-pages figcaption {
+  margin-bottom: 9px;
+  color: var(--text-faint);
+  font: 600 10px var(--display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.recommendation-modal-pages img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  box-shadow: var(--shadow);
 }
 
 .project-toolbar {
@@ -1963,6 +2101,50 @@ html[data-theme="dark"] .contact-card .button-primary {
 
   .recommendation-description {
     font-size: 14px;
+  }
+
+  .recommendation-modal {
+    padding: 0;
+  }
+
+  .recommendation-modal-panel {
+    width: 100%;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .recommendation-modal-header {
+    padding: 14px 12px;
+    align-items: flex-start;
+  }
+
+  .recommendation-modal-header h2 {
+    font-size: 16px;
+  }
+
+  .recommendation-modal-header .eyebrow,
+  .recommendation-modal-header > div > p:last-child {
+    display: none;
+  }
+
+  .recommendation-modal-actions .button {
+    min-height: 40px;
+    padding-inline: 12px;
+    font-size: 11px;
+  }
+
+  .recommendation-modal-close {
+    width: 40px;
+    height: 40px;
+  }
+
+  .recommendation-modal-pages {
+    padding: 18px 12px;
+  }
+
+  .recommendation-modal-pages figure {
+    margin-bottom: 20px;
   }
 
   .project-image {

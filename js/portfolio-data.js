@@ -133,11 +133,18 @@ window.PORTFOLIO_CONTENT = {
           "Marketing Landing Pages"
         ],
         preview: "./img/recommendation-letter-preview.jpg",
+        pages: [
+          "./img/recommendation-letter-preview.jpg",
+          "./img/recommendation-letter-page-2.jpg"
+        ],
         previewAlt:
           "Trang đầu thư giới thiệu có chữ ký và con dấu của Công ty Cổ phần Bông Trà F&B",
         file: "./files/thu-gioi-thieu-tra-nguyen-gia-khanh.pdf",
         view: "Xem thư gốc",
-        download: "Tải bản PDF"
+        download: "Tải bản PDF",
+        modalTitle: "Thư giới thiệu · Bông Trà F&B",
+        pageLabel: "Trang",
+        close: "Đóng"
       },
       items: [
         {
@@ -587,11 +594,18 @@ window.PORTFOLIO_CONTENT = {
           "Marketing Landing Pages"
         ],
         preview: "./img/recommendation-letter-preview.jpg",
+        pages: [
+          "./img/recommendation-letter-preview.jpg",
+          "./img/recommendation-letter-page-2.jpg"
+        ],
         previewAlt:
           "First page of the signed and stamped recommendation letter from Bong Tra F&B",
         file: "./files/thu-gioi-thieu-tra-nguyen-gia-khanh.pdf",
         view: "View original Vietnamese letter",
-        download: "Download PDF"
+        download: "Download PDF",
+        modalTitle: "Recommendation letter · Bong Tra F&B",
+        pageLabel: "Page",
+        close: "Close"
       },
       items: [
         {
