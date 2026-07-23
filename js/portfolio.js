@@ -193,6 +193,50 @@
       .join("");
   }
 
+  function renderCertificates(copy) {
+    setText("#certificatesEyebrow", copy.certificates.eyebrow);
+    setText("#certificatesTitle", copy.certificates.title);
+    setText("#certificatesIntro", copy.certificates.intro);
+
+    const grid = $("#certificateGrid");
+    if (!grid) return;
+
+    grid.innerHTML = copy.certificates.items
+      .map(
+        (certificate) => `
+          <article class="certificate-card">
+            <div class="certificate-image">
+              <img
+                src="${certificate.image}"
+                alt="${certificate.title}"
+                loading="lazy"
+              />
+            </div>
+            <div class="certificate-content">
+              <div class="certificate-meta">
+                <span>${certificate.issuer}</span>
+                <span>${certificate.date}</span>
+              </div>
+              <h3>${certificate.title}</h3>
+              <p class="certificate-description">${certificate.description}</p>
+              <div class="certificate-tags">
+                ${certificate.tags.map((tag) => `<span>${tag}</span>`).join("")}
+              </div>
+              <div class="certificate-links">
+                ${
+                  certificate.verifyUrl
+                    ? `<a href="${certificate.verifyUrl}" target="_blank" rel="noopener">${copy.certificates.verify} ↗</a>`
+                    : ""
+                }
+                <a href="${certificate.courseUrl}" target="_blank" rel="noopener">${copy.certificates.course} ↗</a>
+              </div>
+            </div>
+          </article>
+        `
+      )
+      .join("");
+  }
+
   function renderContact(copy) {
     setText("#contactEyebrow", copy.contact.eyebrow);
     setText("#contactTitle", copy.contact.title);
@@ -250,6 +294,7 @@
     renderJourney(copy);
     renderWork(copy);
     renderProjects(copy);
+    renderCertificates(copy);
     renderAbout(copy);
     renderContact(copy);
     updateLanguageControl();

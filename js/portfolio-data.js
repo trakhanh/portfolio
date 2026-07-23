@@ -9,6 +9,7 @@ window.PORTFOLIO_CONTENT = {
       journey: "Hành trình",
       work: "Công việc",
       projects: "Dự án",
+      certificates: "Chứng chỉ",
       about: "Năng lực",
       contact: "Liên hệ"
     },
@@ -219,8 +220,92 @@ window.PORTFOLIO_CONTENT = {
         }
       ]
     },
+    certificates: {
+      eyebrow: "04 · CHỨNG CHỈ",
+      title: "Chứng chỉ và quá trình học tập liên tục.",
+      intro:
+        "Các chứng chỉ bổ sung cho nền tảng Data Science và phản ánh quá trình tôi chủ động mở rộng kiến thức về AI, IT Support, Data Analytics và Cybersecurity.",
+      verify: "Xác thực",
+      course: "Thông tin khóa học",
+      items: [
+        {
+          title: "Google IT Support Professional Certificate",
+          issuer: "Google Career Certificates",
+          date: "05-2025",
+          description:
+            "Kiến thức nền tảng về hỗ trợ kỹ thuật, hệ điều hành, mạng, quản trị hệ thống và bảo mật.",
+          image: "./img/Coursera_IT Support.jpg",
+          tags: ["IT Support", "System Admin", "Networking", "Security"],
+          verifyUrl:
+            "https://coursera.org/share/63ea0eb22d1fb2e525a023d8f36841bf",
+          courseUrl:
+            "https://coursera.org/professional-certificates/google-it-support"
+        },
+        {
+          title: "Google AI Essentials Certificate",
+          issuer: "Google Career Certificates",
+          date: "04-2025",
+          description:
+            "Nền tảng về cách AI hoạt động, các công cụ AI và phương pháp ứng dụng AI có trách nhiệm trong công việc.",
+          image: "./img/Coursera_AI Essentials.jpg",
+          tags: ["AI Fundamentals", "AI Tools", "Best Practices"],
+          verifyUrl:
+            "https://coursera.org/share/ae887854314f490f27c020c8d0621665",
+          courseUrl:
+            "https://www.coursera.org/specializations/ai-essentials-google#courses"
+        },
+        {
+          title: "Google Prompting Essentials Certificate",
+          issuer: "Google Career Certificates",
+          date: "04-2025",
+          description:
+            "Kỹ thuật viết, đánh giá và cải thiện prompt để làm việc hiệu quả hơn với các công cụ AI.",
+          image: "./img/Coursera_Prompt AI.jpg",
+          tags: ["Prompt Engineering", "AI Prompting", "AI Tools"],
+          verifyUrl:
+            "https://coursera.org/share/d9a2cf7bbbd45a52c5de029c5c1e0514",
+          courseUrl:
+            "https://www.coursera.org/learn/prompting-essentials-google"
+        },
+        {
+          title: "Foundations of Cybersecurity Certificate",
+          issuer: "Google Career Certificates",
+          date: "05-2025",
+          description:
+            "Nền tảng về an ninh mạng, quản lý rủi ro, security framework và phân tích mối đe dọa.",
+          image: "./img/Cyber.jpg",
+          tags: ["Cybersecurity", "Risk", "Security Framework"],
+          verifyUrl: "",
+          courseUrl:
+            "https://www.coursera.org/learn/foundations-of-cybersecurity"
+        },
+        {
+          title: "Foundations: Data, Data, Everywhere",
+          issuer: "Google Career Certificates",
+          date: "05-2025",
+          description:
+            "Các khái niệm cốt lõi của Data Analytics, vòng đời dữ liệu và vai trò của dữ liệu trong quyết định.",
+          image: "./img/ana.jpg",
+          tags: ["Data Analytics", "Data Ethics", "Data Lifecycle"],
+          verifyUrl: "",
+          courseUrl: "https://www.coursera.org/learn/foundations-data"
+        },
+        {
+          title: "Ask Questions to Make Data-Driven Decisions",
+          issuer: "Google Career Certificates",
+          date: "05-2025",
+          description:
+            "Cách đặt câu hỏi phù hợp, xác định nhu cầu kinh doanh và sử dụng dữ liệu để hỗ trợ quyết định.",
+          image: "./img/ask.jpg",
+          tags: ["Data-Driven Decisions", "Problem Solving", "Analysis"],
+          verifyUrl: "",
+          courseUrl:
+            "https://www.coursera.org/learn/ask-questions-make-decisions"
+        }
+      ]
+    },
     about: {
-      eyebrow: "04 · CAPABILITIES",
+      eyebrow: "05 · CAPABILITIES",
       title: "Tôi kết nối dữ liệu, sản phẩm và vận hành.",
       intro:
         "Thế mạnh của tôi không nằm ở một công cụ riêng lẻ. Tôi có thể đi từ bài toán, dữ liệu và thử nghiệm kỹ thuật đến workflow, giao diện và sản phẩm phục vụ người dùng thực tế.",
@@ -243,7 +328,7 @@ window.PORTFOLIO_CONTENT = {
         "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
     },
     contact: {
-      eyebrow: "05 · CONTACT",
+      eyebrow: "06 · CONTACT",
       title: "Cùng trao đổi về một bài toán thực tế.",
       intro:
         "Tôi quan tâm đến các cơ hội kết hợp Data Science, AI ứng dụng, creative production và hệ thống vận hành.",
@@ -263,6 +348,7 @@ window.PORTFOLIO_CONTENT = {
       journey: "Journey",
       work: "Work",
       projects: "Projects",
+      certificates: "Certificates",
       about: "Capabilities",
       contact: "Contact"
     },
@@ -473,8 +559,92 @@ window.PORTFOLIO_CONTENT = {
         }
       ]
     },
+    certificates: {
+      eyebrow: "04 · CERTIFICATES",
+      title: "Certificates and continuous learning.",
+      intro:
+        "These certificates complement my Data Science foundation and reflect continuous learning across AI, IT Support, Data Analytics and Cybersecurity.",
+      verify: "Verify",
+      course: "Course information",
+      items: [
+        {
+          title: "Google IT Support Professional Certificate",
+          issuer: "Google Career Certificates",
+          date: "05-2025",
+          description:
+            "A foundation in technical support, operating systems, networking, system administration and security.",
+          image: "./img/Coursera_IT Support.jpg",
+          tags: ["IT Support", "System Admin", "Networking", "Security"],
+          verifyUrl:
+            "https://coursera.org/share/63ea0eb22d1fb2e525a023d8f36841bf",
+          courseUrl:
+            "https://coursera.org/professional-certificates/google-it-support"
+        },
+        {
+          title: "Google AI Essentials Certificate",
+          issuer: "Google Career Certificates",
+          date: "04-2025",
+          description:
+            "Core concepts covering how AI works, practical AI tools and responsible ways to apply AI at work.",
+          image: "./img/Coursera_AI Essentials.jpg",
+          tags: ["AI Fundamentals", "AI Tools", "Best Practices"],
+          verifyUrl:
+            "https://coursera.org/share/ae887854314f490f27c020c8d0621665",
+          courseUrl:
+            "https://www.coursera.org/specializations/ai-essentials-google#courses"
+        },
+        {
+          title: "Google Prompting Essentials Certificate",
+          issuer: "Google Career Certificates",
+          date: "04-2025",
+          description:
+            "Techniques for writing, evaluating and improving prompts to work more effectively with AI tools.",
+          image: "./img/Coursera_Prompt AI.jpg",
+          tags: ["Prompt Engineering", "AI Prompting", "AI Tools"],
+          verifyUrl:
+            "https://coursera.org/share/d9a2cf7bbbd45a52c5de029c5c1e0514",
+          courseUrl:
+            "https://www.coursera.org/learn/prompting-essentials-google"
+        },
+        {
+          title: "Foundations of Cybersecurity Certificate",
+          issuer: "Google Career Certificates",
+          date: "05-2025",
+          description:
+            "Foundations of cybersecurity, risk management, security frameworks and threat analysis.",
+          image: "./img/Cyber.jpg",
+          tags: ["Cybersecurity", "Risk", "Security Framework"],
+          verifyUrl: "",
+          courseUrl:
+            "https://www.coursera.org/learn/foundations-of-cybersecurity"
+        },
+        {
+          title: "Foundations: Data, Data, Everywhere",
+          issuer: "Google Career Certificates",
+          date: "05-2025",
+          description:
+            "Core Data Analytics concepts, the data lifecycle and the role of data in decision-making.",
+          image: "./img/ana.jpg",
+          tags: ["Data Analytics", "Data Ethics", "Data Lifecycle"],
+          verifyUrl: "",
+          courseUrl: "https://www.coursera.org/learn/foundations-data"
+        },
+        {
+          title: "Ask Questions to Make Data-Driven Decisions",
+          issuer: "Google Career Certificates",
+          date: "05-2025",
+          description:
+            "Framing effective questions, understanding business needs and using data to support decisions.",
+          image: "./img/ask.jpg",
+          tags: ["Data-Driven Decisions", "Problem Solving", "Analysis"],
+          verifyUrl: "",
+          courseUrl:
+            "https://www.coursera.org/learn/ask-questions-make-decisions"
+        }
+      ]
+    },
     about: {
-      eyebrow: "04 · CAPABILITIES",
+      eyebrow: "05 · CAPABILITIES",
       title: "I connect data, products and operations.",
       intro:
         "My strength is not a single tool. I can move from a problem, its data and technical experiments to workflows, interfaces and products used by real people.",
@@ -497,7 +667,7 @@ window.PORTFOLIO_CONTENT = {
         "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
     },
     contact: {
-      eyebrow: "05 · CONTACT",
+      eyebrow: "06 · CONTACT",
       title: "Let’s discuss a real problem.",
       intro:
         "I am interested in opportunities that connect Data Science, applied AI, creative production and operational systems.",
