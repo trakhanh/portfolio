@@ -936,13 +936,112 @@ html[data-theme="dark"] .theme-icon-on {
   font-size: 10px;
 }
 
-.project-grid {
+.carousel-frame {
+  position: relative;
+}
+
+.carousel-track {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  font: 500 17px/1 var(--display);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.carousel-control:hover:not(:disabled) {
+  color: var(--bg);
+  background: var(--text);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-control:disabled {
+  opacity: 0.28;
+  cursor: default;
+}
+
+.carousel-control:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.carousel-previous {
+  left: -22px;
+}
+
+.carousel-next {
+  right: -22px;
+}
+
+.carousel-meta {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.carousel-progress {
+  position: relative;
+  height: 2px;
+  flex: 1;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.carousel-progress i {
+  width: 0;
+  height: 100%;
+  display: block;
+  background: var(--accent);
+  transition: width 220ms ease;
+}
+
+.carousel-meta > span {
+  min-width: 48px;
+  color: var(--text-faint);
+  font: 600 9px var(--display);
+  letter-spacing: 0.06em;
+  text-align: right;
+}
+
+.project-grid {
+  display: flex;
   gap: 18px;
+  padding: 8px 2px 14px;
 }
 
 .project-card {
+  min-width: 0;
+  flex: 0 0 calc((100% - 18px) / 2);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   background: var(--surface);
@@ -1060,13 +1159,16 @@ html[data-theme="dark"] .theme-icon-on {
 }
 
 .certificate-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
   gap: 18px;
+  padding: 8px 2px 14px;
 }
 
 .certificate-card {
   min-width: 0;
+  flex: 0 0 calc((100% - 36px) / 3);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   padding: 14px;
   display: flex;
   flex-direction: column;
@@ -1442,8 +1544,8 @@ html[data-theme="dark"] .contact-card .button-primary {
     grid-template-columns: 1fr;
   }
 
-  .certificate-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .certificate-card {
+    flex-basis: calc((100% - 18px) / 2);
   }
 }
 
@@ -1474,13 +1576,21 @@ html[data-theme="dark"] .contact-card .button-primary {
     gap: 19px;
   }
 
-  .work-grid,
-  .project-grid {
+  .work-grid {
     grid-template-columns: 1fr;
   }
 
-  .certificate-grid {
-    grid-template-columns: 1fr;
+  .project-card,
+  .certificate-card {
+    flex-basis: 100%;
+  }
+
+  .carousel-previous {
+    left: 8px;
+  }
+
+  .carousel-next {
+    right: 8px;
   }
 
   .work-card {

@@ -238,6 +238,18 @@ window.PORTFOLIO_CONTENT = {
           links: []
         },
         {
+          id: "preorder-workshop-web",
+          phase: "professional",
+          phaseLabel: "CÔNG VIỆC · WEB EXPERIENCE",
+          title: "Giao diện Pre-order & Workshop",
+          description:
+            "Thiết kế giao diện cơ bản cho website Pre-order và Workshop, giúp đội Marketing chuẩn bị landing page và triển khai chiến dịch nhanh hơn.",
+          result: "Campaign enablement · UI prototype",
+          image: "./img/projects-v3/preorder-workshop.jpg",
+          tags: ["UI Design", "Pre-order", "Workshop", "Marketing"],
+          links: []
+        },
+        {
           id: "hrm-application",
           phase: "professional",
           phaseLabel: "CÔNG VIỆC · CHUYỂN ĐỔI SỐ",
@@ -616,6 +628,18 @@ window.PORTFOLIO_CONTENT = {
           result: "Internal operational tools",
           image: "./img/projects-v3/internal-automation.jpg",
           tags: ["Apps Script", "Sheets API", "Calendar API"],
+          links: []
+        },
+        {
+          id: "preorder-workshop-web",
+          phase: "professional",
+          phaseLabel: "PROFESSIONAL · WEB EXPERIENCE",
+          title: "Pre-order & Workshop Interfaces",
+          description:
+            "Designed foundational interfaces for Pre-order and Workshop websites, helping the Marketing team prepare landing pages and launch campaigns faster.",
+          result: "Campaign enablement · UI prototype",
+          image: "./img/projects-v3/preorder-workshop.jpg",
+          tags: ["UI Design", "Pre-order", "Workshop", "Marketing"],
           links: []
         },
         {

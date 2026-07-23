@@ -197,7 +197,31 @@
             <div class="project-filters" id="projectFilters" role="group"></div>
             <p id="projectCount"></p>
           </div>
-          <div class="project-grid" id="projectGrid"></div>
+          <div class="carousel-frame">
+            <button
+              class="carousel-control carousel-previous"
+              id="projectPrevious"
+              type="button"
+              aria-label="Dự án trước"
+            >←</button>
+            <div
+              class="project-grid carousel-track"
+              id="projectGrid"
+              tabindex="0"
+              role="region"
+              aria-label="Danh sách dự án"
+            ></div>
+            <button
+              class="carousel-control carousel-next"
+              id="projectNext"
+              type="button"
+              aria-label="Dự án tiếp theo"
+            >→</button>
+          </div>
+          <div class="carousel-meta">
+            <div class="carousel-progress"><i id="projectProgress"></i></div>
+            <span id="projectSlideStatus" aria-live="polite"></span>
+          </div>
         </div>
       </section>
 
@@ -210,7 +234,31 @@
               <p id="certificatesIntro"></p>
             </div>
           </div>
-          <div class="certificate-grid" id="certificateGrid"></div>
+          <div class="carousel-frame">
+            <button
+              class="carousel-control carousel-previous"
+              id="certificatePrevious"
+              type="button"
+              aria-label="Chứng chỉ trước"
+            >←</button>
+            <div
+              class="certificate-grid carousel-track"
+              id="certificateGrid"
+              tabindex="0"
+              role="region"
+              aria-label="Danh sách chứng chỉ"
+            ></div>
+            <button
+              class="carousel-control carousel-next"
+              id="certificateNext"
+              type="button"
+              aria-label="Chứng chỉ tiếp theo"
+            >→</button>
+          </div>
+          <div class="carousel-meta">
+            <div class="carousel-progress"><i id="certificateProgress"></i></div>
+            <span id="certificateSlideStatus" aria-live="polite"></span>
+          </div>
         </div>
       </section>
 

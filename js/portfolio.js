@@ -13,6 +13,22 @@
 
   let language = savedLanguage === "en" ? "en" : "vi";
   let projectFilter = "all";
+  const carouselConfig = {
+    projects: {
+      track: "#projectGrid",
+      previous: "#projectPrevious",
+      next: "#projectNext",
+      progress: "#projectProgress",
+      status: "#projectSlideStatus"
+    },
+    certificates: {
+      track: "#certificateGrid",
+      previous: "#certificatePrevious",
+      next: "#certificateNext",
+      progress: "#certificateProgress",
+      status: "#certificateSlideStatus"
+    }
+  };
 
   const setText = (selector, value) => {
     const element = $(selector);
@@ -192,6 +208,9 @@
         ? `${projects.length} dự án`
         : `${projects.length} selected projects`
     );
+
+    grid.scrollLeft = 0;
+    requestAnimationFrame(() => updateCarousel("projects"));
   }
 
   function renderAbout(copy) {
@@ -264,6 +283,122 @@
         `
       )
       .join("");
+
+    grid.scrollLeft = 0;
+    requestAnimationFrame(() => updateCarousel("certificates"));
+  }
+
+  function getCarouselMetrics(name) {
+    const config = carouselConfig[name];
+    const track = config ? $(config.track) : null;
+    const firstCard = track?.firstElementChild;
+    if (!track || !firstCard) return null;
+
+    const gap = Number.parseFloat(getComputedStyle(track).gap) || 0;
+    const cardWidth = firstCard.getBoundingClientRect().width;
+    const visibleCount = Math.max(
+      1,
+      Math.round((track.clientWidth + gap) / (cardWidth + gap))
+    );
+    const itemCount = track.children.length;
+    const pageCount = Math.max(1, Math.ceil(itemCount / visibleCount));
+    const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+
+    return {
+      track,
+      gap,
+      cardWidth,
+      visibleCount,
+      itemCount,
+      pageCount,
+      maxScroll
+    };
+  }
+
+  function updateCarousel(name) {
+    const config = carouselConfig[name];
+    const metrics = getCarouselMetrics(name);
+    if (!config || !metrics) return;
+
+    const currentPage =
+      metrics.maxScroll <= 1
+        ? 1
+        : Math.min(
+            metrics.pageCount,
+            Math.max(
+              1,
+              Math.round(
+                (metrics.track.scrollLeft / metrics.maxScroll) *
+                  (metrics.pageCount - 1)
+              ) + 1
+            )
+          );
+
+    const previous = $(config.previous);
+    const next = $(config.next);
+    if (previous) previous.disabled = metrics.track.scrollLeft <= 2;
+    if (next) {
+      next.disabled = metrics.track.scrollLeft >= metrics.maxScroll - 2;
+    }
+
+    const progress = $(config.progress);
+    if (progress) {
+      progress.style.width = `${(currentPage / metrics.pageCount) * 100}%`;
+    }
+    setText(
+      config.status,
+      `${String(currentPage).padStart(2, "0")} / ${String(
+        metrics.pageCount
+      ).padStart(2, "0")}`
+    );
+  }
+
+  function moveCarousel(name, direction) {
+    const metrics = getCarouselMetrics(name);
+    if (!metrics) return;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const distance =
+      (metrics.cardWidth + metrics.gap) * metrics.visibleCount * direction;
+    metrics.track.scrollBy({
+      left: distance,
+      behavior: reducedMotion ? "auto" : "smooth"
+    });
+  }
+
+  function setupCarousels() {
+    Object.entries(carouselConfig).forEach(([name, config]) => {
+      const track = $(config.track);
+      if (!track) return;
+
+      $(config.previous)?.addEventListener("click", () =>
+        moveCarousel(name, -1)
+      );
+      $(config.next)?.addEventListener("click", () => moveCarousel(name, 1));
+
+      let frame = 0;
+      track.addEventListener(
+        "scroll",
+        () => {
+          cancelAnimationFrame(frame);
+          frame = requestAnimationFrame(() => updateCarousel(name));
+        },
+        { passive: true }
+      );
+
+      track.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+        event.preventDefault();
+        moveCarousel(name, event.key === "ArrowLeft" ? -1 : 1);
+      });
+
+      if ("ResizeObserver" in window) {
+        new ResizeObserver(() => updateCarousel(name)).observe(track);
+      }
+      updateCarousel(name);
+    });
   }
 
   function renderContact(copy) {
@@ -294,6 +429,44 @@
       backToTop.setAttribute("aria-label", label);
       backToTop.setAttribute("title", label);
     }
+
+    const labels =
+      language === "vi"
+        ? {
+            projectTrack: "Danh sách dự án",
+            projectPrevious: "Dự án trước",
+            projectNext: "Dự án tiếp theo",
+            certificateTrack: "Danh sách chứng chỉ",
+            certificatePrevious: "Chứng chỉ trước",
+            certificateNext: "Chứng chỉ tiếp theo"
+          }
+        : {
+            projectTrack: "Project carousel",
+            projectPrevious: "Previous projects",
+            projectNext: "Next projects",
+            certificateTrack: "Certificate carousel",
+            certificatePrevious: "Previous certificates",
+            certificateNext: "Next certificates"
+          };
+
+    $("#projectGrid")?.setAttribute("aria-label", labels.projectTrack);
+    $("#projectPrevious")?.setAttribute(
+      "aria-label",
+      labels.projectPrevious
+    );
+    $("#projectNext")?.setAttribute("aria-label", labels.projectNext);
+    $("#certificateGrid")?.setAttribute(
+      "aria-label",
+      labels.certificateTrack
+    );
+    $("#certificatePrevious")?.setAttribute(
+      "aria-label",
+      labels.certificatePrevious
+    );
+    $("#certificateNext")?.setAttribute(
+      "aria-label",
+      labels.certificateNext
+    );
   }
 
   function updateThemeControl() {
@@ -447,6 +620,7 @@
   function initialize() {
     renderLanguage();
     setupControls();
+    setupCarousels();
     setupNavigation();
     setupSplash();
     setupBackToTop();
