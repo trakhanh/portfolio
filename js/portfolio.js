@@ -50,6 +50,16 @@
     setText("#heroPrimary", copy.hero.primary);
     setText("#heroSecondary", copy.hero.secondary);
     setText("#heroFootnote", copy.hero.footnote);
+    setText("#profilePanelLabel", copy.hero.profileLabel);
+    setText("#profilePanelTitle", copy.hero.profileTitle);
+    setText("#profileRouteLabel", copy.hero.profileRouteLabel);
+    copy.hero.profileAreas.forEach((item, index) => {
+      setText(`#profileArea${index + 1}Title`, item.title);
+      setText(`#profileArea${index + 1}Meta`, item.meta);
+    });
+    $$("[data-profile-route]").forEach((element) => {
+      element.textContent = copy.hero.profileRoute[Number(element.dataset.profileRoute)];
+    });
   }
 
   function renderJourney(copy) {

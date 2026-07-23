@@ -23,7 +23,25 @@ window.PORTFOLIO_CONTENT = {
       primary: "Xem hành trình",
       secondary: "Khám phá dự án",
       status: "Sẵn sàng trao đổi cơ hội hợp tác",
-      footnote: "Based in Ho Chi Minh City, Vietnam"
+      footnote: "Based in Ho Chi Minh City, Vietnam",
+      profileLabel: "HỒ SƠ NĂNG LỰC",
+      profileTitle: "Data · AI · Systems",
+      profileAreas: [
+        {
+          title: "Data Science",
+          meta: "Python · SQL · Machine Learning"
+        },
+        {
+          title: "Applied AI",
+          meta: "Automation · AI Video · R&D"
+        },
+        {
+          title: "Digital Systems",
+          meta: "ERP · HRM · Process Design"
+        }
+      ],
+      profileRouteLabel: "CÁCH TÔI TẠO GIÁ TRỊ",
+      profileRoute: ["Phân tích", "Xây dựng", "Vận hành"]
     },
     journey: {
       eyebrow: "01 · POSITIONING",
@@ -488,7 +506,25 @@ window.PORTFOLIO_CONTENT = {
       primary: "See my journey",
       secondary: "Explore projects",
       status: "Open to relevant collaborations",
-      footnote: "Based in Ho Chi Minh City, Vietnam"
+      footnote: "Based in Ho Chi Minh City, Vietnam",
+      profileLabel: "CAPABILITY PROFILE",
+      profileTitle: "Data · AI · Systems",
+      profileAreas: [
+        {
+          title: "Data Science",
+          meta: "Python · SQL · Machine Learning"
+        },
+        {
+          title: "Applied AI",
+          meta: "Automation · AI Video · R&D"
+        },
+        {
+          title: "Digital Systems",
+          meta: "ERP · HRM · Process Design"
+        }
+      ],
+      profileRouteLabel: "HOW I CREATE VALUE",
+      profileRoute: ["Analyze", "Build", "Operate"]
     },
     journey: {
       eyebrow: "01 · POSITIONING",
