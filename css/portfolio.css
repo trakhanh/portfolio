@@ -807,6 +807,97 @@ html[data-theme="dark"] .theme-icon-on {
   text-transform: uppercase;
 }
 
+.experience-section {
+  background: var(--bg);
+}
+
+.experience-list {
+  border-top: 1px solid var(--line);
+}
+
+.experience-card {
+  position: relative;
+  padding: 38px 0;
+  display: grid;
+  grid-template-columns: minmax(150px, 0.55fr) minmax(260px, 0.95fr) minmax(0, 1.5fr);
+  gap: clamp(24px, 4vw, 58px);
+  border-bottom: 1px solid var(--line);
+}
+
+.experience-card.is-current::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -18px;
+  width: 2px;
+  background: var(--accent);
+}
+
+.experience-date {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text-soft);
+  font-size: 11px;
+}
+
+.experience-date i {
+  width: 7px;
+  height: 7px;
+  margin-top: 5px;
+  flex: 0 0 auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.experience-card.is-current .experience-date i {
+  border-color: var(--green);
+  background: var(--green);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--green) 16%, transparent);
+}
+
+.experience-position p {
+  margin: 0 0 12px;
+  color: var(--text-faint);
+  font: 600 9px/1.55 var(--display);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.experience-position h3 {
+  margin: 0;
+  font: 600 clamp(22px, 2.3vw, 30px)/1.14 var(--display);
+  letter-spacing: -0.04em;
+}
+
+.experience-highlights {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  list-style: none;
+}
+
+.experience-highlights li {
+  position: relative;
+  padding-left: 17px;
+  color: var(--text-soft);
+  font-size: 12px;
+}
+
+.experience-highlights li::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
 .project-toolbar {
   margin-bottom: 24px;
   display: flex;
@@ -1339,6 +1430,14 @@ html[data-theme="dark"] .contact-card .button-primary {
     border-bottom: 0;
   }
 
+  .experience-card {
+    grid-template-columns: minmax(140px, 0.45fr) minmax(0, 1fr);
+  }
+
+  .experience-highlights {
+    grid-column: 2;
+  }
+
   .about-layout {
     grid-template-columns: 1fr;
   }
@@ -1386,6 +1485,20 @@ html[data-theme="dark"] .contact-card .button-primary {
 
   .work-card {
     min-height: 470px;
+  }
+
+  .experience-card {
+    padding: 30px 0;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .experience-card.is-current::before {
+    left: -8px;
+  }
+
+  .experience-highlights {
+    grid-column: auto;
   }
 
   .project-image {

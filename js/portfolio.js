@@ -86,6 +86,35 @@
       .join("");
   }
 
+  function renderExperience(copy) {
+    setText("#experienceEyebrow", copy.experience.eyebrow);
+    setText("#experienceTitle", copy.experience.title);
+    setText("#experienceIntro", copy.experience.intro);
+
+    const list = $("#experienceList");
+    if (!list) return;
+
+    list.innerHTML = copy.experience.items
+      .map(
+        (item) => `
+          <article class="experience-card ${item.current ? "is-current" : ""}">
+            <div class="experience-date">
+              <i aria-hidden="true"></i>
+              <span>${item.date}</span>
+            </div>
+            <div class="experience-position">
+              <p>${item.company}</p>
+              <h3>${item.role}</h3>
+            </div>
+            <ul class="experience-highlights">
+              ${item.highlights.map((highlight) => `<li>${highlight}</li>`).join("")}
+            </ul>
+          </article>
+        `
+      )
+      .join("");
+  }
+
   function renderProjectFilters(copy) {
     const filters = $("#projectFilters");
     if (!filters) return;
@@ -300,6 +329,7 @@
     renderHero(copy);
     renderJourney(copy);
     renderWork(copy);
+    renderExperience(copy);
     renderProjects(copy);
     renderCertificates(copy);
     renderAbout(copy);

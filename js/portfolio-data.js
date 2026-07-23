@@ -8,6 +8,7 @@ window.PORTFOLIO_CONTENT = {
     nav: {
       journey: "Hành trình",
       work: "Công việc",
+      experience: "Kinh nghiệm",
       projects: "Dự án",
       certificates: "Chứng chỉ",
       about: "Năng lực",
@@ -94,8 +95,50 @@ window.PORTFOLIO_CONTENT = {
         }
       ]
     },
+    experience: {
+      eyebrow: "03 · KINH NGHIỆM",
+      title: "Từ triển khai hệ thống đến R&D AI.",
+      intro:
+        "Hành trình làm việc của tôi phát triển theo một mạch liên tục: hỗ trợ triển khai ERP, xây công cụ AI và automation, sau đó đi sâu hơn vào ứng dụng AI và nghiên cứu phát triển.",
+      items: [
+        {
+          date: "Tháng 10/2025 — Hiện tại",
+          company:
+            "CÔNG TY TNHH TRUYỀN THÔNG VÀ QUẢNG CÁO MẶT TRỜI (SUN MEDIA)",
+          role: "Nhân viên AI → Nhân viên R&D",
+          current: true,
+          highlights: [
+            "Bắt đầu ở vị trí Nhân viên AI, ứng dụng AI để hỗ trợ quy trình sản xuất video và nội dung.",
+            "Sau đó chuyển sang Nhân viên R&D, tập trung nghiên cứu công cụ, quy trình và giải pháp AI phục vụ sản xuất và chuyển đổi số."
+          ]
+        },
+        {
+          date: "Tháng 7/2025 — Tháng 9/2025",
+          company: "CÔNG TY CỔ PHẦN BÔNG TRÀ F&B",
+          role: "Thực tập sinh IT (AI)",
+          current: false,
+          highlights: [
+            "Phát triển công cụ tự động hóa bằng n8n và Google Apps Script, gồm chatbot đa kênh và tiện ích HR, giúp giảm 40% khối lượng xử lý thủ công.",
+            "Thiết kế giao diện cơ bản cho website Pre-order và Workshop, hỗ trợ đội Marketing triển khai nhanh chiến dịch.",
+            "Đề xuất ý tưởng ERP bằng Odoo Online và triển khai demo thử nghiệm, tạo cơ sở cho quyết định áp dụng trên toàn công ty.",
+            "Soạn tài liệu hướng dẫn giúp nhân viên rút ngắn thời gian làm quen hệ thống."
+          ]
+        },
+        {
+          date: "Tháng 4/2025 — Tháng 6/2025",
+          company: "CÔNG TY TNHH KHOA HỌC KỸ THUẬT VẠN THỊNH",
+          role: "Thực tập sinh IT (Triển khai ERP)",
+          current: false,
+          highlights: [
+            "Hỗ trợ vận hành và khắc phục sự cố CNTT trong hệ thống nội bộ.",
+            "Tham gia triển khai ERP AMIS MISA, đặc biệt module AI Marketing, giúp đội ngũ Sales tăng hiệu quả theo dõi khách hàng tiềm năng.",
+            "Soạn thảo tài liệu hướng dẫn và hỗ trợ đào tạo Sales về CRM, đảm bảo quá trình chuyển đổi sang hệ thống mới diễn ra mượt mà."
+          ]
+        }
+      ]
+    },
     projects: {
-      eyebrow: "03 · SELECTED WORK",
+      eyebrow: "04 · SELECTED WORK",
       title: "Dự án theo đúng hành trình phát triển.",
       intro:
         "Các dự án học thuật cho thấy nền tảng kỹ thuật. Các sản phẩm và công cụ sau đó cho thấy cách tôi áp dụng nền tảng đó vào công việc thực tế.",
@@ -113,7 +156,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Đồ án tốt nghiệp ứng dụng YOLOv8, SORT và OpenCV để phát hiện, theo dõi và đo vật thể trên băng chuyền công nghiệp.",
           result: "Đồ án tốt nghiệp · 9.5/10",
-          image: "./img/projects-v2/computer-vision-inspection.jpg",
+          image: "./img/projects-v3/computer-vision-inspection.jpg",
           tags: ["Python", "YOLOv8", "SORT", "OpenCV"],
           links: [
             {
@@ -134,7 +177,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Nghiên cứu đồng thời Object Detection, Segmentation và Depth Estimation trên BDD100K và KITTI.",
           result: "Research notebook",
-          image: "./img/projects-v2/multi-task-perception.jpg",
+          image: "./img/projects-v3/multi-task-perception.jpg",
           tags: ["PyTorch", "BDD100K", "KITTI", "Deep Learning"],
           links: [
             {
@@ -151,7 +194,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Ứng dụng web real-time thử nghiệm CNN, VGG16, ResNet50 và U-Net cho bài toán nhận dạng và phân đoạn ảnh.",
           result: "Web application prototype",
-          image: "./img/projects-v2/hand-gesture-vision.jpg",
+          image: "./img/projects-v3/hand-gesture-vision.jpg",
           tags: ["Streamlit", "CNN", "ResNet50", "U-Net"],
           links: [
             {
@@ -172,7 +215,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Chatbot hỗ trợ ứng viên trên website và fanpage, kết nối workflow xử lý bằng n8n với AI và nguồn dữ liệu.",
           result: "Website & fanpage integration",
-          image: "./img/projects-v2/recruitment-chatbot.jpg",
+          image: "./img/projects-v3/recruitment-chatbot.jpg",
           tags: ["n8n", "GPT", "Gemini", "Supabase"],
           links: [
             { label: "Website", url: "https://bongtra.vn" },
@@ -190,7 +233,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Các workflow cho email hàng loạt, đặt phòng họp, dữ liệu vận hành và tác vụ nội bộ bằng Google Apps Script.",
           result: "Internal operational tools",
-          image: "./img/projects-v2/internal-automation.jpg",
+          image: "./img/projects-v3/internal-automation.jpg",
           tags: ["Apps Script", "Sheets API", "Calendar API"],
           links: []
         },
@@ -202,7 +245,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Trực tiếp xây dựng ứng dụng HRM như một sản phẩm chuyển đổi số theo định hướng ERP: số hóa quy trình nhân sự, tập trung dữ liệu, phân quyền theo vai trò, xây dựng giao diện quản trị và kết nối workflow vận hành. Chi tiết module được giới hạn theo phạm vi có thể công khai.",
           result: "ERP-oriented transformation · HRM product",
-          image: "./img/projects-v2/erp-hrm.jpg",
+          image: "./img/projects-v3/erp-hrm.jpg",
           tags: ["ERP", "HRM", "Workflow", "Role-based Access"],
           links: []
         },
@@ -214,14 +257,14 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Ứng dụng ChatGPT, Claude, Gemini, Antigravity và NotebookLM để hỗ trợ research, script, storyboard, asset, voice, tracking và publishing trong quy trình sản xuất video.",
           result: "Current professional focus",
-          image: "./img/projects-v2/ai-video-production.jpg",
+          image: "./img/projects-v3/ai-video-production.jpg",
           tags: ["ChatGPT", "Claude", "Antigravity", "AI Video"],
           links: []
         }
       ]
     },
     certificates: {
-      eyebrow: "04 · CHỨNG CHỈ",
+      eyebrow: "05 · CHỨNG CHỈ",
       title: "Chứng chỉ và quá trình học tập liên tục.",
       intro:
         "Các chứng chỉ bổ sung cho nền tảng Data Science và phản ánh quá trình tôi chủ động mở rộng kiến thức về AI, IT Support, Data Analytics và Cybersecurity.",
@@ -305,7 +348,7 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     about: {
-      eyebrow: "05 · CAPABILITIES",
+      eyebrow: "06 · CAPABILITIES",
       title: "Tôi kết nối dữ liệu, AI và chuyển đổi số.",
       intro:
         "Tôi có thể đi từ bài toán nghiệp vụ và dữ liệu đến quy trình ERP, phân hệ, tích hợp, giao diện và sản phẩm thực tế; đồng thời biết cách chọn công cụ AI phù hợp để tăng tốc sáng tạo và vận hành.",
@@ -328,7 +371,7 @@ window.PORTFOLIO_CONTENT = {
         "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
     },
     contact: {
-      eyebrow: "06 · CONTACT",
+      eyebrow: "07 · CONTACT",
       title: "Cùng trao đổi về một bài toán thực tế.",
       intro:
         "Tôi quan tâm đến các cơ hội kết hợp Data Science, AI ứng dụng, chuyển đổi số, sản phẩm HRM và quy trình sản xuất video bằng AI.",
@@ -347,6 +390,7 @@ window.PORTFOLIO_CONTENT = {
     nav: {
       journey: "Journey",
       work: "Work",
+      experience: "Experience",
       projects: "Projects",
       certificates: "Certificates",
       about: "Capabilities",
@@ -433,8 +477,49 @@ window.PORTFOLIO_CONTENT = {
         }
       ]
     },
+    experience: {
+      eyebrow: "03 · EXPERIENCE",
+      title: "From system implementation to AI R&D.",
+      intro:
+        "My experience follows a continuous path: supporting ERP implementation, building AI and automation tools, then moving deeper into applied AI and research and development.",
+      items: [
+        {
+          date: "Oct 2025 — Present",
+          company: "SUN MEDIA COMMUNICATIONS AND ADVERTISING CO., LTD.",
+          role: "AI Specialist → R&D Specialist",
+          current: true,
+          highlights: [
+            "Started as an AI Specialist, applying AI to support video and content-production workflows.",
+            "Later moved into an R&D role focused on researching tools, workflows and AI solutions for production and digital transformation."
+          ]
+        },
+        {
+          date: "Jul 2025 — Sep 2025",
+          company: "BONG TRA F&B JOINT STOCK COMPANY",
+          role: "IT Intern (AI)",
+          current: false,
+          highlights: [
+            "Developed automation tools with n8n and Google Apps Script, including a multi-channel chatbot and HR utilities, reducing manual processing workload by 40%.",
+            "Designed basic interfaces for Pre-order and Workshop websites, helping the Marketing team launch campaigns faster.",
+            "Proposed an ERP direction using Odoo Online and delivered an experimental demo that supported the company-wide adoption decision.",
+            "Prepared user guides that shortened employees’ system onboarding time."
+          ]
+        },
+        {
+          date: "Apr 2025 — Jun 2025",
+          company: "VAN THINH SCIENCE AND ENGINEERING CO., LTD.",
+          role: "IT Intern (ERP Implementation)",
+          current: false,
+          highlights: [
+            "Supported internal IT operations and troubleshooting.",
+            "Participated in the AMIS MISA ERP implementation, particularly the AI Marketing module, helping the Sales team improve lead tracking.",
+            "Prepared user documentation and supported CRM training for Sales, enabling a smoother transition to the new system."
+          ]
+        }
+      ]
+    },
     projects: {
-      eyebrow: "03 · SELECTED WORK",
+      eyebrow: "04 · SELECTED WORK",
       title: "Projects mapped to the real journey.",
       intro:
         "Academic projects show the technical foundation. Later products and tools show how that foundation was applied in professional contexts.",
@@ -452,7 +537,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "A graduation project using YOLOv8, SORT and OpenCV to detect, track and measure objects on an industrial conveyor.",
           result: "Graduation project · 9.5/10",
-          image: "./img/projects-v2/computer-vision-inspection.jpg",
+          image: "./img/projects-v3/computer-vision-inspection.jpg",
           tags: ["Python", "YOLOv8", "SORT", "OpenCV"],
           links: [
             {
@@ -473,7 +558,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Research combining Object Detection, Segmentation and Depth Estimation on BDD100K and KITTI.",
           result: "Research notebook",
-          image: "./img/projects-v2/multi-task-perception.jpg",
+          image: "./img/projects-v3/multi-task-perception.jpg",
           tags: ["PyTorch", "BDD100K", "KITTI", "Deep Learning"],
           links: [
             {
@@ -490,7 +575,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "A real-time web application exploring CNN, VGG16, ResNet50 and U-Net for recognition and image segmentation.",
           result: "Web application prototype",
-          image: "./img/projects-v2/hand-gesture-vision.jpg",
+          image: "./img/projects-v3/hand-gesture-vision.jpg",
           tags: ["Streamlit", "CNN", "ResNet50", "U-Net"],
           links: [
             {
@@ -511,7 +596,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "A chatbot supporting candidates on web and Facebook, with n8n workflows connecting AI and data sources.",
           result: "Website & fanpage integration",
-          image: "./img/projects-v2/recruitment-chatbot.jpg",
+          image: "./img/projects-v3/recruitment-chatbot.jpg",
           tags: ["n8n", "GPT", "Gemini", "Supabase"],
           links: [
             { label: "Website", url: "https://bongtra.vn" },
@@ -529,7 +614,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Workflows for bulk email, meeting-room booking, operational data and internal tasks built with Google Apps Script.",
           result: "Internal operational tools",
-          image: "./img/projects-v2/internal-automation.jpg",
+          image: "./img/projects-v3/internal-automation.jpg",
           tags: ["Apps Script", "Sheets API", "Calendar API"],
           links: []
         },
@@ -541,7 +626,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Built an HRM application as an ERP-oriented digital-transformation product: digitizing HR processes, centralizing data, implementing role-based access, building administration interfaces and connecting operational workflows. Module details remain limited to publicly shareable information.",
           result: "ERP-oriented transformation · HRM product",
-          image: "./img/projects-v2/erp-hrm.jpg",
+          image: "./img/projects-v3/erp-hrm.jpg",
           tags: ["ERP", "HRM", "Workflow", "Role-based Access"],
           links: []
         },
@@ -553,14 +638,14 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Using ChatGPT, Claude, Gemini, Antigravity and NotebookLM to support research, scripts, storyboards, assets, voice, tracking and publishing across the video-production workflow.",
           result: "Current professional focus",
-          image: "./img/projects-v2/ai-video-production.jpg",
+          image: "./img/projects-v3/ai-video-production.jpg",
           tags: ["ChatGPT", "Claude", "Antigravity", "AI Video"],
           links: []
         }
       ]
     },
     certificates: {
-      eyebrow: "04 · CERTIFICATES",
+      eyebrow: "05 · CERTIFICATES",
       title: "Certificates and continuous learning.",
       intro:
         "These certificates complement my Data Science foundation and reflect continuous learning across AI, IT Support, Data Analytics and Cybersecurity.",
@@ -644,7 +729,7 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     about: {
-      eyebrow: "05 · CAPABILITIES",
+      eyebrow: "06 · CAPABILITIES",
       title: "I connect data, AI and digital transformation.",
       intro:
         "I move from business problems and data to ERP processes, functional modules, integrations, interfaces and working products, while choosing the right AI tools to accelerate creative and operational work.",
@@ -667,7 +752,7 @@ window.PORTFOLIO_CONTENT = {
         "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
     },
     contact: {
-      eyebrow: "06 · CONTACT",
+      eyebrow: "07 · CONTACT",
       title: "Let’s discuss a real problem.",
       intro:
         "I am interested in opportunities connecting Data Science, applied AI, digital transformation, HRM products and AI-powered video production.",
