@@ -532,6 +532,7 @@
     setText("#contactTitle", copy.contact.title);
     setText("#contactIntro", copy.contact.intro);
     setText("#emailLink", `${copy.contact.emailLabel} ↗`);
+    setText("#phoneLink", copy.contact.phoneLabel);
     setText("#socialLabel", copy.contact.socialLabel);
     setText("#footerText", copy.footer);
   }

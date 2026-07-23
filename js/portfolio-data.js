@@ -458,6 +458,7 @@ window.PORTFOLIO_CONTENT = {
       intro:
         "Tôi quan tâm đến các cơ hội kết hợp Data Science, AI ứng dụng, chuyển đổi số, sản phẩm HRM và quy trình sản xuất video bằng AI.",
       emailLabel: "Gửi email",
+      phoneLabel: "Gọi 0792 661 744",
       socialLabel: "Kết nối"
     },
     footer: "Trà Nguyễn Gia Khánh · Data Science → AI → Digital Transformation"
@@ -921,6 +922,7 @@ window.PORTFOLIO_CONTENT = {
       intro:
         "I am interested in opportunities connecting Data Science, applied AI, digital transformation, HRM products and AI-powered video production.",
       emailLabel: "Send an email",
+      phoneLabel: "Call 0792 661 744",
       socialLabel: "Connect"
     },
     footer: "Tra Nguyen Gia Khanh · Data Science → AI → Digital Transformation"

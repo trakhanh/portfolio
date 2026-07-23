@@ -1813,16 +1813,37 @@ html[data-theme="dark"] .contact-card {
   gap: 25px;
 }
 
+.contact-direct {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .contact-card .button-primary {
   border-color: #f4f5f0;
   color: #171a18;
   background: #f4f5f0;
 }
 
+.contact-card .contact-phone-button {
+  border-color: rgba(244, 245, 240, 0.34);
+  color: currentColor;
+  background: transparent;
+}
+
+.contact-card .contact-phone-button:hover {
+  border-color: currentColor;
+}
+
 html[data-theme="dark"] .contact-card .button-primary {
   border-color: #151515;
   color: #f4f5f0;
   background: #151515;
+}
+
+html[data-theme="dark"] .contact-card .contact-phone-button {
+  border-color: rgba(21, 21, 21, 0.28);
 }
 
 .social-links {
