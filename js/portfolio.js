@@ -258,6 +258,13 @@
         language === "vi" ? "Switch to English" : "Chuyển sang tiếng Việt"
       );
     }
+
+    const backToTop = $("#backToTop");
+    if (backToTop) {
+      const label = language === "vi" ? "Về đầu trang" : "Back to top";
+      backToTop.setAttribute("aria-label", label);
+      backToTop.setAttribute("title", label);
+    }
   }
 
   function updateThemeControl() {
@@ -388,11 +395,31 @@
     }, displayTime);
   }
 
+  function setupBackToTop() {
+    const button = $("#backToTop");
+    if (!button) return;
+
+    const updateVisibility = () => {
+      button.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.75);
+    };
+
+    window.addEventListener("scroll", updateVisibility, { passive: true });
+    button.addEventListener("click", () => {
+      const behavior = window.matchMedia("(prefers-reduced-motion: reduce)")
+        .matches
+        ? "auto"
+        : "smooth";
+      window.scrollTo({ top: 0, behavior });
+    });
+    updateVisibility();
+  }
+
   function initialize() {
     renderLanguage();
     setupControls();
     setupNavigation();
     setupSplash();
+    setupBackToTop();
     setText("#currentYear", String(new Date().getFullYear()));
   }
 

@@ -113,7 +113,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Đồ án tốt nghiệp ứng dụng YOLOv8, SORT và OpenCV để phát hiện, theo dõi và đo vật thể trên băng chuyền công nghiệp.",
           result: "Đồ án tốt nghiệp · 9.5/10",
-          image: "./img/doantotnghiep.png",
+          image: "./img/projects-v2/computer-vision-inspection.jpg",
           tags: ["Python", "YOLOv8", "SORT", "OpenCV"],
           links: [
             {
@@ -134,7 +134,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Nghiên cứu đồng thời Object Detection, Segmentation và Depth Estimation trên BDD100K và KITTI.",
           result: "Research notebook",
-          image: "./img/multi_task.png",
+          image: "./img/projects-v2/multi-task-perception.jpg",
           tags: ["PyTorch", "BDD100K", "KITTI", "Deep Learning"],
           links: [
             {
@@ -151,7 +151,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Ứng dụng web real-time thử nghiệm CNN, VGG16, ResNet50 và U-Net cho bài toán nhận dạng và phân đoạn ảnh.",
           result: "Web application prototype",
-          image: "./img/fingercount.png",
+          image: "./img/projects-v2/hand-gesture-vision.jpg",
           tags: ["Streamlit", "CNN", "ResNet50", "U-Net"],
           links: [
             {
@@ -172,7 +172,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Chatbot hỗ trợ ứng viên trên website và fanpage, kết nối workflow xử lý bằng n8n với AI và nguồn dữ liệu.",
           result: "Website & fanpage integration",
-          image: "./img/N8N.jpg",
+          image: "./img/projects-v2/recruitment-chatbot.jpg",
           tags: ["n8n", "GPT", "Gemini", "Supabase"],
           links: [
             { label: "Website", url: "https://bongtra.vn" },
@@ -190,7 +190,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Các workflow cho email hàng loạt, đặt phòng họp, dữ liệu vận hành và tác vụ nội bộ bằng Google Apps Script.",
           result: "Internal operational tools",
-          image: "./img/appsscripts.jpg",
+          image: "./img/projects-v2/internal-automation.jpg",
           tags: ["Apps Script", "Sheets API", "Calendar API"],
           links: []
         },
@@ -202,7 +202,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Trực tiếp xây dựng ứng dụng HRM như một sản phẩm chuyển đổi số theo định hướng ERP: số hóa quy trình nhân sự, tập trung dữ liệu, phân quyền theo vai trò, xây dựng giao diện quản trị và kết nối workflow vận hành. Chi tiết module được giới hạn theo phạm vi có thể công khai.",
           result: "ERP-oriented transformation · HRM product",
-          image: "./img/project5.png",
+          image: "./img/projects-v2/erp-hrm.jpg",
           tags: ["ERP", "HRM", "Workflow", "Role-based Access"],
           links: []
         },
@@ -214,7 +214,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Ứng dụng ChatGPT, Claude, Gemini, Antigravity và NotebookLM để hỗ trợ research, script, storyboard, asset, voice, tracking và publishing trong quy trình sản xuất video.",
           result: "Current professional focus",
-          image: "./img/Notebooklm.png",
+          image: "./img/projects-v2/ai-video-production.jpg",
           tags: ["ChatGPT", "Claude", "Antigravity", "AI Video"],
           links: []
         }
@@ -452,7 +452,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "A graduation project using YOLOv8, SORT and OpenCV to detect, track and measure objects on an industrial conveyor.",
           result: "Graduation project · 9.5/10",
-          image: "./img/doantotnghiep.png",
+          image: "./img/projects-v2/computer-vision-inspection.jpg",
           tags: ["Python", "YOLOv8", "SORT", "OpenCV"],
           links: [
             {
@@ -473,7 +473,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Research combining Object Detection, Segmentation and Depth Estimation on BDD100K and KITTI.",
           result: "Research notebook",
-          image: "./img/multi_task.png",
+          image: "./img/projects-v2/multi-task-perception.jpg",
           tags: ["PyTorch", "BDD100K", "KITTI", "Deep Learning"],
           links: [
             {
@@ -490,7 +490,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "A real-time web application exploring CNN, VGG16, ResNet50 and U-Net for recognition and image segmentation.",
           result: "Web application prototype",
-          image: "./img/fingercount.png",
+          image: "./img/projects-v2/hand-gesture-vision.jpg",
           tags: ["Streamlit", "CNN", "ResNet50", "U-Net"],
           links: [
             {
@@ -511,7 +511,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "A chatbot supporting candidates on web and Facebook, with n8n workflows connecting AI and data sources.",
           result: "Website & fanpage integration",
-          image: "./img/N8N.jpg",
+          image: "./img/projects-v2/recruitment-chatbot.jpg",
           tags: ["n8n", "GPT", "Gemini", "Supabase"],
           links: [
             { label: "Website", url: "https://bongtra.vn" },
@@ -529,7 +529,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Workflows for bulk email, meeting-room booking, operational data and internal tasks built with Google Apps Script.",
           result: "Internal operational tools",
-          image: "./img/appsscripts.jpg",
+          image: "./img/projects-v2/internal-automation.jpg",
           tags: ["Apps Script", "Sheets API", "Calendar API"],
           links: []
         },
@@ -541,7 +541,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Built an HRM application as an ERP-oriented digital-transformation product: digitizing HR processes, centralizing data, implementing role-based access, building administration interfaces and connecting operational workflows. Module details remain limited to publicly shareable information.",
           result: "ERP-oriented transformation · HRM product",
-          image: "./img/project5.png",
+          image: "./img/projects-v2/erp-hrm.jpg",
           tags: ["ERP", "HRM", "Workflow", "Role-based Access"],
           links: []
         },
@@ -553,7 +553,7 @@ window.PORTFOLIO_CONTENT = {
           description:
             "Using ChatGPT, Claude, Gemini, Antigravity and NotebookLM to support research, scripts, storyboards, assets, voice, tracking and publishing across the video-production workflow.",
           result: "Current professional focus",
-          image: "./img/Notebooklm.png",
+          image: "./img/projects-v2/ai-video-production.jpg",
           tags: ["ChatGPT", "Claude", "Antigravity", "AI Video"],
           links: []
         }

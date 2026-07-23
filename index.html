@@ -74,8 +74,8 @@
             type="button"
             aria-label="Switch color theme"
           >
-            <span class="theme-icon theme-icon-sun">○</span>
-            <span class="theme-icon theme-icon-moon">●</span>
+            <span class="theme-icon theme-icon-bulb theme-icon-off" aria-hidden="true"><i></i></span>
+            <span class="theme-icon theme-icon-bulb theme-icon-on" aria-hidden="true"><i></i></span>
           </button>
           <button
             class="language-toggle"
@@ -256,6 +256,10 @@
         <p>© <span id="currentYear"></span></p>
       </div>
     </footer>
+
+    <button class="back-to-top" id="backToTop" type="button" aria-label="Về đầu trang">
+      <span aria-hidden="true">↑</span>
+    </button>
 
     <script src="./js/portfolio-data.js"></script>
     <script src="./js/portfolio.js"></script>
