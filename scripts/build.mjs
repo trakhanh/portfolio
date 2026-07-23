@@ -1,0 +1,57 @@
+import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const dist = path.join(root, "dist");
+const client = path.join(dist, "client");
+
+await rm(dist, { recursive: true, force: true });
+await mkdir(path.join(dist, "server"), { recursive: true });
+await mkdir(client, { recursive: true });
+
+for (const entry of ["index.html", "css", "js", "img"]) {
+  const source = path.join(root, entry);
+  if (!existsSync(source)) continue;
+  await cp(source, path.join(client, entry), { recursive: true });
+}
+
+const socialPreview = path.join(root, "public", "og.png");
+if (existsSync(socialPreview)) {
+  await cp(socialPreview, path.join(client, "og.png"));
+}
+
+if (existsSync(path.join(root, "CNAME"))) {
+  await cp(path.join(root, "CNAME"), path.join(client, "CNAME"));
+}
+
+const html = await readFile(path.join(client, "index.html"), "utf8");
+if (!html.includes("AI Creative Systems") || !html.includes("portfolio.js")) {
+  throw new Error("Built HTML is missing required portfolio content.");
+}
+
+const worker = `const INDEX_PATH = "/index.html";
+
+export default {
+  async fetch(request, env) {
+    if (!env?.ASSETS?.fetch) {
+      return new Response("Static asset binding is unavailable.", { status: 503 });
+    }
+
+    const response = await env.ASSETS.fetch(request);
+    if (response.status !== 404) return response;
+
+    const url = new URL(request.url);
+    if (request.method === "GET" && !url.pathname.includes(".")) {
+      return env.ASSETS.fetch(new Request(new URL(INDEX_PATH, url), request));
+    }
+
+    return response;
+  }
+};
+`;
+
+await writeFile(path.join(dist, "server", "index.js"), worker, "utf8");
+
+console.log("Portfolio build completed: dist/client + dist/server/index.js");
