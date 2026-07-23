@@ -127,10 +127,10 @@ window.PORTFOLIO_CONTENT = {
         issuerRole: "Founder & CEO · Công ty Cổ phần Bông Trà F&B",
         date: "Ký ngày 22/09/2025",
         highlights: [
-          "Website & AI Chatbot",
-          "HR & Operations Automation",
-          "Recruitment Chatbot",
-          "Marketing Landing Pages"
+          "Website & AI Chatbot đa kênh",
+          "Đặt phòng họp & Email bảng lương",
+          "Chatbot tuyển dụng & FAQ nội bộ",
+          "Thu thập đánh giá & Landing Page thanh toán"
         ],
         preview: "./img/recommendation-letter-preview.jpg",
         pages: [
@@ -164,8 +164,11 @@ window.PORTFOLIO_CONTENT = {
           role: "Thực tập sinh IT (AI)",
           current: false,
           highlights: [
-            "Phát triển công cụ tự động hóa bằng n8n và Google Apps Script, gồm chatbot đa kênh và tiện ích HR, giúp giảm 40% khối lượng xử lý thủ công.",
-            "Thiết kế giao diện cơ bản cho website Pre-order và Workshop, hỗ trợ đội Marketing triển khai nhanh chiến dịch.",
+            "Hỗ trợ xây dựng website chính thức của Bông Trà và tích hợp Chatbot AI trên web để tự động hóa tương tác với khách hàng.",
+            "Tích hợp chatbot vào Fanpage Bông Trà Tuyển Dụng, giúp bộ phận HR trao đổi và giải đáp ứng viên nhanh hơn.",
+            "Phát triển các công cụ tự động hóa bằng n8n và Google Apps Script, gồm đặt phòng họp nội bộ, gửi email bảng lương hàng loạt và FAQ chính sách nhân sự; góp phần giảm 40% khối lượng xử lý thủ công.",
+            "Hỗ trợ phát triển công cụ thu thập đánh giá trên Google và Food App, phục vụ đo lường mức độ hài lòng và hoạt động Marketing.",
+            "Thiết lập Landing Page Pre-order và Workshop có tích hợp thanh toán trực tuyến, rút ngắn quy trình đăng ký và đặt hàng thủ công.",
             "Đề xuất ý tưởng ERP bằng Odoo Online và triển khai demo thử nghiệm, tạo cơ sở cho quyết định áp dụng trên toàn công ty.",
             "Soạn tài liệu hướng dẫn giúp nhân viên rút ngắn thời gian làm quen hệ thống."
           ]
@@ -257,12 +260,12 @@ window.PORTFOLIO_CONTENT = {
           id: "recruitment-chatbot",
           phase: "professional",
           phaseLabel: "CÔNG VIỆC · AI AUTOMATION",
-          title: "Chatbot tuyển dụng đa kênh",
+          title: "Website & Chatbot AI đa kênh",
           description:
-            "Chatbot hỗ trợ ứng viên trên website và fanpage, kết nối workflow xử lý bằng n8n với AI và nguồn dữ liệu.",
-          result: "Website & fanpage integration",
+            "Hỗ trợ xây dựng website chính thức của Bông Trà, tích hợp Chatbot AI trên web cho khách hàng và trên Fanpage tuyển dụng cho ứng viên; kết nối workflow n8n với AI và nguồn dữ liệu để tự động hóa phản hồi.",
+          result: "Customer & recruitment automation",
           image: "./img/projects-v3/recruitment-chatbot.jpg",
-          tags: ["n8n", "GPT", "Gemini", "Supabase"],
+          tags: ["Website", "AI Chatbot", "n8n", "GPT", "Gemini", "Supabase"],
           links: [
             { label: "Website", url: "https://bongtra.vn" },
             {
@@ -277,22 +280,22 @@ window.PORTFOLIO_CONTENT = {
           phaseLabel: "CÔNG VIỆC · INTERNAL TOOLS",
           title: "Công cụ tự động hóa nội bộ",
           description:
-            "Các workflow cho email hàng loạt, đặt phòng họp, dữ liệu vận hành và tác vụ nội bộ bằng Google Apps Script.",
-          result: "Internal operational tools",
+            "Bộ công cụ gồm hệ thống đặt phòng họp tự động, gửi email bảng lương hàng loạt, FAQ chính sách nhân sự và thu thập đánh giá Google/Food App, được triển khai bằng Google Apps Script và workflow tự động hóa.",
+          result: "HR · administration · feedback workflows",
           image: "./img/projects-v3/internal-automation.jpg",
-          tags: ["Apps Script", "Sheets API", "Calendar API"],
+          tags: ["Apps Script", "Sheets API", "Calendar API", "Email Automation"],
           links: []
         },
         {
           id: "preorder-workshop-web",
           phase: "professional",
           phaseLabel: "CÔNG VIỆC · WEB EXPERIENCE",
-          title: "Giao diện Pre-order & Workshop",
+          title: "Landing Page Pre-order & Workshop",
           description:
-            "Thiết kế giao diện cơ bản cho website Pre-order và Workshop, giúp đội Marketing chuẩn bị landing page và triển khai chiến dịch nhanh hơn.",
-          result: "Campaign enablement · UI prototype",
+            "Thiết lập các Landing Page Marketing cho chương trình Workshop và đặt hàng trà trước, tích hợp cổng thanh toán trực tuyến để giảm thao tác đăng ký và tiếp nhận đơn thủ công.",
+          result: "Marketing funnel · online payment",
           image: "./img/projects-v3/preorder-workshop.jpg",
-          tags: ["UI Design", "Pre-order", "Workshop", "Marketing"],
+          tags: ["Landing Page", "Online Payment", "Pre-order", "Workshop"],
           links: []
         },
         {
@@ -588,10 +591,10 @@ window.PORTFOLIO_CONTENT = {
         issuerRole: "Founder & CEO · Bong Tra F&B Joint Stock Company",
         date: "Signed September 22, 2025",
         highlights: [
-          "Website & AI Chatbot",
-          "HR & Operations Automation",
-          "Recruitment Chatbot",
-          "Marketing Landing Pages"
+          "Website & multi-channel AI Chatbot",
+          "Meeting-room & payroll email automation",
+          "Recruitment Chatbot & internal FAQ",
+          "Review collection & payment Landing Pages"
         ],
         preview: "./img/recommendation-letter-preview.jpg",
         pages: [
@@ -624,8 +627,11 @@ window.PORTFOLIO_CONTENT = {
           role: "IT Intern (AI)",
           current: false,
           highlights: [
-            "Developed automation tools with n8n and Google Apps Script, including a multi-channel chatbot and HR utilities, reducing manual processing workload by 40%.",
-            "Designed basic interfaces for Pre-order and Workshop websites, helping the Marketing team launch campaigns faster.",
+            "Supported the official Bong Tra website and integrated an AI Chatbot on the web to automate customer interactions.",
+            "Integrated a chatbot into the Bong Tra Recruitment Facebook page, helping HR respond to candidates more quickly.",
+            "Developed n8n and Google Apps Script automations for internal meeting-room booking, bulk payroll email delivery and an internal HR-policy FAQ, contributing to a 40% reduction in manual processing workload.",
+            "Supported a Google and Food App review-collection tool for customer-satisfaction measurement and Marketing activities.",
+            "Set up Pre-order and Workshop Landing Pages with online-payment integration, reducing manual registration and order handling.",
             "Proposed an ERP direction using Odoo Online and delivered an experimental demo that supported the company-wide adoption decision.",
             "Prepared user guides that shortened employees’ system onboarding time."
           ]
@@ -717,12 +723,12 @@ window.PORTFOLIO_CONTENT = {
           id: "recruitment-chatbot",
           phase: "professional",
           phaseLabel: "PROFESSIONAL · AI AUTOMATION",
-          title: "Multi-channel recruitment chatbot",
+          title: "Website & multi-channel AI Chatbot",
           description:
-            "A chatbot supporting candidates on web and Facebook, with n8n workflows connecting AI and data sources.",
-          result: "Website & fanpage integration",
+            "Supported the official Bong Tra website and integrated AI Chatbots for customers on the web and candidates on the recruitment Facebook page, with n8n workflows connecting AI and data sources for automated responses.",
+          result: "Customer & recruitment automation",
           image: "./img/projects-v3/recruitment-chatbot.jpg",
-          tags: ["n8n", "GPT", "Gemini", "Supabase"],
+          tags: ["Website", "AI Chatbot", "n8n", "GPT", "Gemini", "Supabase"],
           links: [
             { label: "Website", url: "https://bongtra.vn" },
             {
@@ -737,22 +743,22 @@ window.PORTFOLIO_CONTENT = {
           phaseLabel: "PROFESSIONAL · INTERNAL TOOLS",
           title: "Internal automation tools",
           description:
-            "Workflows for bulk email, meeting-room booking, operational data and internal tasks built with Google Apps Script.",
-          result: "Internal operational tools",
+            "A toolset covering automated meeting-room booking, bulk payroll email delivery, an internal HR-policy FAQ and Google/Food App review collection, implemented with Google Apps Script and automation workflows.",
+          result: "HR · administration · feedback workflows",
           image: "./img/projects-v3/internal-automation.jpg",
-          tags: ["Apps Script", "Sheets API", "Calendar API"],
+          tags: ["Apps Script", "Sheets API", "Calendar API", "Email Automation"],
           links: []
         },
         {
           id: "preorder-workshop-web",
           phase: "professional",
           phaseLabel: "PROFESSIONAL · WEB EXPERIENCE",
-          title: "Pre-order & Workshop Interfaces",
+          title: "Pre-order & Workshop Landing Pages",
           description:
-            "Designed foundational interfaces for Pre-order and Workshop websites, helping the Marketing team prepare landing pages and launch campaigns faster.",
-          result: "Campaign enablement · UI prototype",
+            "Set up Marketing Landing Pages for workshops and tea pre-orders with online-payment integration, reducing manual registration and order-handling steps.",
+          result: "Marketing funnel · online payment",
           image: "./img/projects-v3/preorder-workshop.jpg",
-          tags: ["UI Design", "Pre-order", "Workshop", "Marketing"],
+          tags: ["Landing Page", "Online Payment", "Pre-order", "Workshop"],
           links: []
         },
         {
