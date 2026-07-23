@@ -58,40 +58,58 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     work: {
-      eyebrow: "02 · WHAT I DO NOW",
-      title: "Hai mảng tôi phát triển thêm trong công việc.",
+      eyebrow: "02 · TỪ HỌC VẤN ĐẾN THỰC TIỄN",
+      title: "Tôi biến nền tảng Data Science thành sản phẩm AI và hệ thống vận hành.",
       intro:
-        "Nền tảng Data Science giúp tôi tiếp cận chuyển đổi số theo hướng có hệ thống: hiểu dữ liệu, mô hình hóa nghiệp vụ, thiết kế quy trình và đưa AI vào sản phẩm thực tế.",
+        "Tốt nghiệp chuyên ngành Khoa học Dữ liệu tại HUFLIT, tôi xây dựng nền tảng về dữ liệu và AI trước khi phát triển sâu hơn trong môi trường doanh nghiệp. Hiện tôi kết hợp tư duy phân tích, khả năng xây dựng sản phẩm và hiểu biết quy trình để theo đuổi hai hướng: sản xuất nội dung bằng AI và chuyển đổi số theo định hướng ERP.",
+      education: {
+        label: "HỌC VẤN",
+        school:
+          "Trường Đại học Ngoại ngữ – Tin học TP.HCM (HUFLIT)",
+        degree: "Tốt nghiệp chuyên ngành Khoa học Dữ liệu (Data Science)",
+        description:
+          "Nền tảng học thuật giúp tôi hiểu cách thu thập, xử lý và phân tích dữ liệu; xây dựng mô hình Machine Learning, Deep Learning và Computer Vision; đồng thời chuyển một bài toán thành quy trình thử nghiệm, đánh giá và sản phẩm có thể sử dụng.",
+        focusLabel: "Nền tảng chuyên môn",
+        focus: [
+          "Python",
+          "Data Analysis",
+          "Machine Learning",
+          "Deep Learning",
+          "Computer Vision"
+        ],
+        status: "Ho Chi Minh City · Đã tốt nghiệp"
+      },
       areas: [
         {
           index: "A",
-          title: "AI Video Production",
+          title: "AI Video Production & R&D",
           description:
-            "Tôi có kinh nghiệm ứng dụng AI để hỗ trợ quy trình sản xuất series YouTube, video quảng cáo và nội dung short-form, từ nghiên cứu ý tưởng đến xuất bản.",
+            "Tôi ứng dụng AI xuyên suốt quy trình sản xuất series YouTube, video quảng cáo và nội dung short-form: nghiên cứu chủ đề, phát triển ý tưởng, viết kịch bản, xây storyboard, tạo hình ảnh, voice và animation, sau đó hỗ trợ dựng, review, quản lý asset và xuất bản. Ở vai trò R&D, tôi còn nghiên cứu công cụ và chuẩn hóa workflow để quy trình dễ lặp lại, theo dõi và mở rộng hơn.",
           capabilities: [
             "ChatGPT · Claude · Gemini",
             "Antigravity · NotebookLM",
-            "Research · script · storyboard",
+            "Research · idea · script",
+            "Storyboard · scene breakdown",
             "AI visual · voice · animation",
-            "Editing · production tracking",
-            "Workflow automation · publishing"
+            "Editing · review · asset tracking",
+            "Automation · production publishing"
           ],
-          note: "AI tools + end-to-end video workflow"
+          note: "Creative production · tooling · process R&D"
         },
         {
           index: "B",
           title: "ERP & Digital Transformation",
           description:
-            "Tôi có kinh nghiệm ứng dụng AI vào chuyển đổi số theo hướng ERP và từng trực tiếp xây dựng một ứng dụng HRM: từ phân tích nghiệp vụ, chuẩn hóa dữ liệu và phân hệ đến giao diện, phân quyền và tự động hóa vận hành.",
+            "Tôi tiếp cận chuyển đổi số từ bài toán vận hành thực tế: tìm hiểu quy trình hiện tại, xác định điểm nghẽn, chuẩn hóa dữ liệu và mô hình hóa luồng nghiệp vụ theo hướng ERP. Tôi từng tham gia triển khai AMIS MISA, đề xuất và demo Odoo Online, đồng thời trực tiếp xây dựng ứng dụng HRM với giao diện quản trị, phân quyền theo vai trò và các workflow hỗ trợ vận hành.",
           capabilities: [
-            "Business process mapping",
-            "ERP modules · centralized data",
+            "Process discovery · mapping",
+            "AMIS MISA · Odoo Online",
             "HRM application development",
-            "JavaScript · Web App · API",
-            "RBAC · workflow integration",
+            "Centralized data · ERP modules",
+            "JavaScript · Web App · API · RBAC",
             "n8n · Apps Script · Supabase"
           ],
-          note: "Process → modules → integration → operations"
+          note: "Process → data → modules → workflow → operations"
         }
       ]
     },
@@ -473,40 +491,58 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     work: {
-      eyebrow: "02 · WHAT I DO NOW",
-      title: "Two areas I developed through professional work.",
+      eyebrow: "02 · EDUCATION TO PRACTICE",
+      title: "I turn a Data Science foundation into AI products and operational systems.",
       intro:
-        "My Data Science foundation helps me approach digital transformation systematically: understanding data, modeling business processes and turning AI into useful products.",
+        "After graduating in Data Science from HUFLIT, I carried my foundation in data and AI into professional product development. Today, I combine analytical thinking, hands-on building and process understanding across two directions: AI-powered content production and ERP-oriented digital transformation.",
+      education: {
+        label: "EDUCATION",
+        school:
+          "Ho Chi Minh City University of Foreign Languages and Information Technology (HUFLIT)",
+        degree: "Graduate in Data Science",
+        description:
+          "My academic foundation trained me to collect, process and analyze data; build Machine Learning, Deep Learning and Computer Vision models; and translate a problem into an experimental, evaluative and usable product workflow.",
+        focusLabel: "Core foundation",
+        focus: [
+          "Python",
+          "Data Analysis",
+          "Machine Learning",
+          "Deep Learning",
+          "Computer Vision"
+        ],
+        status: "Ho Chi Minh City · Graduated"
+      },
       areas: [
         {
           index: "A",
-          title: "AI Video Production",
+          title: "AI Video Production & R&D",
           description:
-            "I apply AI across YouTube series, advertising videos and short-form content, supporting the production pipeline from initial research to publishing.",
+            "I apply AI across YouTube series, advertising videos and short-form content: topic research, concept development, scripts, storyboards, image generation, voice and animation, followed by editing support, review, asset management and publishing. In an R&D role, I also research tools and standardize workflows so production becomes easier to repeat, track and scale.",
           capabilities: [
             "ChatGPT · Claude · Gemini",
             "Antigravity · NotebookLM",
-            "Research · script · storyboard",
+            "Research · idea · script",
+            "Storyboard · scene breakdown",
             "AI visual · voice · animation",
-            "Editing · production tracking",
-            "Workflow automation · publishing"
+            "Editing · review · asset tracking",
+            "Automation · production publishing"
           ],
-          note: "AI tools + end-to-end video workflow"
+          note: "Creative production · tooling · process R&D"
         },
         {
           index: "B",
           title: "ERP & Digital Transformation",
           description:
-            "I have experience applying AI to ERP-oriented digital transformation and directly built an HRM application, covering process analysis, standardized data, functional modules, interfaces, access control and workflow automation.",
+            "I approach digital transformation through real operational problems: understanding the current process, identifying bottlenecks, standardizing data and modeling business flows with an ERP-oriented mindset. I supported an AMIS MISA implementation, proposed and demonstrated Odoo Online, and directly built an HRM application with an administrative interface, role-based access and operational workflows.",
           capabilities: [
-            "Business process mapping",
-            "ERP modules · centralized data",
+            "Process discovery · mapping",
+            "AMIS MISA · Odoo Online",
             "HRM application development",
-            "JavaScript · Web App · API",
-            "RBAC · workflow integration",
+            "Centralized data · ERP modules",
+            "JavaScript · Web App · API · RBAC",
             "n8n · Apps Script · Supabase"
           ],
-          note: "Process → modules → integration → operations"
+          note: "Process → data → modules → workflow → operations"
         }
       ]
     },

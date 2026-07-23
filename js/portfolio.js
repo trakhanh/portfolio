@@ -82,6 +82,29 @@
     setText("#workTitle", copy.work.title);
     setText("#workIntro", copy.work.intro);
 
+    const education = $("#educationCard");
+    if (education) {
+      education.innerHTML = `
+        <div class="education-identity">
+          <span class="education-label">${copy.work.education.label}</span>
+          <p>${copy.work.education.status}</p>
+        </div>
+        <div class="education-detail">
+          <p class="education-school">${copy.work.education.school}</p>
+          <h3>${copy.work.education.degree}</h3>
+          <p class="education-description">${copy.work.education.description}</p>
+        </div>
+        <div class="education-focus">
+          <span>${copy.work.education.focusLabel}</span>
+          <div>
+            ${copy.work.education.focus
+              .map((item) => `<small>${item}</small>`)
+              .join("")}
+          </div>
+        </div>
+      `;
+    }
+
     const grid = $("#workGrid");
     if (!grid) return;
 

@@ -733,6 +733,82 @@ html[data-theme="dark"] .theme-icon-on {
   background: var(--surface);
 }
 
+.education-card {
+  margin-bottom: 18px;
+  padding: 30px 34px;
+  display: grid;
+  grid-template-columns:
+    minmax(155px, 0.45fr)
+    minmax(320px, 1.2fr)
+    minmax(230px, 0.75fr);
+  align-items: start;
+  gap: clamp(28px, 4vw, 58px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+}
+
+.education-identity {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.education-label,
+.education-school,
+.education-focus > span {
+  color: var(--text-faint);
+  font: 600 11px/1.5 var(--display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.education-identity p,
+.education-school,
+.education-description {
+  margin: 0;
+}
+
+.education-identity p {
+  color: var(--text-soft);
+  font-size: 12px;
+}
+
+.education-detail h3 {
+  max-width: 620px;
+  margin: 12px 0 14px;
+  font: 600 clamp(25px, 2.8vw, 36px)/1.12 var(--display);
+  letter-spacing: -0.04em;
+}
+
+.education-description {
+  max-width: 680px;
+  color: var(--text-soft);
+  font-size: 14px;
+}
+
+.education-focus {
+  padding-left: 28px;
+  border-left: 1px solid var(--line);
+}
+
+.education-focus > div {
+  margin-top: 17px;
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.education-focus small {
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  color: var(--text-soft);
+  font-size: 10px;
+}
+
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1613,6 +1689,17 @@ html[data-theme="dark"] .contact-card .button-primary {
     border-bottom: 0;
   }
 
+  .education-card {
+    grid-template-columns: 1fr 1.4fr;
+  }
+
+  .education-focus {
+    grid-column: 1 / -1;
+    padding: 22px 0 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
   .experience-card {
     grid-template-columns: minmax(140px, 0.45fr) minmax(0, 1fr);
   }
@@ -1659,6 +1746,21 @@ html[data-theme="dark"] .contact-card .button-primary {
 
   .work-grid {
     grid-template-columns: 1fr;
+  }
+
+  .education-card {
+    padding: 24px;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .education-identity {
+    min-height: 0;
+    gap: 8px;
+  }
+
+  .education-focus {
+    grid-column: auto;
   }
 
   .project-card,
