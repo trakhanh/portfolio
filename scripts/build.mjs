@@ -17,9 +17,9 @@ for (const entry of ["index.html", "css", "js", "img"]) {
   await cp(source, path.join(client, entry), { recursive: true });
 }
 
-const socialPreview = path.join(root, "public", "og.png");
-if (existsSync(socialPreview)) {
-  await cp(socialPreview, path.join(client, "og.png"));
+const publicDir = path.join(root, "public");
+if (existsSync(publicDir)) {
+  await cp(publicDir, client, { recursive: true });
 }
 
 if (existsSync(path.join(root, "CNAME"))) {
@@ -27,7 +27,7 @@ if (existsSync(path.join(root, "CNAME"))) {
 }
 
 const html = await readFile(path.join(client, "index.html"), "utf8");
-if (!html.includes("AI Creative Systems") || !html.includes("portfolio.js")) {
+if (!html.includes("Data Science") || !html.includes("portfolio.js")) {
   throw new Error("Built HTML is missing required portfolio content.");
 }
 

@@ -1,77 +1,89 @@
 <!doctype html>
-<html lang="vi">
+<html lang="vi" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#050816" />
+    <meta name="theme-color" content="#f4f4f0" />
     <meta
       name="description"
-      content="Portfolio của Trà Nguyễn Gia Khánh — AI Video Production, Creative Automation, HRM Application và AI Solutions."
+      content="Portfolio của Trà Nguyễn Gia Khánh: Data Science, Applied AI, Creative Production, Automation và HRM."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Trà Nguyễn Gia Khánh — AI Creative Systems" />
+    <meta property="og:title" content="Trà Nguyễn Gia Khánh — Data Science to Applied AI" />
     <meta
       property="og:description"
-      content="Building AI-Powered Content, Tools and Business Systems."
+      content="A Data Science foundation expanded through AI Creative Production, Automation and HRM."
     />
-    <meta property="og:image" content="/og.png" />
+    <meta property="og:image" content="/og-minimal.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/og.png" />
-    <title>Trà Nguyễn Gia Khánh — AI Creative Systems</title>
+    <meta name="twitter:image" content="/og-minimal.png" />
+    <title>Trà Nguyễn Gia Khánh — Data Science, AI & Automation</title>
+
+    <script>
+      (() => {
+        const saved = localStorage.getItem("portfolio-theme");
+        const preferred =
+          saved ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        document.documentElement.dataset.theme = preferred;
+      })();
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./css/portfolio.css" />
   </head>
   <body>
-    <a class="skip-link" href="#main">Bỏ qua đến nội dung chính</a>
-
-    <div class="page-loader" aria-hidden="true">
-      <div class="loader-mark"><span>K</span></div>
-      <p>INITIALIZING CREATIVE SYSTEM</p>
-    </div>
-
-    <div class="ambient" aria-hidden="true">
-      <div class="aurora aurora-one" data-parallax="0.035"></div>
-      <div class="aurora aurora-two" data-parallax="-0.025"></div>
-      <div class="liquid-blob blob-one" data-parallax="0.05"></div>
-      <div class="liquid-blob blob-two" data-parallax="-0.04"></div>
-      <div class="perspective-grid"></div>
-      <div class="grain"></div>
-    </div>
-    <div class="cursor-glow" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header" id="siteHeader">
-      <nav class="nav-shell" aria-label="Điều hướng chính">
-        <a class="brand" href="#hero" aria-label="Về đầu trang">
-          <span class="brand-mark">K</span>
-          <span class="brand-copy">
-            <strong>GIA KHÁNH</strong>
-            <small>CREATIVE SYSTEMS</small>
-          </span>
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Gia Khanh — home">
+          <span class="brand-mark">GK</span>
+          <span class="brand-name">Gia Khanh</span>
         </a>
 
         <div class="nav-links" id="navLinks">
-          <a href="#work">AI Video</a>
-          <a href="#tools">Automation</a>
-          <a href="#hrm">HRM</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a href="#journey" data-nav="journey">Hành trình</a>
+          <a href="#work" data-nav="work">Công việc</a>
+          <a href="#projects" data-nav="projects">Dự án</a>
+          <a href="#about" data-nav="about">Năng lực</a>
+          <a href="#contact" data-nav="contact">Liên hệ</a>
         </div>
 
-        <div class="nav-actions">
-          <span class="availability"><i></i> Open to collaborate</span>
+        <div class="nav-controls">
+          <button
+            class="icon-button"
+            id="themeToggle"
+            type="button"
+            aria-label="Switch color theme"
+          >
+            <span class="theme-icon theme-icon-sun">○</span>
+            <span class="theme-icon theme-icon-moon">●</span>
+          </button>
+          <button
+            class="language-toggle"
+            id="languageToggle"
+            type="button"
+            aria-label="Switch language"
+          >
+            <span data-lang-option="vi">VI</span>
+            <i></i>
+            <span data-lang-option="en">EN</span>
+          </button>
           <button
             class="menu-toggle"
             id="menuToggle"
             type="button"
-            aria-label="Mở menu"
-            aria-expanded="false"
+            aria-label="Open menu"
             aria-controls="navLinks"
+            aria-expanded="false"
           >
             <span></span><span></span>
           </button>
@@ -80,348 +92,135 @@
     </header>
 
     <main id="main">
-      <section class="hero section" id="hero">
-        <div class="hero-shell">
+      <section class="hero" id="top">
+        <div class="page-shell hero-layout">
           <div class="hero-copy">
-            <div class="eyebrow reveal">
-              <span class="eyebrow-dot"></span>
-              AI Creative Production · Automation · HR Tech
+            <div class="eyebrow-row">
+              <span class="eyebrow" id="heroEyebrow"></span>
+              <span class="availability"><i></i><span id="heroStatus"></span></span>
             </div>
-            <p class="hero-name reveal">TRÀ NGUYỄN GIA KHÁNH</p>
-            <h1 class="reveal">
-              I Build
-              <span>AI-Powered</span>
-              Creative Systems
-            </h1>
-            <div class="role-line reveal">
-              <span class="role-label">CURRENT MODE</span>
-              <span class="role-value" id="roleValue">AI Video Producer</span>
+            <p class="hero-name" id="heroName"></p>
+            <h1 id="heroTitle"></h1>
+            <p class="hero-intro" id="heroIntro"></p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#journey" id="heroPrimary"></a>
+              <a class="button button-quiet" href="#projects" id="heroSecondary"></a>
             </div>
-            <p class="hero-description reveal">
-              Từ sản xuất Series YouTube và video quảng cáo bằng AI đến phát
-              triển công cụ tự động hóa và ứng dụng quản trị nhân sự, tôi xây
-              dựng những hệ thống giúp biến ý tưởng thành sản phẩm có thể vận
-              hành thực tế.
-            </p>
-            <div class="hero-actions reveal">
-              <a class="button button-primary magnetic" href="#showreel">
-                <span>▶</span> Xem Showreel
-              </a>
-              <a class="button button-secondary magnetic" href="#ecosystem">
-                Khám phá hệ thống <span>↘</span>
-              </a>
-              <a class="text-link" href="#contact">Liên hệ hợp tác ↗</a>
-            </div>
-            <div class="hero-meta reveal">
-              <span><b>05</b> disciplines connected</span>
-              <span><b>01</b> integrated ecosystem</span>
-              <span><b>∞</b> room to scale</span>
+            <div class="hero-footer">
+              <span id="heroFootnote"></span>
+              <span>Scroll ↓</span>
             </div>
           </div>
 
-          <div class="hero-visual reveal" aria-label="Quy trình AI creative studio">
-            <div class="visual-chrome">
-              <span>AI CREATIVE STUDIO</span>
-              <span>LIVE WORKFLOW · 01</span>
+          <div class="hero-visual">
+            <figure class="portrait">
+              <img src="./img/profile.png" alt="Trà Nguyễn Gia Khánh" />
+              <figcaption>
+                <span>DATA SCIENCE</span>
+                <span>APPLIED AI</span>
+                <span>AUTOMATION</span>
+              </figcaption>
+            </figure>
+            <div class="hero-note note-one">
+              <small>FOUNDATION</small>
+              <strong>Data → Intelligence</strong>
             </div>
-            <div class="workflow-orbit">
-              <div class="orbit-ring orbit-ring-one"></div>
-              <div class="orbit-ring orbit-ring-two"></div>
-              <div class="workflow-core">
-                <span class="core-pulse"></span>
-                <small>SYSTEM</small>
-                <strong>ONLINE</strong>
-              </div>
-              <div class="workflow-nodes" id="heroWorkflow"></div>
-            </div>
-            <div class="visual-status">
-              <span><i></i> Creative pipeline synchronized</span>
-              <strong>60 FPS</strong>
+            <div class="hero-note note-two">
+              <small>PROFESSIONAL GROWTH</small>
+              <strong>AI → Products → Operations</strong>
             </div>
           </div>
         </div>
-        <a class="scroll-cue" href="#work" aria-label="Cuộn đến phần tiếp theo">
-          <span>SCROLL TO EXPLORE</span><i></i>
-        </a>
       </section>
 
-      <section class="manifesto section">
-        <div class="section-shell manifesto-shell">
-          <p class="section-index reveal">00 / POSITIONING</p>
-          <div class="manifesto-copy">
-            <h2 class="line-reveal">
-              Building AI-Powered Content,
-              <span>Tools and Business Systems.</span>
-            </h2>
-            <p class="reveal">
-              Tôi làm việc tại giao điểm giữa sáng tạo và vận hành — nơi một ý
-              tưởng không chỉ cần đẹp, mà còn cần cấu trúc, công cụ và hệ thống
-              để có thể phát triển bền vững.
-            </p>
-          </div>
-          <div class="discipline-list reveal" id="skillsTicker"></div>
-        </div>
-      </section>
-
-      <section class="work section" id="work">
-        <div class="section-shell">
+      <section class="section section-ruled" id="journey">
+        <div class="page-shell">
           <div class="section-heading">
+            <p class="eyebrow" id="journeyEyebrow"></p>
             <div>
-              <p class="section-index reveal">01 / FEATURED DISCIPLINE</p>
-              <h2 class="reveal">
-                AI Video Production
-                <span>for YouTube Series & Advertising</span>
-              </h2>
-            </div>
-            <p class="section-intro reveal">
-              Tôi ứng dụng AI vào toàn bộ quy trình sản xuất nội dung, từ nghiên
-              cứu ý tưởng, xây dựng kịch bản, tạo hình ảnh, giọng nói, animation,
-              dựng phim đến xuất bản.
-            </p>
-          </div>
-
-          <div class="video-directions" id="videoDirections"></div>
-
-          <div class="gallery-head reveal">
-            <div>
-              <p class="micro-label">SELECTED CAPABILITIES</p>
-              <h3>Cinematic production gallery</h3>
-            </div>
-            <div class="filter-list" id="galleryFilters" role="group" aria-label="Lọc nội dung">
-              <button class="filter-button is-active" type="button" data-filter="All">All</button>
-              <button class="filter-button" type="button" data-filter="Series">Series</button>
-              <button class="filter-button" type="button" data-filter="Advertisement">Advertisement</button>
-              <button class="filter-button" type="button" data-filter="Short-form">Short-form</button>
-              <button class="filter-button" type="button" data-filter="Experimental">Experimental</button>
+              <h2 id="journeyTitle"></h2>
+              <p id="journeyIntro"></p>
             </div>
           </div>
-          <div class="cinematic-gallery" id="videoGallery"></div>
+          <div class="journey-grid" id="journeyGrid"></div>
         </div>
       </section>
 
-      <div class="liquid-divider" aria-hidden="true">
-        <span></span>
-      </div>
-
-      <section class="tools section" id="tools">
-        <div class="section-shell">
-          <div class="section-heading compact">
-            <div>
-              <p class="section-index reveal">02 / CREATIVE AUTOMATION</p>
-              <h2 class="reveal">
-                Tools Behind
-                <span>the Production</span>
-              </h2>
-            </div>
-            <p class="section-intro reveal">
-              Tôi không chỉ tạo video. Tôi phát triển các công cụ hỗ trợ toàn bộ
-              dây chuyền, biến những bước lặp lại thành một luồng sản xuất có thể
-              quan sát và mở rộng.
-            </p>
-          </div>
-
-          <div class="pipeline-wrap reveal" id="pipeline">
-            <div class="pipeline-head">
-              <span>PRODUCTION PIPELINE / LIVE SIGNAL</span>
-              <span class="pipeline-legend"><i></i> DATA FLOW</span>
-            </div>
-            <div class="pipeline-track" id="productionPipeline"></div>
-          </div>
-          <div class="tool-grid" id="productionTools"></div>
-        </div>
-      </section>
-
-      <section class="hrm section" id="hrm">
-        <div class="section-shell">
-          <div class="hrm-stage reveal">
-            <div class="hrm-copy">
-              <p class="section-index">03 / PEOPLE & OPERATIONS</p>
-              <h2>
-                HRM Application
-                <span>for People and Operations</span>
-              </h2>
-              <p>
-                Không phải một project phụ, mà là lớp vận hành kết nối dữ liệu
-                con người, công việc và các quy trình phê duyệt trong một sản
-                phẩm thống nhất.
-              </p>
-              <div class="verification-note" id="hrmNote"></div>
-            </div>
-
-            <div class="hrm-interface" aria-label="Sơ đồ module ứng dụng HRM">
-              <div class="hrm-topbar">
-                <span><i></i><i></i><i></i></span>
-                <b>PEOPLE OS / MODULE MAP</b>
-                <small>PRODUCT ARCHITECTURE</small>
-              </div>
-              <div class="hrm-dashboard">
-                <aside>
-                  <span class="is-active">Overview</span>
-                  <span>People</span>
-                  <span>Operations</span>
-                  <span>Documents</span>
-                  <span>Insights</span>
-                </aside>
-                <div class="hrm-content">
-                  <div class="hrm-metric">
-                    <small>SYSTEM SCOPE</small>
-                    <strong>People × Process</strong>
-                    <span>One operational layer</span>
-                  </div>
-                  <div class="module-columns">
-                    <div>
-                      <div class="module-title">
-                        <span>CURRENT SCOPE</span>
-                        <b>Needs verification</b>
-                      </div>
-                      <ul id="hrmCurrent"></ul>
-                    </div>
-                    <div>
-                      <div class="module-title">
-                        <span>EXPANSION DIRECTION</span>
-                        <b>Roadmap</b>
-                      </div>
-                      <ul id="hrmRoadmap"></ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="ecosystem section" id="ecosystem">
-        <div class="section-shell">
-          <div class="section-heading centered">
-            <p class="section-index reveal">04 / CONNECTED ECOSYSTEM</p>
-            <h2 class="reveal">One ecosystem. <span>Three operating layers.</span></h2>
-            <p class="section-intro reveal">
-              Con người vận hành quy trình. Quy trình tạo ra nội dung. Dữ liệu từ
-              nội dung quay lại giúp hệ thống tốt hơn.
-            </p>
-          </div>
-          <div class="ecosystem-map reveal">
-            <div class="ecosystem-line" aria-hidden="true"><i></i><i></i><i></i></div>
-            <div class="ecosystem-cards" id="ecosystemCards"></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="projects section" id="projects">
-        <div class="section-shell">
+      <section class="section work-section" id="work">
+        <div class="page-shell">
           <div class="section-heading">
+            <p class="eyebrow" id="workEyebrow"></p>
             <div>
-              <p class="section-index reveal">05 / SELECTED PROJECTS</p>
-              <h2 class="reveal">Systems I’ve <span>designed and explored</span></h2>
+              <h2 id="workTitle"></h2>
+              <p id="workIntro"></p>
             </div>
-            <p class="section-intro reveal">
-              Tám lát cắt từ creative production đến AI research. Chọn một dự án
-              để xem context, workflow, solution và điều tôi đã học được.
-            </p>
           </div>
-
-          <div class="project-list" id="projectList"></div>
+          <div class="work-grid" id="workGrid"></div>
         </div>
       </section>
 
-      <section class="showreel section" id="showreel">
-        <div class="section-shell">
-          <div class="showreel-player reveal">
-            <div class="showreel-media">
-              <img
-                src="./og.png"
-                alt="AI Creative Systems — showreel cover"
-                loading="lazy"
-              />
-              <div class="showreel-mask"></div>
-              <button class="play-button magnetic" id="showreelButton" type="button">
-                <span>▶</span>
-                <small>WATCH FULL</small>
-              </button>
-              <div class="media-state" id="mediaState" aria-live="polite">
-                SHOWREEL MEDIA URL · PENDING
-              </div>
-            </div>
-            <div class="showreel-panel">
-              <div>
-                <p class="section-index">06 / SHOWREEL</p>
-                <h2>Creative AI in motion.</h2>
-                <p>
-                  Một montage ngắn đi qua Series, Commercial Ads, AI Characters,
-                  Product Video và Creative Experiments.
-                </p>
-              </div>
-              <ol class="chapter-list">
-                <li><span>01</span>YouTube Series</li>
-                <li><span>02</span>Commercial Ads</li>
-                <li><span>03</span>AI Characters</li>
-                <li><span>04</span>Product Video</li>
-                <li><span>05</span>Creative Experiments</li>
-              </ol>
+      <section class="section section-ruled" id="projects">
+        <div class="page-shell">
+          <div class="section-heading">
+            <p class="eyebrow" id="projectsEyebrow"></p>
+            <div>
+              <h2 id="projectsTitle"></h2>
+              <p id="projectsIntro"></p>
             </div>
           </div>
+
+          <div class="project-toolbar">
+            <div class="project-filters" id="projectFilters" role="group"></div>
+            <p id="projectCount"></p>
+          </div>
+          <div class="project-grid" id="projectGrid"></div>
         </div>
       </section>
 
-      <section class="profile-section section">
-        <div class="section-shell profile-shell">
-          <div class="profile-portrait reveal">
-            <div class="portrait-frame">
-              <img
-                src="./img/profile.png"
-                alt="Trà Nguyễn Gia Khánh"
-                loading="lazy"
-              />
-            </div>
-            <div class="portrait-label">
-              <span>CREATIVE TECHNOLOGIST</span>
-              <b>HCMC · VIETNAM</b>
-            </div>
+      <section class="section" id="about">
+        <div class="page-shell about-layout">
+          <div class="about-copy">
+            <p class="eyebrow" id="aboutEyebrow"></p>
+            <h2 id="aboutTitle"></h2>
+            <p id="aboutIntro"></p>
+            <a
+              class="button button-quiet"
+              id="cvLink"
+              target="_blank"
+              rel="noopener"
+            ></a>
           </div>
-          <div class="profile-copy">
-            <p class="section-index reveal">07 / ABOUT THE BUILDER</p>
-            <h2 class="reveal">
-              I connect the creative idea
-              <span>to the operating system.</span>
-            </h2>
-            <p class="reveal">
-              Nền tảng Data Science và Computer Vision giúp tôi nhìn vấn đề bằng
-              dữ liệu. Kinh nghiệm với automation và internal tools giúp tôi
-              biến giải pháp thành quy trình. AI video là nơi hai năng lực đó
-              gặp nhau trong một đầu ra giàu cảm xúc.
-            </p>
-            <div class="experience-list reveal" id="experienceList"></div>
-          </div>
+          <div class="skill-groups" id="skillGroups"></div>
         </div>
       </section>
 
-      <section class="contact section" id="contact">
-        <div class="section-shell">
-          <div class="contact-card reveal">
-            <div class="contact-signal" aria-hidden="true">
-              <i></i><i></i><i></i>
-            </div>
-            <p class="section-index">08 / START A CONVERSATION</p>
-            <h2>
-              Have an idea that needs
-              <span>content, tools or systems?</span>
-            </h2>
-            <p>
-              Hãy chia sẻ bối cảnh và mục tiêu. Tôi sẵn sàng trao đổi về AI
-              video, creative automation, HR Tech và các hệ thống nội bộ.
-            </p>
+      <section class="section contact-section" id="contact">
+        <div class="page-shell">
+          <div class="contact-card">
+            <p class="eyebrow" id="contactEyebrow"></p>
+            <h2 id="contactTitle"></h2>
+            <p id="contactIntro"></p>
             <div class="contact-actions">
               <a
-                class="button button-primary magnetic"
-                href="mailto:khanhtra229@gmail.com?subject=Collaboration%20with%20Gia%20Khanh"
-              >
-                Start a project ↗
-              </a>
-              <a class="contact-email" href="mailto:khanhtra229@gmail.com">
-                <span>EMAIL</span>
-                khanhtra229@gmail.com
-              </a>
+                class="button button-primary"
+                href="mailto:khanhtra229@gmail.com"
+                id="emailLink"
+              ></a>
+              <div class="social-links">
+                <span id="socialLabel"></span>
+                <a
+                  href="https://github.com/trakhanh"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub ↗</a
+                >
+                <a
+                  href="https://www.linkedin.com/in/tranguyengiakhanh/"
+                  target="_blank"
+                  rel="noopener"
+                  >LinkedIn ↗</a
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -429,44 +228,11 @@
     </main>
 
     <footer class="site-footer">
-      <div class="footer-shell">
-        <div class="brand footer-brand">
-          <span class="brand-mark">K</span>
-          <span class="brand-copy">
-            <strong>GIA KHÁNH</strong>
-            <small>AI CREATIVE SYSTEMS</small>
-          </span>
-        </div>
-        <p>© <span id="currentYear"></span> Trà Nguyễn Gia Khánh.</p>
-        <div class="footer-links">
-          <a href="https://github.com/trakhanh" target="_blank" rel="noopener">GitHub ↗</a>
-          <a
-            href="https://www.linkedin.com/in/tranguyengiakhanh/"
-            target="_blank"
-            rel="noopener"
-            >LinkedIn ↗</a
-          >
-          <a href="#hero">Back to top ↑</a>
-        </div>
+      <div class="page-shell">
+        <p id="footerText"></p>
+        <p>© <span id="currentYear"></span></p>
       </div>
     </footer>
-
-    <dialog class="project-dialog" id="projectDialog">
-      <button class="dialog-close" type="button" aria-label="Đóng chi tiết dự án">×</button>
-      <div class="dialog-media">
-        <img id="dialogImage" alt="" />
-        <div class="dialog-media-mask"></div>
-        <div class="dialog-number" id="dialogNumber"></div>
-      </div>
-      <div class="dialog-content">
-        <p class="micro-label" id="dialogCategory"></p>
-        <h2 id="dialogTitle"></h2>
-        <p class="dialog-summary" id="dialogSummary"></p>
-        <div class="case-grid" id="dialogCaseGrid"></div>
-        <div class="dialog-tech" id="dialogTech"></div>
-        <div class="dialog-links" id="dialogLinks"></div>
-      </div>
-    </dialog>
 
     <script src="./js/portfolio-data.js"></script>
     <script src="./js/portfolio.js"></script>
