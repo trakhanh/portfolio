@@ -24,8 +24,9 @@ window.PORTFOLIO_CONTENT = {
       secondary: "Khám phá dự án",
       status: "Sẵn sàng trao đổi cơ hội hợp tác",
       footnote: "Based in Ho Chi Minh City, Vietnam",
-      profileLabel: "HỒ SƠ NĂNG LỰC",
-      profileTitle: "Data · AI · Systems",
+      profileLabel: "BẢN ĐỒ NĂNG LỰC",
+      profileDirection: "NỀN TẢNG → ỨNG DỤNG",
+      profileTitle: "Data → AI → Systems",
       profileAreas: [
         {
           title: "Data Science",
@@ -507,8 +508,9 @@ window.PORTFOLIO_CONTENT = {
       secondary: "Explore projects",
       status: "Open to relevant collaborations",
       footnote: "Based in Ho Chi Minh City, Vietnam",
-      profileLabel: "CAPABILITY PROFILE",
-      profileTitle: "Data · AI · Systems",
+      profileLabel: "CAPABILITY MAP",
+      profileDirection: "FOUNDATION → APPLICATION",
+      profileTitle: "Data → AI → Systems",
       profileAreas: [
         {
           title: "Data Science",

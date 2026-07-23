@@ -51,6 +51,7 @@
     setText("#heroSecondary", copy.hero.secondary);
     setText("#heroFootnote", copy.hero.footnote);
     setText("#profilePanelLabel", copy.hero.profileLabel);
+    setText("#profileDirection", copy.hero.profileDirection);
     setText("#profilePanelTitle", copy.hero.profileTitle);
     setText("#profileRouteLabel", copy.hero.profileRouteLabel);
     copy.hero.profileAreas.forEach((item, index) => {
