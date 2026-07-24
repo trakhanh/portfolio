@@ -1,9 +1,9 @@
 window.PORTFOLIO_CONTENT = {
   vi: {
     meta: {
-      title: "Trà Nguyễn Gia Khánh — Data Science, AI & Digital Transformation",
+      title: "Trà Nguyễn Gia Khánh — Data Science, AI & Digital Transformation Specialist",
       description:
-        "Portfolio của Trà Nguyễn Gia Khánh: nền tảng Data Science; kinh nghiệm ứng dụng AI trong chuyển đổi số theo định hướng ERP, xây dựng HRM và quy trình sản xuất video bằng AI."
+        "Portfolio của Trà Nguyễn Gia Khánh: Chuyên viên Data Science & Chuyển đổi số AI. Kinh nghiệm ứng dụng Machine Learning, Computer Vision, triển khai ERP (Odoo/MISA), ứng dụng HRM và quy trình tự động hóa AI."
     },
     nav: {
       journey: "Hành trình",
@@ -19,26 +19,26 @@ window.PORTFOLIO_CONTENT = {
       name: "TRÀ NGUYỄN GIA KHÁNH",
       title: "Từ Data Science đến AI và chuyển đổi số.",
       intro:
-        "Tôi học Data Science, xây nền tảng về AI, Machine Learning và Computer Vision. Trong công việc, tôi phát triển kinh nghiệm ứng dụng AI vào chuyển đổi số theo định hướng ERP, từng xây dựng ứng dụng HRM và hỗ trợ toàn bộ quy trình sản xuất video bằng AI.",
+        "Cử nhân Khoa học Dữ liệu (HUFLIT) với tư duy phân tích hệ thống. Tôi chuyên ứng dụng Machine Learning, Computer Vision và AI Workflows để tự động hóa vận hành doanh nghiệp, xây dựng giải pháp HRM và chuẩn hóa quy trình sản xuất nội dung bằng AI.",
       primary: "Xem hành trình",
       secondary: "Khám phá dự án",
       status: "Sẵn sàng trao đổi cơ hội hợp tác",
       footnote: "Based in Ho Chi Minh City, Vietnam",
-      profileLabel: "BẢN ĐỒ NĂNG LỰC",
-      profileDirection: "NỀN TẢNG → ỨNG DỤNG",
+      profileLabel: "BẢN ĐỒ NĂNG LỰC CHUYÊN MÔN",
+      profileDirection: "CORE COMPETENCY MAP",
       profileTitle: "Data → AI → Systems",
       profileAreas: [
         {
-          title: "Data Science",
-          meta: "Python · SQL · Machine Learning"
+          title: "Data Science & ML",
+          meta: "Python · SQL · Computer Vision · PyTorch"
         },
         {
-          title: "Applied AI",
-          meta: "Automation · AI Video · R&D"
+          title: "Applied AI & R&D",
+          meta: "GenAI Automation · Prompt Engineering · AI Video"
         },
         {
-          title: "Digital Systems",
-          meta: "ERP · HRM · Process Design"
+          title: "ERP & Digital Systems",
+          meta: "Odoo / MISA ERP · HRM Apps · Process Optimization"
         }
       ],
       profileRouteLabel: "CÁCH TÔI TẠO GIÁ TRỊ",
@@ -173,6 +173,7 @@ window.PORTFOLIO_CONTENT = {
           role: "Nhân viên AI → Nhân viên R&D",
           current: true,
           highlights: [
+            "Xây dựng và vận hành hệ thống Văn phòng Điện tử eOffice (https://eoffice.sunmedia.net.vn) phục vụ số hóa quy trình và quản trị vận hành nội bộ.",
             "Bắt đầu ở vị trí Nhân viên AI, ứng dụng AI để hỗ trợ quy trình sản xuất video và nội dung.",
             "Sau đó chuyển sang Nhân viên R&D, tập trung nghiên cứu công cụ, quy trình và giải pháp AI phục vụ sản xuất và chuyển đổi số."
           ]
@@ -327,7 +328,12 @@ window.PORTFOLIO_CONTENT = {
           result: "ERP-oriented transformation · HRM product",
           image: "./img/projects-v3/erp-hrm.jpg",
           tags: ["ERP", "HRM", "Workflow", "Role-based Access"],
-          links: []
+          links: [
+            {
+              label: "eOffice Sun Media ↗",
+              url: "https://eoffice.sunmedia.net.vn"
+            }
+          ]
         },
         {
           id: "ai-creative-production",
@@ -656,6 +662,7 @@ window.PORTFOLIO_CONTENT = {
           role: "AI Specialist → R&D Specialist",
           current: true,
           highlights: [
+            "Built and managed the eOffice digital system (https://eoffice.sunmedia.net.vn) for internal workflow automation and operational management.",
             "Started as an AI Specialist, applying AI to support video and content-production workflows.",
             "Later moved into an R&D role focused on researching tools, workflows and AI solutions for production and digital transformation."
           ]
@@ -810,7 +817,12 @@ window.PORTFOLIO_CONTENT = {
           result: "ERP-oriented transformation · HRM product",
           image: "./img/projects-v3/erp-hrm.jpg",
           tags: ["ERP", "HRM", "Workflow", "Role-based Access"],
-          links: []
+          links: [
+            {
+              label: "eOffice Sun Media ↗",
+              url: "https://eoffice.sunmedia.net.vn"
+            }
+          ]
         },
         {
           id: "ai-creative-production",
