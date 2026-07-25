@@ -40,7 +40,7 @@
     PyTorch: { icon: "pytorch", fallback: "PT" },
     OpenCV: { icon: "opencv", fallback: "CV" },
     Jupyter: { icon: "jupyter", fallback: "JUP" },
-    ChatGPT: { fallback: "GPT" },
+    ChatGPT: { icon: "openai", fallback: "OAI" },
     Claude: { icon: "anthropic", fallback: "CL" },
     Gemini: { icon: "googlegemini", fallback: "GM" },
     Antigravity: { icon: "google", fallback: "AG" },

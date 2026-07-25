@@ -78,7 +78,7 @@
     "U-Net": [{ fallback: "U-NET" }],
     n8n: [{ icon: "n8n", fallback: "n8n" }],
     "GPT / Gemini": [
-      { fallback: "GPT" },
+      { icon: "openai", fallback: "OAI" },
       { icon: "googlegemini", fallback: "GM" }
     ],
     Supabase: [{ icon: "supabase", fallback: "SB" }],
@@ -104,7 +104,7 @@
     RBAC: [{ fallback: "RBAC" }],
     "Workflow / API": [{ fallback: "API" }],
     "ChatGPT / Claude": [
-      { fallback: "GPT" },
+      { icon: "openai", fallback: "OAI" },
       { icon: "anthropic", fallback: "CL" }
     ],
     "Gemini / NotebookLM": [
