@@ -42,22 +42,30 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/portfolio.css" />
-    <link rel="stylesheet" href="/css/project-detail.css?v=5" />
+    <link rel="stylesheet" href="/css/portfolio.css?v=5" />
+    <link rel="stylesheet" href="/css/project-detail.css?v=6" />
   </head>
   <body class="case-page">
     <a class="skip-link" href="#caseMain">Skip to content</a>
 
-    <header class="case-header">
-      <nav class="page-shell case-nav" aria-label="Project navigation">
-        <a class="brand" href="/#projects" id="caseBrand" aria-label="Back to portfolio">
+    <header class="site-header" id="siteHeader">
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a class="brand" href="/#top" id="caseBrand" aria-label="Gia Khánh — trang chủ">
           <span class="brand-mark" aria-hidden="true">GK</span>
           <span class="brand-name">
             <strong>Gia Khánh</strong>
             <small>AI · ERP · R&amp;D</small>
           </span>
         </a>
-        <a class="case-back-link" href="/#projects" id="backToPortfolio">← Portfolio</a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="/#systems" data-nav="systems">AI × ERP</a>
+          <a href="/#experience" data-nav="experience">Kinh nghiệm</a>
+          <a class="is-active" href="/#projects" data-nav="projects" aria-current="page">Dự án</a>
+          <a href="/#proof" data-nav="proof">Uy tín</a>
+          <a href="/#contact" data-nav="contact">Liên hệ</a>
+        </div>
+
         <div class="nav-controls">
           <button
             class="icon-button"
@@ -77,6 +85,16 @@
             <span data-lang-option="vi">VI</span>
             <i></i>
             <span data-lang-option="en">EN</span>
+          </button>
+          <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Mở menu"
+            aria-controls="navLinks"
+            aria-expanded="false"
+          >
+            <span></span><span></span>
           </button>
         </div>
       </nav>
@@ -193,6 +211,6 @@
 
     <script src="/js/portfolio-data.js?v=3"></script>
     <script src="/js/project-details-data.js?v=2"></script>
-    <script src="/js/project-detail.js?v=6"></script>
+    <script src="/js/project-detail.js?v=7"></script>
   </body>
 </html>

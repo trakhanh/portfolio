@@ -54,6 +54,42 @@
       ".skip-link",
       language === "vi" ? "Bỏ qua để đến nội dung" : "Skip to content"
     );
+    updateMenuControl();
+  }
+
+  function renderGlobalNavigation(copy) {
+    Object.entries(copy.nav).forEach(([key, value]) => {
+      setText(`[data-nav="${key}"]`, value);
+    });
+
+    $(".nav-shell")?.setAttribute(
+      "aria-label",
+      language === "vi" ? "Điều hướng chính" : "Primary navigation"
+    );
+    $("#caseBrand")?.setAttribute(
+      "aria-label",
+      language === "vi" ? "Gia Khánh — trang chủ" : "Gia Khanh — home"
+    );
+  }
+
+  function updateMenuControl(open) {
+    const menu = $("#menuToggle");
+    if (!menu) return;
+
+    const isOpen =
+      typeof open === "boolean"
+        ? open
+        : menu.getAttribute("aria-expanded") === "true";
+    menu.setAttribute(
+      "aria-label",
+      language === "vi"
+        ? isOpen
+          ? "Đóng menu"
+          : "Mở menu"
+        : isOpen
+          ? "Close menu"
+          : "Open menu"
+    );
   }
 
   function normalizeImage(path) {
@@ -163,6 +199,7 @@
     const detail = caseCopy.items[projectId];
 
     document.documentElement.lang = language;
+    renderGlobalNavigation(copy);
     updateLanguageControl();
     updateThemeControl();
 
@@ -179,8 +216,6 @@
       project.description
     );
 
-    setText("#backToPortfolio", `← ${labels.back}`);
-    $("#caseBrand")?.setAttribute("aria-label", labels.back);
     setText(
       "#caseIndex",
       `CASE ${String(projectIndex + 1).padStart(2, "0")} / ${String(projects.length).padStart(2, "0")}`
@@ -389,6 +424,44 @@
     updateActiveSection();
   }
 
+  function setupGlobalNavigation() {
+    const header = $("#siteHeader");
+    const menu = $("#menuToggle");
+    const links = $("#navLinks");
+
+    const updateHeader = () => {
+      header?.classList.toggle("is-scrolled", window.scrollY > 20);
+    };
+
+    const closeMenu = () => {
+      links?.classList.remove("is-open");
+      menu?.classList.remove("is-open");
+      menu?.setAttribute("aria-expanded", "false");
+      updateMenuControl(false);
+    };
+
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    updateHeader();
+
+    menu?.addEventListener("click", () => {
+      const open = !links?.classList.contains("is-open");
+      links?.classList.toggle("is-open", open);
+      menu.classList.toggle("is-open", open);
+      menu.setAttribute("aria-expanded", String(open));
+      updateMenuControl(open);
+    });
+
+    $$(".nav-links a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || !links?.classList.contains("is-open")) return;
+      closeMenu();
+      menu?.focus();
+    });
+  }
+
   $("#languageToggle")?.addEventListener("click", () => {
     language = language === "vi" ? "en" : "vi";
     localStorage.setItem("portfolio-language", language);
@@ -404,5 +477,6 @@
   });
 
   renderCaseStudy();
+  setupGlobalNavigation();
   setupCaseNavigation();
 })();
