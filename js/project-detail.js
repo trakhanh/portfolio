@@ -220,11 +220,11 @@
     const previousLink = $("#previousProject");
     const nextLink = $("#nextProject");
     if (previousLink) {
-      previousLink.href = `/projects/${previous.id}`;
+      previousLink.href = `/projects/${previous.id}/`;
       previousLink.innerHTML = `<small>${labels.previous}</small><strong>← ${previous.title}</strong>`;
     }
     if (nextLink) {
-      nextLink.href = `/projects/${next.id}`;
+      nextLink.href = `/projects/${next.id}/`;
       nextLink.innerHTML = `<small>${labels.next}</small><strong>${next.title} →</strong>`;
     }
 

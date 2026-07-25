@@ -2,6 +2,7 @@ import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { PROJECT_IDS, writeProjectPages } from "./project-routes.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
@@ -26,6 +27,11 @@ if (existsSync(path.join(root, "CNAME"))) {
   await cp(path.join(root, "CNAME"), path.join(client, "CNAME"));
 }
 
+await writeProjectPages({
+  templatePath: path.join(root, "project.html"),
+  targetRoot: client
+});
+
 const html = await readFile(path.join(client, "index.html"), "utf8");
 if (!html.includes("AI × ERP Operating System") || !html.includes("portfolio.js")) {
   throw new Error("Built HTML is missing required portfolio content.");
@@ -34,7 +40,11 @@ if (!html.includes("AI × ERP Operating System") || !html.includes("portfolio.js
 const detailHtml = await readFile(path.join(client, "project.html"), "utf8");
 if (
   !detailHtml.includes("project-detail.js") ||
-  !existsSync(path.join(client, "js", "project-details-data.js"))
+  !existsSync(path.join(client, "js", "project-details-data.js")) ||
+  PROJECT_IDS.some(
+    (projectId) =>
+      !existsSync(path.join(client, "projects", projectId, "index.html"))
+  )
 ) {
   throw new Error("Built project case study is missing required content.");
 }
