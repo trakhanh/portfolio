@@ -200,8 +200,26 @@
 
     const image = $("#caseImage");
     if (image) {
+      const cover = image.closest(".case-cover");
+      const revealImage = () => {
+        cover?.classList.remove("is-loading");
+        cover?.classList.add("is-loaded");
+      };
+      const showImageError = () => {
+        cover?.classList.remove("is-loading");
+        cover?.classList.add("is-error");
+      };
+
+      cover?.classList.remove("is-loaded", "is-error");
+      cover?.classList.add("is-loading");
+      image.addEventListener("load", revealImage, { once: true });
+      image.addEventListener("error", showImageError, { once: true });
       image.src = normalizeImage(project.image);
       image.alt = project.title;
+
+      if (image.complete && image.naturalWidth) {
+        revealImage();
+      }
     }
     setText(
       "#caseImageCaption",
@@ -216,10 +234,6 @@
       ["#caseNavOutcome", labels.outcome]
     ];
     navigation.forEach(([selector, value]) => setText(selector, value));
-    setText("#caseFlowChallenge", labels.challenge);
-    setText("#caseFlowProcess", labels.process);
-    setText("#caseFlowOutcome", labels.outcome);
-
     setText("#caseMapLabel", labels.map);
     const tags = $("#caseTags");
     if (tags) {
@@ -300,13 +314,22 @@
     }
 
     const links = $("#caseLinks");
+    const heroLinks = $("#caseHeroLinks");
+    const renderedLinks = project.links
+      .map((link) => {
+        const arrow = /[↗→]$/.test(link.label.trim())
+          ? ""
+          : '<span aria-hidden="true">↗</span>';
+        return `<a href="${link.url}" target="_blank" rel="noopener">${link.label}${arrow}</a>`;
+      })
+      .join("");
+
     if (links) {
-      links.innerHTML = project.links
-        .map(
-          (link) =>
-            `<a href="${link.url}" target="_blank" rel="noopener">${link.label}</a>`
-        )
-        .join("");
+      links.innerHTML = renderedLinks;
+    }
+    if (heroLinks) {
+      heroLinks.hidden = !project.links.length;
+      heroLinks.innerHTML = renderedLinks;
     }
 
     const previous = projects[(projectIndex - 1 + projects.length) % projects.length];
