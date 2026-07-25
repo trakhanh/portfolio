@@ -619,6 +619,19 @@
       backToTop.setAttribute("title", label);
     }
 
+    setText(".skip-link", language === "vi" ? "Bỏ qua để đến nội dung" : "Skip to content");
+    setText(".hero-footer span:last-child", language === "vi" ? "Cuộn xuống ↓" : "Scroll ↓");
+    $(".hero-flow")?.setAttribute(
+      "aria-label",
+      language === "vi"
+        ? "Quy trình từ dữ liệu đến tác động"
+        : "Data to impact workflow"
+    );
+    $(".profile-metrics")?.setAttribute(
+      "aria-label",
+      language === "vi" ? "Chỉ số hồ sơ năng lực" : "Portfolio metrics"
+    );
+
     const labels =
       language === "vi"
         ? {
@@ -674,7 +687,7 @@
           : "Switch to dark theme"
     );
 
-    const color = theme === "dark" ? "#111311" : "#f4f4f0";
+    const color = theme === "dark" ? "#0d0f0e" : "#ecece6";
     $('meta[name="theme-color"]')?.setAttribute("content", color);
   }
 

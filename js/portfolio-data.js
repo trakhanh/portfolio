@@ -3,7 +3,7 @@ window.PORTFOLIO_CONTENT = {
     meta: {
       title: "Trà Nguyễn Gia Khánh — AI × ERP Operating System",
       description:
-        "Portfolio của Trà Nguyễn Gia Khánh — xây dựng hệ thống vận hành thông minh bằng Data, AI, tự động hóa và ERP."
+        "Portfolio của Trà Nguyễn Gia Khánh — ứng viên Applied AI, AI Automation, ERP/Digital Transformation và R&D với nền tảng Data Science."
     },
     nav: {
       systems: "AI × ERP",
@@ -14,74 +14,74 @@ window.PORTFOLIO_CONTENT = {
       contact: "Liên hệ"
     },
     hero: {
-      eyebrow: "AI SYSTEMS · ERP OPERATIONS · R&D",
+      eyebrow: "SYSTEM PROFILE / 2026",
       name: "TRÀ NGUYỄN GIA KHÁNH",
-      title: "Xây hệ thống vận hành thông minh bằng Data, AI và ERP.",
+      title: "Biến AI thành hệ thống vận hành thực tế.",
       intro:
-        "Tôi kết nối nền tảng Data Science với AI ứng dụng và tư duy triển khai ERP để biến dữ liệu thành workflow, sản phẩm nội bộ và kết quả vận hành có thể đo lường.",
-      primary: "Xem hệ thống AI × ERP",
-      secondary: "Xem case study",
-      status: "System ready · Open to collaboration",
-      footnote: "Based in Ho Chi Minh City, Vietnam",
-      profileLabel: "AI OPERATIONS CONTROL MAP",
-      profileDirection: "INTELLIGENCE → EXECUTION",
-      profileTitle: "AI × ERP Operating System",
+        "Tốt nghiệp Khoa học Dữ liệu, tôi có kinh nghiệm đưa AI vào tự động hóa, quy trình sản xuất video và triển khai ERP/HRM. Tôi phù hợp với các vị trí Applied AI, AI Automation, ERP/Digital Transformation và R&D.",
+      primary: "Xem năng lực hệ thống",
+      secondary: "Xem 08 case study",
+      status: "Sẵn sàng cho cơ hội AI · ERP · R&D",
+      footnote: "TP. Hồ Chí Minh · Sẵn sàng trao đổi",
+      profileLabel: "SYSTEM MAP",
+      profileDirection: "AI × ERP",
+      profileTitle: "OPERATING SYSTEM",
       profileAreas: [
         {
-          title: "Data Layer",
+          title: "DATA",
           meta: "Python · SQL · Analytics · Computer Vision"
         },
         {
-          title: "Intelligence Layer",
-          meta: "ChatGPT · Claude · GenAI · AI Automation"
+          title: "INTELLIGENCE",
+          meta: "ChatGPT · Claude · GenAI · Machine Learning"
         },
         {
-          title: "Process Layer",
-          meta: "Odoo · AMIS MISA · HRM · RBAC"
+          title: "WORKFLOW",
+          meta: "n8n · Apps Script · API · Production Flow"
         },
         {
-          title: "Operations Layer",
-          meta: "eOffice · n8n · Apps Script · Production Workflow"
+          title: "IMPACT",
+          meta: "ERP · HRM · eOffice · Business Operations"
         }
       ],
-      profileRouteLabel: "END-TO-END VALUE FLOW",
+      profileRouteLabel: "DATA FLOW",
       profileRoute: ["Dữ liệu", "Trí tuệ", "Quy trình", "Tác động"],
-      profileMetrics: ["Giai đoạn kinh nghiệm", "Dự án chọn lọc", "Giảm tác vụ thủ công"]
+      profileMetrics: ["Môi trường doanh nghiệp", "Case study tuyển chọn", "Giảm xử lý thủ công"]
     },
     system: {
       eyebrow: "01 · AI × ERP OPERATING MODEL",
-      status: "Operational architecture",
-      title: "AI không đứng riêng. AI phải đi vào quy trình và tạo ra kết quả vận hành.",
+      status: "SYSTEM STATUS · OPERATIONAL",
+      title: "Năng lực của tôi vận hành như một hệ thống, không phải danh sách công cụ.",
       intro:
-        "Mô hình làm việc của tôi kết nối bốn lớp: dữ liệu đầu vào, lớp trí tuệ AI, workflow ERP và chỉ số đầu ra. Đây là cách tôi tiếp cận các bài toán HRM, eOffice, chatbot, automation và sản xuất nội dung bằng AI.",
+        "Tôi bắt đầu từ dữ liệu và bài toán nghiệp vụ, chọn đúng lớp AI, thiết kế workflow có thể vận hành, rồi đo kết quả. Cách tiếp cận này giúp tôi kết nối nền tảng Data Science với nhu cầu thật của doanh nghiệp.",
       stages: [
         {
           number: "01",
-          label: "INPUT LAYER",
-          title: "Data & Business Context",
-          description: "Thu thập dữ liệu, hiểu hiện trạng, xác định điểm nghẽn và chuẩn hóa yêu cầu nghiệp vụ.",
-          tags: ["Python", "SQL", "Process Discovery"]
+          label: "COLLECT · STRUCTURE · INTEGRATE",
+          title: "Data",
+          description: "Khảo sát hiện trạng, đọc dữ liệu và xác định đúng điểm nghẽn trước khi chọn giải pháp.",
+          tags: ["Python", "SQL", "Business Context"]
         },
         {
           number: "02",
-          label: "INTELLIGENCE LAYER",
-          title: "AI Decision & Automation",
-          description: "Ứng dụng GenAI, Machine Learning và automation để tạo tri thức, nội dung hoặc quyết định hỗ trợ.",
-          tags: ["ChatGPT", "Claude", "n8n"]
+          label: "ANALYZE · PREDICT · CREATE",
+          title: "Intelligence",
+          description: "Kết hợp GenAI, Machine Learning và Computer Vision để tạo insight, nội dung và hỗ trợ quyết định.",
+          tags: ["ChatGPT", "Claude", "ML · CV"]
         },
         {
           number: "03",
-          label: "EXECUTION LAYER",
-          title: "ERP Workflow & Modules",
-          description: "Chuyển logic thành module, phân quyền, form, API và workflow có thể vận hành trong doanh nghiệp.",
-          tags: ["Odoo", "AMIS MISA", "HRM"]
+          label: "ORCHESTRATE · AUTOMATE · GOVERN",
+          title: "Workflow",
+          description: "Chuyển logic thành form, API, phân quyền và quy trình tự động có thể bàn giao cho người dùng.",
+          tags: ["n8n", "Apps Script", "RBAC · API"]
         },
         {
           number: "04",
-          label: "IMPACT LAYER",
-          title: "Operational Output",
-          description: "Theo dõi hiệu quả, giảm thao tác thủ công, cải thiện trải nghiệm người dùng và khả năng mở rộng.",
-          tags: ["KPI", "Documentation", "Adoption"]
+          label: "MEASURE · ADOPT · SCALE",
+          title: "Impact",
+          description: "Đưa giải pháp vào ERP/HRM/eOffice, tài liệu hóa và theo dõi tác động vận hành có thể đo lường.",
+          tags: ["ERP", "Documentation", "Adoption"]
         }
       ],
       metrics: [
@@ -90,13 +90,13 @@ window.PORTFOLIO_CONTENT = {
         { value: "08", label: "Dự án theo hành trình năng lực" }
       ],
       proofNote:
-        "Từ Computer Vision đến eOffice, HRM và ERP: mỗi dự án đều được đặt trong một hệ thống đầu vào, xử lý, thực thi và đo lường."
+        "Điểm mạnh của tôi là đi cùng bài toán từ khảo sát, dựng demo, kiểm thử đến tài liệu hướng dẫn và chuyển giao — không dừng ở ý tưởng hoặc prompt."
     },
     journey: {
       eyebrow: "02 · POSITIONING",
-      title: "Một nền tảng. Hai hướng phát triển.",
+      title: "Một nền tảng Data Science. Hai hướng tạo giá trị.",
       intro:
-        "Portfolio này không tách rời ngành học và công việc. Mỗi giai đoạn bổ sung một lớp năng lực mới, từ hiểu dữ liệu đến tạo sản phẩm và vận hành hệ thống.",
+        "Ngành học cho tôi tư duy dữ liệu; trải nghiệm đi làm bổ sung khả năng xây sản phẩm AI và hiểu quy trình doanh nghiệp. Hai hướng AI Production và ERP cùng hội tụ ở mục tiêu: làm hệ thống vận hành tốt hơn.",
       items: [
         {
           number: "01",
@@ -126,9 +126,9 @@ window.PORTFOLIO_CONTENT = {
     },
     work: {
       eyebrow: "03 · TỪ HỌC VẤN ĐẾN THỰC TIỄN",
-      title: "Tôi biến nền tảng Data Science thành sản phẩm AI và hệ thống vận hành.",
+      title: "Những vai trò tôi có thể tạo giá trị ngay.",
       intro:
-        "Tốt nghiệp chuyên ngành Khoa học Dữ liệu tại HUFLIT, tôi xây dựng nền tảng về dữ liệu và AI trước khi phát triển sâu hơn trong môi trường doanh nghiệp. Hiện tôi kết hợp tư duy phân tích, khả năng xây dựng sản phẩm và hiểu biết quy trình để theo đuổi hai hướng: sản xuất nội dung bằng AI và chuyển đổi số theo định hướng ERP.",
+        "Tôi phù hợp với đội ngũ cần một người vừa hiểu dữ liệu và AI, vừa có khả năng chạm vào quy trình, dựng sản phẩm thử nghiệm, phối hợp người dùng và tài liệu hóa để giải pháp được áp dụng.",
       education: {
         label: "HỌC VẤN",
         school:
@@ -182,9 +182,9 @@ window.PORTFOLIO_CONTENT = {
     },
     experience: {
       eyebrow: "04 · KINH NGHIỆM",
-      title: "Từ triển khai hệ thống đến R&D AI.",
+      title: "Kinh nghiệm thực tế, không chỉ dự án học tập.",
       intro:
-        "Hành trình làm việc của tôi phát triển theo một mạch liên tục: hỗ trợ triển khai ERP, xây công cụ AI và automation, sau đó đi sâu hơn vào ứng dụng AI và nghiên cứu phát triển.",
+        "Ba môi trường doanh nghiệp giúp tôi hiểu vòng đời triển khai: hỗ trợ hệ thống, làm việc với người dùng, dựng automation, demo ERP và phát triển workflow AI cho sản xuất nội dung.",
       recommendation: {
         eyebrow: "THƯ GIỚI THIỆU ĐÃ KÝ",
         title: "Năng lực được xác nhận bởi lãnh đạo Bông Trà F&B.",
@@ -256,9 +256,9 @@ window.PORTFOLIO_CONTENT = {
     },
     projects: {
       eyebrow: "05 · SELECTED WORK",
-      title: "Dự án theo đúng hành trình phát triển.",
+      title: "08 case study thể hiện cách tôi giải quyết vấn đề.",
       intro:
-        "Các dự án học thuật cho thấy nền tảng kỹ thuật. Các sản phẩm và công cụ sau đó cho thấy cách tôi áp dụng nền tảng đó vào công việc thực tế.",
+        "Mỗi dự án cho thấy một lớp năng lực cụ thể: phân tích bài toán, lựa chọn công nghệ, xây giải pháp và liên kết đầu ra với nhu cầu người dùng hoặc vận hành.",
       filters: {
         all: "Tất cả",
         foundation: "Nền tảng",
@@ -399,9 +399,9 @@ window.PORTFOLIO_CONTENT = {
     },
     certificates: {
       eyebrow: "06 · CHỨNG CHỈ",
-      title: "Một số chứng chỉ tiêu biểu.",
+      title: "Học liên tục, có bằng chứng.",
       intro:
-        "Đây là một phần trong bộ chứng chỉ tôi đã hoàn thành, phản ánh quá trình học tập liên tục về Data Science, AI, IT Support, Data Analytics và Cybersecurity.",
+        "Một phần trong hệ thống chứng chỉ tôi đã hoàn thành về Data Science, AI, IT Support, Data Analytics, Cybersecurity, HackerRank SQL và Python.",
       moreLabel: "Kỹ năng được chứng nhận khác",
       moreItems: [
         {
@@ -504,9 +504,9 @@ window.PORTFOLIO_CONTENT = {
     },
     about: {
       eyebrow: "07 · CAPABILITIES",
-      title: "Tôi kết nối dữ liệu, AI và chuyển đổi số.",
+      title: "Công nghệ tôi đã dùng để giao việc.",
       intro:
-        "Tôi có thể đi từ bài toán nghiệp vụ và dữ liệu đến quy trình ERP, phân hệ, tích hợp, giao diện và sản phẩm thực tế; đồng thời biết cách chọn công cụ AI phù hợp để tăng tốc sáng tạo và vận hành.",
+        "Tôi không xem công cụ là danh sách từ khóa. Mỗi công nghệ dưới đây đã được đặt trong bài toán học tập, sản phẩm thử nghiệm hoặc môi trường doanh nghiệp.",
       groups: [
         {
           title: "Data & AI",
@@ -527,9 +527,9 @@ window.PORTFOLIO_CONTENT = {
     },
     contact: {
       eyebrow: "08 · CONTACT",
-      title: "Cùng trao đổi về một bài toán thực tế.",
+      title: "Cần một người hiểu cả AI lẫn vận hành?",
       intro:
-        "Tôi quan tâm đến các cơ hội kết hợp Data Science, AI ứng dụng, chuyển đổi số, sản phẩm HRM và quy trình sản xuất video bằng AI.",
+        "Tôi sẵn sàng trao đổi về các vị trí Applied AI, AI Automation, ERP/Digital Transformation, AI Video Production và R&D tại TP. Hồ Chí Minh.",
       emailLabel: "Gửi email",
       phoneLabel: "Gọi 0792 661 744",
       socialLabel: "Kết nối"
@@ -541,7 +541,7 @@ window.PORTFOLIO_CONTENT = {
     meta: {
       title: "Tra Nguyen Gia Khanh — AI × ERP Operating System",
       description:
-        "Portfolio of Tra Nguyen Gia Khanh — building intelligent operations through Data, AI, automation and ERP."
+        "Portfolio of Tra Nguyen Gia Khanh — a Data Science graduate focused on Applied AI, AI Automation, ERP/Digital Transformation and R&D."
     },
     nav: {
       systems: "AI × ERP",
@@ -552,74 +552,74 @@ window.PORTFOLIO_CONTENT = {
       contact: "Contact"
     },
     hero: {
-      eyebrow: "AI SYSTEMS · ERP OPERATIONS · R&D",
+      eyebrow: "SYSTEM PROFILE / 2026",
       name: "TRA NGUYEN GIA KHANH",
-      title: "Building intelligent operations with Data, AI and ERP.",
+      title: "Turning AI into real operating systems.",
       intro:
-        "I connect a Data Science foundation with applied AI and ERP implementation thinking to turn data into workflows, internal products and measurable operational outcomes.",
-      primary: "Explore the AI × ERP system",
-      secondary: "View case studies",
-      status: "System ready · Open to collaboration",
-      footnote: "Based in Ho Chi Minh City, Vietnam",
-      profileLabel: "AI OPERATIONS CONTROL MAP",
-      profileDirection: "INTELLIGENCE → EXECUTION",
-      profileTitle: "AI × ERP Operating System",
+        "A Data Science graduate with hands-on experience applying AI to automation, video production workflows and ERP/HRM implementation. I am a strong fit for Applied AI, AI Automation, ERP/Digital Transformation and R&D roles.",
+      primary: "Explore my operating model",
+      secondary: "View 08 case studies",
+      status: "Open to AI · ERP · R&D opportunities",
+      footnote: "Ho Chi Minh City · Open to conversations",
+      profileLabel: "SYSTEM MAP",
+      profileDirection: "AI × ERP",
+      profileTitle: "OPERATING SYSTEM",
       profileAreas: [
         {
-          title: "Data Layer",
+          title: "DATA",
           meta: "Python · SQL · Analytics · Computer Vision"
         },
         {
-          title: "Intelligence Layer",
-          meta: "ChatGPT · Claude · GenAI · AI Automation"
+          title: "INTELLIGENCE",
+          meta: "ChatGPT · Claude · GenAI · Machine Learning"
         },
         {
-          title: "Process Layer",
-          meta: "Odoo · AMIS MISA · HRM · RBAC"
+          title: "WORKFLOW",
+          meta: "n8n · Apps Script · API · Production Flow"
         },
         {
-          title: "Operations Layer",
-          meta: "eOffice · n8n · Apps Script · Production Workflow"
+          title: "IMPACT",
+          meta: "ERP · HRM · eOffice · Business Operations"
         }
       ],
-      profileRouteLabel: "END-TO-END VALUE FLOW",
+      profileRouteLabel: "DATA FLOW",
       profileRoute: ["Data", "Intelligence", "Workflow", "Impact"],
-      profileMetrics: ["Experience stages", "Selected projects", "Less manual work"]
+      profileMetrics: ["Business environments", "Selected case studies", "Less manual work"]
     },
     system: {
       eyebrow: "01 · AI × ERP OPERATING MODEL",
-      status: "Operational architecture",
-      title: "AI should not stand alone. It should enter the process and create operational outcomes.",
+      status: "SYSTEM STATUS · OPERATIONAL",
+      title: "My capabilities work as one system, not a list of tools.",
       intro:
-        "My working model connects four layers: input data, AI intelligence, ERP workflow and measurable output. I use this architecture across HRM, eOffice, chatbots, automation and AI-powered content production.",
+        "I begin with data and business context, choose the right intelligence layer, design an operable workflow, and measure the outcome. This is how I connect Data Science with real business needs.",
       stages: [
         {
           number: "01",
-          label: "INPUT LAYER",
-          title: "Data & Business Context",
-          description: "Collect data, understand the current state, identify bottlenecks and standardize business requirements.",
-          tags: ["Python", "SQL", "Process Discovery"]
+          label: "COLLECT · STRUCTURE · INTEGRATE",
+          title: "Data",
+          description: "Understand the current state, read the data and identify the right bottleneck before choosing a solution.",
+          tags: ["Python", "SQL", "Business Context"]
         },
         {
           number: "02",
-          label: "INTELLIGENCE LAYER",
-          title: "AI Decision & Automation",
-          description: "Apply GenAI, Machine Learning and automation to create knowledge, content and decision support.",
-          tags: ["ChatGPT", "Claude", "n8n"]
+          label: "ANALYZE · PREDICT · CREATE",
+          title: "Intelligence",
+          description: "Combine GenAI, Machine Learning and Computer Vision to produce insight, content and decision support.",
+          tags: ["ChatGPT", "Claude", "ML · CV"]
         },
         {
           number: "03",
-          label: "EXECUTION LAYER",
-          title: "ERP Workflow & Modules",
-          description: "Turn logic into modules, roles, forms, APIs and workflows that can operate inside the business.",
-          tags: ["Odoo", "AMIS MISA", "HRM"]
+          label: "ORCHESTRATE · AUTOMATE · GOVERN",
+          title: "Workflow",
+          description: "Turn logic into forms, APIs, permissions and automated processes that teams can actually use.",
+          tags: ["n8n", "Apps Script", "RBAC · API"]
         },
         {
           number: "04",
-          label: "IMPACT LAYER",
-          title: "Operational Output",
-          description: "Track efficiency, reduce manual handling, improve user experience and support scale.",
-          tags: ["KPI", "Documentation", "Adoption"]
+          label: "MEASURE · ADOPT · SCALE",
+          title: "Impact",
+          description: "Embed the solution in ERP, HRM or eOffice, document it and track measurable operational impact.",
+          tags: ["ERP", "Documentation", "Adoption"]
         }
       ],
       metrics: [
@@ -628,13 +628,13 @@ window.PORTFOLIO_CONTENT = {
         { value: "08", label: "Projects mapped to capability growth" }
       ],
       proofNote:
-        "From Computer Vision to eOffice, HRM and ERP: each project is framed as a system of inputs, processing, execution and measurement."
+        "My strength is staying with the problem from discovery and prototyping through testing, documentation and handover — beyond ideas or prompts."
     },
     journey: {
       eyebrow: "02 · POSITIONING",
-      title: "One foundation. Two directions of growth.",
+      title: "One Data Science foundation. Two paths to value.",
       intro:
-        "This portfolio connects my field of study with my professional work. Each stage adds a new layer — from understanding data to creating products and operating systems.",
+        "My degree built a data mindset; professional experience added AI product building and business-process understanding. AI Production and ERP converge on one goal: better operations.",
       items: [
         {
           number: "01",
@@ -664,9 +664,9 @@ window.PORTFOLIO_CONTENT = {
     },
     work: {
       eyebrow: "03 · EDUCATION TO PRACTICE",
-      title: "I turn a Data Science foundation into AI products and operational systems.",
+      title: "Roles where I can create value from day one.",
       intro:
-        "After graduating in Data Science from HUFLIT, I carried my foundation in data and AI into professional product development. Today, I combine analytical thinking, hands-on building and process understanding across two directions: AI-powered content production and ERP-oriented digital transformation.",
+        "I fit teams that need someone who understands data and AI, can work inside a process, build a practical prototype, collaborate with users and document the solution for adoption.",
       education: {
         label: "EDUCATION",
         school:
@@ -720,9 +720,9 @@ window.PORTFOLIO_CONTENT = {
     },
     experience: {
       eyebrow: "04 · EXPERIENCE",
-      title: "From system implementation to AI R&D.",
+      title: "Business experience, not only academic projects.",
       intro:
-        "My experience follows a continuous path: supporting ERP implementation, building AI and automation tools, then moving deeper into applied AI and research and development.",
+        "Three business environments taught me the implementation lifecycle: supporting systems and users, building automation, demonstrating ERP, and developing AI workflows for content production.",
       recommendation: {
         eyebrow: "SIGNED RECOMMENDATION",
         title: "Endorsed by the leadership of Bong Tra F&B.",
@@ -793,9 +793,9 @@ window.PORTFOLIO_CONTENT = {
     },
     projects: {
       eyebrow: "05 · SELECTED WORK",
-      title: "Projects mapped to the real journey.",
+      title: "08 case studies that show how I solve problems.",
       intro:
-        "Academic projects show the technical foundation. Later products and tools show how that foundation was applied in professional contexts.",
+        "Each project demonstrates a specific capability: framing the problem, choosing the technology, building the solution and connecting the output to user or operational needs.",
       filters: {
         all: "All",
         foundation: "Foundation",
@@ -936,9 +936,9 @@ window.PORTFOLIO_CONTENT = {
     },
     certificates: {
       eyebrow: "06 · CERTIFICATES",
-      title: "Selected certificates.",
+      title: "Continuous learning, backed by evidence.",
       intro:
-        "This is a selected part of the certificates I have completed, reflecting continuous learning across Data Science, AI, IT Support, Data Analytics and Cybersecurity.",
+        "A selected part of my completed learning across Data Science, AI, IT Support, Data Analytics, Cybersecurity, HackerRank SQL and Python.",
       moreLabel: "Additional certified skills",
       moreItems: [
         {
@@ -1041,9 +1041,9 @@ window.PORTFOLIO_CONTENT = {
     },
     about: {
       eyebrow: "07 · CAPABILITIES",
-      title: "I connect data, AI and digital transformation.",
+      title: "Technology I have used to deliver work.",
       intro:
-        "I move from business problems and data to ERP processes, functional modules, integrations, interfaces and working products, while choosing the right AI tools to accelerate creative and operational work.",
+        "I do not treat tools as résumé keywords. Each technology below has been applied in academic work, practical prototypes or business environments.",
       groups: [
         {
           title: "Data & AI",
@@ -1064,9 +1064,9 @@ window.PORTFOLIO_CONTENT = {
     },
     contact: {
       eyebrow: "08 · CONTACT",
-      title: "Let’s discuss a real problem.",
+      title: "Need someone who understands both AI and operations?",
       intro:
-        "I am interested in opportunities connecting Data Science, applied AI, digital transformation, HRM products and AI-powered video production.",
+        "I am open to Applied AI, AI Automation, ERP/Digital Transformation, AI Video Production and R&D opportunities in Ho Chi Minh City.",
       emailLabel: "Send an email",
       phoneLabel: "Call 0792 661 744",
       socialLabel: "Connect"
