@@ -41,6 +41,27 @@
     });
   }
 
+  function renderDisclosures(copy) {
+    setText("#profileDisclosureEyebrow", copy.disclosure.profileEyebrow);
+    setText("#profileDisclosureTitle", copy.disclosure.profileTitle);
+
+    const profile = $("#profileDisclosure");
+    setText(
+      "#profileDisclosureAction",
+      profile?.open
+        ? copy.disclosure.profileClose
+        : copy.disclosure.profileOpen
+    );
+
+    const capability = $("#capabilityDisclosure");
+    setText(
+      "#capabilityDisclosureAction",
+      capability?.open
+        ? copy.disclosure.capabilityClose
+        : copy.disclosure.capabilityOpen
+    );
+  }
+
   function renderHero(copy) {
     setText("#heroEyebrow", copy.hero.eyebrow);
     setText("#heroStatus", copy.hero.status);
@@ -755,6 +776,7 @@
     renderProjects(copy);
     renderCertificates(copy);
     renderAbout(copy);
+    renderDisclosures(copy);
     renderContact(copy);
     updateLanguageControl();
     updateThemeControl();
@@ -773,6 +795,12 @@
       document.documentElement.dataset.theme = next;
       localStorage.setItem("portfolio-theme", next);
       updateThemeControl();
+    });
+
+    ["#profileDisclosure", "#capabilityDisclosure"].forEach((selector) => {
+      $(selector)?.addEventListener("toggle", () => {
+        renderDisclosures(content[language]);
+      });
     });
 
     $("#projectFilters")?.addEventListener("click", (event) => {

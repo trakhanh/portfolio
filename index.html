@@ -71,8 +71,7 @@
           <a href="#systems" data-nav="systems">AI × ERP</a>
           <a href="#experience" data-nav="experience">Kinh nghiệm</a>
           <a href="#projects" data-nav="projects">Dự án</a>
-          <a href="#certificates" data-nav="certificates">Chứng chỉ</a>
-          <a href="#about" data-nav="about">Năng lực</a>
+          <a href="#proof" data-nav="proof">Uy tín</a>
           <a href="#contact" data-nav="contact">Liên hệ</a>
         </div>
 
@@ -231,33 +230,38 @@
             <div class="system-metrics" id="systemMetrics"></div>
             <p id="systemProofNote"></p>
           </div>
-        </div>
-      </section>
 
-      <section class="section section-ruled" id="journey">
-        <div class="page-shell">
-          <div class="section-heading">
-            <p class="eyebrow" id="journeyEyebrow"></p>
-            <div>
-              <h2 id="journeyTitle"></h2>
-              <p id="journeyIntro"></p>
-            </div>
-          </div>
-          <div class="journey-grid" id="journeyGrid"></div>
-        </div>
-      </section>
+          <details class="profile-disclosure" id="profileDisclosure">
+            <summary>
+              <span>
+                <span class="profile-disclosure-eyebrow" id="profileDisclosureEyebrow"></span>
+                <strong id="profileDisclosureTitle"></strong>
+              </span>
+              <span class="profile-disclosure-action" id="profileDisclosureAction"></span>
+            </summary>
+            <div class="profile-disclosure-body">
+              <div class="section-heading compact-heading">
+                <p class="eyebrow" id="journeyEyebrow"></p>
+                <div>
+                  <h2 id="journeyTitle"></h2>
+                  <p id="journeyIntro"></p>
+                </div>
+              </div>
+              <div class="journey-grid" id="journeyGrid"></div>
 
-      <section class="section work-section" id="work">
-        <div class="page-shell">
-          <div class="section-heading">
-            <p class="eyebrow" id="workEyebrow"></p>
-            <div>
-              <h2 id="workTitle"></h2>
-              <p id="workIntro"></p>
+              <div class="profile-disclosure-divider" aria-hidden="true"></div>
+
+              <div class="section-heading compact-heading">
+                <p class="eyebrow" id="workEyebrow"></p>
+                <div>
+                  <h2 id="workTitle"></h2>
+                  <p id="workIntro"></p>
+                </div>
+              </div>
+              <article class="education-card" id="educationCard"></article>
+              <div class="work-grid" id="workGrid"></div>
             </div>
-          </div>
-          <article class="education-card" id="educationCard"></article>
-          <div class="work-grid" id="workGrid"></div>
+          </details>
         </div>
       </section>
 
@@ -317,7 +321,7 @@
         </div>
       </section>
 
-      <section class="section certificates-section" id="certificates">
+      <section class="section certificates-section" id="proof">
         <div class="page-shell">
           <div class="section-heading">
             <p class="eyebrow" id="certificatesEyebrow"></p>
@@ -352,23 +356,30 @@
             <span id="certificateSlideStatus" aria-live="polite"></span>
           </div>
           <div class="certificate-more" id="certificateMore"></div>
-        </div>
-      </section>
 
-      <section class="section" id="about">
-        <div class="page-shell about-layout">
-          <div class="about-copy">
-            <p class="eyebrow" id="aboutEyebrow"></p>
-            <h2 id="aboutTitle"></h2>
-            <p id="aboutIntro"></p>
-            <a
-              class="button button-quiet"
-              id="cvLink"
-              target="_blank"
-              rel="noopener"
-            ></a>
-          </div>
-          <div class="skill-groups" id="skillGroups"></div>
+          <details class="profile-disclosure credentials-disclosure" id="capabilityDisclosure">
+            <summary>
+              <span>
+                <span class="profile-disclosure-eyebrow" id="aboutEyebrow"></span>
+                <strong id="aboutTitle"></strong>
+              </span>
+              <span class="profile-disclosure-action" id="capabilityDisclosureAction"></span>
+            </summary>
+            <div class="profile-disclosure-body">
+              <div class="about-layout">
+                <div class="about-copy">
+                  <p id="aboutIntro"></p>
+                  <a
+                    class="button button-quiet"
+                    id="cvLink"
+                    target="_blank"
+                    rel="noopener"
+                  ></a>
+                </div>
+                <div class="skill-groups" id="skillGroups"></div>
+              </div>
+            </div>
+          </details>
         </div>
       </section>
 

@@ -9,9 +9,16 @@ window.PORTFOLIO_CONTENT = {
       systems: "AI × ERP",
       experience: "Kinh nghiệm",
       projects: "Dự án",
-      certificates: "Chứng chỉ",
-      about: "Năng lực",
+      proof: "Uy tín",
       contact: "Liên hệ"
+    },
+    disclosure: {
+      profileEyebrow: "HỒ SƠ NỀN TẢNG",
+      profileTitle: "Học vấn & hai hướng phát triển",
+      profileOpen: "Xem chi tiết",
+      profileClose: "Thu gọn",
+      capabilityOpen: "Xem kỹ năng & CV",
+      capabilityClose: "Thu gọn"
     },
     hero: {
       eyebrow: "SYSTEM PROFILE / 2026",
@@ -93,7 +100,7 @@ window.PORTFOLIO_CONTENT = {
         "Điểm mạnh của tôi là đi cùng bài toán từ khảo sát, dựng demo, kiểm thử đến tài liệu hướng dẫn và chuyển giao — không dừng ở ý tưởng hoặc prompt."
     },
     journey: {
-      eyebrow: "02 · POSITIONING",
+      eyebrow: "PROFILE LAYER · NỀN TẢNG",
       title: "Một nền tảng Data Science. Hai hướng tạo giá trị.",
       intro:
         "Ngành học cho tôi tư duy dữ liệu; trải nghiệm đi làm bổ sung khả năng xây sản phẩm AI và hiểu quy trình doanh nghiệp. Hai hướng AI Production và ERP cùng hội tụ ở mục tiêu: làm hệ thống vận hành tốt hơn.",
@@ -125,7 +132,7 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     work: {
-      eyebrow: "03 · TỪ HỌC VẤN ĐẾN THỰC TIỄN",
+      eyebrow: "PROFILE LAYER · HƯỚNG PHÁT TRIỂN",
       title: "Những vai trò tôi có thể tạo giá trị ngay.",
       intro:
         "Tôi phù hợp với đội ngũ cần một người vừa hiểu dữ liệu và AI, vừa có khả năng chạm vào quy trình, dựng sản phẩm thử nghiệm, phối hợp người dùng và tài liệu hóa để giải pháp được áp dụng.",
@@ -181,7 +188,7 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     experience: {
-      eyebrow: "04 · KINH NGHIỆM",
+      eyebrow: "02 · KINH NGHIỆM",
       title: "Kinh nghiệm thực tế, không chỉ dự án học tập.",
       intro:
         "Ba môi trường doanh nghiệp cho tôi kinh nghiệm triển khai AI, automation và ERP với người dùng thật.",
@@ -255,7 +262,7 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     projects: {
-      eyebrow: "05 · SELECTED WORK",
+      eyebrow: "03 · SELECTED WORK",
       title: "08 case study thể hiện cách tôi giải quyết vấn đề.",
       intro:
         "Tám dự án cho thấy cách tôi phân tích bài toán, chọn công nghệ và tạo đầu ra có thể sử dụng.",
@@ -398,7 +405,7 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     certificates: {
-      eyebrow: "06 · CHỨNG CHỈ",
+      eyebrow: "04 · UY TÍN & CHỨNG CHỈ",
       title: "Học liên tục, có bằng chứng.",
       intro:
         "Chứng chỉ tiêu biểu về Data Science, AI, IT Support, Data Analytics, Cybersecurity, SQL và Python.",
@@ -503,7 +510,7 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     about: {
-      eyebrow: "07 · CAPABILITIES",
+      eyebrow: "TECH STACK · CV",
       title: "Công nghệ tôi đã dùng để giao việc.",
       intro:
         "Tôi không xem công cụ là danh sách từ khóa. Mỗi công nghệ dưới đây đã được đặt trong bài toán học tập, sản phẩm thử nghiệm hoặc môi trường doanh nghiệp.",
@@ -526,7 +533,7 @@ window.PORTFOLIO_CONTENT = {
         "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
     },
     contact: {
-      eyebrow: "08 · CONTACT",
+      eyebrow: "05 · LIÊN HỆ",
       title: "Cần một người hiểu cả AI lẫn vận hành?",
       intro:
         "Tôi sẵn sàng trao đổi về các vị trí Applied AI, AI Automation, ERP/Digital Transformation, AI Video Production và R&D tại TP. Hồ Chí Minh.",
@@ -547,9 +554,16 @@ window.PORTFOLIO_CONTENT = {
       systems: "AI × ERP",
       experience: "Experience",
       projects: "Projects",
-      certificates: "Certificates",
-      about: "Capabilities",
+      proof: "Proof",
       contact: "Contact"
+    },
+    disclosure: {
+      profileEyebrow: "FOUNDATION PROFILE",
+      profileTitle: "Education & two professional directions",
+      profileOpen: "View details",
+      profileClose: "Collapse",
+      capabilityOpen: "View skills & CV",
+      capabilityClose: "Collapse"
     },
     hero: {
       eyebrow: "SYSTEM PROFILE / 2026",
@@ -631,7 +645,7 @@ window.PORTFOLIO_CONTENT = {
         "My strength is staying with the problem from discovery and prototyping through testing, documentation and handover — beyond ideas or prompts."
     },
     journey: {
-      eyebrow: "02 · POSITIONING",
+      eyebrow: "PROFILE LAYER · FOUNDATION",
       title: "One Data Science foundation. Two paths to value.",
       intro:
         "My degree built a data mindset; professional experience added AI product building and business-process understanding. AI Production and ERP converge on one goal: better operations.",
@@ -663,7 +677,7 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     work: {
-      eyebrow: "03 · EDUCATION TO PRACTICE",
+      eyebrow: "PROFILE LAYER · PROFESSIONAL DIRECTIONS",
       title: "Roles where I can create value from day one.",
       intro:
         "I fit teams that need someone who understands data and AI, can work inside a process, build a practical prototype, collaborate with users and document the solution for adoption.",
@@ -719,7 +733,7 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     experience: {
-      eyebrow: "04 · EXPERIENCE",
+      eyebrow: "02 · EXPERIENCE",
       title: "Business experience, not only academic projects.",
       intro:
         "Three business environments gave me hands-on experience delivering AI, automation and ERP for real users.",
@@ -792,7 +806,7 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     projects: {
-      eyebrow: "05 · SELECTED WORK",
+      eyebrow: "03 · SELECTED WORK",
       title: "08 case studies that show how I solve problems.",
       intro:
         "Eight projects show how I frame problems, choose technology and deliver usable outcomes.",
@@ -935,7 +949,7 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     certificates: {
-      eyebrow: "06 · CERTIFICATES",
+      eyebrow: "04 · PROOF & CREDENTIALS",
       title: "Continuous learning, backed by evidence.",
       intro:
         "Selected credentials across Data Science, AI, IT Support, Data Analytics, Cybersecurity, SQL and Python.",
@@ -1040,7 +1054,7 @@ window.PORTFOLIO_CONTENT = {
       ]
     },
     about: {
-      eyebrow: "07 · CAPABILITIES",
+      eyebrow: "TECH STACK · CV",
       title: "Technology I have used to deliver work.",
       intro:
         "I do not treat tools as résumé keywords. Each technology below has been applied in academic work, practical prototypes or business environments.",
@@ -1063,7 +1077,7 @@ window.PORTFOLIO_CONTENT = {
         "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
     },
     contact: {
-      eyebrow: "08 · CONTACT",
+      eyebrow: "05 · CONTACT",
       title: "Need someone who understands both AI and operations?",
       intro:
         "I am open to Applied AI, AI Automation, ERP/Digital Transformation, AI Video Production and R&D opportunities in Ho Chi Minh City.",
