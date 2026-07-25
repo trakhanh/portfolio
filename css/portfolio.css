@@ -843,6 +843,11 @@ html[data-theme="dark"] .hero-profile-panel {
   text-transform: uppercase;
 }
 
+.hero-name span {
+  display: block;
+  white-space: nowrap;
+}
+
 .work-section {
   background: var(--surface);
 }
@@ -3753,14 +3758,14 @@ html[data-theme="dark"] .brand-mark {
 }
 
 .hero-name {
-  max-width: 8.7ch;
+  max-width: 100%;
   margin: 0;
   color: #f4f4ee;
   font-family: var(--display);
-  font-size: clamp(66px, 7.25vw, 122px);
+  font-size: clamp(58px, 4.8vw, 86px);
   font-weight: 700;
-  line-height: 0.84;
-  letter-spacing: -0.075em;
+  line-height: 0.9;
+  letter-spacing: -0.065em;
   text-transform: uppercase;
 }
 
@@ -3936,6 +3941,7 @@ html[data-theme="dark"] .hero-profile-panel {
 
 .profile-heading h2 {
   margin: 0;
+  color: var(--text);
   font-size: clamp(22px, 2.1vw, 38px);
   letter-spacing: -0.05em;
 }
@@ -4087,6 +4093,7 @@ html[data-theme="dark"] .hero-profile-panel {
 }
 
 .profile-area strong {
+  color: var(--text);
   font-family: var(--mono);
   font-size: clamp(12px, 1vw, 16px);
   letter-spacing: -0.02em;
@@ -4577,8 +4584,8 @@ html[data-theme="dark"] .contact-card {
   }
 
   .hero-name {
-    max-width: 10ch;
-    font-size: clamp(72px, 12vw, 118px);
+    max-width: 100%;
+    font-size: clamp(62px, 9vw, 92px);
   }
 
   .hero-profile-panel {
@@ -4659,12 +4666,13 @@ html[data-theme="dark"] .contact-card {
   }
 
   .hero-identity {
-    padding-top: 70px;
+    padding-top: 46px;
   }
 
   .hero-name {
-    max-width: 8.5ch;
-    font-size: clamp(58px, 18.5vw, 82px);
+    max-width: 100%;
+    font-size: clamp(50px, 14.8vw, 64px);
+    letter-spacing: -0.045em;
   }
 
   .hero h1 {
@@ -4814,7 +4822,7 @@ html[data-theme="dark"] .contact-card {
 
 @media (max-width: 430px) {
   .hero-name {
-    font-size: clamp(52px, 18vw, 70px);
+    font-size: clamp(46px, 14.2vw, 58px);
   }
 
   .profile-area {
@@ -4827,5 +4835,112 @@ html[data-theme="dark"] .contact-card {
 
   .profile-area small {
     font-size: 8px;
+  }
+}
+
+/* UI/UX Pro Max quality gates */
+
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+:where(a, button, [role="button"]) {
+  cursor: pointer;
+}
+
+:where(a, button, [role="button"]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.icon-button,
+.language-toggle,
+.menu-toggle,
+.slider-button,
+.filter-button,
+.button,
+.back-to-top,
+.recommendation-modal-close {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.brand {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.nav-links a {
+  min-width: 44px;
+  text-align: center;
+}
+
+.filter-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-links a,
+.certificate-links a,
+.social-links a {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.system-stage footer span::before {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border: 1px solid currentColor;
+  margin-right: 7px;
+  content: "";
+}
+
+.system-workflow::after {
+  left: 40%;
+  animation: none;
+}
+
+@media (max-width: 760px) {
+  .profile-metrics small {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 900px) {
+  .profile-areas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .profile-areas::before {
+    display: none;
+  }
+
+  .profile-area {
+    min-height: 300px;
+    grid-template-rows: auto 122px auto;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .profile-area:nth-child(2) {
+    border-right: 0;
+  }
+
+  .profile-area:nth-child(n + 3) {
+    border-bottom: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }

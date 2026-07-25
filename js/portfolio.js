@@ -44,7 +44,13 @@
   function renderHero(copy) {
     setText("#heroEyebrow", copy.hero.eyebrow);
     setText("#heroStatus", copy.hero.status);
-    setText("#heroName", copy.hero.name);
+    const nameParts = copy.hero.name.split(" ");
+    const heroName = $("#heroName");
+    if (heroName) {
+      heroName.setAttribute("aria-label", copy.hero.name);
+      setText('[data-hero-name-line="1"]', nameParts.slice(0, 2).join(" "));
+      setText('[data-hero-name-line="2"]', nameParts.slice(2).join(" "));
+    }
     setText("#heroTitle", copy.hero.title);
     setText("#heroIntro", copy.hero.intro);
     setText("#heroPrimary", copy.hero.primary);
