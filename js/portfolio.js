@@ -35,6 +35,66 @@
     if (element) element.textContent = value;
   };
 
+  const technologyVisuals = {
+    Python: { icon: "python", fallback: "PY" },
+    PyTorch: { icon: "pytorch", fallback: "PT" },
+    OpenCV: { icon: "opencv", fallback: "CV" },
+    Jupyter: { icon: "jupyter", fallback: "JUP" },
+    ChatGPT: { fallback: "GPT" },
+    Claude: { icon: "anthropic", fallback: "CL" },
+    Gemini: { icon: "googlegemini", fallback: "GM" },
+    Antigravity: { icon: "google", fallback: "AG" },
+    NotebookLM: { icon: "notebooklm", fallback: "NLM" },
+    JavaScript: { icon: "javascript", fallback: "JS" },
+    n8n: { icon: "n8n", fallback: "n8n" },
+    "Google Apps Script": { icon: "googleappsscript", fallback: "GAS" },
+    Supabase: { icon: "supabase", fallback: "SB" },
+    ERP: { fallback: "ERP" },
+    HRM: { fallback: "HRM" },
+    "Data Analysis": { fallback: "DATA" },
+    "Machine Learning": { fallback: "ML" },
+    "Deep Learning": { fallback: "DL" },
+    "Computer Vision": { fallback: "CV" },
+    "Business Process": { fallback: "BPM" },
+    "Centralized Data": { fallback: "DATA" },
+    "Web App": { fallback: "WEB" },
+    API: { fallback: "API" },
+    RBAC: { fallback: "RBAC" },
+    "AI Video": { fallback: "VIDEO" },
+    "AI Visual": { fallback: "VISUAL" },
+    "AI Voice": { fallback: "VOICE" }
+  };
+
+  function renderTechnologyLogo(name) {
+    const visual = technologyVisuals[name] || {
+      fallback: name.replace(/[^A-Za-z0-9]/g, "").slice(0, 4).toUpperCase()
+    };
+
+    return `
+      <span class="tool-logo${visual.icon ? "" : " is-fallback"}" aria-hidden="true">
+        ${
+          visual.icon
+            ? `<img src="./img/tool-icons/${visual.icon}.svg" alt="" width="22" height="22" loading="lazy" decoding="async" />`
+            : ""
+        }
+        <b>${visual.fallback}</b>
+      </span>
+    `;
+  }
+
+  function setupTechnologyLogoFallbacks(root) {
+    $$(".tool-logo img", root).forEach((image) => {
+      image.addEventListener(
+        "error",
+        () => {
+          image.closest(".tool-logo")?.classList.add("is-fallback");
+          image.remove();
+        },
+        { once: true }
+      );
+    });
+  }
+
   function renderNavigation(copy) {
     Object.entries(copy.nav).forEach(([key, value]) => {
       setText(`[data-nav="${key}"]`, value);
@@ -120,6 +180,39 @@
           `
         )
         .join("");
+    }
+
+    setText("#toolEcosystemEyebrow", copy.system.tools.eyebrow);
+    setText("#toolEcosystemTitle", copy.system.tools.title);
+    setText("#toolEcosystemIntro", copy.system.tools.intro);
+
+    const toolEcosystem = $("#toolEcosystemGrid");
+    if (toolEcosystem) {
+      toolEcosystem.innerHTML = copy.system.tools.groups
+        .map(
+          (group) => `
+            <article class="tool-ecosystem-group">
+              <header>
+                <span>${group.index}</span>
+                <h4>${group.title}</h4>
+              </header>
+              <div class="tool-ecosystem-list">
+                ${group.items
+                  .map(
+                    (item) => `
+                      <div class="tool-chip">
+                        ${renderTechnologyLogo(item)}
+                        <span>${item}</span>
+                      </div>
+                    `
+                  )
+                  .join("")}
+              </div>
+            </article>
+          `
+        )
+        .join("");
+      setupTechnologyLogoFallbacks(toolEcosystem);
     }
 
     const metrics = $("#systemMetrics");
@@ -448,12 +541,22 @@
           <article class="skill-group">
             <h3>${group.title}</h3>
             <div class="skill-list">
-              ${group.items.map((item) => `<span>${item}</span>`).join("")}
+              ${group.items
+                .map(
+                  (item) => `
+                    <span class="skill-tool">
+                      ${renderTechnologyLogo(item)}
+                      <small>${item}</small>
+                    </span>
+                  `
+                )
+                .join("")}
             </div>
           </article>
         `
       )
       .join("");
+    setupTechnologyLogoFallbacks(skillGroups);
   }
 
   function renderCertificates(copy) {

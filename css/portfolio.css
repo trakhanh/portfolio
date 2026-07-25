@@ -1203,6 +1203,148 @@ button,
   line-height: 1.3;
 }
 
+.tool-ecosystem {
+  margin-top: 24px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.tool-ecosystem-heading {
+  display: grid;
+  padding: clamp(28px, 4vw, 44px);
+  border-bottom: 1px solid var(--border);
+  grid-template-columns: minmax(180px, 0.32fr) minmax(0, 0.68fr);
+  gap: clamp(32px, 6vw, 92px);
+  align-items: start;
+}
+
+.tool-ecosystem-heading > div {
+  max-width: 760px;
+}
+
+.tool-ecosystem-heading h3 {
+  max-width: 18ch;
+  font-size: clamp(1.9rem, 3.2vw, 3.25rem);
+}
+
+.tool-ecosystem-heading > div > p {
+  max-width: 64ch;
+  margin-top: 16px;
+  color: var(--text-soft);
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+.tool-ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.tool-ecosystem-group {
+  min-width: 0;
+  padding: clamp(24px, 3vw, 36px);
+  border-right: 1px solid var(--border);
+}
+
+.tool-ecosystem-group:last-child {
+  border-right: 0;
+}
+
+.tool-ecosystem-group header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.tool-ecosystem-group header > span {
+  color: var(--accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+}
+
+.tool-ecosystem-group h4 {
+  margin: 0;
+  font-family: "Manrope", "DM Sans", sans-serif;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.tool-ecosystem-list {
+  display: grid;
+  margin-top: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.tool-chip {
+  display: flex;
+  min-width: 0;
+  min-height: 58px;
+  padding: 8px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.tool-chip > span:last-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--text-soft);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.tool-logo {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, #111 18%);
+  border-radius: 9px;
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+  place-items: center;
+}
+
+.tool-logo img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.tool-logo b {
+  display: none;
+  max-width: 34px;
+  padding-inline: 3px;
+  color: #101312;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.48rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-align: center;
+}
+
+.tool-logo.is-fallback {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: var(--accent-soft);
+  box-shadow: none;
+}
+
+.tool-logo.is-fallback img {
+  display: none;
+}
+
+.tool-logo.is-fallback b {
+  display: block;
+  color: var(--accent-strong);
+}
+
 .system-proof {
   display: grid;
   margin-top: 24px;
@@ -1508,7 +1650,7 @@ button,
 }
 
 .education-focus small,
-.skill-list span,
+.skill-list > span,
 .project-tags span,
 .certificate-tags span {
   padding: 7px 9px;
@@ -2248,14 +2390,44 @@ button,
 }
 
 .skill-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   align-content: flex-start;
-  gap: 7px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
 }
 
-.skill-list span {
+.skill-list > span {
   font-size: 0.65rem;
+}
+
+.skill-tool {
+  display: flex;
+  min-height: 54px;
+  padding: 7px !important;
+  align-items: center;
+  gap: 9px;
+}
+
+.skill-tool .tool-logo {
+  width: 34px;
+  height: 34px;
+  flex-basis: 34px;
+  border-radius: 8px;
+}
+
+.skill-tool .tool-logo img {
+  width: 19px;
+  height: 19px;
+}
+
+.skill-tool small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--text-soft);
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
 /* Contact */
@@ -2595,6 +2767,24 @@ button,
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .tool-ecosystem-heading {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .tool-ecosystem-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tool-ecosystem-group {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tool-ecosystem-group:last-child {
+    border-bottom: 0;
+  }
+
   .system-stage {
     min-height: 370px;
     border-bottom: 1px solid var(--border);
@@ -2826,6 +3016,18 @@ button,
 
   .system-workflow {
     grid-template-columns: 1fr;
+  }
+
+  .tool-ecosystem-heading {
+    padding: 28px 24px;
+  }
+
+  .tool-ecosystem-heading h3 {
+    font-size: clamp(1.8rem, 8.5vw, 2.65rem);
+  }
+
+  .tool-ecosystem-group {
+    padding: 24px;
   }
 
   .system-stage {

@@ -91,6 +91,29 @@ window.PORTFOLIO_CONTENT = {
           tags: ["ERP", "Documentation", "Adoption"]
         }
       ],
+      tools: {
+        eyebrow: "TOOL ECOSYSTEM · ĐÃ ỨNG DỤNG",
+        title: "Bộ công cụ kết nối AI với vận hành.",
+        intro:
+          "Một hệ công cụ có chọn lọc, được sử dụng trong đồ án, sản phẩm thử nghiệm và môi trường doanh nghiệp — không chỉ là danh sách từ khóa.",
+        groups: [
+          {
+            index: "T1",
+            title: "Data & Vision",
+            items: ["Python", "PyTorch", "OpenCV", "Jupyter"]
+          },
+          {
+            index: "T2",
+            title: "GenAI & Research",
+            items: ["ChatGPT", "Claude", "Gemini", "NotebookLM"]
+          },
+          {
+            index: "T3",
+            title: "Automation & ERP",
+            items: ["n8n", "Google Apps Script", "Supabase", "ERP"]
+          }
+        ]
+      },
       metrics: [
         { value: "40%", label: "Giảm khối lượng xử lý thủ công" },
         { value: "03", label: "Môi trường doanh nghiệp thực tế" },
@@ -636,6 +659,29 @@ window.PORTFOLIO_CONTENT = {
           tags: ["ERP", "Documentation", "Adoption"]
         }
       ],
+      tools: {
+        eyebrow: "TOOL ECOSYSTEM · APPLIED IN PRACTICE",
+        title: "The toolkit connecting AI with operations.",
+        intro:
+          "A focused toolset used across academic work, practical prototypes and business environments — not a list of résumé keywords.",
+        groups: [
+          {
+            index: "T1",
+            title: "Data & Vision",
+            items: ["Python", "PyTorch", "OpenCV", "Jupyter"]
+          },
+          {
+            index: "T2",
+            title: "GenAI & Research",
+            items: ["ChatGPT", "Claude", "Gemini", "NotebookLM"]
+          },
+          {
+            index: "T3",
+            title: "Automation & ERP",
+            items: ["n8n", "Google Apps Script", "Supabase", "ERP"]
+          }
+        ]
+      },
       metrics: [
         { value: "40%", label: "Reduction in manual processing workload" },
         { value: "03", label: "Real business environments" },
