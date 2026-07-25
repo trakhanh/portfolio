@@ -198,8 +198,15 @@
     if (!list) return;
 
     list.innerHTML = copy.experience.items
-      .map(
-        (item, index) => `
+      .map((item, index) => {
+        const visibleHighlights = item.highlights.slice(0, 3);
+        const remainingHighlights = item.highlights.slice(3);
+        const moreLabel =
+          language === "vi"
+            ? `Xem thêm ${remainingHighlights.length} nội dung`
+            : `View ${remainingHighlights.length} more`;
+
+        return `
           <article class="experience-card ${item.current ? "is-current" : ""}" data-experience-index="${String(index + 1).padStart(2, "0")}">
             <div class="experience-date">
               <i aria-hidden="true"></i>
@@ -210,11 +217,23 @@
               <h3>${item.role}</h3>
             </div>
             <ul class="experience-highlights">
-              ${item.highlights.map((highlight) => `<li>${highlight}</li>`).join("")}
+              ${visibleHighlights.map((highlight) => `<li>${highlight}</li>`).join("")}
             </ul>
+            ${
+              remainingHighlights.length
+                ? `
+                  <details class="experience-more">
+                    <summary>${moreLabel}</summary>
+                    <ul class="experience-highlights experience-highlights-more">
+                      ${remainingHighlights.map((highlight) => `<li>${highlight}</li>`).join("")}
+                    </ul>
+                  </details>
+                `
+                : ""
+            }
           </article>
-        `
-      )
+        `;
+      })
       .join("");
 
     const letter = copy.experience.recommendation;
@@ -826,6 +845,7 @@
     window.setTimeout(() => {
       splash.classList.add("is-leaving");
       document.body.classList.remove("is-splashing");
+      document.body.classList.add("is-ready");
       window.setTimeout(() => splash.remove(), exitTime);
     }, displayTime);
   }

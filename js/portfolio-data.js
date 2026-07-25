@@ -18,7 +18,7 @@ window.PORTFOLIO_CONTENT = {
       name: "TRÀ NGUYỄN GIA KHÁNH",
       title: "Biến AI thành hệ thống vận hành thực tế.",
       intro:
-        "Tốt nghiệp Khoa học Dữ liệu, tôi có kinh nghiệm đưa AI vào tự động hóa, quy trình sản xuất video và triển khai ERP/HRM. Tôi phù hợp với các vị trí Applied AI, AI Automation, ERP/Digital Transformation và R&D.",
+        "Tốt nghiệp Khoa học Dữ liệu, tôi ứng dụng AI vào tự động hóa, sản xuất video và triển khai ERP/HRM — phù hợp với Applied AI, AI Automation và Digital Transformation.",
       primary: "Xem năng lực hệ thống",
       secondary: "Xem 08 case study",
       status: "Sẵn sàng cho cơ hội AI · ERP · R&D",
@@ -51,9 +51,9 @@ window.PORTFOLIO_CONTENT = {
     system: {
       eyebrow: "01 · AI × ERP OPERATING MODEL",
       status: "SYSTEM STATUS · OPERATIONAL",
-      title: "Năng lực của tôi vận hành như một hệ thống, không phải danh sách công cụ.",
+      title: "Từ dữ liệu đến tác động vận hành.",
       intro:
-        "Tôi bắt đầu từ dữ liệu và bài toán nghiệp vụ, chọn đúng lớp AI, thiết kế workflow có thể vận hành, rồi đo kết quả. Cách tiếp cận này giúp tôi kết nối nền tảng Data Science với nhu cầu thật của doanh nghiệp.",
+        "Tôi kết nối Data Science, AI và ERP theo bốn bước: hiểu dữ liệu, chọn lớp AI, tự động hóa workflow và đo kết quả.",
       stages: [
         {
           number: "01",
@@ -184,7 +184,7 @@ window.PORTFOLIO_CONTENT = {
       eyebrow: "04 · KINH NGHIỆM",
       title: "Kinh nghiệm thực tế, không chỉ dự án học tập.",
       intro:
-        "Ba môi trường doanh nghiệp giúp tôi hiểu vòng đời triển khai: hỗ trợ hệ thống, làm việc với người dùng, dựng automation, demo ERP và phát triển workflow AI cho sản xuất nội dung.",
+        "Ba môi trường doanh nghiệp cho tôi kinh nghiệm triển khai AI, automation và ERP với người dùng thật.",
       recommendation: {
         eyebrow: "THƯ GIỚI THIỆU ĐÃ KÝ",
         title: "Năng lực được xác nhận bởi lãnh đạo Bông Trà F&B.",
@@ -258,7 +258,7 @@ window.PORTFOLIO_CONTENT = {
       eyebrow: "05 · SELECTED WORK",
       title: "08 case study thể hiện cách tôi giải quyết vấn đề.",
       intro:
-        "Mỗi dự án cho thấy một lớp năng lực cụ thể: phân tích bài toán, lựa chọn công nghệ, xây giải pháp và liên kết đầu ra với nhu cầu người dùng hoặc vận hành.",
+        "Tám dự án cho thấy cách tôi phân tích bài toán, chọn công nghệ và tạo đầu ra có thể sử dụng.",
       filters: {
         all: "Tất cả",
         foundation: "Nền tảng",
@@ -401,7 +401,7 @@ window.PORTFOLIO_CONTENT = {
       eyebrow: "06 · CHỨNG CHỈ",
       title: "Học liên tục, có bằng chứng.",
       intro:
-        "Một phần trong hệ thống chứng chỉ tôi đã hoàn thành về Data Science, AI, IT Support, Data Analytics, Cybersecurity, HackerRank SQL và Python.",
+        "Chứng chỉ tiêu biểu về Data Science, AI, IT Support, Data Analytics, Cybersecurity, SQL và Python.",
       moreLabel: "Kỹ năng được chứng nhận khác",
       moreItems: [
         {
@@ -556,7 +556,7 @@ window.PORTFOLIO_CONTENT = {
       name: "TRA NGUYEN GIA KHANH",
       title: "Turning AI into real operating systems.",
       intro:
-        "A Data Science graduate with hands-on experience applying AI to automation, video production workflows and ERP/HRM implementation. I am a strong fit for Applied AI, AI Automation, ERP/Digital Transformation and R&D roles.",
+        "A Data Science graduate applying AI to automation, video production and ERP/HRM implementation — ready for Applied AI, AI Automation and Digital Transformation roles.",
       primary: "Explore my operating model",
       secondary: "View 08 case studies",
       status: "Open to AI · ERP · R&D opportunities",
@@ -589,9 +589,9 @@ window.PORTFOLIO_CONTENT = {
     system: {
       eyebrow: "01 · AI × ERP OPERATING MODEL",
       status: "SYSTEM STATUS · OPERATIONAL",
-      title: "My capabilities work as one system, not a list of tools.",
+      title: "From data to operational impact.",
       intro:
-        "I begin with data and business context, choose the right intelligence layer, design an operable workflow, and measure the outcome. This is how I connect Data Science with real business needs.",
+        "I connect Data Science, AI and ERP in four steps: understand the data, select the intelligence layer, automate the workflow and measure the outcome.",
       stages: [
         {
           number: "01",
@@ -722,7 +722,7 @@ window.PORTFOLIO_CONTENT = {
       eyebrow: "04 · EXPERIENCE",
       title: "Business experience, not only academic projects.",
       intro:
-        "Three business environments taught me the implementation lifecycle: supporting systems and users, building automation, demonstrating ERP, and developing AI workflows for content production.",
+        "Three business environments gave me hands-on experience delivering AI, automation and ERP for real users.",
       recommendation: {
         eyebrow: "SIGNED RECOMMENDATION",
         title: "Endorsed by the leadership of Bong Tra F&B.",
@@ -795,7 +795,7 @@ window.PORTFOLIO_CONTENT = {
       eyebrow: "05 · SELECTED WORK",
       title: "08 case studies that show how I solve problems.",
       intro:
-        "Each project demonstrates a specific capability: framing the problem, choosing the technology, building the solution and connecting the output to user or operational needs.",
+        "Eight projects show how I frame problems, choose technology and deliver usable outcomes.",
       filters: {
         all: "All",
         foundation: "Foundation",
@@ -938,7 +938,7 @@ window.PORTFOLIO_CONTENT = {
       eyebrow: "06 · CERTIFICATES",
       title: "Continuous learning, backed by evidence.",
       intro:
-        "A selected part of my completed learning across Data Science, AI, IT Support, Data Analytics, Cybersecurity, HackerRank SQL and Python.",
+        "Selected credentials across Data Science, AI, IT Support, Data Analytics, Cybersecurity, SQL and Python.",
       moreLabel: "Additional certified skills",
       moreItems: [
         {

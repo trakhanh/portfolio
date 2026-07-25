@@ -118,6 +118,9 @@ body {
   line-height: 1.65;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  transition:
+    background-color var(--duration) var(--ease),
+    color var(--duration) var(--ease);
 }
 
 body.is-splashing,
@@ -732,9 +735,9 @@ button,
 
 .eyebrow-row {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .hero-copy .eyebrow {
@@ -743,6 +746,7 @@ button,
 
 .availability {
   display: inline-flex;
+  max-width: 100%;
   min-height: 34px;
   padding: 7px 10px;
   align-items: center;
@@ -766,7 +770,7 @@ button,
 }
 
 .hero-identity {
-  margin-top: auto;
+  margin-top: clamp(52px, 6vw, 84px);
 }
 
 .hero-name {
@@ -1584,6 +1588,52 @@ button,
   height: 2px;
   background: var(--accent);
   content: "";
+}
+
+.experience-more {
+  margin-top: -18px;
+  grid-column: 3;
+}
+
+.experience-more summary {
+  display: inline-flex;
+  min-height: 44px;
+  padding: 8px 0;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent-strong);
+  cursor: pointer;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.experience-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.experience-more summary::after {
+  color: var(--accent);
+  content: "+";
+  font-size: 0.9rem;
+}
+
+.experience-more[open] summary::after {
+  content: "−";
+}
+
+.experience-more summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.experience-highlights-more {
+  margin-top: 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
 }
 
 .recommendation-card {
@@ -2474,6 +2524,10 @@ button,
     grid-column: 2;
   }
 
+  .experience-more {
+    grid-column: 2;
+  }
+
   .recommendation-card {
     grid-template-columns: minmax(260px, 0.4fr) minmax(0, 0.6fr);
   }
@@ -2526,8 +2580,11 @@ button,
   }
 
   .eyebrow-row {
-    align-items: flex-start;
-    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-identity {
+    margin-top: 42px;
   }
 
   .hero-name {
@@ -2689,6 +2746,11 @@ button,
   }
 
   .experience-highlights {
+    grid-column: auto;
+  }
+
+  .experience-more {
+    margin-top: 0;
     grid-column: auto;
   }
 
@@ -2885,6 +2947,34 @@ button,
   .site-footer .page-shell {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body.is-ready .hero-identity,
+  body.is-ready .hero-intro,
+  body.is-ready .hero-actions {
+    animation: hero-enter 360ms var(--ease) both;
+  }
+
+  body.is-ready .hero-intro {
+    animation-delay: 70ms;
+  }
+
+  body.is-ready .hero-actions {
+    animation-delay: 120ms;
   }
 }
 
