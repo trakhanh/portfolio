@@ -530,12 +530,72 @@
 
 .case-tech-card {
   position: relative;
-  min-height: 186px;
+  min-height: 214px;
   padding: 26px;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--case-radius);
   background: var(--surface);
+}
+
+.case-tech-card-head {
+  display: flex;
+  min-height: 48px;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.case-tech-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.case-tech-logo {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, #111 18%);
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(12, 18, 14, 0.08);
+  place-items: center;
+}
+
+.case-tech-logo img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.case-tech-logo b {
+  display: none;
+  max-width: 42px;
+  padding-inline: 4px;
+  color: #101312;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-align: center;
+}
+
+.case-tech-logo.is-fallback {
+  border-color: color-mix(in srgb, var(--accent) 36%, var(--border));
+  background: var(--accent-soft);
+  box-shadow: none;
+}
+
+.case-tech-logo.is-fallback img {
+  display: none;
+}
+
+.case-tech-logo.is-fallback b {
+  display: block;
+  color: var(--accent-strong);
 }
 
 .case-tech-card::after {
@@ -549,7 +609,7 @@
   content: "";
 }
 
-.case-tech-card span {
+.case-tech-index {
   color: var(--accent-strong);
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.64rem;
@@ -557,7 +617,7 @@
 }
 
 .case-tech-card h3 {
-  margin-top: 30px;
+  margin-top: 28px;
   font-size: 1.2rem;
 }
 

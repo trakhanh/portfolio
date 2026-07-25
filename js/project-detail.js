@@ -60,6 +60,83 @@
     return path.startsWith("./") ? `/${path.slice(2)}` : path;
   }
 
+  const technologyVisuals = {
+    Python: [{ icon: "python", fallback: "PY" }],
+    YOLOv8: [{ icon: "ultralytics", fallback: "YOLO" }],
+    SORT: [{ fallback: "SORT" }],
+    OpenCV: [{ icon: "opencv", fallback: "CV" }],
+    PyTorch: [{ icon: "pytorch", fallback: "PT" }],
+    BDD100K: [{ fallback: "BDD" }],
+    KITTI: [{ fallback: "KITTI" }],
+    "Jupyter / Kaggle": [
+      { icon: "jupyter", fallback: "JUP" },
+      { icon: "kaggle", fallback: "KG" }
+    ],
+    Streamlit: [{ icon: "streamlit", fallback: "ST" }],
+    CNN: [{ fallback: "CNN" }],
+    "VGG16 / ResNet50": [{ fallback: "NN" }],
+    "U-Net": [{ fallback: "U-NET" }],
+    n8n: [{ icon: "n8n", fallback: "n8n" }],
+    "GPT / Gemini": [
+      { fallback: "GPT" },
+      { icon: "googlegemini", fallback: "GM" }
+    ],
+    Supabase: [{ icon: "supabase", fallback: "SB" }],
+    "Website / Facebook": [
+      { fallback: "WEB" },
+      { icon: "facebook", fallback: "FB" }
+    ],
+    "Google Apps Script": [
+      { icon: "googleappsscript", fallback: "GAS" }
+    ],
+    "Sheets API": [{ icon: "googlesheets", fallback: "GS" }],
+    "Calendar API": [{ icon: "googlecalendar", fallback: "GC" }],
+    "Email Automation": [{ icon: "gmail", fallback: "MAIL" }],
+    "Landing Page": [{ fallback: "WEB" }],
+    "Online Payment": [{ fallback: "PAY" }],
+    "Registration Form": [{ fallback: "FORM" }],
+    "Responsive Web": [{ fallback: "RWD" }],
+    "JavaScript / Web App": [
+      { icon: "javascript", fallback: "JS" },
+      { fallback: "WEB" }
+    ],
+    "ERP / HRM Model": [{ fallback: "ERP" }],
+    RBAC: [{ fallback: "RBAC" }],
+    "Workflow / API": [{ fallback: "API" }],
+    "ChatGPT / Claude": [
+      { fallback: "GPT" },
+      { icon: "anthropic", fallback: "CL" }
+    ],
+    "Gemini / NotebookLM": [
+      { icon: "googlegemini", fallback: "GM" },
+      { icon: "notebooklm", fallback: "NLM" }
+    ],
+    Antigravity: [{ icon: "google", fallback: "AG" }],
+    "AI Visual / Voice": [{ fallback: "AI" }]
+  };
+
+  function renderTechnologyVisual(name) {
+    const visuals = technologyVisuals[name] || [{ fallback: name.slice(0, 4) }];
+    return `
+      <div class="case-tech-logos" aria-hidden="true">
+        ${visuals
+          .map(
+            ({ icon, fallback }) => `
+              <span class="case-tech-logo${icon ? "" : " is-fallback"}">
+                ${
+                  icon
+                    ? `<img src="/img/tool-icons/${icon}.svg" alt="" width="24" height="24" loading="lazy" decoding="async" />`
+                    : ""
+                }
+                <b>${fallback}</b>
+              </span>
+            `
+          )
+          .join("")}
+      </div>
+    `;
+  }
+
   function renderNotFound(labels) {
     document.title = `${labels.notFoundTitle} — Gia Khánh`;
     $(".case-section-nav")?.remove();
@@ -182,13 +259,27 @@
         .map(
           (item, index) => `
             <article class="case-tech-card">
-              <span>${String(index + 1).padStart(2, "0")}</span>
+              <div class="case-tech-card-head">
+                ${renderTechnologyVisual(item.name)}
+                <span class="case-tech-index">${String(index + 1).padStart(2, "0")}</span>
+              </div>
               <h3>${item.name}</h3>
               <p>${item.purpose}</p>
             </article>
           `
         )
         .join("");
+
+      $$(".case-tech-logo img", technology).forEach((image) => {
+        image.addEventListener(
+          "error",
+          () => {
+            image.closest(".case-tech-logo")?.classList.add("is-fallback");
+            image.remove();
+          },
+          { once: true }
+        );
+      });
     }
 
     setText("#outcomeTitle", labels.outcome);
