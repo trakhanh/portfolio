@@ -27,7 +27,7 @@ if (existsSync(path.join(root, "CNAME"))) {
 }
 
 const html = await readFile(path.join(client, "index.html"), "utf8");
-if (!html.includes("Data Science") || !html.includes("portfolio.js")) {
+if (!html.includes("AI × ERP Operating System") || !html.includes("portfolio.js")) {
   throw new Error("Built HTML is missing required portfolio content.");
 }
 

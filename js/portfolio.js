@@ -61,6 +61,53 @@
     $$("[data-profile-route]").forEach((element) => {
       element.textContent = copy.hero.profileRoute[Number(element.dataset.profileRoute)];
     });
+    setText("#profileMetricExperience", copy.hero.profileMetrics[0]);
+    setText("#profileMetricProjects", copy.hero.profileMetrics[1]);
+    setText("#profileMetricImpact", copy.hero.profileMetrics[2]);
+  }
+
+  function renderSystem(copy) {
+    setText("#systemEyebrow", copy.system.eyebrow);
+    setText("#systemStatus", copy.system.status);
+    setText("#systemTitle", copy.system.title);
+    setText("#systemIntro", copy.system.intro);
+    setText("#systemProofNote", copy.system.proofNote);
+
+    const workflow = $("#systemWorkflow");
+    if (workflow) {
+      workflow.innerHTML = copy.system.stages
+        .map(
+          (stage, index) => `
+            <article class="system-stage" data-system-stage="${index + 1}">
+              <header>
+                <span>${stage.number}</span>
+                <i aria-hidden="true"></i>
+              </header>
+              <p>${stage.label}</p>
+              <h3>${stage.title}</h3>
+              <div class="system-stage-copy">${stage.description}</div>
+              <footer>
+                ${stage.tags.map((tag) => `<span>${tag}</span>`).join("")}
+              </footer>
+            </article>
+          `
+        )
+        .join("");
+    }
+
+    const metrics = $("#systemMetrics");
+    if (metrics) {
+      metrics.innerHTML = copy.system.metrics
+        .map(
+          (metric) => `
+            <span>
+              <strong>${metric.value}</strong>
+              <small>${metric.label}</small>
+            </span>
+          `
+        )
+        .join("");
+    }
   }
 
   function renderJourney(copy) {
@@ -122,7 +169,7 @@
     grid.innerHTML = copy.work.areas
       .map(
         (area) => `
-          <article class="work-card">
+          <article class="work-card ${area.index === "A" ? "is-ai" : "is-erp"}">
             <span class="work-index">${area.index}</span>
             <h3>${area.title}</h3>
             <p>${area.description}</p>
@@ -146,8 +193,8 @@
 
     list.innerHTML = copy.experience.items
       .map(
-        (item) => `
-          <article class="experience-card ${item.current ? "is-current" : ""}">
+        (item, index) => `
+          <article class="experience-card ${item.current ? "is-current" : ""}" data-experience-index="${String(index + 1).padStart(2, "0")}">
             <div class="experience-date">
               <i aria-hidden="true"></i>
               <span>${item.date}</span>
@@ -283,7 +330,11 @@
     grid.innerHTML = projects
       .map(
         (project) => `
-          <article class="project-card">
+          <article class="project-card is-${project.phase}">
+            <div class="project-casebar">
+              <span>CASE / ${project.id.toUpperCase().replaceAll("-", "_")}</span>
+              <i aria-hidden="true"></i>
+            </div>
             <div class="project-image">
               <img src="${project.image}" alt="${project.title}" loading="lazy" />
               <span class="project-phase">${project.phaseLabel}</span>
@@ -638,6 +689,7 @@
 
     renderNavigation(copy);
     renderHero(copy);
+    renderSystem(copy);
     renderJourney(copy);
     renderWork(copy);
     renderExperience(copy);
