@@ -139,6 +139,9 @@
       ["#caseNavOutcome", labels.outcome]
     ];
     navigation.forEach(([selector, value]) => setText(selector, value));
+    setText("#caseFlowChallenge", labels.challenge);
+    setText("#caseFlowProcess", labels.process);
+    setText("#caseFlowOutcome", labels.outcome);
 
     setText("#caseMapLabel", labels.map);
     const tags = $("#caseTags");
@@ -233,6 +236,45 @@
     setText("#caseContactButton", `${labels.contactButton} ↗`);
   }
 
+  function setupCaseNavigation() {
+    const sections = $$(".case-section");
+    const links = $$(".case-section-nav a, .case-flow a");
+    if (!sections.length || !links.length) return;
+
+    let frame = 0;
+    const updateActiveSection = () => {
+      const navigationBottom =
+        $(".case-section-nav")?.getBoundingClientRect().bottom || 132;
+      const activationLine = navigationBottom + 140;
+      let activeId = sections[0].id;
+
+      sections.forEach((section) => {
+        if (section.getBoundingClientRect().top <= activationLine) {
+          activeId = section.id;
+        }
+      });
+
+      links.forEach((link) => {
+        const isActive = link.getAttribute("href") === `#${activeId}`;
+        link.classList.toggle("is-active", isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    const scheduleUpdate = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateActiveSection);
+    };
+
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    updateActiveSection();
+  }
+
   $("#languageToggle")?.addEventListener("click", () => {
     language = language === "vi" ? "en" : "vi";
     localStorage.setItem("portfolio-language", language);
@@ -248,4 +290,5 @@
   });
 
   renderCaseStudy();
+  setupCaseNavigation();
 })();

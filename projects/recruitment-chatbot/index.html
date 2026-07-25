@@ -39,7 +39,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/portfolio.css" />
-    <link rel="stylesheet" href="/css/project-detail.css" />
+    <link rel="stylesheet" href="/css/project-detail.css?v=3" />
   </head>
   <body class="case-page">
     <a class="skip-link" href="#caseMain">Skip to content</a>
@@ -107,7 +107,7 @@
               </dl>
             </div>
             <figure class="case-cover">
-              <img id="caseImage" src="/og.png" alt="" />
+              <img id="caseImage" src="/og.png" alt="" decoding="async" fetchpriority="high" />
               <figcaption id="caseImageCaption"></figcaption>
             </figure>
           </div>
@@ -127,10 +127,19 @@
           <aside class="case-rail" aria-label="Project summary">
             <p id="caseMapLabel"></p>
             <div class="case-tags" id="caseTags"></div>
-            <div class="case-flow" aria-hidden="true">
-              <span>PROBLEM</span><i></i>
-              <span>PROCESS</span><i></i>
-              <span>IMPACT</span>
+            <div class="case-flow">
+              <a href="#challenge">
+                <span>01</span>
+                <strong id="caseFlowChallenge"></strong>
+              </a>
+              <a href="#process">
+                <span>03</span>
+                <strong id="caseFlowProcess"></strong>
+              </a>
+              <a href="#outcome">
+                <span>05</span>
+                <strong id="caseFlowOutcome"></strong>
+              </a>
             </div>
           </aside>
 
@@ -193,6 +202,6 @@
 
     <script src="/js/portfolio-data.js"></script>
     <script src="/js/project-details-data.js"></script>
-    <script src="/js/project-detail.js"></script>
+    <script src="/js/project-detail.js?v=3"></script>
   </body>
 </html>
