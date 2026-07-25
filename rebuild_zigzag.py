@@ -7,7 +7,7 @@ projects = [
         "tag": "💬 NLP & Chatbot",
         "title": "Chatbot Nội bộ (NotebookLM FAQ)",
         "badge": "🤖 AI Assistant",
-        "desc": "Hệ thống giảm 40% câu hỏi lặp lại cho bộ phận HR nhờ khả năng tra cứu tài liệu thông minh. Sử dụng <strong>Google NotebookLM</strong> làm não bộ, cùng nền tảng tự động hoá <strong>n8n</strong> và <strong>Gemini AI</strong> kết xuất dữ liệu tức thì.",
+        "desc": "Hệ thống giảm 80% câu hỏi lặp lại cho bộ phận HR nhờ khả năng tra cứu tài liệu thông minh. Sử dụng <strong>Google NotebookLM</strong> làm não bộ, cùng nền tảng tự động hoá <strong>n8n</strong> và <strong>Gemini AI</strong> kết xuất dữ liệu tức thì.",
         "techs": ["n8n", "Gemini", "Google Apps Script", "NotebookLM"],
         "features": [
             {"icon": "fa-book", "color": "blue", "text": "FAQ Knowledge Base"},

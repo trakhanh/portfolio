@@ -115,7 +115,7 @@ window.PORTFOLIO_CONTENT = {
         ]
       },
       metrics: [
-        { value: "40%", label: "Giảm khối lượng xử lý thủ công" },
+        { value: "80%", label: "Giảm khối lượng xử lý thủ công" },
         { value: "03", label: "Môi trường doanh nghiệp thực tế" },
         { value: "08", label: "Dự án theo hành trình năng lực" }
       ],
@@ -264,7 +264,7 @@ window.PORTFOLIO_CONTENT = {
           highlights: [
             "Hỗ trợ xây dựng website chính thức của Bông Trà và tích hợp Chatbot AI trên web để tự động hóa tương tác với khách hàng.",
             "Tích hợp chatbot vào Fanpage Bông Trà Tuyển Dụng, giúp bộ phận HR trao đổi và giải đáp ứng viên nhanh hơn.",
-            "Phát triển các công cụ tự động hóa bằng n8n và Google Apps Script, gồm đặt phòng họp nội bộ, gửi email bảng lương hàng loạt và FAQ chính sách nhân sự; góp phần giảm 40% khối lượng xử lý thủ công.",
+            "Phát triển các công cụ tự động hóa bằng n8n và Google Apps Script, gồm đặt phòng họp nội bộ, gửi email bảng lương hàng loạt và FAQ chính sách nhân sự; góp phần giảm 80% khối lượng xử lý thủ công.",
             "Hỗ trợ phát triển công cụ thu thập đánh giá trên Google và Food App, phục vụ đo lường mức độ hài lòng và hoạt động Marketing.",
             "Thiết lập Landing Page Pre-order và Workshop có tích hợp thanh toán trực tuyến, rút ngắn quy trình đăng ký và đặt hàng thủ công.",
             "Đề xuất ý tưởng ERP bằng Odoo Online và triển khai demo thử nghiệm, tạo cơ sở cho quyết định áp dụng trên toàn công ty.",
@@ -683,7 +683,7 @@ window.PORTFOLIO_CONTENT = {
         ]
       },
       metrics: [
-        { value: "40%", label: "Reduction in manual processing workload" },
+        { value: "80%", label: "Reduction in manual processing workload" },
         { value: "03", label: "Real business environments" },
         { value: "08", label: "Projects mapped to capability growth" }
       ],
@@ -831,7 +831,7 @@ window.PORTFOLIO_CONTENT = {
           highlights: [
             "Supported the official Bong Tra website and integrated an AI Chatbot on the web to automate customer interactions.",
             "Integrated a chatbot into the Bong Tra Recruitment Facebook page, helping HR respond to candidates more quickly.",
-            "Developed n8n and Google Apps Script automations for internal meeting-room booking, bulk payroll email delivery and an internal HR-policy FAQ, contributing to a 40% reduction in manual processing workload.",
+            "Developed n8n and Google Apps Script automations for internal meeting-room booking, bulk payroll email delivery and an internal HR-policy FAQ, contributing to an 80% reduction in manual processing workload.",
             "Supported a Google and Food App review-collection tool for customer-satisfaction measurement and Marketing activities.",
             "Set up Pre-order and Workshop Landing Pages with online-payment integration, reducing manual registration and order handling.",
             "Proposed an ERP direction using Odoo Online and delivered an experimental demo that supported the company-wide adoption decision.",

@@ -247,7 +247,7 @@ window.PROJECT_CASES = {
           { name: "Email Automation", purpose: "Gửi bảng lương và thông báo theo dữ liệu có cấu trúc." }
         ],
         outcome:
-          "Bộ công cụ bao phủ bốn nhóm workflow nội bộ và cùng chương trình automation góp phần giảm khoảng 40% khối lượng xử lý thủ công.",
+          "Bộ công cụ bao phủ bốn nhóm workflow nội bộ và cùng chương trình automation góp phần giảm khoảng 80% khối lượng xử lý thủ công.",
         evidence: ["Đặt phòng họp tự động.", "Gửi email bảng lương hàng loạt.", "FAQ HR và luồng thu thập đánh giá."],
         learning:
           "Automation hiệu quả nhất khi rule đơn giản, quyền rõ ràng và tài liệu đủ để người dùng tự vận hành.",
@@ -556,7 +556,7 @@ window.PROJECT_CASES = {
           { name: "Email Automation", purpose: "Delivered payroll and notifications from structured data." }
         ],
         outcome:
-          "The toolset covered four internal workflow groups and, as part of the automation program, contributed to an approximately 40% reduction in manual processing.",
+          "The toolset covered four internal workflow groups and, as part of the automation program, contributed to an approximately 80% reduction in manual processing.",
         evidence: ["Automated meeting-room booking.", "Bulk payroll-email delivery.", "HR FAQ and review-collection flows."],
         learning:
           "Automation works best when rules are simple, permissions are explicit and documentation lets users operate independently.",
