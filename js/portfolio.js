@@ -605,6 +605,26 @@
     setText("#footerText", copy.footer);
   }
 
+  function updateMenuControl(open) {
+    const menu = $("#menuToggle");
+    if (!menu) return;
+
+    const isOpen =
+      typeof open === "boolean"
+        ? open
+        : menu.getAttribute("aria-expanded") === "true";
+    menu.setAttribute(
+      "aria-label",
+      language === "vi"
+        ? isOpen
+          ? "Đóng menu"
+          : "Mở menu"
+        : isOpen
+          ? "Close menu"
+          : "Open menu"
+    );
+  }
+
   function updateLanguageControl() {
     $$("[data-lang-option]").forEach((item) => {
       item.classList.toggle("is-active", item.dataset.langOption === language);
@@ -625,6 +645,7 @@
       backToTop.setAttribute("title", label);
     }
 
+    updateMenuControl();
     setText(".skip-link", language === "vi" ? "Bỏ qua để đến nội dung" : "Skip to content");
     setText(".hero-footer span:last-child", language === "vi" ? "Cuộn xuống ↓" : "Scroll ↓");
     $(".hero-flow")?.setAttribute(
@@ -759,6 +780,7 @@
       links?.classList.toggle("is-open", open);
       menu.classList.toggle("is-open", open);
       menu.setAttribute("aria-expanded", String(open));
+      updateMenuControl(open);
     });
 
     $$(".nav-links a").forEach((link) => {
@@ -766,6 +788,7 @@
         links?.classList.remove("is-open");
         menu?.classList.remove("is-open");
         menu?.setAttribute("aria-expanded", "false");
+        updateMenuControl(false);
       });
     });
 
