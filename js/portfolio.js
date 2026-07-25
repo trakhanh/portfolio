@@ -393,6 +393,9 @@
                 ${project.tags.map((tag) => `<span>${tag}</span>`).join("")}
               </div>
               <div class="project-links">
+                <a class="project-detail-link" href="/projects/${project.id}">
+                  ${language === "vi" ? "Xem chi tiết" : "View case study"} →
+                </a>
                 ${
                   project.links.length
                     ? project.links

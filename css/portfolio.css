@@ -2070,6 +2070,18 @@ button,
   font-weight: 600;
 }
 
+.project-links .project-detail-link {
+  padding-inline: 14px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.project-links .project-detail-link:hover {
+  background: var(--accent-strong);
+  text-decoration: none;
+}
+
 .project-links a:hover,
 .certificate-links a:hover {
   text-decoration: underline;

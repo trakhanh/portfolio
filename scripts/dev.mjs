@@ -21,6 +21,7 @@ http
     const url = new URL(request.url || "/", "http://localhost");
     let relative = decodeURIComponent(url.pathname).replace(/^\/+/, "");
     if (!relative || relative === "index.html") relative = "index.html";
+    if (/^projects\/[^/]+\/?$/.test(relative)) relative = "project.html";
     if (relative === "og.png") relative = "public/og.png";
 
     const candidate = path.resolve(root, relative);
