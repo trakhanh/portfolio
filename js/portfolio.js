@@ -185,6 +185,17 @@
     setText("#toolEcosystemEyebrow", copy.system.tools.eyebrow);
     setText("#toolEcosystemTitle", copy.system.tools.title);
     setText("#toolEcosystemIntro", copy.system.tools.intro);
+    const toolDisclosure = $("#toolEcosystemDisclosure");
+    setText(
+      "#toolEcosystemAction",
+      language === "vi"
+        ? toolDisclosure?.open
+          ? "Thu gọn"
+          : "Xem bộ công cụ"
+        : toolDisclosure?.open
+          ? "Collapse"
+          : "View tool stack"
+    );
 
     const toolEcosystem = $("#toolEcosystemGrid");
     if (toolEcosystem) {
@@ -313,8 +324,8 @@
 
     list.innerHTML = copy.experience.items
       .map((item, index) => {
-        const visibleHighlights = item.highlights.slice(0, 3);
-        const remainingHighlights = item.highlights.slice(3);
+        const visibleHighlights = item.highlights.slice(0, 2);
+        const remainingHighlights = item.highlights.slice(2);
         const moreLabel =
           language === "vi"
             ? `Xem thêm ${remainingHighlights.length} nội dung`
@@ -493,8 +504,12 @@
                   project.links.length
                     ? project.links
                         .map(
-                          (link) =>
-                            `<a href="${link.url}" target="_blank" rel="noopener">${link.label} ↗</a>`
+                          (link) => {
+                            const externalMark = /[↗→]\s*$/.test(link.label)
+                              ? ""
+                              : " ↗";
+                            return `<a href="${link.url}" target="_blank" rel="noopener">${link.label}${externalMark}</a>`;
+                          }
                         )
                         .join("")
                     : `<span class="project-private">${
@@ -907,6 +922,10 @@
       $(selector)?.addEventListener("toggle", () => {
         renderDisclosures(content[language]);
       });
+    });
+
+    $("#toolEcosystemDisclosure")?.addEventListener("toggle", () => {
+      renderSystem(content[language]);
     });
 
     $("#projectFilters")?.addEventListener("click", (event) => {

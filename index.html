@@ -44,7 +44,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/portfolio.css?v=5" />
+    <link rel="stylesheet" href="./css/portfolio.css?v=6" />
   </head>
   <body class="is-splashing">
     <div class="splash" id="splash" aria-hidden="true">
@@ -127,8 +127,8 @@
             </div>
             <p class="hero-intro" id="heroIntro"></p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#systems" id="heroPrimary"></a>
-              <a class="button button-quiet" href="#projects" id="heroSecondary"></a>
+              <a class="button button-primary" href="#projects" id="heroPrimary"></a>
+              <a class="button button-quiet" href="#systems" id="heroSecondary"></a>
             </div>
             <div class="hero-flow" aria-label="Data to impact workflow">
               <span>DATA</span><i aria-hidden="true"></i>
@@ -227,16 +227,19 @@
 
           <div class="system-workflow" id="systemWorkflow"></div>
 
-          <section class="tool-ecosystem" aria-labelledby="toolEcosystemTitle">
-            <div class="tool-ecosystem-heading">
-              <p class="eyebrow" id="toolEcosystemEyebrow"></p>
-              <div>
-                <h3 id="toolEcosystemTitle"></h3>
-                <p id="toolEcosystemIntro"></p>
-              </div>
+          <details class="tool-ecosystem" id="toolEcosystemDisclosure">
+            <summary>
+              <span>
+                <span class="eyebrow" id="toolEcosystemEyebrow"></span>
+                <strong id="toolEcosystemTitle"></strong>
+              </span>
+              <span class="tool-ecosystem-action" id="toolEcosystemAction"></span>
+            </summary>
+            <div class="tool-ecosystem-body">
+              <p id="toolEcosystemIntro"></p>
+              <div class="tool-ecosystem-grid" id="toolEcosystemGrid"></div>
             </div>
-            <div class="tool-ecosystem-grid" id="toolEcosystemGrid"></div>
-          </section>
+          </details>
 
           <div class="system-proof">
             <div class="system-metrics" id="systemMetrics"></div>
@@ -454,7 +457,7 @@
 
     <div class="recommendation-modal" id="recommendationModal" hidden></div>
 
-    <script src="./js/portfolio-data.js?v=3"></script>
-    <script src="./js/portfolio.js?v=6"></script>
+    <script src="./js/portfolio-data.js?v=4"></script>
+    <script src="./js/portfolio.js?v=7"></script>
   </body>
 </html>
