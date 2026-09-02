@@ -136,6 +136,11 @@
     setText("#heroIntro", copy.hero.intro);
     setText("#heroPrimary", copy.hero.primary);
     setText("#heroSecondary", copy.hero.secondary);
+    const heroCv = $("#heroCv");
+    if (heroCv) {
+      heroCv.textContent = copy.hero.cv || `${copy.about.cv} ↗`;
+      heroCv.href = copy.hero.cvUrl || copy.about.cvUrl;
+    }
     setText("#heroFootnote", copy.hero.footnote);
     setText("#profilePanelLabel", copy.hero.profileLabel);
     setText("#profileDirection", copy.hero.profileDirection);

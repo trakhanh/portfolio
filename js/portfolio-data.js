@@ -28,6 +28,9 @@ window.PORTFOLIO_CONTENT = {
         "Tốt nghiệp Khoa học Dữ liệu, tôi ứng dụng AI vào tự động hóa, sản xuất video và triển khai ERP/HRM — phù hợp với Applied AI, AI Automation và Digital Transformation.",
       primary: "Xem 08 case study",
       secondary: "Xem mô hình AI × ERP",
+      cv: "Xem CV ↗",
+      cvUrl:
+        "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing",
       status: "Sẵn sàng cho cơ hội AI · ERP · R&D",
       footnote: "TP. Hồ Chí Minh · Sẵn sàng trao đổi",
       profileLabel: "SYSTEM MAP",
@@ -596,6 +599,9 @@ window.PORTFOLIO_CONTENT = {
         "A Data Science graduate applying AI to automation, video production and ERP/HRM implementation — ready for Applied AI, AI Automation and Digital Transformation roles.",
       primary: "View 08 case studies",
       secondary: "Explore AI × ERP model",
+      cv: "View CV ↗",
+      cvUrl:
+        "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing",
       status: "Open to AI · ERP · R&D opportunities",
       footnote: "Ho Chi Minh City · Open to conversations",
       profileLabel: "SYSTEM MAP",
