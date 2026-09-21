@@ -310,7 +310,7 @@ button,
   margin: 0 auto 24px;
   place-items: center;
   border: 1px solid var(--border-strong);
-  background: var(--inverse);
+  background: transparent;
   color: var(--inverse-text);
   font-family: "Manrope", sans-serif;
   font-size: 1.15rem;
@@ -402,7 +402,7 @@ button,
   height: 42px;
   flex: 0 0 42px;
   place-items: center;
-  background: var(--inverse);
+  background: transparent;
   color: var(--inverse-text);
   font-family: "Manrope", sans-serif;
   font-size: 0.8rem;
@@ -946,7 +946,8 @@ button,
 .profile-area strong,
 .profile-area small {
   display: block;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .profile-area strong {
@@ -1095,6 +1096,7 @@ button,
 .about-copy h2 {
   max-width: 18ch;
   font-size: clamp(2.35rem, 4.6vw, 4.6rem);
+  line-height: 1.25;
 }
 
 .section-heading > div > p,
@@ -2609,7 +2611,7 @@ button,
 
 .recommendation-modal {
   position: fixed;
-  z-index: 100;
+  z-index: 100000;
   inset: 0;
   display: grid;
   padding: clamp(14px, 3vw, 36px);

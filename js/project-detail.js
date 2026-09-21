@@ -21,25 +21,19 @@
       ? pathParts[1]
       : new URLSearchParams(window.location.search).get("id");
 
-  function updateThemeControl() {
-    const theme = document.documentElement.dataset.theme;
-    const toggle = $("#themeToggle");
-    if (!toggle) return;
+  const SECTION_CONFIG = [
+    { id: "challenge", indexStr: "01", labelKey: "challenge" },
+    { id: "role", indexStr: "02", labelKey: "roleSection" },
+    { id: "process", indexStr: "03", labelKey: "process" },
+    { id: "technology", indexStr: "04", labelKey: "technology" },
+    { id: "outcome", indexStr: "05", labelKey: "outcome" }
+  ];
+  const VALID_SECTION_IDS = ["challenge", "role", "process", "technology", "outcome"];
+  const initialHash = window.location.hash.replace(/^#/, "");
 
-    toggle.setAttribute(
-      "aria-label",
-      theme === "dark"
-        ? language === "vi"
-          ? "Chuyển sang giao diện sáng"
-          : "Switch to light theme"
-        : language === "vi"
-          ? "Chuyển sang giao diện tối"
-          : "Switch to dark theme"
-    );
-    $('meta[name="theme-color"]')?.setAttribute(
-      "content",
-      theme === "dark" ? "#0d0f0e" : "#ecece6"
-    );
+  function updateThemeControl() {
+    document.documentElement.dataset.theme = "dark";
+    $('meta[name="theme-color"]')?.setAttribute("content", "#0a0a0f");
   }
 
   function updateLanguageControl() {
@@ -385,16 +379,98 @@
     setText("#caseContactButton", `${labels.contactButton} ↗`);
   }
 
+  function setupScrollReveal() {
+    const sections = $$(".case-section");
+    if (!sections.length) return;
+
+    // Immediately reveal first section so above-the-fold content is shown
+    sections[0]?.classList.add("is-revealed");
+
+    if (!("IntersectionObserver" in window)) {
+      sections.forEach((s) => s.classList.add("is-revealed"));
+      return;
+    }
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-revealed");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+    sections.forEach((sec) => revealObserver.observe(sec));
+  }
+
   function setupCaseNavigation() {
     const sections = $$(".case-section");
-    const links = $$(".case-section-nav a, .case-flow a");
+    const links = $$(".case-section-nav a");
     if (!sections.length || !links.length) return;
+
+    const nav = $(".case-section-nav");
+    const header = $("#siteHeader");
+
+    function getNavOffset() {
+      const headerH = header ? header.offsetHeight : 64;
+      return headerH + 16;
+    }
+
+    let isManualScrolling = false;
+    let manualScrollTimer = null;
+
+    links.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const href = link.getAttribute("href") || "";
+        const targetId = href.replace(/^#/, "");
+        const targetSection = $(`#${targetId}`);
+        if (!targetSection) return;
+
+        isManualScrolling = true;
+        clearTimeout(manualScrollTimer);
+
+        links.forEach((l) => {
+          const match = l === link;
+          l.classList.toggle("is-active", match);
+          if (match) {
+            l.setAttribute("aria-current", "location");
+            l.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+          } else {
+            l.removeAttribute("aria-current");
+          }
+        });
+
+        if (window.location.hash !== `#${targetId}`) {
+          history.pushState(null, "", `#${targetId}`);
+        }
+
+        const navOffset = getNavOffset();
+        const targetY = targetSection.getBoundingClientRect().top + window.scrollY - navOffset;
+
+        window.scrollTo({
+          top: Math.max(0, targetY),
+          behavior: "smooth"
+        });
+
+        manualScrollTimer = setTimeout(() => {
+          isManualScrolling = false;
+        }, 850);
+      });
+    });
 
     let frame = 0;
     const updateActiveSection = () => {
-      const navigationBottom =
-        $(".case-section-nav")?.getBoundingClientRect().bottom || 132;
-      const activationLine = navigationBottom + 140;
+      if (isManualScrolling) return;
+
+      const navOffset = getNavOffset();
+      const activationLine = navOffset + 120;
       let activeId = sections[0].id;
 
       sections.forEach((section) => {
@@ -402,6 +478,11 @@
           activeId = section.id;
         }
       });
+
+      // Special check: if scrolled to the very bottom of the page, activate the last section
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
+        activeId = sections[sections.length - 1].id;
+      }
 
       links.forEach((link) => {
         const isActive = link.getAttribute("href") === `#${activeId}`;
@@ -422,6 +503,17 @@
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
     updateActiveSection();
+
+    if (initialHash && VALID_SECTION_IDS.includes(initialHash)) {
+      setTimeout(() => {
+        const target = $(`#${initialHash}`);
+        if (target) {
+          const navOffset = getNavOffset();
+          const targetY = target.getBoundingClientRect().top + window.scrollY - navOffset;
+          window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+        }
+      }, 200);
+    }
   }
 
   function setupGlobalNavigation() {
@@ -468,15 +560,8 @@
     renderCaseStudy();
   });
 
-  $("#themeToggle")?.addEventListener("click", () => {
-    const next =
-      document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    document.documentElement.dataset.theme = next;
-    localStorage.setItem("portfolio-theme", next);
-    updateThemeControl();
-  });
-
   renderCaseStudy();
   setupGlobalNavigation();
   setupCaseNavigation();
+  setupScrollReveal();
 })();

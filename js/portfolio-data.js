@@ -432,7 +432,7 @@ window.PORTFOLIO_CONTENT = {
     },
     certificates: {
       eyebrow: "04 · UY TÍN & CHỨNG CHỈ",
-      title: "Học liên tục, có bằng chứng.",
+      title: "Học liên tục, có\u00A0bằng chứng.",
       intro:
         "Chứng chỉ tiêu biểu về Data Science, AI, IT Support, Data Analytics, Cybersecurity, SQL và Python.",
       moreLabel: "Kỹ năng được chứng nhận khác",
@@ -458,6 +458,17 @@ window.PORTFOLIO_CONTENT = {
       ],
       verify: "Xác thực",
       course: "Thông tin khóa học",
+      viewDetails: "Xem chi tiết chứng chỉ",
+      modalEyebrow: "SYS_VERIFY // CREDENTIAL DOSSIER",
+      modalVerifiedBadge: "CHỨNG CHỈ HỢP LỆ · ĐÃ XÁC THỰC",
+      modalSkillsLabel: "KỸ NĂNG & NĂNG LỰC ĐÃ ĐƯỢC CHỨNG NHẬN",
+      modalIssuerLabel: "ĐƠN VỊ ĐÀO TẠO & CẤP BẰNG",
+      modalDateLabel: "THỜI GIAN HOÀN THÀNH",
+      modalOpenImage: "MỞ ẢNH GỐC ↗",
+      modalClose: "Đóng cửa sổ",
+      modalPrev: "Chứng chỉ trước",
+      modalNext: "Chứng chỉ tiếp theo",
+      modalDirectVerify: "XÁC THỰC TRỰC TIẾP TRÊN COURSERA ↗",
       items: [
         {
           title: "Google IT Support Professional Certificate",
@@ -1028,6 +1039,17 @@ window.PORTFOLIO_CONTENT = {
       ],
       verify: "Verify",
       course: "Course information",
+      viewDetails: "View certificate details",
+      modalEyebrow: "SYS_VERIFY // CREDENTIAL DOSSIER",
+      modalVerifiedBadge: "VALID CREDENTIAL · AUTHENTICATED",
+      modalSkillsLabel: "CERTIFIED COMPETENCIES & SKILLS",
+      modalIssuerLabel: "ISSUING INSTITUTION",
+      modalDateLabel: "COMPLETION DATE",
+      modalOpenImage: "OPEN FULL IMAGE ↗",
+      modalClose: "Close window",
+      modalPrev: "Previous certificate",
+      modalNext: "Next certificate",
+      modalDirectVerify: "VERIFY DIRECTLY ON COURSERA ↗",
       items: [
         {
           title: "Google IT Support Professional Certificate",

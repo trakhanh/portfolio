@@ -21,6 +21,9 @@ window.PROJECT_CASES = {
       contactTitle: "Muốn biết tôi sẽ áp dụng cách làm này vào bài toán của bạn?",
       contactButton: "Liên hệ với tôi",
       sourceFallback: "Case study công khai đã lược bỏ dữ liệu nội bộ.",
+      viewAll: "Tất cả",
+      nextSection: "Phần tiếp theo",
+      prevSection: "Phần trước",
       notFoundTitle: "Không tìm thấy dự án",
       notFoundText: "Đường dẫn này không khớp với case study nào trong portfolio.",
       notFoundButton: "Quay lại portfolio"
@@ -414,6 +417,9 @@ window.PROJECT_CASES = {
       contactTitle: "Want to see how I would apply this approach to your problem?",
       contactButton: "Contact me",
       sourceFallback: "This public case study excludes internal data.",
+      viewAll: "All",
+      nextSection: "Next section",
+      prevSection: "Previous section",
       notFoundTitle: "Project not found",
       notFoundText: "This URL does not match a case study in the portfolio.",
       notFoundButton: "Back to portfolio"

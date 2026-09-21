@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="vi" data-theme="light">
+<html lang="vi" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f4f4f0" />
+    <meta name="theme-color" content="#0a0a0f" />
     <meta
       name="description"
       content="Portfolio của Trà Nguyễn Gia Khánh — ứng viên Applied AI, AI Automation, ERP/Digital Transformation và R&D với nền tảng Data Science."
@@ -18,41 +18,71 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="/og.png" />
     <title>Trà Nguyễn Gia Khánh — AI × ERP Operating System</title>
-    <link rel="icon" href="/favicon.ico?v=3" sizes="any" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/icons/gk-16-v2.png?v=3" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/icons/gk-32-v2.png?v=3" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/icons/gk-192-v2.png?v=3" />
-    <link rel="shortcut icon" href="/favicon.ico?v=3" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/gk-180-v2.png?v=3" />
+    <link rel="icon" type="image/svg+xml" href="./img/logo-gk.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./icons/gk-32-v2.png?v=4" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./icons/gk-16-v2.png?v=4" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/gk-192-v2.png?v=4" />
+    <link rel="shortcut icon" href="./favicon.ico?v=4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./icons/gk-180-v2.png?v=4" />
     <meta name="application-name" content="Gia Khánh Portfolio" />
 
     <script>
       (() => {
-        const saved = localStorage.getItem("portfolio-theme");
-        const preferred =
-          saved ||
-          (window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
-        document.documentElement.dataset.theme = preferred;
+        document.documentElement.dataset.theme = "dark";
       })();
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/portfolio.css?v=6" />
+    <link rel="preload" href="./img/logo-gk.svg" as="image" type="image/svg+xml" />
+    <link rel="stylesheet" href="./css/portfolio.css?v=20" />
+    <link rel="stylesheet" href="./css/cyberpunk.css?v=25" />
   </head>
   <body class="is-splashing">
     <div class="splash" id="splash" aria-hidden="true">
-      <div class="splash-inner">
-        <span class="splash-mark">GK</span>
-        <p class="splash-name">TRÀ NGUYỄN GIA KHÁNH</p>
-        <div class="splash-rule"><i></i></div>
-        <p class="splash-focus">AI SYSTEMS · ERP OPERATIONS · R&amp;D</p>
+      <div class="splash-terminal">
+        <div class="splash-terminal-header">
+          <div class="splash-terminal-dots">
+            <span class="dot-red"></span>
+            <span class="dot-amber"></span>
+            <span class="dot-green"></span>
+          </div>
+          <span class="splash-terminal-title">TERMINAL // KERNEL v4.19-GK // BOOT SEQUENCE</span>
+          <span class="splash-terminal-status">[LIVE FEED]</span>
+        </div>
+
+        <div class="splash-center-block">
+          <div class="splash-emblem-wrap">
+            <div class="splash-reticle-ring"></div>
+            <div class="splash-reticle-ring-inner"></div>
+            <div class="splash-logo-core">
+              <img src="./img/logo-gk.svg" alt="Gia Khánh Logo" class="splash-logo-img" width="84" height="84" />
+            </div>
+          </div>
+          <p class="splash-name">TRÀ NGUYỄN GIA KHÁNH</p>
+          <p class="splash-focus">APPLIED AI · AI AUTOMATION · ERP R&amp;D</p>
+        </div>
+
+        <div class="splash-log-feed" id="splashLogs">
+          <div class="splash-log-line is-active">&gt; [SYS_INIT] Loading core kernel registers... <span class="log-ok">[OK]</span></div>
+          <div class="splash-log-line">&gt; [AI_MOUNT] Linking Applied AI &amp; CV modules... <span class="log-ok">[OK]</span></div>
+          <div class="splash-log-line">&gt; [ERP_EXEC] Initializing Automation Pipelines... <span class="log-ok">[OK]</span></div>
+          <div class="splash-log-line">&gt; [AUTH_SYNC] Clearance verified: ACCESS GRANTED. <span class="log-ok">[READY]</span></div>
+        </div>
+
+        <div class="splash-progress-block">
+          <div class="splash-progress-meta">
+            <span class="splash-progress-label">SYSTEM_INITIALIZATION</span>
+            <span class="splash-progress-pct" id="splashPct">0%</span>
+          </div>
+          <div class="splash-bar">
+            <div class="splash-bar-fill" id="splashBarFill"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -61,7 +91,9 @@
     <header class="site-header" id="siteHeader">
       <nav class="nav-shell" aria-label="Primary navigation">
         <a class="brand" href="#top" aria-label="Gia Khánh — trang chủ">
-          <span class="brand-mark" aria-hidden="true">GK</span>
+          <span class="brand-mark" aria-hidden="true">
+            <img src="./img/logo-gk.svg" alt="" width="32" height="32" class="brand-logo-img" />
+          </span>
           <span class="brand-name">
             <strong>Gia Khánh</strong>
             <small>AI · ERP · R&amp;D</small>
@@ -77,15 +109,6 @@
         </div>
 
         <div class="nav-controls">
-          <button
-            class="icon-button"
-            id="themeToggle"
-            type="button"
-            aria-label="Switch color theme"
-          >
-            <span class="theme-icon theme-icon-bulb theme-icon-off" aria-hidden="true"><i></i></span>
-            <span class="theme-icon theme-icon-bulb theme-icon-on" aria-hidden="true"><i></i></span>
-          </button>
           <button
             class="language-toggle"
             id="languageToggle"
@@ -112,6 +135,7 @@
 
     <main id="main">
       <section class="hero" id="top">
+        <canvas id="heroNeuralCanvas" class="hero-neural-canvas" aria-hidden="true"></canvas>
         <div class="page-shell hero-layout">
           <div class="hero-copy">
             <div class="eyebrow-row">
@@ -119,6 +143,10 @@
               <span class="availability"><i></i><span id="heroStatus"></span></span>
             </div>
             <div class="hero-identity">
+              <div class="hero-telemetry-tag" aria-hidden="true">
+                <span class="telemetry-bracket">[</span>SYS_ID // 2026.GK_KERNEL<span class="telemetry-bracket">]</span>
+                <span class="telemetry-pulse"></span>
+              </div>
               <p class="hero-name" id="heroName">
                 <span data-hero-name-line="1"></span>
                 <span data-hero-name-line="2"></span>
@@ -215,6 +243,36 @@
               <span><strong>80%</strong><small id="profileMetricImpact"></small></span>
             </div>
           </aside>
+        </div>
+
+        <!-- Synaptic Neural Bridge: Channels intelligence down into Systems Model -->
+        <div class="neural-conduit-bridge" id="neuralBridge">
+          <div class="conduit-stream stream-left" aria-hidden="true">
+            <div class="conduit-track"></div>
+          </div>
+          <a href="#systems" class="neural-junction-badge" id="neuralJunctionBadge" aria-label="Khám phá mô hình vận hành: AI Neural Core to Operating System">
+            <span class="junction-indicator">
+              <span class="junction-beacon" aria-hidden="true">
+                <i class="beacon-core"></i>
+                <i class="beacon-ring"></i>
+              </span>
+              <span class="junction-label">
+                <span class="label-prefix">AI NEURAL CORE</span>
+                <span class="label-sep">//</span>
+                <span class="label-mid">SYNAPTIC UPLINK</span>
+                <span class="label-arrow">→</span>
+                <span class="label-target">OPERATING SYSTEM</span>
+              </span>
+            </span>
+            <span class="junction-flow-arrow" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+              </svg>
+            </span>
+          </a>
+          <div class="conduit-stream stream-right" aria-hidden="true">
+            <div class="conduit-track"></div>
+          </div>
         </div>
       </section>
 
@@ -407,42 +465,167 @@
       <section class="section contact-section" id="contact">
         <div class="page-shell">
           <div class="contact-card">
-            <p class="eyebrow" id="contactEyebrow"></p>
-            <h2 id="contactTitle"></h2>
-            <p id="contactIntro"></p>
-            <div class="contact-actions">
-              <div class="contact-direct">
-                <a
-                  class="button button-primary"
-                  href="mailto:khanhtra229@gmail.com"
-                  id="emailLink"
-                ></a>
-                <a
-                  class="button contact-phone-button"
-                  href="tel:+84792661744"
-                  id="phoneLink"
-                ></a>
+            <div class="contact-telemetry-bar">
+              <div class="contact-channel-pill">
+                <i class="contact-pulse-beacon" aria-hidden="true"></i>
+                <span>TERMINAL // SECURE_CHANNEL_READY</span>
               </div>
-              <div class="social-links">
-                <span id="socialLabel"></span>
-                <a
-                  href="https://github.com/trakhanh"
-                  target="_blank"
-                  rel="noopener"
-                  >GitHub ↗</a
-                >
-                <a
-                  href="https://www.linkedin.com/in/khanhtra229/"
-                  target="_blank"
-                  rel="noopener"
-                  >LinkedIn ↗</a
-                >
-                <a
-                  href="https://www.facebook.com/kthietkek/"
-                  target="_blank"
-                  rel="noopener"
-                  >Facebook ↗</a
-                >
+              <div class="contact-meta-nodes">
+                <span class="contact-freq">FREQ: 792.661.744 MHz</span>
+                <span class="contact-loc">
+                  <svg class="contact-loc-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                  <span>TP. HỒ CHÍ MINH · GMT+7</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="contact-grid-body">
+              <div class="contact-main-col">
+                <p class="eyebrow" id="contactEyebrow"></p>
+                <h2 id="contactTitle"></h2>
+                <p class="contact-description" id="contactIntro"></p>
+                <div class="contact-direct">
+                  <a
+                    class="button button-primary contact-btn-primary"
+                    href="mailto:khanhtra229@gmail.com"
+                    id="emailLink"
+                  ></a>
+                  <a
+                    class="button contact-phone-button contact-btn-phone"
+                    href="tel:+84792661744"
+                    id="phoneLink"
+                  ></a>
+                </div>
+              </div>
+
+              <div class="contact-transmission-col">
+                <div class="contact-dossier-card">
+                  <div class="dossier-header">
+                    <span class="dossier-label">TRANSMISSION DOSSIER</span>
+                    <span class="dossier-status">ONLINE // READY</span>
+                  </div>
+                  <div class="dossier-channels">
+                    <a class="dossier-channel-item channel-email" href="mailto:khanhtra229@gmail.com">
+                      <span class="dossier-channel-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <rect width="20" height="16" x="2" y="4" rx="3"/>
+                          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                        </svg>
+                      </span>
+                      <div class="dossier-channel-info">
+                        <small>DIRECT INBOX</small>
+                        <strong>khanhtra229@gmail.com</strong>
+                      </div>
+                      <span class="dossier-channel-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M7 17 17 7M7 7h10v10"/>
+                        </svg>
+                      </span>
+                    </a>
+                    <a class="dossier-channel-item channel-phone" href="tel:+84792661744">
+                      <span class="dossier-channel-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                      </span>
+                      <div class="dossier-channel-info">
+                        <small>HOTLINE / ZALO</small>
+                        <strong>0792 661 744</strong>
+                      </div>
+                      <span class="dossier-channel-arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M7 17 17 7M7 7h10v10"/>
+                        </svg>
+                      </span>
+                    </a>
+                    <div class="dossier-channel-item channel-stack is-static">
+                      <span class="dossier-channel-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <rect width="12" height="12" x="6" y="6" rx="2"/>
+                          <path d="M9 9h6v6H9z"/>
+                          <path d="M9 1v5M15 1v5M9 18v5M15 18v5M19 9h4M19 15h4M1 9h5M1 15h5"/>
+                        </svg>
+                      </span>
+                      <div class="dossier-channel-info">
+                        <small>CORE CAPABILITIES</small>
+                        <strong class="dossier-highlight">Applied AI · AI Automation · ERP</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="social-links-panel">
+                    <span class="social-panel-label" id="socialLabel"></span>
+                    <div class="social-chips-grid">
+                      <a
+                        class="social-chip-card"
+                        href="https://github.com/trakhanh"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="GitHub Profile: trakhanh"
+                      >
+                        <div class="social-chip-icon icon-github" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                          </svg>
+                        </div>
+                        <div class="social-chip-text">
+                          <strong class="social-chip-name">GitHub</strong>
+                          <small class="social-chip-handle">trakhanh</small>
+                        </div>
+                        <span class="social-chip-arrow" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17 17 7M7 7h10v10"/>
+                          </svg>
+                        </span>
+                      </a>
+                      <a
+                        class="social-chip-card"
+                        href="https://www.linkedin.com/in/khanhtra229/"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="LinkedIn Profile: khanhtra229"
+                      >
+                        <div class="social-chip-icon icon-linkedin" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <circle cx="4.5" cy="4.5" r="2.5"/>
+                            <path d="M2 9h5v13H2zM9 9h4.8v1.8h.1c.7-1.3 2.4-2.3 4.8-2.3 5.1 0 6 3.4 6 7.8V22h-5v-6.6c0-1.6 0-3.6-2.2-3.6s-2.6 1.7-2.6 3.5V22H9z"/>
+                          </svg>
+                        </div>
+                        <div class="social-chip-text">
+                          <strong class="social-chip-name">LinkedIn</strong>
+                          <small class="social-chip-handle">khanhtra229</small>
+                        </div>
+                        <span class="social-chip-arrow" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17 17 7M7 7h10v10"/>
+                          </svg>
+                        </span>
+                      </a>
+                      <a
+                        class="social-chip-card"
+                        href="https://www.facebook.com/kthietkek/"
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Facebook Profile: kthietkek"
+                      >
+                        <div class="social-chip-icon icon-facebook" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.5-.14-2.8-.14-2.8 0-4.7 1.7-4.7 4.8v2.7H7v4h3v9h4v-9z"/>
+                          </svg>
+                        </div>
+                        <div class="social-chip-text">
+                          <strong class="social-chip-name">Facebook</strong>
+                          <small class="social-chip-handle">kthietkek</small>
+                        </div>
+                        <span class="social-chip-arrow" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17 17 7M7 7h10v10"/>
+                          </svg>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -462,8 +645,10 @@
     </button>
 
     <div class="recommendation-modal" id="recommendationModal" hidden></div>
+    <div class="certificate-modal" id="certificateModal" hidden></div>
 
-    <script src="./js/portfolio-data.js?v=4"></script>
-    <script src="./js/portfolio.js?v=7"></script>
+    <script defer src="./js/portfolio-data.js?v=5"></script>
+    <script defer src="./js/portfolio.js?v=11"></script>
+    <script defer src="./js/neural-network.js?v=4"></script>
   </body>
 </html>
