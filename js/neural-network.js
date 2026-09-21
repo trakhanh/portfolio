@@ -24,7 +24,11 @@
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  let width = 0;
+  // On mobile screens, disable canvas network completely
+  if (window.innerWidth <= 768) {
+    canvas.style.display = 'none';
+    return;
+  }
   let height = 0;
   let dpr = 1;
   let animId = null;
