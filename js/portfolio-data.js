@@ -234,8 +234,8 @@ window.PORTFOLIO_CONTENT = {
         ],
         preview: "./img/recommendation-letter-preview.jpg",
         pages: [
-          "./img/recommendation-letter-preview.jpg",
-          "./img/recommendation-letter-page-2.jpg"
+          "./img/recommendation-letter-page-1-hd.jpg",
+          "./img/recommendation-letter-page-2-hd.jpg"
         ],
         previewAlt:
           "Trang đầu thư giới thiệu có chữ ký và con dấu của Công ty Cổ phần Bông Trà F&B",
@@ -816,8 +816,8 @@ window.PORTFOLIO_CONTENT = {
         ],
         preview: "./img/recommendation-letter-preview.jpg",
         pages: [
-          "./img/recommendation-letter-preview.jpg",
-          "./img/recommendation-letter-page-2.jpg"
+          "./img/recommendation-letter-page-1-hd.jpg",
+          "./img/recommendation-letter-page-2-hd.jpg"
         ],
         previewAlt:
           "First page of the signed and stamped recommendation letter from Bong Tra F&B",

@@ -5163,12 +5163,24 @@ body.has-modal::after {
   max-height: 94vh !important;
   display: flex !important;
   flex-direction: column !important;
+  position: relative !important;
 }
 
 .recommendation-modal-header {
   background: #10121e !important;
   border-bottom: 1px solid var(--cyber-border-bright) !important;
-  padding: 16px 22px !important;
+  padding: 14px 20px !important;
+  padding-right: 58px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  flex-wrap: wrap !important;
+  position: relative !important;
+}
+
+.recommendation-modal-heading-group {
+  min-width: 0 !important;
 }
 
 .recommendation-modal-header .eyebrow {
@@ -5176,25 +5188,34 @@ body.has-modal::after {
   font-family: var(--font-mono) !important;
   font-size: 0.65rem !important;
   letter-spacing: 0.1em !important;
+  margin-bottom: 2px !important;
 }
 
 .recommendation-modal-header h2 {
   font-family: var(--font-heading) !important;
-  font-size: 1.35rem !important;
+  font-size: 1.25rem !important;
   color: #ffffff !important;
+  margin-bottom: 2px !important;
 }
 
-.recommendation-modal-header div > p:last-child {
+.rec-meta-issuer {
   font-family: var(--font-mono) !important;
   color: var(--cyber-muted-fg) !important;
-  font-size: 0.76rem !important;
+  font-size: 0.74rem !important;
+  margin: 0 !important;
 }
 
 .recommendation-modal-actions {
   display: flex !important;
   align-items: center !important;
-  gap: 10px !important;
+  gap: 8px !important;
   flex-wrap: wrap !important;
+}
+
+.rec-action-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
 }
 
 .recommendation-modal-actions .button-primary {
@@ -5202,10 +5223,10 @@ body.has-modal::after {
   color: #06080c !important;
   border: 1px solid var(--cyber-accent) !important;
   font-family: var(--font-mono) !important;
-  font-size: 0.74rem !important;
+  font-size: 0.72rem !important;
   font-weight: 700 !important;
   border-radius: 2px !important;
-  padding: 8px 14px !important;
+  padding: 7px 12px !important;
   box-shadow: 0 0 10px rgba(0, 255, 136, 0.3) !important;
 }
 
@@ -5219,10 +5240,10 @@ body.has-modal::after {
   color: var(--cyber-accent-tertiary) !important;
   border: 1px solid var(--cyber-border-bright) !important;
   font-family: var(--font-mono) !important;
-  font-size: 0.74rem !important;
+  font-size: 0.72rem !important;
   font-weight: 600 !important;
   border-radius: 2px !important;
-  padding: 8px 14px !important;
+  padding: 7px 12px !important;
 }
 
 .recommendation-modal-actions .button-quiet:hover {
@@ -5232,15 +5253,23 @@ body.has-modal::after {
 }
 
 .recommendation-modal-close {
-  background: transparent !important;
+  position: absolute !important;
+  top: 12px !important;
+  right: 14px !important;
+  background: rgba(20, 23, 38, 0.9) !important;
   border: 1px solid var(--cyber-border-bright) !important;
-  color: #a0a6bc !important;
-  width: 38px !important;
-  height: 38px !important;
-  border-radius: 2px !important;
-  font-size: 1.4rem !important;
+  color: #cbd5e1 !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 3px !important;
+  font-size: 1.35rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   line-height: 1 !important;
   transition: all 160ms ease !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
 }
 
 .recommendation-modal-close:hover {
@@ -5252,19 +5281,19 @@ body.has-modal::after {
 
 /* Modal Document Toolbar */
 .recommendation-modal-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 22px;
-  background: #0d0f1a;
-  border-bottom: 1px solid var(--cyber-border);
-  gap: 12px;
-  flex-wrap: wrap;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 8px 18px !important;
+  background: #0d0f1a !important;
+  border-bottom: 1px solid var(--cyber-border) !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
 }
 
 .recommendation-page-tabs {
-  display: flex;
-  gap: 6px;
+  display: flex !important;
+  gap: 5px !important;
 }
 
 .rec-tab-btn {
@@ -5272,13 +5301,13 @@ body.has-modal::after {
   border: 1px solid var(--cyber-border) !important;
   color: #8f95aa !important;
   font-family: var(--font-mono) !important;
-  font-size: 0.72rem !important;
+  font-size: 0.7rem !important;
   font-weight: 700 !important;
-  padding: 7px 14px !important;
+  padding: 6px 11px !important;
   cursor: pointer !important;
   border-radius: 3px !important;
   transition: all 180ms ease !important;
-  letter-spacing: 0.05em !important;
+  letter-spacing: 0.04em !important;
   text-transform: uppercase !important;
 }
 
@@ -5286,36 +5315,97 @@ body.has-modal::after {
   color: #ffffff !important;
   border-color: var(--cyber-accent-tertiary) !important;
   background: #1b1f33 !important;
-  box-shadow: 0 0 10px rgba(0, 212, 255, 0.25) !important;
 }
 
 .rec-tab-btn.is-active {
   background: rgba(0, 255, 136, 0.15) !important;
   border-color: var(--cyber-accent) !important;
   color: var(--cyber-accent) !important;
-  box-shadow: 0 0 10px rgba(0, 255, 136, 0.4) !important;
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.35) !important;
 }
 
-.recommendation-doc-status {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.08em;
-  color: var(--cyber-accent-tertiary);
-  transition: color 180ms ease;
+/* Zoom Controls Bar */
+.rec-zoom-bar {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: #141726 !important;
+  border: 1px solid var(--cyber-border-bright) !important;
+  border-radius: 3px !important;
+  overflow: hidden !important;
 }
 
-/* Modal Document Pages (Crystal-clear high-res reader) */
+.rec-zoom-btn {
+  background: transparent !important;
+  border: none !important;
+  color: #cbd5e1 !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  padding: 4px 9px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+}
+
+.rec-zoom-btn:hover {
+  background: rgba(0, 240, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.rec-zoom-level {
+  background: rgba(0, 0, 0, 0.35) !important;
+  border: none !important;
+  border-inline: 1px solid var(--cyber-border) !important;
+  color: var(--cyber-accent) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  padding: 5px 8px !important;
+  cursor: pointer !important;
+  min-width: 42px !important;
+  text-align: center !important;
+}
+
+.rec-zoom-preset-pill {
+  background: rgba(0, 255, 136, 0.12) !important;
+  border: none !important;
+  border-left: 1px solid var(--cyber-border-bright) !important;
+  color: var(--cyber-accent) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  padding: 5px 10px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.rec-zoom-preset-pill.is-active,
+.rec-zoom-preset-pill:hover {
+  background: var(--cyber-accent) !important;
+  color: #06080c !important;
+}
+
+/* Modal Document Pages (Full-height & high-resolution continuous reader) */
 .recommendation-modal-pages {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  gap: 32px !important;
-  padding: 24px 16px 40px !important;
+  gap: 24px !important;
+  padding: 20px 16px 40px !important;
   background: #07080e !important;
-  overflow-y: auto !important;
+  overflow: auto !important;
+  -webkit-overflow-scrolling: touch !important;
   flex: 1 1 auto !important;
   min-height: 0 !important;
   scroll-behavior: smooth !important;
+  touch-action: pan-x pan-y pinch-zoom !important;
+}
+
+.recommendation-modal-pages.is-zoomed {
+  align-items: flex-start !important;
+}
+
+.recommendation-modal-pages.is-zoomed .rec-doc-page {
+  margin: 0 !important;
 }
 
 .rec-doc-page {
@@ -5324,6 +5414,7 @@ body.has-modal::after {
   margin: 0 auto !important;
   display: flex !important;
   flex-direction: column !important;
+  transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .rec-doc-page.is-hidden {
@@ -5346,10 +5437,16 @@ body.has-modal::after {
 
 .rec-doc-paper {
   background: #ffffff !important;
-  padding: clamp(8px, 2vw, 18px) !important;
+  padding: 0 !important;
   border: 1px solid #32354c !important;
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.85) !important;
   border-radius: 0 0 2px 2px !important;
+  cursor: zoom-in !important;
+  overflow: hidden !important;
+}
+
+.recommendation-modal-pages.is-zoomed .rec-doc-paper {
+  cursor: zoom-out !important;
 }
 
 .rec-doc-paper img {
@@ -5360,7 +5457,121 @@ body.has-modal::after {
   background: #ffffff !important;
   image-rendering: -webkit-optimize-contrast !important;
   image-rendering: crisp-edges !important;
-  filter: contrast(1.05) brightness(1.01) !important;
+  filter: contrast(1.04) brightness(1.01) !important;
+}
+
+/* Mobile responsive rules: Full-height, full-width reader */
+@media (max-width: 768px) {
+  .recommendation-modal {
+    padding: 0 !important;
+    inset: 0 !important;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: stretch !important;
+  }
+  .recommendation-modal-panel {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border: none !important;
+    border-top: 2px solid var(--cyber-accent) !important;
+    box-shadow: none !important;
+  }
+  .recommendation-modal-header {
+    padding: 10px 12px !important;
+    position: relative !important;
+    gap: 6px !important;
+    padding-right: 52px !important;
+  }
+  .recommendation-modal-header .eyebrow {
+    font-size: 0.6rem !important;
+    margin-bottom: 2px !important;
+  }
+  .recommendation-modal-header h2 {
+    font-size: 0.98rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 2px !important;
+  }
+  .rec-meta-issuer {
+    font-size: 0.68rem !important;
+  }
+  .recommendation-modal-actions {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    margin-top: 4px !important;
+  }
+  .recommendation-modal-actions .button {
+    font-size: 0.7rem !important;
+    padding: 6px 12px !important;
+  }
+  .recommendation-modal-close {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1.35rem !important;
+    z-index: 10 !important;
+  }
+  .recommendation-modal-toolbar {
+    padding: 6px 8px !important;
+    gap: 6px !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+  .recommendation-page-tabs {
+    gap: 4px !important;
+  }
+  .rec-tab-btn {
+    padding: 5px 9px !important;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+  }
+  .rec-zoom-bar {
+    border-radius: 2px !important;
+  }
+  .rec-zoom-btn {
+    padding: 4px 8px !important;
+    font-size: 0.85rem !important;
+  }
+  .rec-zoom-level {
+    padding: 4px 6px !important;
+    font-size: 0.65rem !important;
+    min-width: 36px !important;
+  }
+  .rec-zoom-preset-pill {
+    padding: 4px 8px !important;
+    font-size: 0.65rem !important;
+  }
+  .recommendation-modal-pages {
+    padding: 6px 0 40px !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+  .rec-doc-page {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  .rec-doc-page-header {
+    padding: 5px 10px !important;
+    font-size: 0.62rem !important;
+    border-inline: none !important;
+  }
+  .rec-doc-paper {
+    padding: 0 !important;
+    border-inline: none !important;
+    border-radius: 0 !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6) !important;
+  }
+  .rec-doc-paper img {
+    width: 100% !important;
+    height: auto !important;
+  }
 }
 
 /* ================================================================

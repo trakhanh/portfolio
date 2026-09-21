@@ -483,31 +483,40 @@
           aria-labelledby="recommendationModalTitle"
         >
           <header class="recommendation-modal-header">
-            <div>
-              <p class="eyebrow">${letter.eyebrow}</p>
+            <div class="recommendation-modal-heading-group">
               <h2 id="recommendationModalTitle">${letter.modalTitle}</h2>
-              <p>${letter.issuer} · ${letter.date}</p>
+              <p class="rec-meta-issuer">${letter.issuer} · ${letter.date}</p>
             </div>
             <div class="recommendation-modal-actions">
-              <a class="button button-primary" href="${letter.file}" target="_blank" rel="noopener">MỞ PDF TRONG TAB MỚI ↗</a>
-              <a class="button button-quiet" href="${letter.file}" download>${letter.download} ↓</a>
-              <button
-                class="recommendation-modal-close"
-                type="button"
-                data-recommendation-close
-                aria-label="${letter.close}"
-              >×</button>
+              <a class="button button-primary rec-action-btn" href="${letter.file}" target="_blank" rel="noopener">
+                MỞ FILE PDF ↗
+              </a>
+              <a class="button button-quiet rec-action-btn" href="${letter.file}" download>
+                ${letter.download} ↓
+              </a>
             </div>
+            <button
+              class="recommendation-modal-close"
+              type="button"
+              data-recommendation-close
+              aria-label="${letter.close}"
+              title="${letter.close}"
+            >×</button>
           </header>
           <div class="recommendation-modal-toolbar">
             <div class="recommendation-page-tabs" role="tablist">
-              <button class="rec-tab-btn is-active" type="button" data-page-tab="all">${language === "vi" ? "TẤT CẢ TRANG" : "ALL PAGES"}</button>
-              <button class="rec-tab-btn" type="button" data-page-tab="0">${language === "vi" ? "TRANG 01" : "PAGE 01"}</button>
-              <button class="rec-tab-btn" type="button" data-page-tab="1">${language === "vi" ? "TRANG 02" : "PAGE 02"}</button>
+              <button class="rec-tab-btn is-active" type="button" data-page-tab="all">${language === "vi" ? "TẤT CẢ" : "ALL"}</button>
+              <button class="rec-tab-btn" type="button" data-page-tab="0">${language === "vi" ? "TRANG 1" : "PAGE 1"}</button>
+              <button class="rec-tab-btn" type="button" data-page-tab="1">${language === "vi" ? "TRANG 2" : "PAGE 2"}</button>
             </div>
-            <span class="recommendation-doc-status" id="recDocStatus">${language === "vi" ? "VĂN BẢN GỐC · CON DẤU ĐỎ ĐÃ XÁC THỰC" : "ORIGINAL DOCUMENT · VERIFIED SEAL"}</span>
+            <div class="rec-zoom-bar">
+              <button class="rec-zoom-btn" type="button" data-zoom-action="out" aria-label="Thu nhỏ" title="Thu nhỏ">−</button>
+              <button class="rec-zoom-level" type="button" data-zoom-action="reset" aria-label="Đặt lại kích thước" title="Vừa màn hình">100%</button>
+              <button class="rec-zoom-btn" type="button" data-zoom-action="in" aria-label="Phóng to" title="Phóng to">+</button>
+              <button class="rec-zoom-preset-pill" type="button" data-zoom-preset="1.6" title="Phóng to để đọc chữ">🔍 Phóng to</button>
+            </div>
           </div>
-          <div class="recommendation-modal-pages">
+          <div class="recommendation-modal-pages" id="recModalPages">
             ${letter.pages
               .map(
                 (page, index) => `
@@ -516,12 +525,13 @@
                       <span>${letter.pageLabel.toUpperCase()} ${String(index + 1).padStart(2, "0")} / ${String(letter.pages.length).padStart(2, "0")}</span>
                       <span>CÔNG TY CỔ PHẦN BÔNG TRÀ F&B</span>
                     </div>
-                    <div class="rec-doc-paper">
+                    <div class="rec-doc-paper" data-doc-paper>
                       <img
                         src="${page}"
                         alt="${letter.pageLabel} ${index + 1} · ${letter.modalTitle}"
                         loading="eager"
                         decoding="async"
+                        draggable="false"
                       />
                     </div>
                   </figure>
@@ -1311,29 +1321,56 @@
     if (!modal) return;
 
     let lastFocused = null;
+    let currentZoom = 1;
+    let lastTapTime = 0;
+
+    const applyZoom = (newZoom) => {
+      currentZoom = Math.min(2.5, Math.max(1, +newZoom.toFixed(2)));
+      const pagesContainer = modal.querySelector("#recModalPages");
+      const zoomLevelBtn = modal.querySelector(".rec-zoom-level");
+      const zoomPresetBtn = modal.querySelector(".rec-zoom-preset-pill");
+
+      if (zoomLevelBtn) {
+        zoomLevelBtn.textContent = Math.round(currentZoom * 100) + "%";
+      }
+      if (zoomPresetBtn) {
+        zoomPresetBtn.classList.toggle("is-active", currentZoom >= 1.7);
+      }
+
+      const pages = $$(".rec-doc-page", modal);
+      pages.forEach((p) => {
+        if (currentZoom === 1) {
+          p.style.width = "";
+          p.style.maxWidth = "";
+        } else {
+          p.style.width = currentZoom * 100 + "%";
+          p.style.maxWidth = "none";
+        }
+      });
+
+      if (pagesContainer) {
+        pagesContainer.classList.toggle("is-zoomed", currentZoom > 1);
+      }
+    };
 
     const openModal = (trigger) => {
       lastFocused = trigger || document.activeElement;
       modal.hidden = false;
       document.body.classList.add("has-modal");
 
-      // Reset tabs and pages state when opened
+      // Reset tabs and zoom state when opened
+      applyZoom(1);
       const allTabs = $$(".rec-tab-btn", modal);
-      allTabs.forEach((t) => t.classList.toggle("is-active", t.dataset.pageTab === "all"));
+      allTabs.forEach((t) =>
+        t.classList.toggle("is-active", t.dataset.pageTab === "all")
+      );
       const pages = $$(".rec-doc-page", modal);
       pages.forEach((p) => {
         p.classList.remove("is-hidden");
         p.style.display = "";
       });
-      const pagesContainer = modal.querySelector(".recommendation-modal-pages");
+      const pagesContainer = modal.querySelector("#recModalPages");
       if (pagesContainer) pagesContainer.scrollTop = 0;
-      const statusEl = $("#recDocStatus", modal) || $(".recommendation-doc-status", modal);
-      if (statusEl) {
-        statusEl.textContent =
-          language === "vi"
-            ? "VĂN BẢN GỐC · CON DẤU ĐỎ ĐÃ XÁC THỰC"
-            : "ORIGINAL DOCUMENT · VERIFIED SEAL";
-      }
 
       requestAnimationFrame(() => {
         modal.classList.add("is-open");
@@ -1352,6 +1389,21 @@
     };
 
     document.addEventListener("click", (event) => {
+      if (modal.hidden) {
+        const trigger = event.target.closest("[data-recommendation-open]");
+        if (trigger) {
+          openModal(trigger);
+        }
+        return;
+      }
+
+      // Close button or backdrop
+      if (event.target.closest("[data-recommendation-close]")) {
+        closeModal();
+        return;
+      }
+
+      // Page Tabs (All / Page 1 / Page 2)
       const tabBtn = event.target.closest("[data-page-tab]");
       if (tabBtn && modal.contains(tabBtn)) {
         event.preventDefault();
@@ -1371,26 +1423,6 @@
           }
         });
 
-        const statusEl = $("#recDocStatus", modal) || $(".recommendation-doc-status", modal);
-        if (statusEl) {
-          if (targetTab === "all") {
-            statusEl.textContent =
-              language === "vi"
-                ? "HIỂN THỊ TẤT CẢ 02 TRANG · CON DẤU ĐỎ ĐÃ XÁC THỰC"
-                : "SHOWING ALL 02 PAGES · VERIFIED CREDENTIAL";
-          } else if (targetTab === "0") {
-            statusEl.textContent =
-              language === "vi"
-                ? "TRANG 01 / 02 · ĐÁNH GIÁ NĂNG LỰC & ĐÓNG GÓP THỰC TẾ"
-                : "PAGE 01 / 02 · PERFORMANCE & CONTRIBUTION REVIEW";
-          } else if (targetTab === "1") {
-            statusEl.textContent =
-              language === "vi"
-                ? "TRANG 02 / 02 · CHỮ KÝ CEO & CON DẤU ĐỎ BÔNG TRÀ F&B"
-                : "PAGE 02 / 02 · CEO SIGNATURE & OFFICIAL SEAL";
-          }
-        }
-
         const pagesContainer = modal.querySelector(".recommendation-modal-pages");
         if (pagesContainer) {
           pagesContainer.scrollTo({ top: 0, behavior: "smooth" });
@@ -1398,14 +1430,45 @@
         return;
       }
 
-      const trigger = event.target.closest("[data-recommendation-open]");
-      if (trigger) {
-        openModal(trigger);
+      // Zoom Controls
+      if (event.target.closest('[data-zoom-action="in"]')) {
+        event.preventDefault();
+        applyZoom(currentZoom + 0.35);
+        return;
+      }
+      if (event.target.closest('[data-zoom-action="out"]')) {
+        event.preventDefault();
+        applyZoom(currentZoom - 0.35);
+        return;
+      }
+      if (event.target.closest('[data-zoom-action="reset"]')) {
+        event.preventDefault();
+        applyZoom(1);
+        return;
+      }
+      if (event.target.closest("[data-zoom-preset]")) {
+        event.preventDefault();
+        const targetVal =
+          parseFloat(
+            event.target.closest("[data-zoom-preset]").dataset.zoomPreset
+          ) || 1.75;
+        applyZoom(currentZoom >= 1.7 ? 1 : targetVal);
         return;
       }
 
-      if (event.target.closest("[data-recommendation-close]")) {
-        closeModal();
+      // Double-tap or double-click to toggle zoom on document paper
+      const docPaper = event.target.closest("[data-doc-paper]");
+      if (docPaper && modal.contains(docPaper)) {
+        const now = Date.now();
+        if (now - lastTapTime < 350) {
+          event.preventDefault();
+          const targetZoom = currentZoom >= 1.7 ? 1 : 1.75;
+          applyZoom(targetZoom);
+          lastTapTime = 0;
+        } else {
+          lastTapTime = now;
+        }
+        return;
       }
     });
 
@@ -1435,6 +1498,13 @@
         first.focus();
       }
     });
+
+    if (
+      window.location.hash === "#recommendation" ||
+      new URLSearchParams(window.location.search).has("recommendation")
+    ) {
+      window.setTimeout(() => openModal(), 350);
+    }
   }
 
   function setupCertificateModal() {
