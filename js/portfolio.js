@@ -1751,6 +1751,48 @@
         }
       }
     });
+
+    // Touch swipe navigation for mobile
+    let touchStartX = 0;
+    let touchStartY = 0;
+    modal.addEventListener(
+      "touchstart",
+      (e) => {
+        if (e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }
+      },
+      { passive: true }
+    );
+
+    modal.addEventListener(
+      "touchend",
+      (e) => {
+        if (e.changedTouches.length === 1) {
+          const diffX = e.changedTouches[0].clientX - touchStartX;
+          const diffY = e.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY) * 1.4) {
+            if (diffX < 0) {
+              renderModalContent(currentIndex + 1);
+            } else {
+              renderModalContent(currentIndex - 1);
+            }
+          }
+        }
+      },
+      { passive: true }
+    );
+
+    // Deep link support for certificates
+    const certParam = new URLSearchParams(window.location.search).get("cert");
+    if (window.location.hash.startsWith("#cert-") || certParam !== null) {
+      const idx = parseInt(
+        certParam || window.location.hash.replace("#cert-", ""),
+        10
+      );
+      window.setTimeout(() => openModal(isNaN(idx) ? 0 : idx), 350);
+    }
   }
 
   function setupHeroGlitch() {

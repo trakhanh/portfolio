@@ -5993,6 +5993,231 @@ body.has-modal::after {
   letter-spacing: 0.05em !important;
 }
 
+/* Mobile responsive rules: Full-height Cyberpunk HUD Dossier */
+@media (max-width: 768px) {
+  .certificate-modal {
+    padding: 0 !important;
+    inset: 0 !important;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: stretch !important;
+  }
+
+  .certificate-modal-panel {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border: none !important;
+    border-top: 2px solid var(--cyber-accent) !important;
+    box-shadow: none !important;
+    animation: none !important;
+  }
+
+  .certificate-modal-header {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 10px 14px 10px !important;
+    gap: 8px !important;
+    background: #0d0f1b !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Controls row (stepper on left/center, close button on right) */
+  .certificate-modal-header-controls {
+    order: -1 !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding-bottom: 6px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .cert-modal-stepper {
+    padding: 3px 6px !important;
+    gap: 4px !important;
+    background: #111422 !important;
+  }
+
+  .cert-stepper-btn {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 1rem !important;
+  }
+
+  .cert-stepper-counter {
+    font-size: 0.72rem !important;
+    padding-inline: 8px !important;
+  }
+
+  .certificate-modal-close {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 1.3rem !important;
+  }
+
+  /* Header main content (full width) */
+  .certificate-modal-header-main {
+    width: 100% !important;
+    gap: 4px !important;
+  }
+
+  .cert-modal-telemetry {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .cert-modal-eyebrow {
+    font-size: 0.6rem !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .cert-modal-badge {
+    font-size: 0.58rem !important;
+    padding: 2px 6px !important;
+    white-space: nowrap !important;
+  }
+
+  .certificate-modal-header h2 {
+    font-size: 1.05rem !important;
+    line-height: 1.3 !important;
+    margin: 2px 0 !important;
+    word-break: break-word !important;
+  }
+
+  .cert-modal-meta-row {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 3px !important;
+    font-size: 0.68rem !important;
+    margin-top: 2px !important;
+  }
+
+  .cert-meta-item {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .cert-meta-label {
+    color: var(--cyber-muted-fg) !important;
+    font-size: 0.62rem !important;
+    letter-spacing: 0.05em !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Modal body: Single vertical scroll column */
+  .certificate-modal-body {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    padding: 12px 14px 44px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    background: #07080e !important;
+    flex: 1 1 auto !important;
+  }
+
+  .certificate-modal-preview {
+    width: 100% !important;
+  }
+
+  .cert-preview-frame {
+    border-radius: 3px !important;
+    border: 1px solid var(--cyber-border-bright) !important;
+  }
+
+  .cert-frame-hud {
+    padding: 6px 10px !important;
+    font-size: 0.6rem !important;
+  }
+
+  .cert-preview-image-wrap {
+    padding: 8px !important;
+    min-height: 180px !important;
+    max-height: 280px !important;
+    background: #040508 !important;
+  }
+
+  .cert-preview-image-wrap img {
+    max-height: 260px !important;
+    width: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .cert-preview-actions {
+    padding: 8px 10px !important;
+  }
+
+  .cert-btn-open-img {
+    font-size: 0.7rem !important;
+    padding: 7px 12px !important;
+    width: 100% !important;
+    text-align: center !important;
+    display: block !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Details section */
+  .certificate-modal-details {
+    width: 100% !important;
+    gap: 14px !important;
+  }
+
+  .cert-detail-section h4 {
+    font-size: 0.66rem !important;
+    margin: 0 0 6px 0 !important;
+  }
+
+  .cert-detail-desc {
+    font-size: 0.86rem !important;
+    line-height: 1.55 !important;
+    color: #c9cee2 !important;
+  }
+
+  .cert-skills-list {
+    gap: 6px !important;
+  }
+
+  .cert-skill-tag {
+    font-size: 0.68rem !important;
+    padding: 3px 8px !important;
+  }
+
+  .cert-modal-action-row {
+    margin-top: 4px !important;
+    padding-top: 14px !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .cert-verify-action,
+  .cert-course-action {
+    font-size: 0.74rem !important;
+    padding: 10px 14px !important;
+    min-height: 42px !important;
+    text-align: center !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .cert-modal-footer-hint {
+    font-size: 0.62rem !important;
+    padding-top: 4px !important;
+  }
+}
+
 /* Skills & About Section styles are fully consolidated in Section 13 */
 
 
