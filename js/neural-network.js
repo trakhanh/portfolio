@@ -32,10 +32,10 @@
   let lastTime = performance.now();
 
   // Responsive settings — Tối ưu số lượng nơ-ron và tầm kết nối theo kích thước màn hình
-  const isMobile = window.innerWidth <= 768;
-  const NODE_COUNT = isMobile ? 64 : 92;
-  const MAX_CONNECT_DIST = isMobile ? 155 : 180;
-  const MOUSE_INFLUENCE_DIST = isMobile ? 150 : 220;
+  const isMobile = window.innerWidth <= 820;
+  const NODE_COUNT = isMobile ? 48 : 92;
+  const MAX_CONNECT_DIST = isMobile ? 135 : 180;
+  const MOUSE_INFLUENCE_DIST = isMobile ? 140 : 220;
 
   const mouse = {
     x: -9999,
@@ -72,8 +72,8 @@
       // Depth: 0.4 (far/dim) to 1.0 (near/bright/crisp)
       this.z = isConduit ? 0.98 : (0.45 + Math.random() * 0.55);
 
-      // Radius: Dày hơn, rõ nét hơn theo yêu cầu
-      const radiusBase = isMobile ? (3.2 + Math.random() * 2.8) : (2.4 + Math.random() * 2.8);
+      // Radius: Dịu nhẹ, tinh tế ở nền mờ trên mobile
+      const radiusBase = isMobile ? (1.8 + Math.random() * 1.8) : (2.4 + Math.random() * 2.8);
       this.baseRadius = isConduit ? 4.8 : radiusBase * this.z;
       this.radius = this.baseRadius;
 
