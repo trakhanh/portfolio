@@ -24,22 +24,18 @@
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // On mobile screens, disable canvas network completely
-  if (window.innerWidth <= 768) {
-    canvas.style.display = 'none';
-    return;
-  }
+  let width = 0;
   let height = 0;
   let dpr = 1;
   let animId = null;
   let isVisible = true;
   let lastTime = performance.now();
 
-  // Responsive settings — Tăng mật độ và tầm kết nối để nơ-ron dày dặn hơn
+  // Responsive settings — Tối ưu số lượng nơ-ron và tầm kết nối theo kích thước màn hình
   const isMobile = window.innerWidth <= 768;
-  const NODE_COUNT = isMobile ? 48 : 92;
-  const MAX_CONNECT_DIST = isMobile ? 130 : 180;
-  const MOUSE_INFLUENCE_DIST = isMobile ? 140 : 220;
+  const NODE_COUNT = isMobile ? 64 : 92;
+  const MAX_CONNECT_DIST = isMobile ? 155 : 180;
+  const MOUSE_INFLUENCE_DIST = isMobile ? 150 : 220;
 
   const mouse = {
     x: -9999,
@@ -77,7 +73,8 @@
       this.z = isConduit ? 0.98 : (0.45 + Math.random() * 0.55);
 
       // Radius: Dày hơn, rõ nét hơn theo yêu cầu
-      this.baseRadius = isConduit ? 4.8 : (2.4 + Math.random() * 2.8) * this.z;
+      const radiusBase = isMobile ? (3.2 + Math.random() * 2.8) : (2.4 + Math.random() * 2.8);
+      this.baseRadius = isConduit ? 4.8 : radiusBase * this.z;
       this.radius = this.baseRadius;
 
       // Organic wave motion parameters (Flow field drift)
@@ -327,8 +324,18 @@
 
     // General Mesh of Neurons (Mạng lưới nơ-ron bao phủ không gian Hero)
     for (let i = 0; i < NODE_COUNT; i++) {
-      const x = Math.random() * (width - 60) + 30;
-      const y = Math.random() * (height - 90) + 40;
+      const x = Math.random() * (width - 40) + 20;
+      let y;
+      if (isMobile) {
+        // Distribute nicely with 65% of nodes in the visible viewport (0 - 850px)
+        if (Math.random() < 0.65) {
+          y = Math.random() * Math.min(height * 0.45, 800) + 40;
+        } else {
+          y = Math.random() * (height - 90) + 40;
+        }
+      } else {
+        y = Math.random() * (height - 90) + 40;
+      }
       neurons.push(new Neuron(x, y, false));
     }
 
@@ -384,7 +391,8 @@
           const midY = (p1.y + p2.y) * 0.5;
           const bottomDist = height - midY;
           const bottomFade = Math.min(1, Math.max(0.06, bottomDist / 80));
-          const lineAlpha = (ratio * 0.35 * avgZ * bottomFade + ((p1.energy + p2.energy) * 0.45)).toFixed(3);
+          const baseAlpha = isMobile ? (ratio * 0.48 * avgZ * bottomFade + 0.10) : (ratio * 0.35 * avgZ * bottomFade);
+          const lineAlpha = (baseAlpha + ((p1.energy + p2.energy) * 0.45)).toFixed(3);
 
           ctx.beginPath();
           ctx.moveTo(p1.x, p1.y);
