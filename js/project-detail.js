@@ -56,6 +56,12 @@
       setText(`[data-nav="${key}"]`, value);
     });
 
+    const mobileCv = $("#navMobileCv");
+    if (mobileCv) {
+      const cvText = language === "vi" ? "Xem CV" : "View CV";
+      mobileCv.innerHTML = `<span>${cvText}</span> <span class="nav-hud-arrow">↗</span>`;
+    }
+
     $(".nav-shell")?.setAttribute(
       "aria-label",
       language === "vi" ? "Điều hướng chính" : "Primary navigation"
@@ -525,33 +531,52 @@
       header?.classList.toggle("is-scrolled", window.scrollY > 20);
     };
 
-    const closeMenu = () => {
-      links?.classList.remove("is-open");
-      menu?.classList.remove("is-open");
-      menu?.setAttribute("aria-expanded", "false");
-      updateMenuControl(false);
+    const toggleNav = (open) => {
+      const isOpen =
+        typeof open === "boolean"
+          ? open
+          : !links?.classList.contains("is-open");
+      links?.classList.toggle("is-open", isOpen);
+      menu?.classList.toggle("is-open", isOpen);
+      menu?.setAttribute("aria-expanded", String(isOpen));
+      document.body.classList.toggle("has-nav-open", isOpen);
+      updateMenuControl(isOpen);
     };
 
     window.addEventListener("scroll", updateHeader, { passive: true });
     updateHeader();
 
-    menu?.addEventListener("click", () => {
-      const open = !links?.classList.contains("is-open");
-      links?.classList.toggle("is-open", open);
-      menu.classList.toggle("is-open", open);
-      menu.setAttribute("aria-expanded", String(open));
-      updateMenuControl(open);
-    });
+    menu?.addEventListener("click", () => toggleNav());
 
     $$(".nav-links a").forEach((link) => {
-      link.addEventListener("click", closeMenu);
+      link.addEventListener("click", () => toggleNav(false));
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        links?.classList.contains("is-open") &&
+        !links.contains(event.target) &&
+        !menu?.contains(event.target)
+      ) {
+        toggleNav(false);
+      }
     });
 
     document.addEventListener("keydown", (event) => {
       if (event.key !== "Escape" || !links?.classList.contains("is-open")) return;
-      closeMenu();
+      toggleNav(false);
       menu?.focus();
     });
+
+    window.addEventListener(
+      "resize",
+      () => {
+        if (window.innerWidth > 980 && links?.classList.contains("is-open")) {
+          toggleNav(false);
+        }
+      },
+      { passive: true }
+    );
   }
 
   $("#languageToggle")?.addEventListener("click", () => {

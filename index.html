@@ -39,8 +39,8 @@
       rel="stylesheet"
     />
     <link rel="preload" href="./img/logo-gk.svg" as="image" type="image/svg+xml" />
-    <link rel="stylesheet" href="./css/portfolio.css?v=20" />
-    <link rel="stylesheet" href="./css/cyberpunk.css?v=32" />
+    <link rel="stylesheet" href="./css/portfolio.css?v=21" />
+    <link rel="stylesheet" href="./css/cyberpunk.css?v=33" />
   </head>
   <body class="is-splashing">
     <div class="splash" id="splash" aria-hidden="true">
@@ -101,11 +101,31 @@
         </a>
 
         <div class="nav-links" id="navLinks">
+          <div class="nav-hud-header" aria-hidden="true">
+            <span class="nav-hud-tag">// ROUTER // SYS_NODES</span>
+            <span class="nav-hud-status"><i class="hud-status-dot"></i>SYS: ONLINE</span>
+          </div>
           <a href="#systems" data-nav="systems">AI × ERP</a>
           <a href="#experience" data-nav="experience">Kinh nghiệm</a>
           <a href="#projects" data-nav="projects">Dự án</a>
           <a href="#proof" data-nav="proof">Uy tín</a>
           <a href="#contact" data-nav="contact">Liên hệ</a>
+          <div class="nav-hud-footer">
+            <div class="nav-hud-info" aria-hidden="true">
+              <span class="nav-hud-loc">LOC // HCMC, VN</span>
+              <span class="nav-hud-ver">PORTFOLIO v2026</span>
+            </div>
+            <a
+              href="https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
+              class="nav-hud-cv-btn"
+              id="navMobileCv"
+              target="_blank"
+              rel="noopener"
+            >
+              <span>Xem CV</span>
+              <span class="nav-hud-arrow">↗</span>
+            </a>
+          </div>
         </div>
 
         <div class="nav-controls">
@@ -648,7 +668,7 @@
     <div class="certificate-modal" id="certificateModal" hidden></div>
 
     <script defer src="./js/portfolio-data.js?v=7"></script>
-    <script defer src="./js/portfolio.js?v=15"></script>
+    <script defer src="./js/portfolio.js?v=16"></script>
     <script defer src="./js/neural-network.js?v=6"></script>
   </body>
 </html>

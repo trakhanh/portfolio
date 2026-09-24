@@ -2792,25 +2792,24 @@ button,
   .nav-links {
     position: absolute;
     z-index: 45;
-    top: calc(100% + 1px);
-    right: var(--gutter);
-    left: var(--gutter);
+    top: 100%;
+    right: 0;
+    left: 0;
     display: none;
-    padding: 12px;
-    border: 1px solid var(--border);
+    flex-direction: column;
+    padding: 0;
+    border: none;
     background: var(--surface-strong);
     box-shadow: var(--shadow-md);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2px 12px;
   }
 
   .nav-links.is-open {
-    display: grid;
+    display: flex;
   }
 
   .nav-links a {
-    padding: 13px 10px;
-    font-size: 0.7rem;
+    padding: 14px 20px;
+    font-size: 0.95rem;
   }
 
   .menu-toggle {

@@ -99,6 +99,13 @@
     Object.entries(copy.nav).forEach(([key, value]) => {
       setText(`[data-nav="${key}"]`, value);
     });
+
+    const mobileCv = $("#navMobileCv");
+    if (mobileCv) {
+      mobileCv.href = copy.hero.cvUrl || copy.about.cvUrl;
+      const cvText = language === "vi" ? "Xem CV" : "View CV";
+      mobileCv.innerHTML = `<span>${cvText}</span> <span class="nav-hud-arrow">↗</span>`;
+    }
   }
 
   function renderDisclosures(copy) {
@@ -1065,22 +1072,51 @@
     window.addEventListener("scroll", updateHeader, { passive: true });
     updateHeader();
 
-    menu?.addEventListener("click", () => {
-      const open = !links?.classList.contains("is-open");
-      links?.classList.toggle("is-open", open);
-      menu.classList.toggle("is-open", open);
-      menu.setAttribute("aria-expanded", String(open));
-      updateMenuControl(open);
-    });
+    const toggleNav = (open) => {
+      const isOpen =
+        typeof open === "boolean"
+          ? open
+          : !links?.classList.contains("is-open");
+      links?.classList.toggle("is-open", isOpen);
+      menu?.classList.toggle("is-open", isOpen);
+      menu?.setAttribute("aria-expanded", String(isOpen));
+      document.body.classList.toggle("has-nav-open", isOpen);
+      updateMenuControl(isOpen);
+    };
+
+    menu?.addEventListener("click", () => toggleNav());
 
     $$(".nav-links a").forEach((link) => {
       link.addEventListener("click", () => {
-        links?.classList.remove("is-open");
-        menu?.classList.remove("is-open");
-        menu?.setAttribute("aria-expanded", "false");
-        updateMenuControl(false);
+        toggleNav(false);
       });
     });
+
+    document.addEventListener("click", (event) => {
+      if (
+        links?.classList.contains("is-open") &&
+        !links.contains(event.target) &&
+        !menu?.contains(event.target)
+      ) {
+        toggleNav(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && links?.classList.contains("is-open")) {
+        toggleNav(false);
+      }
+    });
+
+    window.addEventListener(
+      "resize",
+      () => {
+        if (window.innerWidth > 980 && links?.classList.contains("is-open")) {
+          toggleNav(false);
+        }
+      },
+      { passive: true }
+    );
 
     if (!("IntersectionObserver" in window)) return;
 
