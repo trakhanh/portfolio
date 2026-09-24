@@ -7481,7 +7481,7 @@ body.has-modal::after {
   }
   .hero-neural-canvas {
     z-index: 1 !important;
-    opacity: 0.42 !important;
+    opacity: 0.25 !important;
     pointer-events: none !important;
   }
   .hero-layout {
