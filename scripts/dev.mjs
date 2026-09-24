@@ -1,5 +1,6 @@
 import http from "node:http";
 import { createReadStream, existsSync, statSync } from "node:fs";
+import { networkInterfaces } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -45,6 +46,14 @@ http
     });
     createReadStream(candidate).pipe(response);
   })
-  .listen(port, "127.0.0.1", () => {
-    console.log(`Local URL: http://127.0.0.1:${port}`);
+  .listen(port, "0.0.0.0", () => {
+    console.log(`Local URL:   http://localhost:${port}`);
+    const nets = networkInterfaces();
+    for (const name of Object.keys(nets)) {
+      for (const net of nets[name] || []) {
+        if (net.family === "IPv4" && !net.internal) {
+          console.log(`Network URL: http://${net.address}:${port}`);
+        }
+      }
+    }
   });
