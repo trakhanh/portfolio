@@ -2,11 +2,10 @@
 
 import React, { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { RecommendationModal } from "./RecommendationModal";
 import { motion } from "motion/react";
-import { Briefcase, Calendar, CheckCircle, FileBadge, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, FileCheck2 } from "lucide-react";
 
 export function ExperienceSection() {
   const { content } = useLanguage();
@@ -16,109 +15,96 @@ export function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="py-20 border-b border-cyber-border bg-[#07080d] relative"
+      className="py-28 bg-[#000000] relative border-t border-white/[0.06]"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="flex flex-col gap-3 mb-12 text-left">
-          <Badge variant="default" className="w-fit font-mono text-xs">
-            <Briefcase className="w-3.5 h-3.5 mr-1" />
-            {experience.eyebrow}
-          </Badge>
-
-          <h2 className="font-heading font-extrabold text-2xl sm:text-4xl text-white tracking-wide uppercase">
-            {experience.title}
-          </h2>
-
-          <p className="font-mono text-sm sm:text-base text-cyber-fg/80 max-w-3xl leading-relaxed">
-            {experience.intro}
-          </p>
+      <div className="max-w-[1280px] mx-auto px-6">
+        {/* Section Headline Block (Two-column layout) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
+          <div className="lg:col-span-7">
+            <span className="text-[13px] font-semibold tracking-[0.025em] text-[#ffb829] uppercase block mb-4">
+              {experience.eyebrow}
+            </span>
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.1]">
+              {experience.title}
+            </h2>
+          </div>
+          <div className="lg:col-span-5 flex flex-col justify-end">
+            <p className="text-base sm:text-lg font-extralight text-[#bdbdbd] leading-[1.6]">
+              {experience.intro}
+            </p>
+          </div>
         </div>
 
-        {/* Timeline Items */}
-        <div className="relative border-l-2 border-cyber-border ml-3 sm:ml-6 pl-6 sm:pl-8 flex flex-col gap-10">
+        {/* Experience Timeline Rows (Floating Spaciously on Black) */}
+        <div className="flex flex-col gap-8">
           {experience.items.map((item, idx) => {
             const isBongTra = item.company.toLowerCase().includes("bông trà");
 
             return (
               <motion.div
                 key={item.role + item.company}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.15 }}
-                className="relative group"
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="bg-white/[0.02] border border-white/10 hover:border-white/20 p-8 sm:p-10 rounded-3xl transition-all duration-300 group"
               >
-                {/* Timeline node dot */}
-                <div className="absolute -left-[31px] sm:-left-[39px] top-1 w-3.5 h-3.5 rounded-full bg-cyber-bg border-2 border-cyber-accent group-hover:scale-125 group-hover:bg-cyber-accent transition-all duration-200" />
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                  {/* Left Column: Role & Company & Date */}
+                  <div className="lg:col-span-4 flex flex-col gap-1">
+                    <span className="text-xs font-mono text-[#8052ff] uppercase tracking-wider">
+                      {(item as any).date || item.period}
+                    </span>
+                    <h3 className="text-2xl font-normal tracking-tight text-white mt-1">
+                      {item.role}
+                    </h3>
+                    <span className="text-sm font-light text-[#9a9a9a]">
+                      {item.company}
+                    </span>
 
-                {/* Card Container */}
-                <div className="border border-cyber-border bg-cyber-card/90 p-5 sm:p-6 hover:border-cyber-accent/70 transition-all cyber-chamfer">
-                  {/* Top Bar: Company & Period */}
-                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-cyber-border/70 pb-3 mb-4">
-                    <div>
-                      <h3 className="font-heading font-bold text-lg sm:text-xl text-white">
-                        {item.role}
-                      </h3>
-                      <span className="font-mono text-xs text-cyber-accent">
-                        {item.company}
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-1.5 text-xs font-mono text-cyber-muted-fg bg-[#0a0a0f] border border-cyber-border px-2.5 py-1">
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>{(item as any).date || item.period}</span>
-                    </div>
+                    {/* Recommendation Letter CTA for Bông Trà */}
+                    {isBongTra && (
+                      <div className="mt-5">
+                        <button
+                          type="button"
+                          onClick={() => setRecommendationModalOpen(true)}
+                          className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.025em] px-4 py-2 rounded-full bg-[#8052ff]/15 text-[#8052ff] border border-[#8052ff]/30 hover:bg-[#8052ff] hover:text-white transition-all cursor-pointer"
+                        >
+                          <FileCheck2 className="w-3.5 h-3.5" />
+                          <span>Thư giới thiệu có mộc đỏ ↗</span>
+                        </button>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Highlights / Responsibilities */}
-                  <ul className="flex flex-col gap-2 mb-4 font-mono text-xs sm:text-sm text-cyber-fg/90">
-                    {(item.highlights || []).map((h, hIdx) => (
-                      <li key={hIdx} className="flex items-start gap-2">
-                        <span className="text-cyber-accent font-bold mt-0.5">›</span>
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Verified Note & Recommendation Button */}
-                  {(item.verifiedNote || isBongTra) && (
-                    <div className="mt-4 pt-3 border-t border-cyber-border/60 flex flex-wrap items-center justify-between gap-3">
-                      {item.verifiedNote && (
-                        <div className="flex items-center gap-2 text-xs font-mono text-cyber-accent">
-                          <CheckCircle className="w-4 h-4" />
-                          <span>{item.verifiedNote}</span>
-                        </div>
-                      )}
-
-                      {isBongTra && (
-                        <Button
-                          type="button"
-                          variant="outline"
-                          size="sm"
-                          onClick={() => setRecommendationModalOpen(true)}
-                          className="gap-1.5"
+                  {/* Right Column: Highlights & Tags */}
+                  <div className="lg:col-span-8 flex flex-col gap-4">
+                    <ul className="flex flex-col gap-3">
+                      {(item.highlights || []).map((h, hIdx) => (
+                        <li
+                          key={hIdx}
+                          className="text-sm sm:text-base font-extralight text-[#bdbdbd] leading-relaxed flex items-start gap-3"
                         >
-                          <FileBadge className="w-4 h-4 text-cyber-accent" />
-                          <span>Thư giới thiệu có mộc đỏ ↗</span>
-                        </Button>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Tags */}
-                  {(item as any).tags && (item as any).tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 mt-4 pt-3 border-t border-cyber-border/40">
-                      {((item as any).tags as string[]).map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-0.5 text-[10px] font-mono bg-cyber-muted text-cyber-muted-fg border border-cyber-border/50"
-                        >
-                          {tag}
-                        </span>
+                          <span className="text-[#ffb829] mt-1 shrink-0">•</span>
+                          <span>{h}</span>
+                        </li>
                       ))}
-                    </div>
-                  )}
+                    </ul>
+
+                    {/* Tags */}
+                    {(item as any).tags && (item as any).tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                        {((item as any).tags as string[]).map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-3 py-1 text-xs font-light text-[#9a9a9a] bg-white/[0.03] rounded-full border border-white/5"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             );

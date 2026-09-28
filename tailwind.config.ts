@@ -10,6 +10,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        void: "#000000",
+        bone: "#ffffff",
+        ash: "#9a9a9a",
+        silver: "#bdbdbd",
+        electric: {
+          DEFAULT: "#8052ff",
+          hover: "#9269ff",
+        },
+        saffron: {
+          DEFAULT: "#ffb829",
+          hover: "#ffc54d",
+        },
+        verdant: "#15846e",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -21,8 +34,8 @@ const config: Config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#8052ff",
+          foreground: "#ffffff",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -30,35 +43,25 @@ const config: Config = {
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          foreground: "#9a9a9a",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "#8052ff",
+          foreground: "#ffffff",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        cyber: {
-          bg: "#0a0a0f",
-          card: "#12121a",
-          elevated: "#161622",
-          muted: "#1c1c2e",
-          fg: "#e0e0e0",
-          accent: "#00ff88",
-          pink: "#ff00ff",
-          cyan: "#00d4ff",
-          border: "#2a2a3a",
-          borderBright: "#3f3f58",
-        },
+        ring: "#8052ff",
+      },
+      borderRadius: {
+        "3xl": "24px",
+      },
+      letterSpacing: {
+        tighter: "-0.05em",
+        tight: "-0.04em",
       },
       fontFamily: {
-        heading: ["Chakra Petch", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
     },
   },

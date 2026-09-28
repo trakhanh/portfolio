@@ -1,18 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
-import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { motion } from "motion/react";
-import Image from "next/image";
-import {
-  Mail,
-  Check,
-  Copy,
-  Send,
-  Terminal,
-} from "lucide-react";
+import { Mail, Check, Copy, ArrowUpRight, ArrowRight } from "lucide-react";
 
 export function ContactSection() {
   const { content } = useLanguage();
@@ -32,99 +25,74 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-20 border-b border-cyber-border bg-[#07070c] relative"
+      className="py-28 bg-[#000000] relative border-t border-white/[0.06]"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Terminal Shell Container */}
-        <div className="border border-cyber-border-bright bg-[#0d0d16] p-6 sm:p-10 cyber-chamfer relative overflow-hidden">
-          {/* Decorative Corner LEDs */}
-          <div className="absolute top-2 left-2 flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-red-500/80" />
-            <span className="w-2 h-2 rounded-full bg-yellow-500/80" />
-            <span className="w-2 h-2 rounded-full bg-green-500/80 animate-pulse" />
-          </div>
+      <div className="max-w-[1280px] mx-auto px-6">
+        <div className="bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-14 lg:p-20 relative overflow-hidden">
+          {/* Subtle Ambient Radial Glow */}
+          <div className="absolute right-0 bottom-0 w-96 h-96 rounded-full bg-[#8052ff]/10 blur-[100px] pointer-events-none" />
 
-          <div className="mt-4 flex flex-col gap-4 text-left max-w-3xl">
-            <Badge variant="cyan" className="w-fit font-mono text-xs">
-              <Terminal className="w-3.5 h-3.5 mr-1" />
+          <div className="max-w-3xl flex flex-col gap-6 text-left relative z-10">
+            <span className="text-[13px] font-semibold tracking-[0.025em] text-[#ffb829] uppercase">
               {contact.eyebrow}
-            </Badge>
+            </span>
 
-            <h2 className="font-heading font-extrabold text-2xl sm:text-4xl text-white tracking-wide uppercase">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.1]">
               {contact.title}
             </h2>
 
-            <p className="font-mono text-sm sm:text-base text-cyber-fg/80 leading-relaxed">
+            <p className="text-base sm:text-lg font-extralight text-[#bdbdbd] leading-[1.6]">
               {contact.intro}
             </p>
 
-            {/* Email Console Box */}
-            <div className="my-4 p-4 border border-cyber-border bg-[#06060a] flex flex-wrap items-center justify-between gap-4 cyber-chamfer-sm">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 border border-cyber-accent/40 bg-cyber-accent/10 flex items-center justify-center text-cyber-accent">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono text-cyber-muted-fg uppercase tracking-wider block">
-                    DIRECT EMAIL
-                  </span>
-                  <a
-                    href={`mailto:${contact.email}`}
-                    className="font-mono font-bold text-sm sm:text-lg text-white hover:text-cyber-accent transition-colors"
-                  >
-                    {contact.email}
-                  </a>
-                </div>
-              </div>
+            {/* Email Action Pill Box */}
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <a
+                href={`mailto:${contact.email}`}
+                className="inline-flex items-center gap-3 bg-[#8052ff] hover:bg-[#9269ff] text-white px-8 py-4 rounded-full text-sm font-medium tracking-[0.025em] uppercase shadow-[0_4px_25px_rgba(128,82,255,0.3)] hover:shadow-[0_4px_35px_rgba(128,82,255,0.5)] transition-all hover:-translate-y-0.5"
+              >
+                <Mail className="w-4 h-4" />
+                <span>{contact.email}</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
 
-              {/* Copy & Send CTAs */}
-              <div className="flex items-center gap-2">
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={handleCopyEmail}
-                  className="gap-1.5"
-                >
-                  {copied ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-cyber-accent" />
-                      <span>{contact.copied || "Đã sao chép!"}</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-3.5 h-3.5" />
-                      <span>{contact.cta || "Sao chép"}</span>
-                    </>
-                  )}
-                </Button>
-
-                <Button asChild size="sm" className="gap-1.5">
-                  <a href={`mailto:${contact.email}`}>
-                    <Send className="w-3.5 h-3.5" />
-                    <span>Gửi thư</span>
-                  </a>
-                </Button>
-              </div>
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="inline-flex items-center gap-2 border border-white/15 bg-white/[0.03] hover:bg-white/[0.08] hover:border-white/30 text-white px-6 py-4 rounded-full text-xs font-medium uppercase tracking-[0.025em] transition-all cursor-pointer"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-4 h-4 text-[#ffb829]" />
+                    <span className="text-[#ffb829]">{contact.copied || "Đã sao chép!"}</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4 text-[#9a9a9a]" />
+                    <span>{contact.cta || "Sao chép email"}</span>
+                  </>
+                )}
+              </button>
             </div>
 
-            {/* Social Network Chips */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            {/* Social Network Pills */}
+            <div className="flex flex-wrap items-center gap-3 pt-6 mt-4 border-t border-white/10">
               {contact.linkedin && (
                 <a
                   href={contact.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 border border-cyber-border bg-cyber-card px-3.5 py-2 text-xs font-mono text-cyber-fg hover:border-cyber-accent hover:text-cyber-accent transition-colors cyber-chamfer-sm"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] text-xs font-light text-[#bdbdbd] hover:text-white transition-colors"
                 >
                   <Image
                     src="/img/tool-icons/linkedin.svg"
                     alt="LinkedIn"
-                    width={16}
-                    height={16}
-                    className="w-4 h-4 object-contain"
+                    width={15}
+                    height={15}
+                    className="w-3.5 h-3.5 object-contain"
                   />
                   <span>LinkedIn</span>
+                  <ArrowUpRight className="w-3 h-3 text-[#9a9a9a]" />
                 </a>
               )}
 
@@ -133,16 +101,17 @@ export function ContactSection() {
                   href={contact.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 border border-cyber-border bg-cyber-card px-3.5 py-2 text-xs font-mono text-cyber-fg hover:border-cyber-accent hover:text-cyber-accent transition-colors cyber-chamfer-sm"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] text-xs font-light text-[#bdbdbd] hover:text-white transition-colors"
                 >
                   <Image
                     src="/img/tool-icons/github.svg"
                     alt="GitHub"
-                    width={16}
-                    height={16}
-                    className="w-4 h-4 object-contain invert"
+                    width={15}
+                    height={15}
+                    className="w-3.5 h-3.5 object-contain invert"
                   />
                   <span>GitHub</span>
+                  <ArrowUpRight className="w-3 h-3 text-[#9a9a9a]" />
                 </a>
               )}
 
@@ -151,16 +120,17 @@ export function ContactSection() {
                   href={contact.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 border border-cyber-border bg-cyber-card px-3.5 py-2 text-xs font-mono text-cyber-fg hover:border-cyber-accent hover:text-cyber-accent transition-colors cyber-chamfer-sm"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] text-xs font-light text-[#bdbdbd] hover:text-white transition-colors"
                 >
                   <Image
                     src="/img/tool-icons/facebook.svg"
                     alt="Facebook"
-                    width={16}
-                    height={16}
-                    className="w-4 h-4 object-contain"
+                    width={15}
+                    height={15}
+                    className="w-3.5 h-3.5 object-contain"
                   />
                   <span>Facebook</span>
+                  <ArrowUpRight className="w-3 h-3 text-[#9a9a9a]" />
                 </a>
               )}
             </div>

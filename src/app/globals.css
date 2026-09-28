@@ -2,147 +2,92 @@
 
 @layer base {
   :root {
-    --background: 240 20% 5%;
-    --foreground: 0 0% 90%;
-    --card: 240 18% 8%;
-    --card-foreground: 0 0% 90%;
-    --popover: 240 18% 8%;
-    --popover-foreground: 0 0% 90%;
-    --primary: 152 100% 50%;
-    --primary-foreground: 240 20% 5%;
-    --secondary: 240 24% 15%;
-    --secondary-foreground: 0 0% 90%;
-    --muted: 240 24% 15%;
-    --muted-foreground: 220 10% 60%;
-    --accent: 152 100% 50%;
-    --accent-foreground: 240 20% 5%;
-    --destructive: 345 100% 60%;
+    --color-void: #000000;
+    --color-bone-white: #ffffff;
+    --color-ash-gray: #9a9a9a;
+    --color-silver-mist: #bdbdbd;
+    --color-electric-iris: #8052ff;
+    --color-saffron-spark: #ffb829;
+    --color-deep-verdant: #15846e;
+
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 256 100% 66%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 256 100% 66%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 240 16% 20%;
-    --input: 240 18% 8%;
-    --ring: 152 100% 50%;
-    --radius: 0.25rem;
-
-    --cyber-bg: #0a0a0f;
-    --cyber-fg: #e0e0e0;
-    --cyber-card: #12121a;
-    --cyber-card-elevated: #161622;
-    --cyber-muted: #1c1c2e;
-    --cyber-muted-fg: #8a90a0;
-    --cyber-accent: #00ff88;
-    --cyber-accent-secondary: #ff00ff;
-    --cyber-accent-tertiary: #00d4ff;
-    --cyber-border: #2a2a3a;
-    --cyber-border-bright: #3f3f58;
-
-    --box-shadow-neon: 0 0 5px #00ff88, 0 0 12px rgba(0, 255, 136, 0.45);
-    --box-shadow-neon-sm: 0 0 3px #00ff88, 0 0 6px rgba(0, 255, 136, 0.3);
-    --box-shadow-neon-secondary: 0 0 5px #ff00ff, 0 0 16px rgba(255, 0, 255, 0.5);
-    --box-shadow-neon-tertiary: 0 0 5px #00d4ff, 0 0 16px rgba(0, 212, 255, 0.5);
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 256 100% 66%;
+    --radius: 1.5rem;
   }
 
   * {
-    border-color: hsl(var(--border));
+    border-color: rgba(255, 255, 255, 0.08);
   }
 
   body {
-    background-color: var(--cyber-bg);
-    color: var(--cyber-fg);
-    font-family: var(--font-mono), monospace;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     overflow-x: hidden;
   }
 }
 
-/* Cyber Matrix Background Pattern */
-.cyber-grid-bg {
-  background-image: 
-    linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
-  background-size: 32px 32px;
+/* Monolithic weight-400 display typography with aggressive negative tracking */
+.display-headline {
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
 }
 
-/* CRT Scanlines Overlay */
-.scanlines::after {
-  content: " ";
-  display: block;
-  position: fixed;
-  top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-  z-index: 999;
-  background-size: 100% 3px, 6px 100%;
-  pointer-events: none;
-  opacity: 0.6;
+/* Signature airy ultra-light body text */
+.ultra-body {
+  font-weight: 200;
+  letter-spacing: normal;
+  line-height: 1.6;
 }
 
-/* Chamfer Corners */
-.cyber-chamfer {
-  clip-path: polygon(
-    0 10px, 10px 0,
-    calc(100% - 10px) 0, 100% 10px,
-    100% calc(100% - 10px), calc(100% - 10px) 100%,
-    10px 100%, 0 calc(100% - 10px)
-  );
+/* Subtle Glass Card without harsh borders */
+.dala-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 24px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.cyber-chamfer-sm {
-  clip-path: polygon(
-    0 6px, 6px 0,
-    calc(100% - 6px) 0, 100% 6px,
-    100% calc(100% - 6px), calc(100% - 6px) 100%,
-    6px 100%, 0 calc(100% - 6px)
-  );
+.dala-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-.cyber-chamfer-tl-br {
-  clip-path: polygon(
-    14px 0, 100% 0,
-    100% calc(100% - 14px), calc(100% - 14px) 100%,
-    0 100%, 0 14px
-  );
+/* Primary Action Pill */
+.btn-electric-pill {
+  background-color: #8052ff;
+  color: #ffffff;
+  border-radius: 9999px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Neon Glows */
-.neon-glow {
-  box-shadow: var(--box-shadow-neon);
+.btn-electric-pill:hover {
+  background-color: #9269ff;
+  transform: translateY(-1px);
+  box-shadow: 0 0 25px rgba(128, 82, 255, 0.4);
 }
 
-.neon-glow-pink {
-  box-shadow: var(--box-shadow-neon-secondary);
-}
-
-.neon-glow-cyan {
-  box-shadow: var(--box-shadow-neon-tertiary);
-}
-
-.text-glow {
-  text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
-}
-
-.text-glow-pink {
-  text-shadow: 0 0 8px rgba(255, 0, 255, 0.6);
-}
-
-.text-glow-cyan {
-  text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
-}
-
-/* Glitch Heading Effect */
-@keyframes cyberGlitch {
-  0% { transform: translate(0) }
-  20% { transform: translate(-2px, 2px) }
-  40% { transform: translate(-1px, -1px) }
-  60% { transform: translate(2px, 1px) }
-  80% { transform: translate(1px, -2px) }
-  100% { transform: translate(0) }
-}
-
-.glitch-hover:hover {
-  animation: cyberGlitch 0.25s infinite;
-}
-
-/* Mobile neural canvas subtle opacity constraint */
-@media (max-width: 820px) {
-  #heroNeuralCanvas {
-    opacity: 0.25 !important;
-  }
+.btn-electric-pill:active {
+  transform: translateY(0);
 }

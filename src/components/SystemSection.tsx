@@ -3,16 +3,14 @@
 import React from "react";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
-import { Badge } from "./ui/badge";
 import { motion } from "motion/react";
 import {
-  Layers,
   Database,
   BrainCircuit,
   Workflow,
   TrendingUp,
-  Activity,
-  CheckCircle2,
+  Layers,
+  ArrowRight,
 } from "lucide-react";
 
 const TOOL_ICONS: Record<string, string> = {
@@ -39,32 +37,28 @@ export function SystemSection() {
   return (
     <section
       id="systems"
-      className="py-20 border-b border-cyber-border bg-[#0a0a0f] relative overflow-hidden"
+      className="py-28 bg-[#000000] relative border-t border-white/[0.06]"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Section Header */}
-        <div className="flex flex-col gap-3 mb-12 text-left">
-          <div className="flex items-center gap-3">
-            <Badge variant="cyan" className="font-mono text-xs">
-              <Activity className="w-3.5 h-3.5 mr-1" />
+      <div className="max-w-[1280px] mx-auto px-6">
+        {/* Section Headline Block (Two-column layout) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
+          <div className="lg:col-span-7">
+            <span className="text-[13px] font-semibold tracking-[0.025em] text-[#ffb829] uppercase block mb-4">
               {system.eyebrow}
-            </Badge>
-            <span className="text-xs font-mono text-cyber-accent">
-              {system.status}
             </span>
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.1]">
+              {system.title}
+            </h2>
           </div>
-
-          <h2 className="font-heading font-extrabold text-2xl sm:text-4xl text-white tracking-wide uppercase">
-            {system.title}
-          </h2>
-
-          <p className="font-mono text-sm sm:text-base text-cyber-fg/80 max-w-3xl leading-relaxed">
-            {system.intro}
-          </p>
+          <div className="lg:col-span-5 flex flex-col justify-end">
+            <p className="text-base sm:text-lg font-extralight text-[#bdbdbd] leading-[1.6]">
+              {system.intro}
+            </p>
+          </div>
         </div>
 
-        {/* 4 Pipeline Stages Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        {/* 4 Pipeline Stages (Spacious Dala Cards with 24px Radius) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
           {system.stages.map((stage, idx) => {
             const Icon = STAGE_ICONS[idx % STAGE_ICONS.length];
             return (
@@ -73,35 +67,33 @@ export function SystemSection() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="border border-cyber-border bg-cyber-card/90 p-5 flex flex-col justify-between hover:border-cyber-accent transition-all duration-300 cyber-chamfer relative group"
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="bg-white/[0.02] border border-white/10 hover:border-white/20 p-8 rounded-3xl flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1"
               >
                 <div>
-                  <div className="flex items-center justify-between border-b border-cyber-border/60 pb-3 mb-3">
-                    <span className="font-mono text-xs font-bold text-cyber-accent">
-                      STAGE {stage.number}
+                  <div className="flex items-center justify-between mb-8">
+                    <span className="text-xs font-mono text-[#8052ff] uppercase tracking-widest">
+                      0{idx + 1} // STAGE
                     </span>
-                    <Icon className="w-4 h-4 text-cyber-cyan group-hover:text-cyber-accent transition-colors" />
+                    <div className="w-8 h-8 rounded-full bg-white/[0.04] flex items-center justify-center text-white/70 group-hover:text-white transition-colors">
+                      <Icon className="w-4 h-4" />
+                    </div>
                   </div>
 
-                  <span className="text-[10px] font-mono text-cyber-muted-fg block uppercase tracking-wider mb-1">
-                    {stage.label}
-                  </span>
-
-                  <h3 className="font-heading font-bold text-xl text-white mb-2">
+                  <h3 className="text-2xl font-normal tracking-tight text-white mb-3">
                     {stage.title}
                   </h3>
 
-                  <p className="font-mono text-xs text-cyber-fg/80 leading-relaxed mb-4">
+                  <p className="text-sm font-extralight text-[#9a9a9a] leading-relaxed mb-6">
                     {stage.description}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-cyber-border/60">
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
                   {stage.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-0.5 text-[10px] font-mono bg-cyber-muted text-cyber-muted-fg border border-cyber-border/60"
+                      className="px-2.5 py-1 text-xs font-light text-[#bdbdbd] bg-white/[0.03] rounded-full border border-white/5"
                     >
                       {tag}
                     </span>
@@ -114,18 +106,15 @@ export function SystemSection() {
 
         {/* Telemetry Metrics Bar */}
         {(system as any).metrics && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 py-8 border-y border-white/10">
             {(system as any).metrics.map((metric: any) => (
-              <div
-                key={metric.label}
-                className="border border-cyber-border bg-[#101018] p-5 flex items-center gap-4 cyber-chamfer-sm"
-              >
-                <div className="font-heading font-black text-3xl sm:text-4xl text-cyber-accent tracking-tighter">
+              <div key={metric.label} className="flex flex-col gap-2">
+                <span className="text-5xl sm:text-6xl font-normal tracking-tighter text-white">
                   {metric.value}
-                </div>
-                <div className="font-mono text-xs text-cyber-fg/90 leading-tight">
+                </span>
+                <span className="text-sm font-extralight text-[#9a9a9a] max-w-[240px]">
                   {metric.label}
-                </div>
+                </span>
               </div>
             ))}
           </div>
@@ -133,42 +122,46 @@ export function SystemSection() {
 
         {/* Tool Ecosystem */}
         {system.tools && (
-          <div className="border border-cyber-border bg-[#111119] p-6 sm:p-8 cyber-chamfer">
-            <div className="flex flex-col gap-2 mb-6">
-              <span className="text-xs font-mono text-cyber-accent tracking-widest uppercase">
-                {system.tools.eyebrow}
-              </span>
-              <h3 className="font-heading font-bold text-xl sm:text-2xl text-white">
-                {system.tools.title}
-              </h3>
-              <p className="font-mono text-xs sm:text-sm text-cyber-muted-fg max-w-3xl">
-                {system.tools.intro}
-              </p>
+          <div className="pt-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+              <div className="lg:col-span-5">
+                <span className="text-[13px] font-semibold tracking-[0.025em] text-[#ffb829] uppercase block mb-3">
+                  {system.tools.eyebrow}
+                </span>
+                <h3 className="text-2xl sm:text-4xl font-normal tracking-tight text-white">
+                  {system.tools.title}
+                </h3>
+              </div>
+              <div className="lg:col-span-7 flex items-end">
+                <p className="text-sm sm:text-base font-extralight text-[#9a9a9a]">
+                  {system.tools.intro}
+                </p>
+              </div>
             </div>
 
-            {/* Tool Groups Grid */}
+            {/* Groups */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {((system.tools as any).groups || []).map((group: any) => (
                 <div
                   key={group.index}
-                  className="border border-cyber-border/70 bg-[#0c0c14] p-4 cyber-chamfer-sm"
+                  className="bg-white/[0.02] border border-white/10 rounded-3xl p-6"
                 >
-                  <div className="flex items-center justify-between mb-3 border-b border-cyber-border/60 pb-2">
-                    <span className="font-heading font-bold text-sm text-white">
+                  <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/5">
+                    <span className="text-base font-normal text-white">
                       {group.title}
                     </span>
-                    <span className="font-mono text-[10px] text-cyber-cyan border border-cyber-cyan/30 px-1.5 py-0.5">
+                    <span className="text-xs text-[#8052ff] uppercase tracking-wider">
                       {group.index}
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-2 gap-3">
                     {group.items.map((toolName: string) => {
                       const iconSrc = TOOL_ICONS[toolName];
                       return (
                         <div
                           key={toolName}
-                          className="flex items-center gap-2 p-2 border border-cyber-border/60 bg-cyber-card hover:border-cyber-accent/60 transition-colors"
+                          className="flex items-center gap-2.5 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 hover:border-white/15 transition-colors"
                         >
                           {iconSrc ? (
                             <Image
@@ -179,9 +172,9 @@ export function SystemSection() {
                               className="w-4 h-4 object-contain opacity-80"
                             />
                           ) : (
-                            <Layers className="w-4 h-4 text-cyber-accent" />
+                            <Layers className="w-4 h-4 text-[#8052ff]" />
                           )}
-                          <span className="font-mono text-xs text-cyber-fg/90 truncate">
+                          <span className="text-xs font-light text-[#bdbdbd] truncate">
                             {toolName}
                           </span>
                         </div>
@@ -194,10 +187,9 @@ export function SystemSection() {
 
             {/* Proof Note */}
             {(system as any).proofNote && (
-              <div className="mt-6 flex items-start gap-2.5 bg-cyber-accent/5 border-l-2 border-cyber-accent p-3 text-xs font-mono text-cyber-fg/80">
-                <CheckCircle2 className="w-4 h-4 text-cyber-accent shrink-0 mt-0.5" />
-                <span>{(system as any).proofNote}</span>
-              </div>
+              <p className="mt-8 text-xs sm:text-sm font-extralight text-[#9a9a9a] italic max-w-2xl">
+                ✦ {(system as any).proofNote}
+              </p>
             )}
           </div>
         )}

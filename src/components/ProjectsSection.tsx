@@ -4,17 +4,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
 import { motion, AnimatePresence } from "motion/react";
-import {
-  FolderGit2,
-  ExternalLink,
-  ArrowRight,
-  Sparkles,
-  Layers,
-  Code2,
-} from "lucide-react";
+import { ArrowUpRight, ArrowRight, ExternalLink } from "lucide-react";
 
 export function ProjectsSection() {
   const { content } = useLanguage();
@@ -26,7 +17,6 @@ export function ProjectsSection() {
     ...(projects.categories || []),
   ];
 
-  // Helper to determine which category a project belongs to
   const getProjectCategory = (id: string, tags: string[] = []): string => {
     const text = (id + " " + tags.join(" ")).toLowerCase();
     if (
@@ -57,27 +47,28 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="py-20 border-b border-cyber-border bg-[#090910] relative"
+      className="py-28 bg-[#000000] relative border-t border-white/[0.06]"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="flex flex-col gap-3 mb-10 text-left">
-          <Badge variant="cyan" className="w-fit font-mono text-xs">
-            <FolderGit2 className="w-3.5 h-3.5 mr-1" />
-            {projects.eyebrow}
-          </Badge>
-
-          <h2 className="font-heading font-extrabold text-2xl sm:text-4xl text-white tracking-wide uppercase">
-            {projects.title}
-          </h2>
-
-          <p className="font-mono text-sm sm:text-base text-cyber-fg/80 max-w-3xl leading-relaxed">
-            {projects.intro}
-          </p>
+      <div className="max-w-[1280px] mx-auto px-6">
+        {/* Section Headline Block */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+          <div className="lg:col-span-7">
+            <span className="text-[13px] font-semibold tracking-[0.025em] text-[#ffb829] uppercase block mb-4">
+              {projects.eyebrow}
+            </span>
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.1]">
+              {projects.title}
+            </h2>
+          </div>
+          <div className="lg:col-span-5 flex flex-col justify-end">
+            <p className="text-base sm:text-lg font-extralight text-[#bdbdbd] leading-[1.6]">
+              {projects.intro}
+            </p>
+          </div>
         </div>
 
-        {/* Filter Bar with Motion Layout */}
-        <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-cyber-border/60">
+        {/* Filter Pills with Motion Layout */}
+        <div className="flex flex-wrap items-center gap-2 mb-16 pb-6 border-b border-white/10">
           {filterOptions.map((filter) => {
             const isActive = activeFilter === filter.id;
             return (
@@ -85,16 +76,16 @@ export function ProjectsSection() {
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
                 type="button"
-                className={`relative px-4 py-2 font-mono text-xs uppercase tracking-wider transition-all duration-200 cyber-chamfer-sm cursor-pointer ${
+                className={`relative px-5 py-2.5 rounded-full text-xs font-medium uppercase tracking-[0.025em] transition-all cursor-pointer ${
                   isActive
-                    ? "text-black font-bold"
-                    : "text-cyber-muted-fg bg-cyber-card border border-cyber-border hover:border-cyber-accent hover:text-white"
+                    ? "text-black font-semibold"
+                    : "text-[#9a9a9a] hover:text-white bg-white/[0.03] border border-white/5 hover:border-white/15"
                 }`}
               >
                 {isActive && (
                   <motion.div
-                    layoutId="activeProjectFilter"
-                    className="absolute inset-0 bg-cyber-accent z-0"
+                    layoutId="activeFilterPill"
+                    className="absolute inset-0 bg-white rounded-full z-0"
                     transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -104,82 +95,83 @@ export function ProjectsSection() {
           })}
         </div>
 
-        {/* Projects Grid */}
+        {/* Projects Grid (Spacious 24px Radius Cards) */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence>
-            {filteredProjects.map((item, idx) => (
+            {filteredProjects.map((item) => (
               <motion.article
                 layout
                 key={item.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.3 }}
-                className="border border-cyber-border bg-cyber-card flex flex-col justify-between hover:border-cyber-accent transition-all duration-300 group cyber-chamfer overflow-hidden"
+                transition={{ duration: 0.4 }}
+                className="bg-white/[0.02] border border-white/10 hover:border-white/20 rounded-3xl flex flex-col justify-between overflow-hidden group transition-all duration-300 hover:-translate-y-1.5"
               >
                 <div>
-                  {/* Project Thumbnail with Cyber Overlay */}
-                  <div className="relative aspect-video w-full overflow-hidden bg-[#0c0c14] border-b border-cyber-border">
+                  {/* Aspect Video Image with Subtle Mask */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
                     <Image
                       src={item.image || "/img/projects-v3/computer-vision-inspection.jpg"}
                       alt={item.title}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-85 group-hover:opacity-100"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#12121a] via-transparent to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
 
                     {/* Phase Badge */}
-                    <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-1 text-[10px] font-mono font-bold bg-[#0a0a0f]/90 text-cyber-accent border border-cyber-accent/50 cyber-chamfer-sm">
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 text-[11px] font-medium tracking-[0.025em] uppercase rounded-full bg-black/75 backdrop-blur-md text-[#ffb829] border border-[#ffb829]/30">
                         {item.phase || item.phaseLabel}
                       </span>
                     </div>
                   </div>
 
                   {/* Body Content */}
-                  <div className="p-5">
-                    <h3 className="font-heading font-bold text-lg text-white mb-2 group-hover:text-cyber-accent transition-colors">
+                  <div className="p-7">
+                    <h3 className="text-xl sm:text-2xl font-normal tracking-tight text-white mb-3 group-hover:text-[#8052ff] transition-colors">
                       {item.title}
                     </h3>
 
-                    <p className="font-mono text-xs text-cyber-fg/80 line-clamp-3 mb-4 leading-relaxed">
+                    <p className="text-sm font-extralight text-[#9a9a9a] line-clamp-3 leading-relaxed mb-6">
                       {item.description}
                     </p>
 
                     {/* Key Result Banner */}
                     {item.result && (
-                      <div className="mb-4 bg-cyber-muted/80 border-l-2 border-cyber-cyan p-2.5 text-[11px] font-mono text-cyber-cyan">
-                        <strong>KẾT QUẢ:</strong> {item.result}
+                      <div className="mb-6 p-3 rounded-2xl bg-white/[0.03] border border-white/5 text-xs font-light text-[#bdbdbd] flex items-baseline gap-2">
+                        <span className="text-[#ffb829] font-medium text-[11px] uppercase tracking-wider shrink-0">
+                          KẾT QUẢ:
+                        </span>
+                        <span className="truncate">{item.result}</span>
                       </div>
                     )}
                   </div>
                 </div>
 
                 {/* Footer with Tags & Actions */}
-                <div className="p-5 pt-0">
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-4">
+                <div className="p-7 pt-0">
+                  <div className="flex flex-wrap gap-1.5 mb-6">
                     {item.tags.slice(0, 4).map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-0.5 text-[10px] font-mono bg-[#0c0c14] text-cyber-muted-fg border border-cyber-border/70"
+                        className="px-2.5 py-0.5 text-[11px] font-extralight text-[#9a9a9a] bg-white/[0.03] rounded-full"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  {/* Actions: Case Study & External Links */}
-                  <div className="flex items-center justify-between pt-3 border-t border-cyber-border/60">
+                  <div className="flex items-center justify-between pt-4 border-t border-white/5">
                     <Link
                       href={`/projects/${item.id}/`}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-cyber-accent hover:text-white transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.025em] text-[#8052ff] hover:text-white transition-colors"
                     >
-                      <span>Chi tiết Case Study</span>
+                      <span>Xem Case Study</span>
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </Link>
 
@@ -191,7 +183,7 @@ export function ProjectsSection() {
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-1.5 border border-cyber-border bg-[#0c0c14] text-cyber-muted-fg hover:text-cyber-accent hover:border-cyber-accent transition-colors"
+                            className="w-7 h-7 rounded-full bg-white/[0.04] hover:bg-white/[0.1] flex items-center justify-center text-[#9a9a9a] hover:text-white transition-colors"
                             title={link.label}
                           >
                             <ExternalLink className="w-3 h-3" />

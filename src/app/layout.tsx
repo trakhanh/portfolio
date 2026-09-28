@@ -1,19 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Chakra_Petch, JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 
-const chakraPetch = Chakra_Petch({
+const inter = Inter({
   subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-heading",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin", "vietnamese"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-mono",
+  weight: ["200", "300", "400", "500", "600", "700"],
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -57,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0f",
+  themeColor: "#000000",
   width: "device-width",
   initialScale: 1,
 };
@@ -68,8 +61,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" data-theme="dark" className={`${chakraPetch.variable} ${jetbrainsMono.variable}`}>
-      <body className="bg-cyber-bg text-cyber-fg min-h-screen antialiased selection:bg-cyber-accent selection:text-black scanlines relative">
+    <html lang="vi" className={`dark ${inter.variable}`}>
+      <body className="bg-[#000000] text-[#ffffff] min-h-screen antialiased selection:bg-[#8052ff] selection:text-white font-sans relative overflow-x-hidden">
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
