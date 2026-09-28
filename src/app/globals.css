@@ -2,7 +2,7 @@
 
 @layer base {
   :root {
-    /* Auros Terminal Surface Stack (Mapped to current Void Obsidian & Electric Iris palette) */
+    /* Auros Surface Stack + Liquid Glass System */
     --color-liquid-abyss: #000000;
     --color-liquid-deep: #08080d;
     --color-liquid-kelp: #0f0f18;
@@ -59,34 +59,62 @@
 }
 
 /* ================================================================
-   AUROS TERMINAL DESIGN SYSTEM
-   Surface stack depth, 16px cards, 6px buttons, weight 500 display
+   LIQUID GLASS + AUROS TERMINAL DESIGN SYSTEM
+   Frosted refractive glass, 16px cards, 6px buttons, specular sheen
    ================================================================ */
 
-/* Surface Stack Levels (No drop shadows — depth via hue shifts) */
-.surface-canvas {
-  background-color: #000000;
-}
-
-.surface-recessed {
-  background-color: #08080d;
-}
-
-.surface-card {
-  background-color: #0f0f18;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Liquid Glass Cards (16px radius, frosted blur, specular top-edge) */
+.liquid-glass-card {
+  background: rgba(15, 15, 24, 0.65);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 
+    0 16px 40px -10px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.18),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.4);
   border-radius: 16px;
   position: relative;
-  transition: background-color 0.25s ease, border-color 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.surface-card:hover {
-  background-color: #141420;
-  border-color: rgba(128, 82, 255, 0.35);
+.liquid-glass-card:hover {
+  background: rgba(20, 20, 32, 0.78);
+  border-color: rgba(128, 82, 255, 0.4);
+  border-top-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 
+    0 24px 50px -10px rgba(0, 0, 0, 0.75),
+    0 0 30px rgba(128, 82, 255, 0.18),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
-/* Primary CTA Button: 6px radius with signature Bioluminescent Gradient */
-.btn-primary-auros {
+/* Liquid Glass Navigation Bar (Frosted glass with bottom refraction) */
+.liquid-glass-nav {
+  background: rgba(8, 8, 14, 0.72);
+  backdrop-filter: blur(28px) saturate(210%);
+  -webkit-backdrop-filter: blur(28px) saturate(210%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Recessed Liquid Well (Level 1 surface) */
+.liquid-glass-recessed {
+  background: rgba(8, 8, 13, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Primary Liquid Button (6px radius, Iris -> Cyan gradient with gloss top highlight) */
+.btn-primary-liquid {
   background: linear-gradient(90deg, #8052ff 0%, #00e5ff 100%);
   color: #ffffff;
   border-radius: 6px;
@@ -100,20 +128,29 @@
   justify-content: center;
   gap: 8px;
   cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.15s ease;
   border: none;
+  box-shadow: 
+    0 4px 20px rgba(128, 82, 255, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-.btn-primary-auros:hover {
-  opacity: 0.92;
-  transform: translateY(-1px);
+.btn-primary-liquid:hover {
+  box-shadow: 
+    0 8px 30px rgba(128, 82, 255, 0.6),
+    0 0 20px rgba(0, 229, 255, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6);
+  transform: translateY(-1.5px);
 }
 
-/* Secondary Surface Button: 6px radius, raised surface fill */
-.btn-secondary-auros {
-  background-color: #0f0f18;
+/* Secondary Liquid Glass Button (6px radius, frosted translucent glass) */
+.btn-secondary-liquid {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 6px;
   font-weight: 500;
   font-size: 13px;
@@ -125,34 +162,66 @@
   justify-content: center;
   gap: 8px;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  transition: all 0.25s ease;
 }
 
-.btn-secondary-auros:hover {
-  background-color: #171724;
+.btn-secondary-liquid:hover {
+  background: rgba(255, 255, 255, 0.09);
   border-color: rgba(128, 82, 255, 0.5);
+  border-top-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 6px 22px rgba(0, 0, 0, 0.45),
+    0 0 15px rgba(128, 82, 255, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.25);
   transform: translateY(-1px);
 }
 
-/* Square Arrow Icon Button (32x32, 6px radius) */
-.btn-arrow-icon {
+/* Square Arrow Icon Button in Liquid Glass (32x32, 6px radius) */
+.btn-arrow-liquid {
   width: 32px;
   height: 32px;
   border-radius: 6px;
-  background-color: rgba(128, 82, 255, 0.15);
+  background: rgba(128, 82, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(128, 82, 255, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
 }
 
-.btn-arrow-icon:hover {
-  background-color: #8052ff;
+.btn-arrow-liquid:hover {
+  background: #8052ff;
   border-color: #8052ff;
+  box-shadow: 0 0 16px rgba(128, 82, 255, 0.6);
   transform: translate(1px, -1px);
+}
+
+/* Micro-Tag / Chip in Liquid Glass (6px radius) */
+.chip-liquid {
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  font-size: 11px;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #bbc7c6;
 }
 
 /* Uppercase Tracked Section Label / Eyebrow */
@@ -165,19 +234,6 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-}
-
-/* Micro-Tag / Chip: 6px radius */
-.chip-auros {
-  border-radius: 6px;
-  background-color: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 4px 10px;
-  font-size: 11px;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #bbc7c6;
 }
 
 /* Auros Typographic Classes (Medium weight only, tight display tracking, line-height 1.0) */
@@ -224,8 +280,25 @@
   line-height: 1.3;
 }
 
-/* Ambient Bioluminescent Mesh (subtle background depth) */
-.bg-bioluminescent-mesh {
-  background: radial-gradient(circle at 50% 30%, rgba(128, 82, 255, 0.08) 0%, rgba(0, 0, 0, 0) 65%),
-              radial-gradient(circle at 80% 60%, rgba(0, 229, 255, 0.05) 0%, rgba(0, 0, 0, 0) 50%);
+/* Ambient Fluid Aurora Blobs (Slow morphing caustics beneath frosted glass) */
+@keyframes fluidDriftA {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(50px, -40px) scale(1.12); }
+  66% { transform: translate(-40px, 30px) scale(0.94); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes fluidDriftB {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(-55px, 45px) scale(0.9); }
+  66% { transform: translate(45px, -35px) scale(1.1); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.fluid-blob-iris {
+  animation: fluidDriftA 22s ease-in-out infinite alternate;
+}
+
+.fluid-blob-cyan {
+  animation: fluidDriftB 26s ease-in-out infinite alternate;
 }

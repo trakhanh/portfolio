@@ -19,14 +19,18 @@ export function SystemSection() {
   const { system } = content;
 
   return (
-    <section id="systems" className="py-24 sm:py-32 bg-[#000000] relative">
+    <section id="systems" className="py-24 sm:py-32 bg-[#000000] relative overflow-hidden">
+      {/* Background Ambient Aurora Blob */}
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] rounded-full bg-[#8052ff]/8 blur-[140px] pointer-events-none fluid-blob-iris" />
+      <div className="absolute bottom-10 right-0 w-[450px] h-[450px] rounded-full bg-[#00e5ff]/6 blur-[130px] pointer-events-none fluid-blob-cyan" />
+
       <div className="max-w-[1440px] mx-auto px-6 sm:px-8 relative z-10">
         {/* Section Headline Block (Two-column asymmetrical rhythm) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-16 items-start">
           <div className="lg:col-span-7">
-            <div className="eyebrow-auros mb-3 text-[#ffb829]">
+            <div className="chip-liquid mb-3 w-fit flex items-center gap-2 border-[#ffb829]/30 text-[#ffb829]">
               <span className="w-1.5 h-1.5 rounded-[2px] bg-[#ffb829]" />
-              <span>{system.eyebrow}</span>
+              <span className="text-[12px] font-medium tracking-[0.12em]">{system.eyebrow}</span>
             </div>
             <h2 className="heading-display text-3xl sm:text-5xl lg:text-[61px] text-white tracking-[-0.04em] leading-[1.0]">
               {system.title}
@@ -40,31 +44,31 @@ export function SystemSection() {
           </div>
         </div>
 
-        {/* 4 Pipeline Stages (Auros Surface Cards: 16px radius, 36px padding, no drop shadows) */}
+        {/* 4 Pipeline Stages (Liquid Glass Cards: 16px radius, frosted blur, specular top highlight) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {system.stages.map((stage, idx) => {
             const Icon = STAGE_ICONS[idx % STAGE_ICONS.length];
             return (
               <motion.div
                 key={stage.number}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className="surface-card p-8 flex flex-col justify-between group"
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="liquid-glass-card p-8 flex flex-col justify-between group"
               >
                 <div>
-                  {/* Card Header: Kicker + 32x32 6px Arrow Icon Button */}
+                  {/* Card Header: Kicker + Liquid Arrow Icon Button */}
                   <div className="flex items-center justify-between mb-6">
-                    <span className="text-[11px] font-mono text-[#8052ff] uppercase tracking-[0.12em]">
+                    <span className="text-[11px] font-mono text-[#8052ff] uppercase tracking-[0.12em] px-2.5 py-1 rounded-[6px] bg-white/[0.04] border border-white/10">
                       {stage.number} // {stage.label}
                     </span>
-                    <div className="btn-arrow-icon">
+                    <div className="btn-arrow-liquid">
                       <Icon className="w-4 h-4 text-white" />
                     </div>
                   </div>
 
-                  <h3 className="heading-sub text-xl sm:text-2xl text-white mb-3">
+                  <h3 className="heading-sub text-xl sm:text-2xl text-white mb-3 group-hover:text-[#8052ff] transition-colors">
                     {stage.title}
                   </h3>
 
@@ -73,10 +77,10 @@ export function SystemSection() {
                   </p>
                 </div>
 
-                {/* 6px Radius Tags */}
+                {/* 6px Radius Liquid Tags */}
                 <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/[0.08]">
                   {stage.tags.map((tag) => (
-                    <span key={tag} className="chip-auros">
+                    <span key={tag} className="chip-liquid">
                       {tag}
                     </span>
                   ))}
@@ -86,11 +90,17 @@ export function SystemSection() {
           })}
         </div>
 
-        {/* Telemetry Tool Ecosystem (Auros Surface Card) */}
+        {/* Telemetry Tool Ecosystem (Liquid Glass Panel) */}
         {system.tools && (
-          <div className="surface-card p-8 sm:p-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="liquid-glass-card p-8 sm:p-12"
+          >
             <div className="mb-8">
-              <span className="text-[11px] font-mono text-[#ffb829] uppercase tracking-[0.15em] block mb-2">
+              <span className="text-[11px] font-mono text-[#ffb829] uppercase tracking-[0.15em] block mb-2 font-medium">
                 {system.tools.eyebrow}
               </span>
               <h3 className="heading-sub text-2xl sm:text-3xl text-white mb-2">
@@ -114,7 +124,7 @@ export function SystemSection() {
                         {group.items.map((tool) => (
                           <span
                             key={tool}
-                            className="chip-auros flex items-center gap-1.5"
+                            className="chip-liquid flex items-center gap-1.5 hover:border-[#8052ff]/40 transition-colors"
                           >
                             <span className="w-1.5 h-1.5 rounded-[1px] bg-[#ffb829]" />
                             <span>{tool}</span>
@@ -126,7 +136,7 @@ export function SystemSection() {
                 </div>
               );
             })()}
-          </div>
+          </motion.div>
         )}
       </div>
     </section>

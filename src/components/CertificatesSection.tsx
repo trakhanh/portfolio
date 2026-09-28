@@ -20,14 +20,17 @@ export function CertificatesSection() {
   };
 
   return (
-    <section id="proof" className="py-24 sm:py-32 bg-[#000000] relative">
+    <section id="proof" className="py-24 sm:py-32 bg-[#000000] relative overflow-hidden">
+      {/* Background Ambient Aurora Blob */}
+      <div className="absolute top-1/2 right-1/4 w-[480px] h-[480px] rounded-full bg-[#8052ff]/8 blur-[140px] pointer-events-none fluid-blob-iris" />
+
       <div className="max-w-[1440px] mx-auto px-6 sm:px-8 relative z-10">
         {/* Section Headline Block */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-16 items-start">
           <div className="lg:col-span-7">
-            <div className="eyebrow-auros mb-3 text-[#ffb829]">
+            <div className="chip-liquid mb-3 w-fit flex items-center gap-2 border-[#ffb829]/30 text-[#ffb829]">
               <span className="w-1.5 h-1.5 rounded-[2px] bg-[#ffb829]" />
-              <span>{certificates.eyebrow}</span>
+              <span className="text-[12px] font-medium tracking-[0.12em]">{certificates.eyebrow}</span>
             </div>
             <h2 className="heading-display text-3xl sm:text-5xl lg:text-[61px] text-white tracking-[-0.04em] leading-[1.0]">
               {certificates.title}
@@ -41,7 +44,7 @@ export function CertificatesSection() {
           </div>
         </div>
 
-        {/* Certificates Grid (Surface Cards: 16px radius, no drop shadows) */}
+        {/* Certificates Grid (Liquid Glass Cards) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {certificates.items.map((cert, idx) => (
             <motion.div
@@ -49,22 +52,22 @@ export function CertificatesSection() {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: idx * 0.08 }}
-              className="surface-card group flex flex-col justify-between overflow-hidden cursor-pointer"
+              transition={{ duration: 0.4, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              className="liquid-glass-card group flex flex-col justify-between overflow-hidden cursor-pointer"
               onClick={() => handleOpenCert(cert)}
             >
               <div>
-                {/* Thumbnail Image */}
+                {/* Thumbnail Image with Glass Sheen */}
                 <div className="relative aspect-[16/10] w-full bg-[#000000] overflow-hidden border-b border-white/[0.08]">
                   <Image
                     src={cert.image}
                     alt={cert.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
                   />
                   <div className="absolute top-3.5 right-3.5">
-                    <span className="chip-auros !bg-[#000000]/80 !text-[#ffb829]">
+                    <span className="chip-liquid !bg-[#000000]/75 !border-white/20 !text-[#ffb829]">
                       {cert.date}
                     </span>
                   </div>

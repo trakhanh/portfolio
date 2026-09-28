@@ -12,14 +12,17 @@ export function ExperienceSection() {
   const [recommendationModalOpen, setRecommendationModalOpen] = useState(false);
 
   return (
-    <section id="experience" className="py-24 sm:py-32 bg-[#000000] relative">
+    <section id="experience" className="py-24 sm:py-32 bg-[#000000] relative overflow-hidden">
+      {/* Background Ambient Aurora Blob */}
+      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] rounded-full bg-[#15846e]/8 blur-[140px] pointer-events-none fluid-blob-cyan" />
+
       <div className="max-w-[1440px] mx-auto px-6 sm:px-8 relative z-10">
         {/* Section Headline Block */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-16 items-start">
           <div className="lg:col-span-7">
-            <div className="eyebrow-auros mb-3 text-[#ffb829]">
+            <div className="chip-liquid mb-3 w-fit flex items-center gap-2 border-[#ffb829]/30 text-[#ffb829]">
               <span className="w-1.5 h-1.5 rounded-[2px] bg-[#ffb829]" />
-              <span>{experience.eyebrow}</span>
+              <span className="text-[12px] font-medium tracking-[0.12em]">{experience.eyebrow}</span>
             </div>
             <h2 className="heading-display text-3xl sm:text-5xl lg:text-[61px] text-white tracking-[-0.04em] leading-[1.0]">
               {experience.title}
@@ -33,7 +36,7 @@ export function ExperienceSection() {
           </div>
         </div>
 
-        {/* Experience List (Surface Cards: 16px radius, 36-48px padding) */}
+        {/* Experience List (Liquid Glass Cards: 16px radius, frosted blur) */}
         <div className="flex flex-col gap-6">
           {experience.items.map((item, idx) => {
             const isBongTra = item.company.toLowerCase().includes("bông trà");
@@ -41,16 +44,16 @@ export function ExperienceSection() {
             return (
               <motion.div
                 key={item.role + item.company}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
-                className="surface-card p-8 sm:p-10"
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="liquid-glass-card p-8 sm:p-10"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
                   {/* Left Column: Period & Company */}
                   <div className="lg:col-span-4 flex flex-col gap-2">
-                    <span className="chip-auros !text-[#ffb829] w-fit">
+                    <span className="chip-liquid !text-[#ffb829] w-fit font-medium">
                       {(item as any).date || item.period}
                     </span>
                     <h3 className="heading-sub text-2xl sm:text-3xl text-white mt-1">
@@ -66,22 +69,22 @@ export function ExperienceSection() {
                     <ul className="flex flex-col gap-3 text-body-auros text-sm sm:text-base leading-[1.4]">
                       {(item.highlights || []).map((h, hIdx) => (
                         <li key={hIdx} className="flex items-start gap-3">
-                          <span className="w-1.5 h-1.5 rounded-[1px] bg-[#8052ff] mt-2 shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-[1px] bg-[#8052ff] shadow-[0_0_6px_#8052ff] mt-2 shrink-0" />
                           <span>{h}</span>
                         </li>
                       ))}
                     </ul>
 
-                    {/* Recommendation Letter Action Button (6px radius) */}
+                    {/* Recommendation Letter Action Button (Liquid Secondary) */}
                     {isBongTra && (
                       <div className="pt-2">
                         <button
                           type="button"
                           onClick={() => setRecommendationModalOpen(true)}
-                          className="btn-secondary-auros text-[12px] tracking-[0.08em]"
+                          className="btn-secondary-liquid text-[12px] tracking-[0.08em] group cursor-pointer"
                         >
                           <span>Thư giới thiệu có mộc đỏ xác nhận</span>
-                          <ArrowUpRight className="w-3.5 h-3.5 text-[#ffb829]" />
+                          <ArrowUpRight className="w-3.5 h-3.5 text-[#ffb829] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                         </button>
                       </div>
                     )}

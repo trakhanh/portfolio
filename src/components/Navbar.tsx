@@ -37,12 +37,12 @@ export function Navbar() {
 
   return (
     <>
-      {/* Site Header: 80px height, instrument border, transparent/obsidian canvas */}
+      {/* Liquid Glass Header: 80px height, frosted glass with specular highlight */}
       <header
-        className={`fixed top-0 left-0 w-full z-50 h-20 flex items-center transition-colors duration-200 ${
+        className={`fixed top-0 left-0 w-full z-50 h-20 flex items-center transition-all duration-300 ${
           scrolled
-            ? "bg-[#000000]/90 backdrop-blur-md border-b border-white/[0.08]"
-            : "bg-[#000000]/60 backdrop-blur-sm border-b border-transparent"
+            ? "liquid-glass-nav"
+            : "bg-[#000000]/60 backdrop-blur-md border-b border-white/[0.06]"
         }`}
       >
         <div className="max-w-[1440px] mx-auto px-6 sm:px-8 w-full flex items-center justify-between">
@@ -52,7 +52,7 @@ export function Navbar() {
             className="flex items-center gap-3.5 group focus:outline-none"
             aria-label="Gia Khánh Portfolio"
           >
-            <div className="w-8 h-8 rounded-[6px] bg-[#0f0f18] border border-white/10 flex items-center justify-center group-hover:border-[#8052ff] transition-colors">
+            <div className="w-8 h-8 rounded-[6px] bg-white/[0.06] border border-white/15 flex items-center justify-center group-hover:border-[#8052ff] group-hover:shadow-[0_0_15px_rgba(128,82,255,0.5)] transition-all">
               <Image
                 src="/img/logo-gk.svg"
                 alt="Logo"
@@ -62,7 +62,7 @@ export function Navbar() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-[13px] font-medium text-white tracking-[0.04em] uppercase">
+              <span className="text-[13px] font-medium text-white tracking-[0.04em] uppercase group-hover:text-white transition-colors">
                 Gia Khánh
               </span>
               <span className="text-[10px] font-mono text-[#ffb829] uppercase tracking-[0.15em]">
@@ -71,26 +71,26 @@ export function Navbar() {
             </div>
           </Link>
 
-          {/* Center Ghost Navigation Links: 12px Matter 500, uppercase, tracking 0.12em */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+          {/* Center Ghost Navigation Links with Liquid Hover Pill */}
+          <nav className="hidden md:flex items-center gap-1 lg:gap-2 p-1.5 rounded-[8px] bg-white/[0.03] border border-white/[0.06]">
             {navItems.map((item) => (
               <a
                 key={item.id}
                 href={`/#${item.id}`}
-                className="text-[12px] font-medium uppercase tracking-[0.12em] text-[#bbc7c6] hover:text-white transition-colors"
+                className="relative px-3.5 py-1.5 rounded-[6px] text-[12px] font-medium uppercase tracking-[0.12em] text-[#bbc7c6] hover:text-white transition-all hover:bg-white/[0.06]"
               >
                 {item.label}
               </a>
             ))}
           </nav>
 
-          {/* Right Controls: Language & Signature CTA Button (6px radius) */}
+          {/* Right Controls: Language & Liquid Primary Button (6px radius) */}
           <div className="flex items-center gap-3">
-            {/* Language Switcher */}
+            {/* Language Switcher in Liquid Glass */}
             <button
               onClick={toggleLocale}
               type="button"
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-[6px] text-[11px] font-mono text-[#bbc7c6] hover:text-white border border-white/10 bg-[#0f0f18] hover:bg-[#141420] transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] text-[11px] font-mono text-[#bbc7c6] hover:text-white border border-white/15 bg-white/[0.05] hover:bg-white/10 transition-all cursor-pointer backdrop-blur-md"
               title="Switch language / Đổi ngôn ngữ"
             >
               <Globe className="w-3 h-3 text-[#ffb829]" />
@@ -103,12 +103,12 @@ export function Navbar() {
               </span>
             </button>
 
-            {/* Signature Primary CTA (6px border-radius) */}
+            {/* Signature Liquid Primary CTA */}
             <a
               href="https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex btn-primary-auros !py-2 !px-4 text-[12px] tracking-[0.1em]"
+              className="hidden sm:inline-flex btn-primary-liquid !py-2 !px-4 text-[12px] tracking-[0.08em]"
             >
               <span>{content.hero.cv}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -118,7 +118,7 @@ export function Navbar() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
-              className="md:hidden flex items-center justify-center w-8 h-8 rounded-[6px] border border-white/10 bg-[#0f0f18] text-white hover:border-[#8052ff] transition-colors cursor-pointer"
+              className="md:hidden flex items-center justify-center w-8 h-8 rounded-[6px] border border-white/15 bg-white/[0.06] text-white hover:border-[#8052ff] transition-all cursor-pointer backdrop-blur-md"
               aria-label={mobileMenuOpen ? "Đóng menu" : "Mở menu"}
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -127,7 +127,7 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer (Liquid Glass backdrop blur) */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -135,11 +135,11 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-[#000000]/95 backdrop-blur-xl md:hidden flex flex-col justify-between p-8 pt-28"
+            className="fixed inset-0 z-40 bg-[#000000]/92 backdrop-blur-2xl md:hidden flex flex-col justify-between p-8 pt-28"
           >
             <div className="flex flex-col gap-6">
               <span className="text-[11px] font-mono text-[#ffb829] tracking-[0.15em] uppercase">
-                // AUROS_TERMINAL_NAVIGATION
+                // AUROS_LIQUID_NAVIGATION
               </span>
               <div className="flex flex-col gap-5">
                 {navItems.map((item) => (
@@ -160,7 +160,7 @@ export function Navbar() {
                 href="https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary-auros w-full justify-center"
+                className="btn-primary-liquid w-full justify-center"
               >
                 <span>{content.hero.cv}</span>
                 <ArrowUpRight className="w-4 h-4" />
