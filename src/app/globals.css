@@ -10,84 +10,110 @@
     --color-saffron-spark: #ffb829;
     --color-deep-verdant: #15846e;
 
+    /* Shadcn bridge variables mapped to dark stage aesthetic */
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
     --card: 0 0% 4%;
     --card-foreground: 0 0% 100%;
     --popover: 0 0% 4%;
     --popover-foreground: 0 0% 100%;
-    --primary: 256 100% 66%;
+    --primary: 258 100% 66%; /* #8052ff Electric Iris */
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 12%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 8%;
     --muted-foreground: 0 0% 60%;
-    --accent: 256 100% 66%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 43 100% 58%; /* #ffb829 Saffron Spark */
+    --accent-foreground: 0 0% 0%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 256 100% 66%;
-    --radius: 1.5rem;
+    --border: 0 0% 12%;
+    --input: 0 0% 10%;
+    --ring: 258 100% 66%;
+    --radius: 1.5rem; /* 24px radius tokens */
   }
 
   * {
     border-color: rgba(255, 255, 255, 0.08);
   }
 
-  body {
-    background-color: #000000;
-    color: #ffffff;
-    font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  html, body {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     overflow-x: hidden;
   }
 }
 
-/* Monolithic weight-400 display typography with aggressive negative tracking */
-.display-headline {
+/* Typography styles based on DESIGN.md */
+.font-display {
+  font-family: var(--font-sans), sans-serif;
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 1.05;
 }
 
-/* Signature airy ultra-light body text */
-.ultra-body {
+.text-body-light {
+  font-family: var(--font-sans), sans-serif;
   font-weight: 200;
-  letter-spacing: normal;
   line-height: 1.6;
+  color: #bdbdbd;
 }
 
-/* Subtle Glass Card without harsh borders */
-.dala-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 24px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.dala-card:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-/* Primary Action Pill */
-.btn-electric-pill {
+/* Button & Pill tokens */
+.btn-pill-primary {
   background-color: #8052ff;
   color: #ffffff;
   border-radius: 9999px;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  padding: 12px 24px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 20px rgba(128, 82, 255, 0.35);
 }
 
-.btn-electric-pill:hover {
+.btn-pill-primary:hover {
   background-color: #9269ff;
+  box-shadow: 0 0 32px rgba(128, 82, 255, 0.6);
   transform: translateY(-1px);
-  box-shadow: 0 0 25px rgba(128, 82, 255, 0.4);
 }
 
-.btn-electric-pill:active {
-  transform: translateY(0);
+.btn-pill-secondary {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 12px 24px;
+  transition: all 0.2s ease;
+}
+
+.btn-pill-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Glassmorphism subtle surface */
+.glass-panel {
+  background-color: rgba(18, 18, 24, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 24px;
+}
+
+/* Saffron Accent text */
+.text-saffron {
+  color: #ffb829;
+}
+
+.text-iris {
+  color: #8052ff;
+}
+
+.text-verdant {
+  color: #15846e;
 }

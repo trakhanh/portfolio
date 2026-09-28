@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
-import { ProfileJourneySection } from "@/components/ProfileJourneySection";
 import { SystemSection } from "@/components/SystemSection";
 import { ExperienceSection } from "@/components/ExperienceSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
@@ -10,11 +9,10 @@ import { Footer } from "@/components/Footer";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white">
+    <div className="min-h-screen flex flex-col bg-cyber-bg text-cyber-fg">
       <Navbar />
       <main className="flex-1">
         <HeroSection />
-        <ProfileJourneySection />
         <SystemSection />
         <ExperienceSection />
         <ProjectsSection />

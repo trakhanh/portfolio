@@ -14,35 +14,35 @@ export function Footer() {
   };
 
   return (
-    <footer className="py-14 bg-black border-t border-white/[0.06] text-xs font-extralight text-[#9a9a9a]">
-      <div className="max-w-[1280px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+    <footer className="py-12 border-t border-white/10 bg-[#000000] text-xs font-mono text-[#9a9a9a]">
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
         {/* Brand & Copyright */}
         <div className="flex items-center gap-3">
           <Image
             src="/img/logo-gk.svg"
             alt="Logo GK"
-            width={22}
-            height={22}
+            width={20}
+            height={20}
             className="w-5 h-5 object-contain"
           />
-          <span className="text-white/90 font-normal">Trà Nguyễn Gia Khánh</span>
-          <span className="text-white/20">•</span>
-          <span>{footer.copyright || "© 2026. All rights reserved."}</span>
+          <span className="text-white/80">
+            {footer.copyright || "© 2026 Trà Nguyễn Gia Khánh."}
+          </span>
         </div>
 
-        {/* Built With */}
-        <div className="text-center sm:text-left text-[#9a9a9a]/70">
-          <span>{footer.builtWith || "Next.js · TypeScript · shadcn/ui · Motion · GitHub Pages"}</span>
+        {/* Tech attribution */}
+        <div className="text-center sm:text-left text-[#666]">
+          <span>AI × ERP Operating System · Constellation on Black Velvet</span>
         </div>
 
         {/* Back to top */}
         <button
           onClick={scrollToTop}
           type="button"
-          className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-white/25 hover:text-white transition-all cursor-pointer"
+          className="flex items-center gap-1.5 text-xs font-sans uppercase tracking-wider text-[#9a9a9a] hover:text-white transition-colors cursor-pointer"
         >
           <span>{footer.top || "Về đầu trang"}</span>
-          <ArrowUp className="w-3.5 h-3.5" />
+          <ArrowUp className="w-3.5 h-3.5 text-[#ffb829]" />
         </button>
       </div>
     </footer>

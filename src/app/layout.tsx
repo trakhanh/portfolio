@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 
@@ -10,17 +10,24 @@ const inter = Inter({
   display: "swap",
 });
 
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://portfolio.khanhtra.io.vn"),
   title: "Trà Nguyễn Gia Khánh — AI × ERP Operating System",
   description:
-    "Portfolio của Trà Nguyễn Gia Khánh — ứng viên Applied AI, AI Automation, ERP/Digital Transformation và R&D với nền tảng Data Science.",
+    "Portfolio của Trà Nguyễn Gia Khánh — Applied AI, AI Automation, ERP & Digital Transformation với nền tảng Data Science.",
   keywords: [
     "Trà Nguyễn Gia Khánh",
-    "AI Engineer",
+    "Applied AI",
+    "AI Automation",
     "ERP Specialist",
     "Digital Transformation",
-    "Automation",
     "Data Science",
     "Computer Vision",
     "n8n",
@@ -37,14 +44,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Trà Nguyễn Gia Khánh — AI × ERP Operating System",
-    description: "Từ dữ liệu đến trí tuệ nhân tạo và vận hành doanh nghiệp thực tế.",
+    description: "Constellation of intelligence on black velvet.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Gia Khanh Portfolio" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Trà Nguyễn Gia Khánh — AI × ERP Operating System",
-    description: "Từ dữ liệu đến trí tuệ nhân tạo và vận hành doanh nghiệp thực tế.",
+    description: "Constellation of intelligence on black velvet.",
     images: ["/og.png"],
   },
 };
@@ -61,8 +68,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`dark ${inter.variable}`}>
-      <body className="bg-[#000000] text-[#ffffff] min-h-screen antialiased selection:bg-[#8052ff] selection:text-white font-sans relative overflow-x-hidden">
+    <html lang="vi" className={`dark ${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="bg-[#000000] text-[#ffffff] min-h-screen font-sans antialiased selection:bg-[#8052ff] selection:text-white relative overflow-x-hidden">
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowUpRight, ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export function ProjectsSection() {
   const { content } = useLanguage();
@@ -40,35 +40,32 @@ export function ProjectsSection() {
 
   const filteredProjects = projects.items.filter((item) => {
     if (activeFilter === "all") return true;
-    const cat = getProjectCategory(item.id, item.tags);
-    return cat === activeFilter;
+    return getProjectCategory(item.id, item.tags) === activeFilter;
   });
 
   return (
-    <section
-      id="projects"
-      className="py-28 bg-[#000000] relative border-t border-white/[0.06]"
-    >
-      <div className="max-w-[1280px] mx-auto px-6">
-        {/* Section Headline Block */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+    <section id="projects" className="py-24 sm:py-32 bg-[#000000] relative">
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8">
+        {/* Section Headline Block (Two-column asymmetrical rhythm from DESIGN.md) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-16 items-start">
           <div className="lg:col-span-7">
-            <span className="text-[13px] font-semibold tracking-[0.025em] text-[#ffb829] uppercase block mb-4">
+            <span className="text-[13px] font-sans font-semibold uppercase tracking-[0.1em] text-[#ffb829] block mb-3">
               {projects.eyebrow}
             </span>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.1]">
+            <h2 className="text-3xl sm:text-5xl lg:text-[54px] font-display text-white tracking-[-0.04em] leading-[1.08]">
               {projects.title}
             </h2>
           </div>
-          <div className="lg:col-span-5 flex flex-col justify-end">
-            <p className="text-base sm:text-lg font-extralight text-[#bdbdbd] leading-[1.6]">
+
+          <div className="lg:col-span-5 pt-2">
+            <p className="text-base sm:text-lg text-body-light leading-relaxed">
               {projects.intro}
             </p>
           </div>
         </div>
 
-        {/* Filter Pills with Motion Layout */}
-        <div className="flex flex-wrap items-center gap-2 mb-16 pb-6 border-b border-white/10">
+        {/* Category Pill Switcher with Motion LayoutId */}
+        <div className="flex flex-wrap items-center gap-2 mb-14">
           {filterOptions.map((filter) => {
             const isActive = activeFilter === filter.id;
             return (
@@ -76,17 +73,17 @@ export function ProjectsSection() {
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
                 type="button"
-                className={`relative px-5 py-2.5 rounded-full text-xs font-medium uppercase tracking-[0.025em] transition-all cursor-pointer ${
+                className={`relative px-5 py-2 rounded-full text-xs font-sans tracking-wide transition-all cursor-pointer ${
                   isActive
-                    ? "text-black font-semibold"
-                    : "text-[#9a9a9a] hover:text-white bg-white/[0.03] border border-white/5 hover:border-white/15"
+                    ? "text-white font-medium"
+                    : "text-[#9a9a9a] hover:text-white bg-white/[0.03]"
                 }`}
               >
                 {isActive && (
                   <motion.div
-                    layoutId="activeFilterPill"
-                    className="absolute inset-0 bg-white rounded-full z-0"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    layoutId="activeDalaFilter"
+                    className="absolute inset-0 rounded-full bg-[#8052ff] z-0"
+                    transition={{ type: "spring", stiffness: 450, damping: 35 }}
                   />
                 )}
                 <span className="relative z-10">{filter.label}</span>
@@ -95,7 +92,7 @@ export function ProjectsSection() {
           })}
         </div>
 
-        {/* Projects Grid (Spacious 24px Radius Cards) */}
+        {/* Projects Gallery Grid */}
         <motion.div
           layout
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -107,13 +104,16 @@ export function ProjectsSection() {
                 key={item.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
+                exit={{ opacity: 0, y: 15 }}
                 transition={{ duration: 0.4 }}
-                className="bg-white/[0.02] border border-white/10 hover:border-white/20 rounded-3xl flex flex-col justify-between overflow-hidden group transition-all duration-300 hover:-translate-y-1.5"
+                className="group flex flex-col justify-between rounded-3xl bg-[#08080c] border border-white/5 hover:border-white/20 transition-all duration-300 overflow-hidden"
               >
                 <div>
-                  {/* Aspect Video Image with Subtle Mask */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-black">
+                  {/* Thumbnail Image Container */}
+                  <Link
+                    href={`/projects/${item.id}/`}
+                    className="block relative aspect-[16/10] w-full overflow-hidden bg-[#000000]"
+                  >
                     <Image
                       src={item.image || "/img/projects-v3/computer-vision-inspection.jpg"}
                       alt={item.title}
@@ -121,76 +121,58 @@ export function ProjectsSection() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-85 group-hover:opacity-100"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
 
                     {/* Phase Badge */}
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 text-[11px] font-medium tracking-[0.025em] uppercase rounded-full bg-black/75 backdrop-blur-md text-[#ffb829] border border-[#ffb829]/30">
+                      <span className="px-3 py-1 text-[11px] font-sans font-medium bg-[#000000]/80 backdrop-blur-md text-white rounded-full border border-white/10">
                         {item.phase || item.phaseLabel}
                       </span>
                     </div>
-                  </div>
+                  </Link>
 
-                  {/* Body Content */}
-                  <div className="p-7">
-                    <h3 className="text-xl sm:text-2xl font-normal tracking-tight text-white mb-3 group-hover:text-[#8052ff] transition-colors">
-                      {item.title}
+                  {/* Card Content */}
+                  <div className="p-6 sm:p-7">
+                    <h3 className="text-xl font-display text-white mb-2.5 group-hover:text-[#8052ff] transition-colors">
+                      <Link href={`/projects/${item.id}/`}>
+                        {item.title}
+                      </Link>
                     </h3>
 
-                    <p className="text-sm font-extralight text-[#9a9a9a] line-clamp-3 leading-relaxed mb-6">
+                    <p className="text-sm text-body-light line-clamp-3 mb-5 leading-relaxed">
                       {item.description}
                     </p>
 
-                    {/* Key Result Banner */}
+                    {/* Metric Highlight */}
                     {item.result && (
-                      <div className="mb-6 p-3 rounded-2xl bg-white/[0.03] border border-white/5 text-xs font-light text-[#bdbdbd] flex items-baseline gap-2">
-                        <span className="text-[#ffb829] font-medium text-[11px] uppercase tracking-wider shrink-0">
-                          KẾT QUẢ:
-                        </span>
-                        <span className="truncate">{item.result}</span>
+                      <div className="text-xs font-mono text-[#ffb829] mb-4">
+                        <span className="text-[#9a9a9a]">RESULT // </span>
+                        {item.result}
                       </div>
                     )}
                   </div>
                 </div>
 
-                {/* Footer with Tags & Actions */}
-                <div className="p-7 pt-0">
-                  <div className="flex flex-wrap gap-1.5 mb-6">
-                    {item.tags.slice(0, 4).map((tag) => (
+                {/* Footer with Tags & CTA */}
+                <div className="p-6 sm:p-7 pt-0">
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {item.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-0.5 text-[11px] font-extralight text-[#9a9a9a] bg-white/[0.03] rounded-full"
+                        className="px-2.5 py-0.5 text-[11px] font-mono text-[#9a9a9a] bg-white/[0.03] rounded-full"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                  <div className="pt-4 border-t border-white/5 flex items-center justify-between">
                     <Link
                       href={`/projects/${item.id}/`}
-                      className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.025em] text-[#8052ff] hover:text-white transition-colors"
+                      className="text-xs font-sans font-medium uppercase tracking-wider text-white group-hover:text-[#8052ff] flex items-center gap-1.5 transition-colors"
                     >
                       <span>Xem Case Study</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </Link>
-
-                    {item.links && item.links.length > 0 && (
-                      <div className="flex items-center gap-2">
-                        {item.links.map((link) => (
-                          <a
-                            key={link.url}
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-7 h-7 rounded-full bg-white/[0.04] hover:bg-white/[0.1] flex items-center justify-center text-[#9a9a9a] hover:text-white transition-colors"
-                            title={link.label}
-                          >
-                            <ExternalLink className="w-3 h-3" />
-                          </a>
-                        ))}
-                      </div>
-                    )}
                   </div>
                 </div>
               </motion.article>

@@ -10,19 +10,6 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        void: "#000000",
-        bone: "#ffffff",
-        ash: "#9a9a9a",
-        silver: "#bdbdbd",
-        electric: {
-          DEFAULT: "#8052ff",
-          hover: "#9269ff",
-        },
-        saffron: {
-          DEFAULT: "#ffb829",
-          hover: "#ffc54d",
-        },
-        verdant: "#15846e",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -34,34 +21,35 @@ const config: Config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
-          DEFAULT: "#8052ff",
+          DEFAULT: "#8052ff", // Electric Iris
           foreground: "#ffffff",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "#9a9a9a",
-        },
-        accent: {
-          DEFAULT: "#8052ff",
+          DEFAULT: "#15846e", // Deep Verdant
           foreground: "#ffffff",
         },
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "#8052ff",
-      },
-      borderRadius: {
-        "3xl": "24px",
-      },
-      letterSpacing: {
-        tighter: "-0.05em",
-        tight: "-0.04em",
+        muted: {
+          DEFAULT: "#121216",
+          foreground: "#9a9a9a", // Ash Gray
+        },
+        accent: {
+          DEFAULT: "#ffb829", // Saffron Spark
+          foreground: "#000000",
+        },
+        border: "rgba(255, 255, 255, 0.08)",
+        void: "#000000",
+        iris: "#8052ff",
+        saffron: "#ffb829",
+        verdant: "#15846e",
+        ash: "#9a9a9a",
+        silver: "#bdbdbd",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
+      },
+      borderRadius: {
+        "3xl": "24px",
       },
     },
   },

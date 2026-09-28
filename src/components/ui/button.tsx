@@ -4,26 +4,28 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center text-[13px] tracking-[0.025em] font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8052ff] disabled:pointer-events-none disabled:opacity-50 select-none cursor-pointer",
+  "inline-flex items-center justify-center font-mono text-sm uppercase tracking-wider font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-cyber-accent disabled:pointer-events-none disabled:opacity-50 select-none cursor-pointer",
   {
     variants: {
       variant: {
         default:
-          "bg-[#8052ff] text-white hover:bg-[#9269ff] rounded-full shadow-[0_4px_20px_rgba(128,82,255,0.25)] hover:shadow-[0_4px_25px_rgba(128,82,255,0.45)] hover:-translate-y-0.5 active:translate-y-0 uppercase",
-        secondary:
-          "bg-white/[0.05] border border-white/10 text-white hover:bg-white/[0.1] hover:border-white/20 rounded-full",
-        ghost:
-          "text-[#9a9a9a] hover:text-white bg-transparent hover:bg-transparent",
+          "bg-cyber-accent text-black hover:bg-[#33ff9f] hover:shadow-[0_0_15px_rgba(0,255,136,0.6)] cyber-chamfer-sm active:translate-y-px",
         outline:
-          "border border-white/15 text-white hover:border-[#8052ff] hover:text-[#8052ff] rounded-full bg-transparent",
-        saffron:
-          "bg-[#ffb829] text-black font-semibold hover:bg-[#ffc54d] rounded-full uppercase",
+          "border border-cyber-accent/50 bg-cyber-card/80 text-cyber-accent hover:border-cyber-accent hover:bg-cyber-accent/10 hover:shadow-[0_0_12px_rgba(0,255,136,0.3)] cyber-chamfer-sm",
+        secondary:
+          "border border-cyber-border bg-cyber-muted text-cyber-fg hover:border-cyber-accent-cyan/60 hover:text-white cyber-chamfer-sm",
+        ghost:
+          "text-cyber-muted-fg hover:text-cyber-accent hover:bg-cyber-accent/5",
+        pink:
+          "border border-cyber-pink/60 bg-cyber-pink/10 text-cyber-pink hover:bg-cyber-pink/20 hover:shadow-[0_0_12px_rgba(255,0,255,0.4)] cyber-chamfer-sm",
+        cyan:
+          "border border-cyber-cyan/60 bg-cyber-cyan/10 text-cyber-cyan hover:bg-cyber-cyan/20 hover:shadow-[0_0_12px_rgba(0,212,255,0.4)] cyber-chamfer-sm",
       },
       size: {
-        default: "h-11 px-6 py-2.5",
-        sm: "h-9 px-4 text-xs",
-        lg: "h-13 px-8 text-sm",
-        icon: "h-10 w-10 p-0 rounded-full",
+        default: "h-11 px-5 py-2",
+        sm: "h-9 px-3.5 text-xs",
+        lg: "h-13 px-7 text-base tracking-widest",
+        icon: "h-10 w-10 p-0",
       },
     },
     defaultVariants: {
