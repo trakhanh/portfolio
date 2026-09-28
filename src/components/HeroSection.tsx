@@ -4,7 +4,7 @@ import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { NeuralConstellation } from "./NeuralConstellation";
 import { motion } from "motion/react";
-import { ArrowRight, Sparkles, ShieldCheck } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 export function HeroSection() {
   const { content } = useLanguage();
@@ -13,82 +13,83 @@ export function HeroSection() {
   return (
     <section
       id="top"
-      className="relative min-h-[92vh] pt-32 pb-20 flex items-center justify-center bg-[#000000] overflow-hidden"
+      className="relative min-h-[94vh] pt-32 pb-20 flex items-center bg-[#000000] overflow-hidden"
     >
-      {/* 3D Brain Particle Constellation Canvas */}
-      <NeuralConstellation className="opacity-80 md:opacity-100" />
-
-      {/* Main Content Layout */}
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6 sm:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Monolithic Minimalist Copy */}
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          {/* Left Column: Monolithic Minimalist Copy (7 Cols) */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 flex flex-col text-left pointer-events-auto"
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 flex flex-col text-left z-10"
           >
-            {/* Amber Spark Eyebrow Label (DESIGN.md specification) */}
+            {/* Saffron Spark Eyebrow Label */}
             <div className="flex items-center gap-2 mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ffb829] animate-pulse" />
-              <span className="text-[13px] font-sans font-semibold uppercase tracking-[0.1em] text-[#ffb829]">
+              <span className="w-2 h-2 rounded-full bg-[#ffb829] shadow-[0_0_8px_#ffb829] animate-pulse" />
+              <span className="text-xs sm:text-[13px] font-sans font-semibold uppercase tracking-[0.12em] text-[#ffb829]">
                 {hero.eyebrow || "APPLIED AI · AUTOMATION · ERP OS"}
               </span>
             </div>
 
-            {/* Candidate Name / Subtitle */}
-            <span className="text-sm sm:text-base font-mono uppercase tracking-[0.15em] text-[#9a9a9a] mb-2">
+            {/* Candidate Identity */}
+            <span className="text-xs sm:text-sm font-mono uppercase tracking-[0.2em] text-[#9a9a9a] mb-3">
               {hero.name}
             </span>
 
-            {/* Monumental Weightless Headline (DESIGN.md style: 78-113px, weight 400, negative tracking) */}
-            <h1 className="text-4xl sm:text-6xl lg:text-[72px] font-display text-white tracking-[-0.04em] leading-[1.04] mb-6">
+            {/* Monumental Headline */}
+            <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-display text-white tracking-[-0.035em] leading-[1.12] mb-6 max-w-2xl">
               {hero.title}
             </h1>
 
-            {/* Ultra-light body text (DESIGN.md signature: 18px, weight 200, silver mist) */}
-            <p className="text-base sm:text-lg text-body-light max-w-[540px] mb-8">
+            {/* Signature Ultra-light Body */}
+            <p className="text-base sm:text-lg text-body-light leading-relaxed max-w-xl mb-8">
               {hero.intro}
             </p>
 
-            {/* CTA Pills */}
+            {/* Action Pills */}
             <div className="flex flex-wrap items-center gap-4 mb-10">
               <a
                 href="#projects"
-                className="btn-pill-primary inline-flex items-center gap-2 group"
+                className="btn-pill-primary inline-flex items-center gap-2.5 text-sm uppercase tracking-wider"
               >
                 <span>{hero.primary || "Xem 08 case study"}</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4" />
               </a>
 
               <a
                 href="#systems"
-                className="btn-pill-secondary inline-flex items-center gap-2"
+                className="btn-pill-secondary inline-flex items-center gap-2 text-sm uppercase tracking-wider"
               >
                 <span>{hero.secondary || "Mô hình AI × ERP"}</span>
               </a>
             </div>
 
-            {/* Status & Direction Metadata */}
-            <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-white/10 text-xs font-mono text-[#9a9a9a]">
+            {/* Status Strip */}
+            <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-white/10 text-xs font-mono text-[#9a9a9a]">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#15846e]" />
-                <span className="text-white/80">{hero.status}</span>
+                <span className="w-2 h-2 rounded-full bg-[#00ffaa] shadow-[0_0_8px_#00ffaa]" />
+                <span className="text-white/90">{hero.status}</span>
               </div>
-              <div className="text-[#666]">|</div>
+              <div className="text-white/20">|</div>
               <span>{hero.footnote}</span>
             </div>
           </motion.div>
 
-          {/* Right Column: Visual Anchor */}
-          <div className="lg:col-span-5 hidden lg:flex items-center justify-center pointer-events-none">
-            {/* The 3D brain canvas animates into this zone and radiates outward */}
-            <div className="w-full aspect-square max-w-[480px] relative flex items-center justify-center">
-              {/* Subtle ambient rings */}
-              <div className="w-[340px] h-[340px] rounded-full border border-white/5 animate-[spin_60s_linear_infinite]" />
-              <div className="w-[440px] h-[440px] rounded-full border border-[#8052ff]/10 absolute animate-[spin_90s_linear_infinite_reverse]" />
-            </div>
-          </div>
+          {/* Right Column: 3D Neural Brain Constellation (5 Cols) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 relative w-full h-[460px] sm:h-[540px] lg:h-[620px] flex items-center justify-center"
+          >
+            {/* Ambient radial glow behind the 3D brain */}
+            <div className="absolute w-[360px] h-[360px] rounded-full bg-[#8052ff]/10 blur-[90px] pointer-events-none" />
+            <div className="absolute w-[240px] h-[240px] rounded-full bg-[#ffb829]/5 blur-[70px] pointer-events-none" />
+
+            {/* 3D Brain Constellation Canvas */}
+            <NeuralConstellation className="w-full h-full" />
+          </motion.div>
         </div>
       </div>
     </section>
