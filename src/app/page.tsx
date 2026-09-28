@@ -1,3 +1,4 @@
+import { SplashLoader } from "@/components/SplashLoader";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { SystemSection } from "@/components/SystemSection";
@@ -10,6 +11,7 @@ import { Footer } from "@/components/Footer";
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#000000] text-white">
+      <SplashLoader />
       <Navbar />
       <main className="flex-1">
         <HeroSection />
