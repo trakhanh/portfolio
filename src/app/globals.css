@@ -2,38 +2,52 @@
 
 @layer base {
   :root {
-    --color-void: #000000;
-    --color-bone-white: #ffffff;
-    --color-ash-gray: #9a9a9a;
-    --color-silver-mist: #bdbdbd;
+    /* Auros Terminal Surface Stack (Mapped to current Void Obsidian & Electric Iris palette) */
+    --color-liquid-abyss: #000000;
+    --color-liquid-deep: #08080d;
+    --color-liquid-kelp: #0f0f18;
+    --color-slate-deep: #171724;
+
+    /* Typographic Color Tokens */
+    --color-platinum: #ffffff;
+    --color-silver-mist: #bbc7c6;
+    --color-liquid-mist: #edfffe;
+    --color-ash: #f2f2f2;
+
+    /* Brand Chromatic Accents */
     --color-electric-iris: #8052ff;
     --color-saffron-spark: #ffb829;
+    --color-lavender-phosphor: #fde9ff;
+    --color-bioluminescent-cyan: #00e5ff;
     --color-deep-verdant: #15846e;
 
+    /* Signature Gradients */
+    --gradient-bioluminescent: linear-gradient(90deg, #8052ff 0%, #00e5ff 100%);
+    --gradient-aurora: linear-gradient(90deg, #8052ff 0%, #c084fc 40%, #ffb829 100%);
+
+    /* Radii tokens (Strict: cards 16px, small/buttons 6px) */
+    --radius-cards: 16px;
+    --radius-buttons: 6px;
+    --radius-small: 6px;
+
+    /* System fallbacks */
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
-    --card: 0 0% 5%;
+    --card: 0 0% 6%;
     --card-foreground: 0 0% 100%;
-    --popover: 0 0% 5%;
+    --popover: 0 0% 6%;
     --popover-foreground: 0 0% 100%;
     --primary: 258 100% 66%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 12%;
+    --secondary: 0 0% 10%;
     --secondary-foreground: 0 0% 90%;
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 43 100% 58%;
-    --accent-foreground: 0 0% 0%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 15%;
-    --input: 0 0% 12%;
-    --ring: 258 100% 66%;
-    --radius: 1.75rem;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 65%;
+    --border: 0 0% 12%;
   }
 
   * {
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.08);
   }
 
   html, body {
@@ -45,168 +59,173 @@
 }
 
 /* ================================================================
-   LIQUID GLASS DESIGN SYSTEM
-   Frosted refractive surfaces, fluid caustics, and specular highlights
+   AUROS TERMINAL DESIGN SYSTEM
+   Surface stack depth, 16px cards, 6px buttons, weight 500 display
    ================================================================ */
 
-/* Floating Liquid Glass Island / Navbar */
-.liquid-glass-nav {
-  background: rgba(12, 12, 18, 0.65);
-  backdrop-filter: blur(28px) saturate(210%);
-  -webkit-backdrop-filter: blur(28px) saturate(210%);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 
-    0 16px 40px rgba(0, 0, 0, 0.7),
-    inset 0 1px 1px rgba(255, 255, 255, 0.3),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.3);
-  border-radius: 9999px;
+/* Surface Stack Levels (No drop shadows — depth via hue shifts) */
+.surface-canvas {
+  background-color: #000000;
 }
 
-/* Liquid Glass Cards & Panels */
-.liquid-glass-card {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.06) 0%,
-    rgba(255, 255, 255, 0.015) 100%
-  );
-  backdrop-filter: blur(24px) saturate(190%);
-  -webkit-backdrop-filter: blur(24px) saturate(190%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-top: 1px solid rgba(255, 255, 255, 0.22);
-  border-left: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.65),
-    inset 0 1px 1px rgba(255, 255, 255, 0.25),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.4);
-  border-radius: 28px;
+.surface-recessed {
+  background-color: #08080d;
+}
+
+.surface-card {
+  background-color: #0f0f18;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
   position: relative;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
-.liquid-glass-card:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.09) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
-  border-color: rgba(128, 82, 255, 0.4);
-  border-top-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 
-    0 30px 70px rgba(0, 0, 0, 0.8),
-    0 0 35px rgba(128, 82, 255, 0.18),
-    inset 0 1px 2px rgba(255, 255, 255, 0.4);
-  transform: translateY(-2px);
+.surface-card:hover {
+  background-color: #141420;
+  border-color: rgba(128, 82, 255, 0.35);
 }
 
-/* Liquid Primary Pill Button (Electric Iris Gloss) */
-.btn-liquid-primary {
-  background: linear-gradient(135deg, #8052ff 0%, #6830f0 100%);
+/* Primary CTA Button: 6px radius with signature Bioluminescent Gradient */
+.btn-primary-auros {
+  background: linear-gradient(90deg, #8052ff 0%, #00e5ff 100%);
   color: #ffffff;
-  border-radius: 9999px;
+  border-radius: 6px;
   font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 0.02em;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   padding: 12px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-top: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 
-    0 8px 30px rgba(128, 82, 255, 0.45),
-    inset 0 1px 2px rgba(255, 255, 255, 0.5),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.3);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  border: none;
 }
 
-.btn-liquid-primary:hover {
-  background: linear-gradient(135deg, #9269ff 0%, #763cf5 100%);
-  box-shadow: 
-    0 12px 40px rgba(128, 82, 255, 0.65),
-    0 0 20px rgba(255, 255, 255, 0.3),
-    inset 0 1px 2px rgba(255, 255, 255, 0.7);
-  transform: translateY(-1.5px);
-}
-
-/* Liquid Secondary / Ghost Pill Button */
-.btn-liquid-secondary {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  color: #ffffff;
-  border-radius: 9999px;
-  font-weight: 400;
-  font-size: 14px;
-  padding: 12px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.4),
-    inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-}
-
-.btn-liquid-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.6),
-    inset 0 1px 2px rgba(255, 255, 255, 0.35);
+.btn-primary-auros:hover {
+  opacity: 0.92;
   transform: translateY(-1px);
 }
 
-/* Liquid Glass Capsule Chip / Tag */
-.liquid-glass-tag {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 9999px;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+/* Secondary Surface Button: 6px radius, raised surface fill */
+.btn-secondary-auros {
+  background-color: #0f0f18;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 12px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 
-/* Ambient Fluid Aurora Blobs (Slow morphing caustics) */
-@keyframes fluidDriftA {
-  0% { transform: translate(0px, 0px) scale(1); }
-  33% { transform: translate(40px, -30px) scale(1.1); }
-  66% { transform: translate(-30px, 20px) scale(0.95); }
-  100% { transform: translate(0px, 0px) scale(1); }
+.btn-secondary-auros:hover {
+  background-color: #171724;
+  border-color: rgba(128, 82, 255, 0.5);
+  transform: translateY(-1px);
 }
 
-@keyframes fluidDriftB {
-  0% { transform: translate(0px, 0px) scale(1); }
-  33% { transform: translate(-45px, 35px) scale(0.92); }
-  66% { transform: translate(35px, -25px) scale(1.08); }
-  100% { transform: translate(0px, 0px) scale(1); }
+/* Square Arrow Icon Button (32x32, 6px radius) */
+.btn-arrow-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background-color: rgba(128, 82, 255, 0.15);
+  border: 1px solid rgba(128, 82, 255, 0.3);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  flex-shrink: 0;
 }
 
-.fluid-blob-iris {
-  animation: fluidDriftA 22s ease-in-out infinite alternate;
+.btn-arrow-icon:hover {
+  background-color: #8052ff;
+  border-color: #8052ff;
+  transform: translate(1px, -1px);
 }
 
-.fluid-blob-cyan {
-  animation: fluidDriftB 26s ease-in-out infinite alternate;
+/* Uppercase Tracked Section Label / Eyebrow */
+.eyebrow-auros {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #bbc7c6;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* Typography styles */
-.font-display {
+/* Micro-Tag / Chip: 6px radius */
+.chip-auros {
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px 10px;
+  font-size: 11px;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #bbc7c6;
+}
+
+/* Auros Typographic Classes (Medium weight only, tight display tracking, line-height 1.0) */
+.heading-display {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 500;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+}
+
+.heading-sub {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.text-body-auros {
   font-family: var(--font-sans), sans-serif;
   font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 1.1;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #bbc7c6;
 }
 
-.text-body-light {
+/* Stat counter number */
+.stat-number-auros {
   font-family: var(--font-sans), sans-serif;
-  font-weight: 200;
-  line-height: 1.6;
-  color: #c4c4cc;
+  font-weight: 500;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  color: #ffb829;
+}
+
+.stat-label-auros {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #bbc7c6;
+  line-height: 1.3;
+}
+
+/* Ambient Bioluminescent Mesh (subtle background depth) */
+.bg-bioluminescent-mesh {
+  background: radial-gradient(circle at 50% 30%, rgba(128, 82, 255, 0.08) 0%, rgba(0, 0, 0, 0) 65%),
+              radial-gradient(circle at 80% 60%, rgba(0, 229, 255, 0.05) 0%, rgba(0, 0, 0, 0) 50%);
 }

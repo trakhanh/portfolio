@@ -31,65 +31,61 @@ export function ProjectDetailClient({ slug }: ProjectDetailClientProps) {
     currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : allProjects[0];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#000000] text-white relative overflow-hidden">
-      {/* Background fluid glow */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-[#8052ff]/10 blur-[150px] pointer-events-none fluid-blob-iris" />
-      <div className="absolute bottom-1/4 right-1/4 w-[420px] h-[420px] rounded-full bg-[#00e5ff]/8 blur-[130px] pointer-events-none fluid-blob-cyan" />
-
+    <div className="min-h-screen flex flex-col bg-[#000000] text-white relative">
       <Navbar />
 
-      <main className="flex-1 pt-32 sm:pt-36 pb-24 relative z-10">
+      <main className="flex-1 pt-28 sm:pt-36 pb-24 relative z-10">
         <div className="max-w-[1080px] mx-auto px-6 sm:px-8">
           {/* Back link */}
           <div className="mb-10">
             <Link
               href="/#projects"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full liquid-glass-tag text-xs font-sans uppercase tracking-wider text-[#a0a0aa] hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[6px] bg-[#0f0f18] border border-white/10 text-xs font-mono uppercase tracking-[0.1em] text-[#bbc7c6] hover:text-white transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5 text-[#ffb829]" />
               <span>{cases.labels.back || "Quay lại danh sách dự án"}</span>
             </Link>
           </div>
 
-          {/* Hero Header in Liquid Glass */}
-          <div className="mb-14 liquid-glass-card p-8 sm:p-12">
+          {/* Hero Header: 16px Surface Card */}
+          <div className="mb-12 surface-card p-8 sm:p-12">
             <div className="flex items-center gap-2 mb-4">
-              <span className="px-3.5 py-1 text-xs font-mono text-[#ffb829] liquid-glass-tag">
+              <span className="chip-auros !text-[#ffb829]">
                 {projectItem.phase || projectItem.phaseLabel}
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-display text-white tracking-[-0.04em] leading-[1.08] mb-6">
+            <h1 className="heading-display text-3xl sm:text-5xl lg:text-[54px] tracking-[-0.04em] leading-[1.0] text-white mb-6">
               {projectItem.title}
             </h1>
 
-            <p className="text-lg sm:text-xl text-body-light leading-relaxed max-w-3xl mb-8">
+            <p className="text-body-auros text-lg sm:text-xl leading-[1.4] max-w-3xl mb-8">
               {projectItem.description}
             </p>
 
             {/* Role & Result Pill Bar */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-6 border-y border-white/10 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-6 border-y border-white/[0.08] mb-10">
               <div>
-                <span className="text-xs font-mono text-[#a0a0aa] uppercase tracking-wider block mb-1 font-medium">
+                <span className="text-[11px] font-mono text-[#bbc7c6] uppercase tracking-[0.12em] block mb-1">
                   {cases.labels.role || "Vai trò"}:
                 </span>
-                <span className="text-base font-sans text-white">
+                <span className="text-base font-medium text-white">
                   {projectCase.role}
                 </span>
               </div>
 
               <div>
-                <span className="text-xs font-mono text-[#a0a0aa] uppercase tracking-wider block mb-1 font-medium">
+                <span className="text-[11px] font-mono text-[#bbc7c6] uppercase tracking-[0.12em] block mb-1">
                   {cases.labels.result || "Kết quả"}:
                 </span>
-                <span className="text-base font-sans text-[#ffb829] font-medium">
+                <span className="text-base font-medium text-[#ffb829]">
                   {projectItem.result}
                 </span>
               </div>
             </div>
 
             {/* Hero Image */}
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-[#000000] border border-white/10">
+            <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[12px] bg-[#000000] border border-white/[0.08]">
               <Image
                 src={projectItem.image || "/img/projects-v3/computer-vision-inspection.jpg"}
                 alt={projectItem.title}
@@ -101,27 +97,27 @@ export function ProjectDetailClient({ slug }: ProjectDetailClientProps) {
             </div>
           </div>
 
-          {/* Case Study Sections in Liquid Glass */}
-          <div className="flex flex-col gap-12">
+          {/* Case Study Sections: 16px Surface Cards */}
+          <div className="flex flex-col gap-8">
             {/* 01. Challenge */}
-            <section className="p-8 sm:p-10 liquid-glass-card">
-              <span className="text-xs font-mono text-[#ffb829] uppercase tracking-wider block mb-3 font-medium">
+            <section className="p-8 sm:p-10 surface-card">
+              <span className="text-[11px] font-mono text-[#ffb829] uppercase tracking-[0.15em] block mb-3">
                 01 // {cases.labels.challenge || "Bài toán"}
               </span>
-              <p className="text-base sm:text-lg text-body-light leading-relaxed">
+              <p className="text-body-auros text-base sm:text-lg leading-[1.4]">
                 {projectCase.challenge}
               </p>
             </section>
 
             {/* 02. Responsibilities */}
-            <section className="p-8 sm:p-10 liquid-glass-card">
-              <span className="text-xs font-mono text-[#8052ff] uppercase tracking-wider block mb-4 font-medium">
+            <section className="p-8 sm:p-10 surface-card">
+              <span className="text-[11px] font-mono text-[#8052ff] uppercase tracking-[0.15em] block mb-4">
                 02 // {cases.labels.roleSection || "Vai trò & trách nhiệm"}
               </span>
-              <ul className="flex flex-col gap-3.5 font-sans text-base text-body-light leading-relaxed">
+              <ul className="flex flex-col gap-3.5 text-body-auros text-base leading-[1.4]">
                 {projectCase.responsibilities.map((resp, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="w-2 h-2 rounded-full bg-[#8052ff] mt-2.5 shrink-0 shadow-[0_0_8px_#8052ff]" />
+                    <span className="w-1.5 h-1.5 rounded-[1px] bg-[#8052ff] mt-2 shrink-0" />
                     <span>{resp}</span>
                   </li>
                 ))}
@@ -129,23 +125,23 @@ export function ProjectDetailClient({ slug }: ProjectDetailClientProps) {
             </section>
 
             {/* 03. Process */}
-            <section className="p-8 sm:p-10 liquid-glass-card">
-              <span className="text-xs font-mono text-[#ffb829] uppercase tracking-wider block mb-6 font-medium">
+            <section className="p-8 sm:p-10 surface-card">
+              <span className="text-[11px] font-mono text-[#ffb829] uppercase tracking-[0.15em] block mb-6">
                 03 // {cases.labels.process || "Quy trình thực hiện"}
               </span>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {projectCase.process.map((step, idx) => (
                   <div
                     key={idx}
-                    className="p-6 rounded-2xl liquid-glass-tag"
+                    className="p-6 rounded-[8px] bg-[#000000]/60 border border-white/[0.06]"
                   >
-                    <span className="text-[11px] font-mono text-[#a0a0aa] block mb-1">
+                    <span className="text-[10px] font-mono text-[#8052ff] uppercase tracking-wider block mb-1">
                       BƯỚC 0{idx + 1}
                     </span>
-                    <h3 className="text-lg font-display text-white mb-2">
+                    <h3 className="heading-sub text-lg text-white mb-2">
                       {step.title}
                     </h3>
-                    <p className="text-sm text-body-light leading-relaxed">
+                    <p className="text-body-auros text-sm leading-[1.4]">
                       {step.description}
                     </p>
                   </div>
@@ -154,22 +150,22 @@ export function ProjectDetailClient({ slug }: ProjectDetailClientProps) {
             </section>
 
             {/* 04. Technology */}
-            <section className="p-8 sm:p-10 liquid-glass-card">
-              <span className="text-xs font-mono text-[#8052ff] uppercase tracking-wider block mb-6 font-medium">
+            <section className="p-8 sm:p-10 surface-card">
+              <span className="text-[11px] font-mono text-[#8052ff] uppercase tracking-[0.15em] block mb-6">
                 04 // {cases.labels.technology || "Công nghệ & cách sử dụng"}
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {projectCase.technologies.map((tech) => (
                   <div
                     key={tech.name}
-                    className="p-5 rounded-2xl liquid-glass-tag flex items-start gap-4"
+                    className="p-5 rounded-[8px] bg-[#000000]/60 border border-white/[0.06] flex items-start gap-4"
                   >
-                    <Cpu className="w-5 h-5 text-[#8052ff] mt-1 shrink-0" />
+                    <Cpu className="w-5 h-5 text-[#8052ff] mt-0.5 shrink-0" />
                     <div>
-                      <span className="text-base font-sans font-medium text-white block">
+                      <span className="text-base font-medium text-white block mb-1">
                         {tech.name}
                       </span>
-                      <span className="text-xs text-body-light leading-relaxed block">
+                      <span className="text-xs text-body-auros leading-[1.4] block">
                         {tech.purpose}
                       </span>
                     </div>
@@ -179,21 +175,21 @@ export function ProjectDetailClient({ slug }: ProjectDetailClientProps) {
             </section>
 
             {/* 05. Outcome & Learning */}
-            <section className="p-8 sm:p-10 liquid-glass-card">
-              <span className="text-xs font-mono text-[#ffb829] uppercase tracking-wider block mb-4 font-medium">
+            <section className="p-8 sm:p-10 surface-card">
+              <span className="text-[11px] font-mono text-[#ffb829] uppercase tracking-[0.15em] block mb-4">
                 05 // {cases.labels.outcome || "Kết quả & bài học"}
               </span>
 
-              <p className="text-base sm:text-lg text-body-light leading-relaxed mb-6">
+              <p className="text-body-auros text-base sm:text-lg leading-[1.4] mb-6">
                 {projectCase.outcome}
               </p>
 
               {/* Evidence */}
-              <div className="pt-4 border-t border-white/10 mb-6">
-                <span className="text-xs font-mono text-[#a0a0aa] uppercase tracking-wider block mb-3 font-medium">
+              <div className="pt-4 border-t border-white/[0.08] mb-6">
+                <span className="text-[11px] font-mono text-[#bbc7c6] uppercase tracking-[0.12em] block mb-3">
                   Minh chứng &amp; kết quả thực tế:
                 </span>
-                <ul className="flex flex-col gap-2.5 text-sm text-body-light">
+                <ul className="flex flex-col gap-2.5 text-sm text-body-auros">
                   {projectCase.evidence.map((ev, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <CheckCircle2 className="w-4 h-4 text-[#ffb829] mt-0.5 shrink-0" />
@@ -203,64 +199,38 @@ export function ProjectDetailClient({ slug }: ProjectDetailClientProps) {
                 </ul>
               </div>
 
-              {/* Learning */}
-              <div className="p-5 rounded-2xl liquid-glass-tag flex items-start gap-3.5">
-                <Lightbulb className="w-5 h-5 text-[#8052ff] mt-0.5 shrink-0" />
-                <div className="text-sm text-body-light leading-relaxed">
-                  <strong className="text-white block mb-1">
-                    {cases.labels.learning || "Điều tôi rút ra"}:
-                  </strong>
-                  <span>{projectCase.learning}</span>
+              {/* Lessons */}
+              <div className="p-6 rounded-[8px] bg-[#000000]/60 border border-white/[0.06]">
+                <div className="flex items-center gap-2 mb-2 text-[#8052ff]">
+                  <Lightbulb className="w-4 h-4" />
+                  <span className="text-xs font-mono uppercase tracking-[0.12em] font-medium">
+                    Bài học kinh nghiệm:
+                  </span>
                 </div>
+                <p className="text-sm text-body-auros leading-[1.4]">
+                  {projectCase.learning}
+                </p>
               </div>
-
-              {/* Source & Demo links */}
-              {projectItem.links && projectItem.links.length > 0 && (
-                <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-4">
-                  {projectItem.links.map((link) => (
-                    <a
-                      key={link.url}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-liquid-primary text-xs uppercase"
-                    >
-                      <span>{link.label}</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                  ))}
-                </div>
-              )}
             </section>
-          </div>
 
-          {/* Previous / Next Project Navigation in Liquid Glass */}
-          <div className="flex items-center justify-between border-t border-white/10 pt-12 mt-16">
-            <Link
-              href={`/projects/${prevProject.id}/`}
-              className="group flex flex-col items-start"
-            >
-              <span className="text-xs font-mono text-[#a0a0aa] uppercase flex items-center gap-1 group-hover:text-white">
-                <ArrowLeft className="w-3.5 h-3.5 text-[#ffb829]" />
-                {cases.labels.previous || "Dự án trước"}
-              </span>
-              <span className="text-lg font-display text-white group-hover:text-[#8052ff] transition-colors">
-                {prevProject.title}
-              </span>
-            </Link>
+            {/* Navigation Between Projects: 6px buttons */}
+            <div className="flex items-center justify-between pt-8 border-t border-white/[0.08]">
+              <Link
+                href={`/projects/${prevProject.id}/`}
+                className="btn-secondary-auros text-xs"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>Dự án trước: {prevProject.title}</span>
+              </Link>
 
-            <Link
-              href={`/projects/${nextProject.id}/`}
-              className="group flex flex-col items-end text-right"
-            >
-              <span className="text-xs font-mono text-[#a0a0aa] uppercase flex items-center gap-1 group-hover:text-white">
-                {cases.labels.next || "Dự án tiếp theo"}
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#ffb829]" />
-              </span>
-              <span className="text-lg font-display text-white group-hover:text-[#8052ff] transition-colors">
-                {nextProject.title}
-              </span>
-            </Link>
+              <Link
+                href={`/projects/${nextProject.id}/`}
+                className="btn-secondary-auros text-xs"
+              >
+                <span>Dự án tiếp: {nextProject.title}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
         </div>
       </main>

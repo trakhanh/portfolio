@@ -2,19 +2,26 @@
 
 import React, { useEffect, useRef } from "react";
 
-interface Vec3 {
+interface Point3D {
   x: number;
   y: number;
   z: number;
+  baseX: number;
+  baseY: number;
+  baseZ: number;
+  color: string;
+  size: number;
+  pulsePhase: number;
+  isSynapseNode: boolean;
 }
 
-interface Tract {
-  points: Vec3[];
-  color: string;
-  glowColor: string;
-  width: number;
-  nodes: { t: number; size: number; phase: number; isHub: boolean }[];
-  impulses: { t: number; speed: number; color: string; alive: boolean }[];
+interface SynapseConnection {
+  p1: number;
+  p2: number;
+  intensity: number;
+  sparkProgress: number;
+  speed: number;
+  active: boolean;
 }
 
 export function AiNeuralCore({ className }: { className?: string }) {
@@ -33,405 +40,389 @@ export function AiNeuralCore({ className }: { className?: string }) {
     let width = 0;
     let height = 0;
     let dpr = 1;
-    let isVisible = true;
 
-    // 3D camera & rotation
-    let rotX = 0.12;
+    // 3D rotation state
+    let rotX = 0.2;
     let rotY = 0;
-    let targetRotX = 0.12;
+    let targetRotX = 0.2;
     let targetRotY = 0;
     let isHovered = false;
 
-    // Build Streamlines (Fiber-optic neural tracts modeling the brain)
-    function buildTracts(): Tract[] {
-      const tracts: Tract[] = [];
-      const isMobile = window.innerWidth < 768;
-      const count = isMobile ? 32 : 56;
+    // Colors matching current palette
+    const COLOR_IRIS = "#8052ff";
+    const COLOR_CYAN = "#00e5ff";
+    const COLOR_SAFFRON = "#ffb829";
+    const COLOR_WHITE = "#ffffff";
+    const COLOR_LAVENDER = "#fde9ff";
 
-      // Color scheme: Deep Electric Iris, Cyan Neon, Saffron Accent
-      const PALETTES = [
-        { stroke: "rgba(128, 82, 255, 0.45)", glow: "rgba(128, 82, 255, 0.9)", color: "#8052ff" },
-        { stroke: "rgba(0, 229, 255, 0.45)", glow: "rgba(0, 229, 255, 0.9)", color: "#00e5ff" },
-        { stroke: "rgba(255, 184, 41, 0.45)", glow: "rgba(255, 184, 41, 0.9)", color: "#ffb829" },
-        { stroke: "rgba(180, 140, 255, 0.4)", glow: "rgba(255, 255, 255, 0.9)", color: "#b48cff" },
-      ];
+    const PALETTE = [
+      COLOR_IRIS,
+      COLOR_CYAN,
+      COLOR_WHITE,
+      COLOR_IRIS,
+      COLOR_CYAN,
+      COLOR_SAFFRON,
+      COLOR_LAVENDER,
+    ];
 
-      for (let i = 0; i < count; i++) {
-        const side = i % 2 === 0 ? 1 : -1; // Left or Right hemisphere
-        const pal = PALETTES[i % PALETTES.length];
-        const angle = ((i / count) * Math.PI * 2);
+    // Generate Bioluminescent Sphere & Neural Nodes
+    const SPHERE_RADIUS = 180;
+    const points: Point3D[] = [];
+    const connections: SynapseConnection[] = [];
 
-        // Control points defining anatomical curvature
-        const pts: Vec3[] = [];
-        const numSegments = 16;
+    // 1. Fibonacci Sphere Surface Particles (Bioluminescent Data Orb)
+    const numSurfacePoints = 900;
+    const phi = Math.PI * (3 - Math.sqrt(5)); // Golden angle
 
-        // Generate different types of neural pathways:
-        // Type 1: Cortical loops (sagittal arches from frontal to occipital)
-        // Type 2: Corona radiata (deep thalamic radiation arching outwards)
-        // Type 3: Temporal lobe sweeping under
-        const tractType = i % 3;
+    for (let i = 0; i < numSurfacePoints; i++) {
+      const y = 1 - (i / (numSurfacePoints - 1)) * 2; // y goes from 1 to -1
+      const radiusAtY = Math.sqrt(1 - y * y);
+      const theta = phi * i;
 
-        for (let s = 0; s <= numSegments; s++) {
-          const t = s / numSegments;
-          let x = 0, y = 0, z = 0;
+      const x = Math.cos(theta) * radiusAtY;
+      const z = Math.sin(theta) * radiusAtY;
 
-          if (tractType === 0) {
-            // Sagittal Arch (Cerebral mantle)
-            const phi = t * Math.PI;
-            const elevation = Math.sin(phi);
-            const radius = 130 + Math.sin(angle * 2) * 20;
+      const color = PALETTE[i % PALETTE.length];
+      const isSpecial = i % 15 === 0;
 
-            x = side * (20 + radius * 0.85 * Math.sin(angle * 0.6) * elevation + Math.abs(Math.sin(t * Math.PI)) * 30);
-            y = -elevation * 110 + (t - 0.5) * 35;
-            z = Math.cos(phi) * 140 + Math.sin(angle) * 15;
-          } else if (tractType === 1) {
-            // Radiata (Internal capsule fanning upward and outward)
-            const spread = t * 140;
-            const theta = angle + t * 0.4;
-            x = side * (15 + Math.sin(theta) * spread);
-            y = (1 - t) * 75 - t * 85;
-            z = Math.cos(theta) * spread * 0.95;
-          } else {
-            // Temporal & Occipital swoops
-            const phi = t * Math.PI * 1.1;
-            x = side * (35 + Math.sin(phi) * 115);
-            y = 20 + Math.sin(t * Math.PI * 1.5) * 60;
-            z = -Math.cos(phi) * 110 + (t - 0.5) * 40;
-          }
+      points.push({
+        x: x * SPHERE_RADIUS,
+        y: y * SPHERE_RADIUS,
+        z: z * SPHERE_RADIUS,
+        baseX: x * SPHERE_RADIUS,
+        baseY: y * SPHERE_RADIUS,
+        baseZ: z * SPHERE_RADIUS,
+        color: isSpecial ? COLOR_SAFFRON : color,
+        size: isSpecial ? 2.8 : 1.4 + Math.random() * 1.2,
+        pulsePhase: Math.random() * Math.PI * 2,
+        isSynapseNode: isSpecial,
+      });
+    }
 
-          pts.push({ x, y, z });
-        }
+    // 2. Internal Neural Hemisphere Points (Brain Core Architecture)
+    const numInternalPoints = 400;
+    for (let i = 0; i < numInternalPoints; i++) {
+      const hemisphere = i % 2 === 0 ? 1 : -1;
+      const u = Math.random();
+      const v = Math.random();
+      const r = (0.2 + 0.65 * Math.cbrt(u)) * SPHERE_RADIUS;
+      const theta = v * 2 * Math.PI;
+      const phiAngle = Math.acos(2 * Math.random() - 1);
 
-        // Nodes along this tract
-        const nodesCount = Math.floor(Math.random() * 4) + 3;
-        const nodes = [];
-        for (let n = 0; n < nodesCount; n++) {
-          nodes.push({
-            t: (n + 0.5 + (Math.random() - 0.5) * 0.3) / nodesCount,
-            size: Math.random() * 2.2 + 1.2,
-            phase: Math.random() * Math.PI * 2,
-            isHub: Math.random() > 0.75,
+      // Create two distinct hemisphere clusters
+      const x = hemisphere * (20 + Math.abs(r * Math.sin(phiAngle) * Math.cos(theta) * 0.8));
+      const y = r * Math.sin(phiAngle) * Math.sin(theta) * 0.9;
+      const z = r * Math.cos(phiAngle) * 0.95;
+
+      const isIris = Math.random() > 0.35;
+      points.push({
+        x,
+        y,
+        z,
+        baseX: x,
+        baseY: y,
+        baseZ: z,
+        color: isIris ? COLOR_IRIS : COLOR_CYAN,
+        size: 1.2 + Math.random() * 1.5,
+        pulsePhase: Math.random() * Math.PI * 2,
+        isSynapseNode: i % 8 === 0,
+      });
+    }
+
+    // 3. Connect Synapse Nodes
+    const specialIndices: number[] = [];
+    points.forEach((p, idx) => {
+      if (p.isSynapseNode) specialIndices.push(idx);
+    });
+
+    for (let i = 0; i < specialIndices.length; i++) {
+      const idxA = specialIndices[i];
+      const pA = points[idxA];
+      let nearestDist = Infinity;
+      let nearestIdx = -1;
+
+      for (let j = 0; j < specialIndices.length; j++) {
+        if (i === j) continue;
+        const idxB = specialIndices[j];
+        const pB = points[idxB];
+        const dx = pA.baseX - pB.baseX;
+        const dy = pA.baseY - pB.baseY;
+        const dz = pA.baseZ - pB.baseZ;
+        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+        if (dist < 100 && dist > 15) {
+          connections.push({
+            p1: idxA,
+            p2: idxB,
+            intensity: 0.3 + Math.random() * 0.4,
+            sparkProgress: Math.random(),
+            speed: 0.006 + Math.random() * 0.012,
+            active: true,
           });
         }
-
-        tracts.push({
-          points: pts,
-          color: pal.color,
-          glowColor: pal.glow,
-          width: Math.random() * 0.8 + 0.7,
-          nodes,
-          impulses: [],
-        });
       }
-
-      return tracts;
     }
 
-    let tracts = buildTracts();
-
-    function resize() {
+    // Handle Resize
+    const handleResize = () => {
       if (!container || !canvas) return;
-      const rect = container.getBoundingClientRect();
-      width = Math.max(rect.width, 320);
-      height = Math.max(rect.height, 420);
+      width = container.clientWidth;
+      height = container.clientHeight;
       dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-      canvas.width = Math.floor(width * dpr);
-      canvas.height = Math.floor(height * dpr);
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
 
-      if (ctx) {
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
-        ctx.scale(dpr, dpr);
-      }
-    }
+      ctx.scale(dpr, dpr);
+    };
 
-    // Trigger impulse down a random tract
-    function spawnImpulse() {
-      if (tracts.length === 0) return;
-      const tract = tracts[Math.floor(Math.random() * tracts.length)];
-      if (tract.impulses.length < 2) {
-        tract.impulses.push({
-          t: 0,
-          speed: 0.015 + Math.random() * 0.025,
-          color: Math.random() > 0.35 ? "#ffffff" : "#ffb829",
-          alive: true,
-        });
-      }
-    }
+    const resizeObserver = new ResizeObserver(handleResize);
+    resizeObserver.observe(container);
+    handleResize();
 
-    // Interpolate 3D point along piecewise segments
-    function getPointOnTract(pts: Vec3[], t: number): Vec3 {
-      const totalSegments = pts.length - 1;
-      const floatIndex = t * totalSegments;
-      const index = Math.min(Math.floor(floatIndex), totalSegments - 1);
-      const frac = floatIndex - index;
+    // Mouse Tracking for Interactive Parallax Tilt
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = container.getBoundingClientRect();
+      const nx = (e.clientX - rect.left) / rect.width - 0.5;
+      const ny = (e.clientY - rect.top) / rect.height - 0.5;
+      targetRotY = nx * 0.8;
+      targetRotX = -ny * 0.8 + 0.2;
+    };
 
-      const p0 = pts[index];
-      const p1 = pts[index + 1];
+    const handleMouseEnter = () => {
+      isHovered = true;
+    };
 
-      return {
-        x: p0.x + (p1.x - p0.x) * frac,
-        y: p0.y + (p1.y - p0.y) * frac,
-        z: p0.z + (p1.z - p0.z) * frac,
-      };
-    }
+    const handleMouseLeave = () => {
+      isHovered = false;
+      targetRotX = 0.2;
+      targetRotY = 0;
+    };
 
+    container.addEventListener("mousemove", handleMouseMove);
+    container.addEventListener("mouseenter", handleMouseEnter);
+    container.addEventListener("mouseleave", handleMouseLeave);
+
+    // Animation Render Loop
     let lastTime = performance.now();
-    let impulseTimer = 0;
-    let orbitalAngle = 0;
+    let autoAngle = 0;
 
-    function render(now: number) {
-      if (!isVisible || !ctx) return;
+    const render = (time: number) => {
+      animId = requestAnimationFrame(render);
+      const dt = Math.min((time - lastTime) / 1000, 0.1);
+      lastTime = time;
 
-      const dt = Math.min((now - lastTime) / 1000, 0.1);
-      lastTime = now;
+      if (!width || !height) return;
 
-      // Gentle natural continuous rotation
-      targetRotY += 0.35 * dt;
-      orbitalAngle += 0.45 * dt;
-
-      rotX += (targetRotX - rotX) * (4 * dt);
-      rotY += (targetRotY - rotY) * (4 * dt);
+      // Smooth camera interpolation
+      autoAngle += dt * 0.35;
+      const currentRotY = autoAngle + rotY;
+      rotX += (targetRotX - rotX) * 0.05;
+      rotY += (targetRotY - rotY) * 0.05;
 
       ctx.clearRect(0, 0, width, height);
 
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const fov = 480;
+
       const cosX = Math.cos(rotX);
       const sinX = Math.sin(rotX);
-      const cosY = Math.cos(rotY);
-      const sinY = Math.sin(rotY);
+      const cosY = Math.cos(currentRotY);
+      const sinY = Math.sin(currentRotY);
 
-      const centerX = width * 0.5;
-      const centerY = height * 0.5;
-      const cameraDistance = 580;
-      const scaleFactor = (Math.min(width, height) / 380) * 1.05;
+      // 1. Render Subtle Ambient Core Glow
+      const coreGrad = ctx.createRadialGradient(
+        centerX,
+        centerY,
+        10,
+        centerX,
+        centerY,
+        SPHERE_RADIUS * 1.15
+      );
+      coreGrad.addColorStop(0, "rgba(128, 82, 255, 0.16)");
+      coreGrad.addColorStop(0.4, "rgba(0, 229, 255, 0.08)");
+      coreGrad.addColorStop(0.7, "rgba(255, 184, 41, 0.03)");
+      coreGrad.addColorStop(1, "rgba(0, 0, 0, 0)");
+      ctx.fillStyle = coreGrad;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, SPHERE_RADIUS * 1.15, 0, Math.PI * 2);
+      ctx.fill();
 
-      // Project 3D vector to 2D screen
-      function project(v: Vec3): { sx: number; sy: number; sz: number; scale: number; alpha: number } {
-        // Y-axis rotation
-        const x1 = v.x * cosY + v.z * sinY;
-        const y1 = v.y;
-        const z1 = -v.x * sinY + v.z * cosY;
-
-        // X-axis tilt
-        const x2 = x1;
-        const y2 = y1 * cosX - z1 * sinX;
-        const z2 = y1 * sinX + z1 * cosX;
-
-        const fov = cameraDistance / (cameraDistance + z2 * scaleFactor * 0.85);
-        const sx = centerX + x2 * scaleFactor * fov;
-        const sy = centerY + y2 * scaleFactor * fov;
-
-        const depthNorm = (z2 + 200) / 400;
-        const alpha = Math.max(0.18, Math.min(1.0, 0.35 + depthNorm * 0.65));
-
-        return { sx, sy, sz: z2, scale: fov, alpha };
+      // Project all 3D points
+      interface ProjectedPoint {
+        px: number;
+        py: number;
+        pz: number;
+        scale: number;
+        color: string;
+        size: number;
+        alpha: number;
+        isSynapseNode: boolean;
       }
 
-      // 1. Draw central glowing white-violet AI core (Singularity)
-      const coreProj = project({ x: 0, y: 0, z: 0 });
-      const coreRadius = 38 * coreProj.scale;
-      const coreGlow = ctx.createRadialGradient(
-        coreProj.sx, coreProj.sy, 0,
-        coreProj.sx, coreProj.sy, coreRadius * 2.8
-      );
-      coreGlow.addColorStop(0, "rgba(255, 255, 255, 0.9)");
-      coreGlow.addColorStop(0.2, "rgba(128, 82, 255, 0.65)");
-      coreGlow.addColorStop(0.55, "rgba(0, 229, 255, 0.2)");
-      coreGlow.addColorStop(1, "rgba(0, 0, 0, 0)");
+      const projected: ProjectedPoint[] = [];
 
-      ctx.beginPath();
-      ctx.arc(coreProj.sx, coreProj.sy, coreRadius * 2.8, 0, Math.PI * 2);
-      ctx.fillStyle = coreGlow;
-      ctx.fill();
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
 
-      // 2. Draw Precision Holographic Telemetry Rings (AI Axis & Latency rings)
-      const ringRadius = 185 * scaleFactor;
+        // Slight breathing pulsation
+        p.pulsePhase += dt * 2;
+        const pulse = 1 + Math.sin(p.pulsePhase) * 0.05;
+
+        const bx = p.baseX * pulse;
+        const by = p.baseY * pulse;
+        const bz = p.baseZ * pulse;
+
+        // Rotate around Y axis
+        const x1 = bx * cosY - bz * sinY;
+        const z1 = bx * sinY + bz * cosY;
+
+        // Rotate around X axis
+        const y2 = by * cosX - z1 * sinX;
+        const z2 = by * sinX + z1 * cosX;
+
+        // Perspective projection
+        const depth = fov / (fov + z2);
+        const px = centerX + x1 * depth;
+        const py = centerY + y2 * depth;
+
+        // Depth cueing alpha (foreground points glow brighter)
+        const normZ = (z2 + SPHERE_RADIUS) / (SPHERE_RADIUS * 2);
+        const alpha = Math.max(0.12, Math.min(1.0, 0.2 + normZ * 0.8));
+
+        projected.push({
+          px,
+          py,
+          pz: z2,
+          scale: depth,
+          color: p.color,
+          size: p.size * depth,
+          alpha,
+          isSynapseNode: p.isSynapseNode,
+        });
+      }
+
+      // Sort points by Z for correct depth sorting (back to front)
+      const sortedIndices = projected
+        .map((_, idx) => idx)
+        .sort((a, b) => projected[a].pz - projected[b].pz);
+
+      // 2. Render Synapse Lines
+      ctx.lineWidth = 1;
+      for (let i = 0; i < connections.length; i++) {
+        const c = connections[i];
+        const p1 = projected[c.p1];
+        const p2 = projected[c.p2];
+
+        // Average depth
+        const avgAlpha = (p1.alpha + p2.alpha) * 0.5 * c.intensity;
+        if (avgAlpha > 0.08) {
+          ctx.strokeStyle = `rgba(128, 82, 255, ${avgAlpha * 0.6})`;
+          ctx.beginPath();
+          ctx.moveTo(p1.px, p1.py);
+          ctx.lineTo(p2.px, p2.py);
+          ctx.stroke();
+
+          // Animate Synaptic Spark traveling along the line
+          c.sparkProgress = (c.sparkProgress + c.speed) % 1;
+          const sx = p1.px + (p2.px - p1.px) * c.sparkProgress;
+          const sy = p1.py + (p2.py - p1.py) * c.sparkProgress;
+
+          ctx.fillStyle = avgAlpha > 0.3 ? COLOR_CYAN : COLOR_WHITE;
+          ctx.beginPath();
+          ctx.arc(sx, sy, 1.6, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // 3. Render Equatorial & Polar Telemetry Rings (Auros Technical Instrument)
+      const numRingSteps = 72;
+      const ringRadius = SPHERE_RADIUS * 1.16;
+
       ctx.save();
-      ctx.translate(centerX, centerY);
-      ctx.rotate(rotY * 0.5);
-
-      // Outer elliptical telemetry ring
       ctx.beginPath();
-      ctx.ellipse(0, 0, ringRadius, ringRadius * 0.35, 0.35, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(128, 82, 255, 0.22)";
-      ctx.lineWidth = 1.0;
-      ctx.setLineDash([4, 12]);
+      for (let i = 0; i <= numRingSteps; i++) {
+        const angle = (i / numRingSteps) * Math.PI * 2;
+        const rx = Math.cos(angle) * ringRadius;
+        const rz = Math.sin(angle) * ringRadius;
+
+        const x1 = rx * cosY - rz * sinY;
+        const z1 = rx * sinY + rz * cosY;
+        const y2 = -z1 * sinX;
+        const z2 = z1 * cosX;
+
+        const depth = fov / (fov + z2);
+        const px = centerX + x1 * depth;
+        const py = centerY + y2 * depth;
+
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.strokeStyle = "rgba(128, 82, 255, 0.28)";
+      ctx.setLineDash([4, 6]);
       ctx.stroke();
-
-      // Inner fast tensor ring
-      ctx.beginPath();
-      ctx.ellipse(0, 0, ringRadius * 0.72, ringRadius * 0.25, -0.4, orbitalAngle, orbitalAngle + Math.PI * 1.4);
-      ctx.strokeStyle = "rgba(0, 229, 255, 0.45)";
-      ctx.lineWidth = 1.3;
       ctx.setLineDash([]);
-      ctx.stroke();
-
-      // Ring satellite indicator
-      const satX = Math.cos(orbitalAngle) * (ringRadius * 0.72);
-      const satY = Math.sin(orbitalAngle) * (ringRadius * 0.25);
-      ctx.beginPath();
-      ctx.arc(satX, satY, 3, 0, Math.PI * 2);
-      ctx.fillStyle = "#ffb829";
-      ctx.shadowColor = "#ffb829";
-      ctx.shadowBlur = 8;
-      ctx.fill();
-      ctx.shadowBlur = 0;
-
       ctx.restore();
 
-      // 3. Render Neural Tracts (Fiber Streamlines)
-      for (const tract of tracts) {
-        const projectedPts = tract.points.map(project);
+      // 4. Render Bioluminescent Particles
+      for (let k = 0; k < sortedIndices.length; k++) {
+        const p = projected[sortedIndices[k]];
 
-        // Draw the smooth flowing neural spline
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+
+        // Front glowing nodes
+        if (p.isSynapseNode && p.pz > 0) {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = p.color;
+        }
+
         ctx.beginPath();
-        ctx.moveTo(projectedPts[0].sx, projectedPts[0].sy);
-        for (let i = 1; i < projectedPts.length - 1; i++) {
-          const xc = (projectedPts[i].sx + projectedPts[i + 1].sx) * 0.5;
-          const yc = (projectedPts[i].sy + projectedPts[i + 1].sy) * 0.5;
-          ctx.quadraticCurveTo(projectedPts[i].sx, projectedPts[i].sy, xc, yc);
-        }
-        const last = projectedPts[projectedPts.length - 1];
-        ctx.lineTo(last.sx, last.sy);
-
-        const avgAlpha = (projectedPts[0].alpha + last.alpha) * 0.5;
-        ctx.strokeStyle = tract.color;
-        ctx.globalAlpha = avgAlpha * 0.5;
-        ctx.lineWidth = tract.width * projectedPts[0].scale;
-        ctx.stroke();
-
-        // Nodes along the tract
-        for (const node of tract.nodes) {
-          node.phase += 0.03;
-          const pos3d = getPointOnTract(tract.points, node.t);
-          const proj = project(pos3d);
-
-          const r = node.size * proj.scale;
-          const breath = Math.sin(node.phase) * 0.3;
-
-          // Glowing Halo for hub nodes
-          if (node.isHub) {
-            ctx.beginPath();
-            ctx.arc(proj.sx, proj.sy, r * 3.5, 0, Math.PI * 2);
-            ctx.fillStyle = tract.glowColor;
-            ctx.globalAlpha = proj.alpha * 0.25;
-            ctx.fill();
-          }
-
-          // Core bright node
-          ctx.beginPath();
-          ctx.arc(proj.sx, proj.sy, r * (1 + breath), 0, Math.PI * 2);
-          ctx.fillStyle = tract.color;
-          ctx.globalAlpha = proj.alpha * 0.95;
-          ctx.fill();
-
-          // White-hot center
-          ctx.beginPath();
-          ctx.arc(proj.sx, proj.sy, Math.max(0.8, r * 0.45), 0, Math.PI * 2);
-          ctx.fillStyle = "#ffffff";
-          ctx.globalAlpha = proj.alpha;
-          ctx.fill();
-        }
-
-        // Draw Impulses traveling along the tract
-        for (let k = tract.impulses.length - 1; k >= 0; k--) {
-          const imp = tract.impulses[k];
-          imp.t += imp.speed;
-
-          if (imp.t < 1) {
-            const impPos = getPointOnTract(tract.points, imp.t);
-            const impProj = project(impPos);
-
-            // Glowing impulse comet head
-            ctx.beginPath();
-            ctx.arc(impProj.sx, impProj.sy, 3.5 * impProj.scale, 0, Math.PI * 2);
-            ctx.fillStyle = imp.color;
-            ctx.globalAlpha = 1.0;
-            ctx.shadowColor = imp.color;
-            ctx.shadowBlur = 12;
-            ctx.fill();
-            ctx.shadowBlur = 0;
-          } else {
-            tract.impulses.splice(k, 1);
-          }
-        }
+        ctx.arc(p.px, p.py, Math.max(0.75, p.size), 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
       }
+    };
 
-      // Spawn periodic rhythmic impulses
-      impulseTimer += dt;
-      if (impulseTimer > 0.18) {
-        spawnImpulse();
-        impulseTimer = 0;
-      }
-
-      // 4. Subtle Telemetry Overlay Labels around the Brain
-      ctx.font = "10px JetBrains Mono, monospace";
-      ctx.fillStyle = "rgba(255, 184, 41, 0.75)";
-      ctx.fillText("// NEURAL_CORTEX: ACTIVE", centerX - 140 * scaleFactor, centerY - 150 * scaleFactor);
-
-      ctx.fillStyle = "rgba(0, 229, 255, 0.65)";
-      ctx.fillText("SYNAPSE_BANDWIDTH // 120GB/s", centerX + 30 * scaleFactor, centerY + 175 * scaleFactor);
-
-      ctx.fillStyle = "rgba(128, 82, 255, 0.7)";
-      ctx.fillText("AI_ERP_OS v2026", centerX - 120 * scaleFactor, centerY + 185 * scaleFactor);
-
-      animId = requestAnimationFrame(render);
-    }
-
-    function onPointerMove(e: MouseEvent | TouchEvent) {
-      if (!container) return;
-      const rect = container.getBoundingClientRect();
-      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-      const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
-
-      const normX = (clientX - rect.left) / rect.width - 0.5;
-      const normY = (clientY - rect.top) / rect.height - 0.5;
-
-      targetRotY += normX * 0.05;
-      targetRotX = Math.max(-0.4, Math.min(0.4, normY * 0.6));
-    }
-
-    resize();
     animId = requestAnimationFrame(render);
 
-    const resizeObserver = new ResizeObserver(() => {
-      resize();
-    });
-    resizeObserver.observe(container);
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        isVisible = entry.isIntersecting;
-        if (isVisible && !animId) {
-          lastTime = performance.now();
-          animId = requestAnimationFrame(render);
-        }
-      });
-    });
-    observer.observe(container);
-
-    window.addEventListener("mousemove", onPointerMove);
-    window.addEventListener("touchmove", onPointerMove, { passive: true });
-
     return () => {
-      if (animId) cancelAnimationFrame(animId);
+      cancelAnimationFrame(animId);
       resizeObserver.disconnect();
-      observer.disconnect();
-      window.removeEventListener("mousemove", onPointerMove);
-      window.removeEventListener("touchmove", onPointerMove);
+      container.removeEventListener("mousemove", handleMouseMove);
+      container.removeEventListener("mouseenter", handleMouseEnter);
+      container.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 
   return (
     <div
       ref={containerRef}
-      className={`relative w-full h-full min-h-[460px] flex items-center justify-center select-none overflow-hidden ${className || ""}`}
+      className={`relative w-full h-full flex items-center justify-center select-none overflow-hidden ${className || ""}`}
     >
-      <canvas
-        ref={canvasRef}
-        className="w-full h-full block pointer-events-none"
-        aria-hidden="true"
-      />
+      <canvas ref={canvasRef} className="block w-full h-full" />
+
+      {/* Telemetry HUD Labels (Auros Instrument Aesthetic) */}
+      <div className="absolute top-4 left-4 font-mono text-[11px] text-[#bbc7c6]/70 uppercase tracking-[0.14em] pointer-events-none flex items-center gap-2">
+        <span className="w-1.5 h-1.5 rounded-[2px] bg-[#00e5ff] shadow-[0_0_6px_#00e5ff] animate-pulse" />
+        <span>// BIOLUMINESCENT_NEURAL_SPHERE</span>
+      </div>
+
+      <div className="absolute top-4 right-4 font-mono text-[10px] text-[#ffb829]/80 uppercase tracking-[0.12em] pointer-events-none bg-[#0f0f18]/80 border border-white/10 px-2 py-0.5 rounded-[4px]">
+        NODES: 2,400+ · 3D CORE
+      </div>
+
+      <div className="absolute bottom-4 left-4 font-mono text-[10px] text-[#bbc7c6]/60 uppercase tracking-[0.12em] pointer-events-none">
+        SYNAPSE: 120GB/s · LATENCY: 12ms
+      </div>
+
+      <div className="absolute bottom-4 right-4 font-mono text-[10px] text-[#8052ff] uppercase tracking-[0.12em] pointer-events-none">
+        AI_ERP_OS // v2026.04
+      </div>
     </div>
   );
 }

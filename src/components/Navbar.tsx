@@ -10,6 +10,15 @@ import { Menu, X, ArrowUpRight, Globe } from "lucide-react";
 export function Navbar() {
   const { locale, toggleLocale, content } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
@@ -28,72 +37,78 @@ export function Navbar() {
 
   return (
     <>
-      {/* Floating Liquid Glass Island / Capsule Header */}
-      <header className="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-[1120px] liquid-glass-nav py-2 px-4 sm:px-6 transition-all duration-300">
-        <div className="flex items-center justify-between">
-          {/* Brand Logo & Name */}
+      {/* Site Header: 80px height, instrument border, transparent/obsidian canvas */}
+      <header
+        className={`fixed top-0 left-0 w-full z-50 h-20 flex items-center transition-colors duration-200 ${
+          scrolled
+            ? "bg-[#000000]/90 backdrop-blur-md border-b border-white/[0.08]"
+            : "bg-[#000000]/60 backdrop-blur-sm border-b border-transparent"
+        }`}
+      >
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-8 w-full flex items-center justify-between">
+          {/* Brand Logo & Wordmark */}
           <Link
             href="/#top"
-            className="flex items-center gap-3 group focus:outline-none"
+            className="flex items-center gap-3.5 group focus:outline-none"
             aria-label="Gia Khánh Portfolio"
           >
-            <div className="w-8 h-8 relative flex items-center justify-center rounded-full bg-white/[0.08] border border-white/20 group-hover:border-[#8052ff] group-hover:shadow-[0_0_15px_rgba(128,82,255,0.6)] transition-all">
+            <div className="w-8 h-8 rounded-[6px] bg-[#0f0f18] border border-white/10 flex items-center justify-center group-hover:border-[#8052ff] transition-colors">
               <Image
                 src="/img/logo-gk.svg"
-                alt="Gia Khánh Logo"
+                alt="Logo"
                 width={18}
                 height={18}
                 className="w-4 h-4 object-contain"
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-[14px] font-sans font-medium text-white tracking-tight leading-tight">
+              <span className="text-[13px] font-medium text-white tracking-[0.04em] uppercase">
                 Gia Khánh
               </span>
-              <span className="text-[10px] font-mono text-[#ffb829] uppercase tracking-wider">
-                AI · ERP
+              <span className="text-[10px] font-mono text-[#ffb829] uppercase tracking-[0.15em]">
+                AI · ERP OS
               </span>
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-6">
+          {/* Center Ghost Navigation Links: 12px Matter 500, uppercase, tracking 0.12em */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
             {navItems.map((item) => (
               <a
                 key={item.id}
                 href={`/#${item.id}`}
-                className="text-[13px] font-sans font-medium uppercase tracking-[0.05em] text-[#a0a0aa] hover:text-white transition-colors"
+                className="text-[12px] font-medium uppercase tracking-[0.12em] text-[#bbc7c6] hover:text-white transition-colors"
               >
                 {item.label}
               </a>
             ))}
           </nav>
 
-          {/* Controls: Language & Liquid CTA */}
+          {/* Right Controls: Language & Signature CTA Button (6px radius) */}
           <div className="flex items-center gap-3">
             {/* Language Switcher */}
             <button
               onClick={toggleLocale}
               type="button"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono text-[#a0a0aa] hover:text-white border border-white/15 bg-white/[0.06] hover:bg-white/10 transition-all cursor-pointer"
-              title="Đổi ngôn ngữ / Switch language"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-[6px] text-[11px] font-mono text-[#bbc7c6] hover:text-white border border-white/10 bg-[#0f0f18] hover:bg-[#141420] transition-colors cursor-pointer"
+              title="Switch language / Đổi ngôn ngữ"
             >
-              <Globe className="w-3.5 h-3.5 text-[#ffb829]" />
-              <span className={locale === "vi" ? "text-white font-bold" : "text-[#777]"}>
+              <Globe className="w-3 h-3 text-[#ffb829]" />
+              <span className={locale === "vi" ? "text-white font-medium" : "text-[#707777]"}>
                 VI
               </span>
               <span className="text-white/20">/</span>
-              <span className={locale === "en" ? "text-white font-bold" : "text-[#777]"}>
+              <span className={locale === "en" ? "text-white font-medium" : "text-[#707777]"}>
                 EN
               </span>
             </button>
 
-            {/* Liquid Primary Pill CTA */}
+            {/* Signature Primary CTA (6px border-radius) */}
             <a
               href="https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex btn-liquid-primary !py-2 !px-4 text-xs uppercase tracking-wider"
+              className="hidden sm:inline-flex btn-primary-auros !py-2 !px-4 text-[12px] tracking-[0.1em]"
             >
               <span>{content.hero.cv}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -103,7 +118,7 @@ export function Navbar() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
-              className="md:hidden flex items-center justify-center w-8 h-8 rounded-full border border-white/20 bg-white/10 text-white hover:border-[#8052ff] transition-all cursor-pointer"
+              className="md:hidden flex items-center justify-center w-8 h-8 rounded-[6px] border border-white/10 bg-[#0f0f18] text-white hover:border-[#8052ff] transition-colors cursor-pointer"
               aria-label={mobileMenuOpen ? "Đóng menu" : "Mở menu"}
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -112,19 +127,19 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Drawer (Liquid Glass Menu) */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 bg-[#000000]/90 backdrop-blur-2xl md:hidden flex flex-col justify-between p-8 pt-28"
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-[#000000]/95 backdrop-blur-xl md:hidden flex flex-col justify-between p-8 pt-28"
           >
             <div className="flex flex-col gap-6">
-              <span className="text-xs font-mono text-[#ffb829] tracking-widest uppercase">
-                // NAVIGATION
+              <span className="text-[11px] font-mono text-[#ffb829] tracking-[0.15em] uppercase">
+                // AUROS_TERMINAL_NAVIGATION
               </span>
               <div className="flex flex-col gap-5">
                 {navItems.map((item) => (
@@ -132,7 +147,7 @@ export function Navbar() {
                     key={item.id}
                     href={`/#${item.id}`}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-2xl font-display text-white hover:text-[#8052ff] transition-colors"
+                    className="text-2xl font-medium text-white hover:text-[#8052ff] transition-colors"
                   >
                     {item.label}
                   </a>
@@ -140,16 +155,19 @@ export function Navbar() {
               </div>
             </div>
 
-            <div className="border-t border-white/10 pt-6 flex flex-col gap-4">
+            <div className="pt-8 border-t border-white/10 flex flex-col gap-4">
               <a
                 href="https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 btn-liquid-primary text-center"
+                className="btn-primary-auros w-full justify-center"
               >
                 <span>{content.hero.cv}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
+              <span className="text-xs font-mono text-[#707777] text-center">
+                AI × ERP OPERATING SYSTEM
+              </span>
             </div>
           </motion.div>
         )}

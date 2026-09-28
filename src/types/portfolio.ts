@@ -125,9 +125,14 @@ export interface PortfolioContent {
       eyebrow: string;
       title: string;
       intro: string;
-      categories: {
+      categories?: {
         id: string;
         name: string;
+        items: string[];
+      }[];
+      groups?: {
+        index: string;
+        title: string;
         items: string[];
       }[];
     };

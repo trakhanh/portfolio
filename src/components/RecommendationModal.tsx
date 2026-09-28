@@ -29,37 +29,37 @@ export function RecommendationModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl p-6 sm:p-8 liquid-glass-card !bg-[#0c0c14]/92 !backdrop-blur-3xl border border-white/20 text-white shadow-[0_30px_90px_rgba(0,0,0,0.85)]">
-        <DialogHeader className="border-b border-white/10 pb-4">
+      <DialogContent className="max-w-4xl p-6 sm:p-8 rounded-[16px] bg-[#0c0c14] border border-white/10 text-white">
+        <DialogHeader className="border-b border-white/[0.08] pb-4">
           <div className="flex items-center gap-2 text-[#8052ff]">
             <FileCheck2 className="w-5 h-5" />
-            <DialogTitle className="text-xl font-display text-white">
+            <DialogTitle className="text-xl font-medium text-white">
               Thư giới thiệu chính thức — Bông Trà Co., Ltd
             </DialogTitle>
           </div>
-          <DialogDescription className="text-sm text-body-light pt-1">
+          <DialogDescription className="text-sm text-body-auros pt-1">
             Văn bản có mộc đỏ xác nhận đóng góp thực tế trong dự án ERP, HRM &amp; Tự động hóa quy trình.
           </DialogDescription>
         </DialogHeader>
 
         {/* Toolbar */}
         <Tabs defaultValue="p1" className="w-full">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3 pt-2">
-            <TabsList className="liquid-glass-nav p-1 bg-white/[0.04]">
-              <TabsTrigger value="p1" className="rounded-full data-[state=active]:bg-[#8052ff] data-[state=active]:text-white data-[state=active]:shadow-[0_2px_12px_rgba(128,82,255,0.4)]">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[0.08] pb-3 pt-2">
+            <TabsList className="p-1 rounded-[6px] bg-[#0f0f18] border border-white/[0.08]">
+              <TabsTrigger value="p1" className="rounded-[4px] text-xs uppercase data-[state=active]:bg-[#8052ff] data-[state=active]:text-white">
                 Trang 01
               </TabsTrigger>
-              <TabsTrigger value="p2" className="rounded-full data-[state=active]:bg-[#8052ff] data-[state=active]:text-white data-[state=active]:shadow-[0_2px_12px_rgba(128,82,255,0.4)]">
+              <TabsTrigger value="p2" className="rounded-[4px] text-xs uppercase data-[state=active]:bg-[#8052ff] data-[state=active]:text-white">
                 Trang 02
               </TabsTrigger>
             </TabsList>
 
             <div className="flex items-center gap-3">
-              <div className="flex items-center liquid-glass-tag px-2 py-1">
+              <div className="flex items-center rounded-[6px] bg-[#0f0f18] border border-white/[0.08] px-2 py-1">
                 <button
                   type="button"
                   onClick={handleZoomOut}
-                  className="p-1 text-[#a0a0aa] hover:text-white"
+                  className="p-1 text-[#bbc7c6] hover:text-white cursor-pointer"
                   title="Thu nhỏ"
                 >
                   <ZoomOut className="w-4 h-4" />
@@ -70,7 +70,7 @@ export function RecommendationModal({
                 <button
                   type="button"
                   onClick={handleZoomIn}
-                  className="p-1 text-[#a0a0aa] hover:text-white"
+                  className="p-1 text-[#bbc7c6] hover:text-white cursor-pointer"
                   title="Phóng to"
                 >
                   <ZoomIn className="w-4 h-4" />
@@ -78,7 +78,7 @@ export function RecommendationModal({
                 <button
                   type="button"
                   onClick={handleResetZoom}
-                  className="p-1 ml-1 text-[#a0a0aa] hover:text-white border-l border-white/10"
+                  className="p-1 ml-1 text-[#bbc7c6] hover:text-white border-l border-white/10 cursor-pointer"
                   title="Đặt lại"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
@@ -90,7 +90,7 @@ export function RecommendationModal({
                 target="_blank"
                 rel="noopener noreferrer"
                 download
-                className="btn-liquid-primary !py-2 !px-4 text-xs uppercase"
+                className="btn-primary-auros !py-2 !px-4 text-xs uppercase"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Tải PDF</span>
@@ -98,35 +98,33 @@ export function RecommendationModal({
             </div>
           </div>
 
-          {/* Letter Image Viewport */}
-          <div className="mt-4 overflow-auto max-h-[64vh] rounded-2xl bg-[#000000]/60 border border-white/10 flex items-center justify-center p-4">
-            <TabsContent value="p1" className="m-0 focus:outline-none">
+          <div className="max-h-[68vh] overflow-auto mt-4 p-4 rounded-[12px] bg-[#000000] border border-white/[0.06] flex items-center justify-center">
+            <TabsContent value="p1" className="m-0 focus:outline-none flex justify-center">
               <div
                 style={{ transform: `scale(${zoom})`, transformOrigin: "top center" }}
-                className="transition-transform duration-150"
+                className="transition-transform duration-200"
               >
                 <Image
                   src="/img/recommendation-letter-page-1-hd.jpg"
-                  alt="Thư giới thiệu Bông Trà - Trang 1"
+                  alt="Thư giới thiệu Trang 1"
                   width={800}
-                  height={1130}
-                  className="rounded-lg max-w-full h-auto object-contain mx-auto shadow-2xl"
-                  priority
+                  height={1132}
+                  className="rounded-[6px] shadow-lg max-w-full h-auto"
                 />
               </div>
             </TabsContent>
 
-            <TabsContent value="p2" className="m-0 focus:outline-none">
+            <TabsContent value="p2" className="m-0 focus:outline-none flex justify-center">
               <div
                 style={{ transform: `scale(${zoom})`, transformOrigin: "top center" }}
-                className="transition-transform duration-150"
+                className="transition-transform duration-200"
               >
                 <Image
                   src="/img/recommendation-letter-page-2-hd.jpg"
-                  alt="Thư giới thiệu Bông Trà - Trang 2"
+                  alt="Thư giới thiệu Trang 2"
                   width={800}
-                  height={1130}
-                  className="rounded-lg max-w-full h-auto object-contain mx-auto shadow-2xl"
+                  height={1132}
+                  className="rounded-[6px] shadow-lg max-w-full h-auto"
                 />
               </div>
             </TabsContent>

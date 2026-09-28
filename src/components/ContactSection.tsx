@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { motion } from "motion/react";
 import { Mail, Check, Copy, ArrowUpRight } from "lucide-react";
 
 export function ContactSection() {
@@ -21,95 +20,94 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-28 sm:py-36 bg-[#000000] relative overflow-hidden">
-      {/* Background fluid glow */}
-      <div className="absolute top-1/2 left-1/3 w-[550px] h-[550px] rounded-full bg-[#8052ff]/10 blur-[150px] pointer-events-none fluid-blob-iris" />
+    <section id="contact" className="py-24 sm:py-32 bg-[#000000] relative">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-8 relative z-10">
+        {/* Recessed Well Surface Card: Level 1 (#08080d), 16px radius, generous padding */}
+        <div className="rounded-[16px] bg-[#08080d] border border-white/[0.08] p-8 sm:p-14 lg:p-16">
+          <div className="max-w-3xl">
+            {/* Eyebrow */}
+            <div className="eyebrow-auros mb-4 text-[#ffb829]">
+              <span className="w-1.5 h-1.5 rounded-[2px] bg-[#ffb829]" />
+              <span>{contact.eyebrow}</span>
+            </div>
 
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 relative z-10">
-        <div className="max-w-3xl liquid-glass-card p-8 sm:p-12">
-          {/* Eyebrow */}
-          <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 liquid-glass-tag">
-            <span className="text-[12px] font-sans font-semibold uppercase tracking-[0.1em] text-[#ffb829]">
-              {contact.eyebrow}
-            </span>
-          </div>
+            {/* Display Headline (61px, weight 500, line-height 1.0, tracking -0.04em) */}
+            <h2 className="heading-display text-3xl sm:text-5xl lg:text-[61px] text-white tracking-[-0.04em] leading-[1.0] mb-6">
+              {contact.title}
+            </h2>
 
-          {/* Monumental Headline */}
-          <h2 className="text-3xl sm:text-5xl lg:text-[56px] font-display text-white tracking-[-0.04em] leading-[1.08] mb-6">
-            {contact.title}
-          </h2>
+            {/* Body */}
+            <p className="text-body-auros text-base sm:text-lg leading-[1.4] mb-10 max-w-xl">
+              {contact.intro}
+            </p>
 
-          {/* Ultra-light body */}
-          <p className="text-base sm:text-lg text-body-light leading-relaxed mb-10 max-w-xl">
-            {contact.intro}
-          </p>
+            {/* Email Actions: 6px border-radius */}
+            <div className="flex flex-wrap items-center gap-3.5 mb-10">
+              <a
+                href={`mailto:${contact.email}`}
+                className="btn-primary-auros"
+              >
+                <Mail className="w-4 h-4" />
+                <span>{contact.email}</span>
+              </a>
 
-          {/* Direct Email Action Box in Liquid Glass */}
-          <div className="flex flex-wrap items-center gap-4 mb-10">
-            <a
-              href={`mailto:${contact.email}`}
-              className="btn-liquid-primary"
-            >
-              <Mail className="w-4 h-4" />
-              <span>{contact.email}</span>
-            </a>
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="btn-secondary-auros cursor-pointer"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-4 h-4 text-[#ffb829]" />
+                    <span>{contact.copied || "Đã sao chép!"}</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4 text-[#bbc7c6]" />
+                    <span>{contact.cta || "Sao chép email"}</span>
+                  </>
+                )}
+              </button>
+            </div>
 
-            <button
-              type="button"
-              onClick={handleCopyEmail}
-              className="btn-liquid-secondary"
-            >
-              {copied ? (
-                <>
-                  <Check className="w-4 h-4 text-[#ffb829]" />
-                  <span>{contact.copied || "Đã sao chép!"}</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4 text-[#a0a0aa]" />
-                  <span>{contact.cta || "Sao chép email"}</span>
-                </>
+            {/* Social Ghost Links: 6px radius */}
+            <div className="flex flex-wrap items-center gap-3 pt-8 border-t border-white/[0.08]">
+              {contact.linkedin && (
+                <a
+                  href={contact.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="chip-auros hover:bg-white/10 hover:text-white transition-colors flex items-center gap-1.5"
+                >
+                  <span>LinkedIn</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#ffb829]" />
+                </a>
               )}
-            </button>
-          </div>
 
-          {/* Social Liquid Ghost Chips */}
-          <div className="flex flex-wrap items-center gap-4 pt-8 border-t border-white/10">
-            {contact.linkedin && (
-              <a
-                href={contact.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 text-xs font-sans uppercase tracking-wider text-[#a0a0aa] hover:text-white liquid-glass-tag hover:border-white/30 flex items-center gap-1.5 transition-all"
-              >
-                <span>LinkedIn</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#ffb829]" />
-              </a>
-            )}
+              {contact.github && (
+                <a
+                  href={contact.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="chip-auros hover:bg-white/10 hover:text-white transition-colors flex items-center gap-1.5"
+                >
+                  <span>GitHub</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#ffb829]" />
+                </a>
+              )}
 
-            {contact.github && (
-              <a
-                href={contact.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 text-xs font-sans uppercase tracking-wider text-[#a0a0aa] hover:text-white liquid-glass-tag hover:border-white/30 flex items-center gap-1.5 transition-all"
-              >
-                <span>GitHub</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#ffb829]" />
-              </a>
-            )}
-
-            {contact.facebook && (
-              <a
-                href={contact.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 text-xs font-sans uppercase tracking-wider text-[#a0a0aa] hover:text-white liquid-glass-tag hover:border-white/30 flex items-center gap-1.5 transition-all"
-              >
-                <span>Facebook</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#ffb829]" />
-              </a>
-            )}
+              {contact.facebook && (
+                <a
+                  href={contact.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="chip-auros hover:bg-white/10 hover:text-white transition-colors flex items-center gap-1.5"
+                >
+                  <span>Facebook</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#ffb829]" />
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
