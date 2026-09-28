@@ -37,6 +37,7 @@ export interface ProjectCase {
   evidence: string[];
   learning: string;
   privacy?: string;
+  privacyNote?: string;
 }
 
 export interface CertificateItem {
