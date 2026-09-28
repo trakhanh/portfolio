@@ -10,15 +10,6 @@ import { Menu, X, ArrowUpRight, Globe } from "lucide-react";
 export function Navbar() {
   const { locale, toggleLocale, content } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 24);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
@@ -37,59 +28,54 @@ export function Navbar() {
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-[#000000]/80 backdrop-blur-lg border-b border-white/10 py-3.5"
-            : "bg-transparent py-5"
-        }`}
-      >
-        <div className="max-w-[1280px] mx-auto px-6 sm:px-8 flex items-center justify-between">
+      {/* Floating Liquid Glass Island / Capsule Header */}
+      <header className="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-[1120px] liquid-glass-nav py-2 px-4 sm:px-6 transition-all duration-300">
+        <div className="flex items-center justify-between">
           {/* Brand Logo & Name */}
           <Link
             href="/#top"
             className="flex items-center gap-3 group focus:outline-none"
             aria-label="Gia Khánh Portfolio"
           >
-            <div className="w-8 h-8 relative flex items-center justify-center rounded-full bg-[#121216] border border-white/15 group-hover:border-[#8052ff] transition-all">
+            <div className="w-8 h-8 relative flex items-center justify-center rounded-full bg-white/[0.08] border border-white/20 group-hover:border-[#8052ff] group-hover:shadow-[0_0_15px_rgba(128,82,255,0.6)] transition-all">
               <Image
                 src="/img/logo-gk.svg"
                 alt="Gia Khánh Logo"
-                width={20}
-                height={20}
-                className="w-5 h-5 object-contain"
+                width={18}
+                height={18}
+                className="w-4 h-4 object-contain"
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-[15px] font-sans font-medium text-white tracking-tight">
+              <span className="text-[14px] font-sans font-medium text-white tracking-tight leading-tight">
                 Gia Khánh
               </span>
-              <span className="text-[11px] font-mono text-[#9a9a9a] uppercase tracking-wider">
-                AI × ERP
+              <span className="text-[10px] font-mono text-[#ffb829] uppercase tracking-wider">
+                AI · ERP
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-7">
+          <nav className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <a
                 key={item.id}
                 href={`/#${item.id}`}
-                className="text-[13px] font-sans font-medium uppercase tracking-[0.06em] text-[#9a9a9a] hover:text-[#ffffff] transition-colors"
+                className="text-[13px] font-sans font-medium uppercase tracking-[0.05em] text-[#a0a0aa] hover:text-white transition-colors"
               >
                 {item.label}
               </a>
             ))}
           </nav>
 
-          {/* Controls: Language & CTA */}
+          {/* Controls: Language & Liquid CTA */}
           <div className="flex items-center gap-3">
             {/* Language Switcher */}
             <button
               onClick={toggleLocale}
               type="button"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono text-[#9a9a9a] hover:text-white border border-white/10 bg-white/5 transition-all cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono text-[#a0a0aa] hover:text-white border border-white/15 bg-white/[0.06] hover:bg-white/10 transition-all cursor-pointer"
               title="Đổi ngôn ngữ / Switch language"
             >
               <Globe className="w-3.5 h-3.5 text-[#ffb829]" />
@@ -102,12 +88,12 @@ export function Navbar() {
               </span>
             </button>
 
-            {/* Filled Violet Pill CTA Button (From DESIGN.md) */}
+            {/* Liquid Primary Pill CTA */}
             <a
               href="https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 btn-pill-primary text-xs uppercase tracking-wider"
+              className="hidden sm:inline-flex btn-liquid-primary !py-2 !px-4 text-xs uppercase tracking-wider"
             >
               <span>{content.hero.cv}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -117,7 +103,7 @@ export function Navbar() {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
-              className="md:hidden flex items-center justify-center w-9 h-9 rounded-full border border-white/15 bg-white/5 text-white hover:border-[#8052ff] transition-all cursor-pointer"
+              className="md:hidden flex items-center justify-center w-8 h-8 rounded-full border border-white/20 bg-white/10 text-white hover:border-[#8052ff] transition-all cursor-pointer"
               aria-label={mobileMenuOpen ? "Đóng menu" : "Mở menu"}
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -126,7 +112,7 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer (Liquid Glass Menu) */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -134,7 +120,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 bg-[#000000]/95 backdrop-blur-2xl md:hidden flex flex-col justify-between p-8 pt-28"
+            className="fixed inset-0 z-40 bg-[#000000]/90 backdrop-blur-2xl md:hidden flex flex-col justify-between p-8 pt-28"
           >
             <div className="flex flex-col gap-6">
               <span className="text-xs font-mono text-[#ffb829] tracking-widest uppercase">
@@ -159,7 +145,7 @@ export function Navbar() {
                 href="https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 btn-pill-primary text-center"
+                className="w-full flex items-center justify-center gap-2 btn-liquid-primary text-center"
               >
                 <span>{content.hero.cv}</span>
                 <ArrowUpRight className="w-4 h-4" />

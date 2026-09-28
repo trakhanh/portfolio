@@ -27,7 +27,7 @@ export function CertificateModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl p-6 sm:p-8 bg-[#08080c] border border-white/10 rounded-3xl text-white max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl p-6 sm:p-8 liquid-glass-card !bg-[#0c0c14]/92 !backdrop-blur-3xl border border-white/20 text-white max-h-[90vh] overflow-y-auto shadow-[0_30px_90px_rgba(0,0,0,0.85)]">
         <DialogHeader className="border-b border-white/10 pb-4">
           <div className="flex items-center gap-2 text-[#8052ff]">
             <Award className="w-5 h-5" />
@@ -35,7 +35,7 @@ export function CertificateModal({
               {certificate.title}
             </DialogTitle>
           </div>
-          <div className="flex flex-wrap items-center gap-4 pt-2 text-xs font-mono text-[#9a9a9a]">
+          <div className="flex flex-wrap items-center gap-4 pt-2 text-xs font-mono text-[#a0a0aa]">
             <span className="flex items-center gap-1.5 text-white/90">
               <Building2 className="w-3.5 h-3.5 text-[#ffb829]" />
               {certificate.issuer}
@@ -49,7 +49,7 @@ export function CertificateModal({
         </DialogHeader>
 
         {/* Certificate Image View */}
-        <div className="relative w-full max-h-[48vh] min-h-[220px] my-3 bg-[#000000] rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden p-2">
+        <div className="relative w-full max-h-[48vh] min-h-[220px] my-3 bg-[#000000]/60 rounded-2xl border border-white/10 flex items-center justify-center overflow-hidden p-2">
           <Image
             src={certificate.image}
             alt={certificate.title}
@@ -69,14 +69,14 @@ export function CertificateModal({
           {/* Skills */}
           {certificate.skills && certificate.skills.length > 0 && (
             <div>
-              <span className="text-xs font-mono text-[#ffb829] uppercase tracking-wider block mb-2">
+              <span className="text-xs font-mono text-[#ffb829] uppercase tracking-wider block mb-2 font-medium">
                 Kỹ năng chứng thực:
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {certificate.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 text-xs font-mono bg-white/5 rounded-full text-white/90 border border-white/5"
+                    className="px-3 py-1 text-xs font-mono liquid-glass-tag text-white/90"
                   >
                     {skill}
                   </span>
@@ -92,7 +92,7 @@ export function CertificateModal({
                 href={certificate.verifyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-pill-primary inline-flex items-center gap-2 text-xs uppercase"
+                className="btn-liquid-primary !py-2 !px-4 text-xs uppercase"
               >
                 <span>Xác minh chứng chỉ</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />

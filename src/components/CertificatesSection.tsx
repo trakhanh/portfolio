@@ -6,7 +6,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { CertificateItem } from "@/types/portfolio";
 import { CertificateModal } from "./CertificateModal";
 import { motion } from "motion/react";
-import { Award, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export function CertificatesSection() {
   const { content } = useLanguage();
@@ -20,14 +20,19 @@ export function CertificatesSection() {
   };
 
   return (
-    <section id="proof" className="py-24 sm:py-32 bg-[#000000] relative">
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-8">
-        {/* Section Headline Block (Two-column asymmetrical rhythm from DESIGN.md) */}
+    <section id="proof" className="py-24 sm:py-32 bg-[#000000] relative overflow-hidden">
+      {/* Background subtle fluid glow */}
+      <div className="absolute top-1/2 right-1/4 w-[450px] h-[450px] rounded-full bg-[#8052ff]/8 blur-[130px] pointer-events-none fluid-blob-iris" />
+
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 relative z-10">
+        {/* Section Headline Block */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-20 items-start">
           <div className="lg:col-span-7">
-            <span className="text-[13px] font-sans font-semibold uppercase tracking-[0.1em] text-[#ffb829] block mb-3">
-              {certificates.eyebrow}
-            </span>
+            <div className="inline-flex items-center gap-2 mb-3 px-3 py-1 liquid-glass-tag">
+              <span className="text-[12px] font-sans font-semibold uppercase tracking-[0.1em] text-[#ffb829]">
+                {certificates.eyebrow}
+              </span>
+            </div>
             <h2 className="text-3xl sm:text-5xl lg:text-[54px] font-display text-white tracking-[-0.04em] leading-[1.08]">
               {certificates.title}
             </h2>
@@ -40,7 +45,7 @@ export function CertificatesSection() {
           </div>
         </div>
 
-        {/* Certificates Grid */}
+        {/* Certificates Grid (Liquid Glass Cards) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {certificates.items.map((cert, idx) => (
             <motion.div
@@ -49,12 +54,12 @@ export function CertificatesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="group flex flex-col justify-between rounded-3xl bg-[#08080c] border border-white/5 hover:border-white/20 transition-all duration-300 overflow-hidden cursor-pointer"
+              className="liquid-glass-card group flex flex-col justify-between overflow-hidden cursor-pointer"
               onClick={() => handleOpenCert(cert)}
             >
               <div>
-                {/* Thumbnail Image */}
-                <div className="relative aspect-[16/10] w-full bg-[#000000] overflow-hidden">
+                {/* Thumbnail Image with Glass Overlay */}
+                <div className="relative aspect-[16/10] w-full bg-[#000000] overflow-hidden border-b border-white/10">
                   <Image
                     src={cert.image}
                     alt={cert.title}
@@ -63,14 +68,14 @@ export function CertificatesSection() {
                     className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100"
                   />
                   <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 text-[11px] font-mono bg-[#000000]/80 backdrop-blur-md text-[#ffb829] rounded-full border border-white/10">
+                    <span className="px-3 py-1 text-[11px] font-mono text-[#ffb829] liquid-glass-tag">
                       {cert.date}
                     </span>
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6 sm:p-7">
+                <div className="p-7">
                   <span className="text-xs font-mono text-[#8052ff] uppercase tracking-wider block mb-2 font-medium">
                     {cert.issuer}
                   </span>
@@ -84,12 +89,12 @@ export function CertificatesSection() {
               </div>
 
               {/* Action Button */}
-              <div className="p-6 sm:p-7 pt-0 border-t border-white/5 mt-4 flex items-center justify-between">
+              <div className="p-7 pt-0 border-t border-white/10 mt-4 flex items-center justify-between">
                 <span className="text-xs font-sans font-medium uppercase tracking-wider text-white group-hover:text-[#8052ff] flex items-center gap-1.5 transition-colors">
                   <span>{certificates.viewCredential || "Xem chi tiết"}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </span>
-                <span className="text-[11px] font-mono text-[#9a9a9a]">
+                <span className="text-[11px] font-mono text-[#a0a0aa]">
                   VERIFIED
                 </span>
               </div>

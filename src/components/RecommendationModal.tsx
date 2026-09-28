@@ -29,7 +29,7 @@ export function RecommendationModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl p-6 sm:p-8 bg-[#08080c] border border-white/10 rounded-3xl text-white">
+      <DialogContent className="max-w-4xl p-6 sm:p-8 liquid-glass-card !bg-[#0c0c14]/92 !backdrop-blur-3xl border border-white/20 text-white shadow-[0_30px_90px_rgba(0,0,0,0.85)]">
         <DialogHeader className="border-b border-white/10 pb-4">
           <div className="flex items-center gap-2 text-[#8052ff]">
             <FileCheck2 className="w-5 h-5" />
@@ -45,21 +45,21 @@ export function RecommendationModal({
         {/* Toolbar */}
         <Tabs defaultValue="p1" className="w-full">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3 pt-2">
-            <TabsList className="bg-white/5 border border-white/10 rounded-full p-1">
-              <TabsTrigger value="p1" className="rounded-full data-[state=active]:bg-[#8052ff] data-[state=active]:text-white">
+            <TabsList className="liquid-glass-nav p-1 bg-white/[0.04]">
+              <TabsTrigger value="p1" className="rounded-full data-[state=active]:bg-[#8052ff] data-[state=active]:text-white data-[state=active]:shadow-[0_2px_12px_rgba(128,82,255,0.4)]">
                 Trang 01
               </TabsTrigger>
-              <TabsTrigger value="p2" className="rounded-full data-[state=active]:bg-[#8052ff] data-[state=active]:text-white">
+              <TabsTrigger value="p2" className="rounded-full data-[state=active]:bg-[#8052ff] data-[state=active]:text-white data-[state=active]:shadow-[0_2px_12px_rgba(128,82,255,0.4)]">
                 Trang 02
               </TabsTrigger>
             </TabsList>
 
             <div className="flex items-center gap-3">
-              <div className="flex items-center border border-white/10 rounded-full px-2 py-1 bg-white/5">
+              <div className="flex items-center liquid-glass-tag px-2 py-1">
                 <button
                   type="button"
                   onClick={handleZoomOut}
-                  className="p-1 text-[#9a9a9a] hover:text-white"
+                  className="p-1 text-[#a0a0aa] hover:text-white"
                   title="Thu nhỏ"
                 >
                   <ZoomOut className="w-4 h-4" />
@@ -70,7 +70,7 @@ export function RecommendationModal({
                 <button
                   type="button"
                   onClick={handleZoomIn}
-                  className="p-1 text-[#9a9a9a] hover:text-white"
+                  className="p-1 text-[#a0a0aa] hover:text-white"
                   title="Phóng to"
                 >
                   <ZoomIn className="w-4 h-4" />
@@ -78,7 +78,7 @@ export function RecommendationModal({
                 <button
                   type="button"
                   onClick={handleResetZoom}
-                  className="p-1 ml-1 text-[#9a9a9a] hover:text-white border-l border-white/10"
+                  className="p-1 ml-1 text-[#a0a0aa] hover:text-white border-l border-white/10"
                   title="Đặt lại"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
@@ -90,7 +90,7 @@ export function RecommendationModal({
                 target="_blank"
                 rel="noopener noreferrer"
                 download
-                className="btn-pill-primary inline-flex items-center gap-1.5 text-xs uppercase"
+                className="btn-liquid-primary !py-2 !px-4 text-xs uppercase"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Tải PDF</span>
@@ -99,7 +99,7 @@ export function RecommendationModal({
           </div>
 
           {/* Letter Image Viewport */}
-          <div className="mt-4 overflow-auto max-h-[64vh] rounded-2xl bg-[#000000] border border-white/5 flex items-center justify-center p-4">
+          <div className="mt-4 overflow-auto max-h-[64vh] rounded-2xl bg-[#000000]/60 border border-white/10 flex items-center justify-center p-4">
             <TabsContent value="p1" className="m-0 focus:outline-none">
               <div
                 style={{ transform: `scale(${zoom})`, transformOrigin: "top center" }}
