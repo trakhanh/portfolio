@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { ArrowUp } from "lucide-react";
 
@@ -17,8 +18,16 @@ export function Footer() {
       <div className="max-w-[1280px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
         {/* Brand & Copyright */}
         <div className="flex items-center gap-3">
-          <span className="w-2 h-2 rounded-full bg-[#8052ff]" />
-          <span>{footer.copyright || "© 2026 Trà Nguyễn Gia Khánh."}</span>
+          <Image
+            src="/img/logo-gk.svg"
+            alt="Logo GK"
+            width={22}
+            height={22}
+            className="w-5 h-5 object-contain"
+          />
+          <span className="text-white/90 font-normal">Trà Nguyễn Gia Khánh</span>
+          <span className="text-white/20">•</span>
+          <span>{footer.copyright || "© 2026. All rights reserved."}</span>
         </div>
 
         {/* Built With */}

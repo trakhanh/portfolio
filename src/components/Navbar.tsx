@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion, AnimatePresence } from "motion/react";
@@ -49,36 +50,26 @@ export function Navbar() {
           {/* Logo Lockup */}
           <Link
             href="/#top"
-            className="flex items-center gap-3 group focus:outline-none"
-            aria-label="Gia Khánh"
+            className="flex items-center gap-3.5 group focus:outline-none"
+            aria-label="Trà Nguyễn Gia Khánh — Trang chủ"
           >
-            {/* Triangular glyph brand mark */}
-            <div className="w-7 h-7 relative flex items-center justify-center">
-              <svg
-                viewBox="0 0 24 24"
-                className="w-6 h-6 transform group-hover:rotate-12 transition-transform duration-300"
-              >
-                <defs>
-                  <linearGradient id="dalaLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#8052ff" />
-                    <stop offset="100%" stopColor="#15846e" />
-                  </linearGradient>
-                </defs>
-                <polygon
-                  points="12,2 22,20 2,20"
-                  fill="none"
-                  stroke="url(#dalaLogoGrad)"
-                  strokeWidth="2.5"
-                />
-                <circle cx="12" cy="13" r="2.5" fill="#8052ff" />
-              </svg>
+            {/* Authentic GK Monogram Logo */}
+            <div className="w-9 h-9 relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/img/logo-gk.svg"
+                alt="Logo GK"
+                width={36}
+                height={36}
+                className="w-8 h-8 object-contain drop-shadow-[0_0_12px_rgba(128,82,255,0.4)] group-hover:drop-shadow-[0_0_18px_rgba(0,255,136,0.6)] transition-all duration-300"
+                priority
+              />
             </div>
-            <div className="flex items-baseline gap-2">
-              <span className="font-normal text-base text-white tracking-tight">
+            <div className="flex flex-col">
+              <span className="font-normal text-base text-white tracking-tight leading-none group-hover:text-[#8052ff] transition-colors">
                 Gia Khánh
               </span>
-              <span className="text-[11px] font-extralight text-[#9a9a9a] hidden sm:inline">
-                / AI × ERP
+              <span className="text-[11px] font-extralight text-[#9a9a9a] tracking-wider mt-1 uppercase">
+                AI · ERP · R&amp;D
               </span>
             </div>
           </Link>
