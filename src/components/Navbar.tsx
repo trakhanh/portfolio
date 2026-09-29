@@ -14,6 +14,10 @@ const SECTION_IDS = ["skills", "systems", "experience", "projects", "proof", "co
 
 export function Navbar({ onHome = true }: { onHome?: boolean }) {
   const { locale, toggleLocale, content, ui } = useLanguage();
+  // The page switches language as a transition; the pill answers the tap at once.
+  const [pillLocale, setPillLocale] = useState<typeof locale | null>(null);
+  const pill = pillLocale ?? locale;
+  useEffect(() => setPillLocale(null), [locale]);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [active, setActive] = useState<string>("");
@@ -97,19 +101,30 @@ export function Navbar({ onHome = true }: { onHome?: boolean }) {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={toggleLocale}
+            onClick={() => {
+              setPillLocale(pill === "vi" ? "en" : "vi");
+              toggleLocale();
+            }}
             aria-label={ui.language}
-            className="glass flex h-9 cursor-pointer items-center !rounded-md p-1 text-[12px] font-medium tracking-[0.12em]"
+            className="glass relative isolate flex h-9 cursor-pointer items-center !rounded-md p-1 text-[12px] font-medium tracking-[0.12em]"
           >
+            {/* Plain CSS slide: a layoutId pill made motion re-measure every animated
+                element on the page during the language switch. */}
+            <span
+              aria-hidden
+              className={cn(
+                "bg-signal absolute top-1 bottom-1 left-1 -z-10 w-9 rounded-[4px] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                pill === "en" && "translate-x-9",
+              )}
+            />
             {(["vi", "en"] as const).map((l) => (
               <span
                 key={l}
                 className={cn(
-                  "relative isolate grid h-full w-9 place-items-center uppercase transition-colors",
-                  locale === l ? "text-abyss" : "text-silver",
+                  "grid h-full w-9 place-items-center uppercase transition-colors",
+                  pill === l ? "text-abyss" : "text-silver",
                 )}
               >
-                {locale === l && <motion.span layoutId="locale-pill" className="bg-signal absolute inset-0 -z-10 rounded-[4px]" />}
                 {l}
               </span>
             ))}

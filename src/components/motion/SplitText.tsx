@@ -25,7 +25,11 @@ export function SplitText({ text, as = "h2", className, delay = 0, stagger = 0.0
     : { initial: "hidden", whileInView: "show", viewport: { once: true, margin: "0px 0px -10% 0px" } };
 
   return (
+    // Keyed by text: the words only rise when their parent enters view, which
+    // happens once. Without a fresh parent, a language switch left the new
+    // words stuck in "hidden" and headings vanished.
     <Tag
+      key={text}
       className={cn(className)}
       aria-label={text}
       {...trigger}

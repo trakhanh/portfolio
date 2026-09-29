@@ -33,6 +33,7 @@ export function SkillsSection() {
                 <p className="label-caps mt-4">{area.note}</p>
                 <p className="mt-5 max-w-[62ch] text-silver">{area.description}</p>
                 <motion.ul
+                  key={area.capabilities.join("|")}
                   className="mt-auto flex flex-wrap gap-2 pt-10"
                   initial="hidden"
                   whileInView="show"

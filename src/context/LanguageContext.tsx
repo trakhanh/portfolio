@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, startTransition, useContext, useEffect, useLayoutEffect, useState } from "react";
 import { Locale, PortfolioContent, CaseStudyData } from "@/types/portfolio";
 import { PORTFOLIO_CONTENT } from "@/data/portfolio";
 import { PROJECT_CASES } from "@/data/project-cases";
@@ -22,20 +22,24 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     try {
       const saved = localStorage.getItem("preferred_language");
-      if (saved === "vi" || saved === "en") {
-        setLocaleState(saved);
-        document.documentElement.lang = saved;
-      }
+      if (saved === "vi" || saved === "en") setLocaleState(saved);
     } catch {
       // Ignore localStorage errors
     }
   }, []);
 
+  // Changing <html lang> restyles the whole document. Doing it in the same
+  // commit as the new text folds that into one style pass instead of two.
+  useLayoutEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
   const setLocale = (newLocale: Locale) => {
-    setLocaleState(newLocale);
+    // Re-rendering every section in the new language is a big render; as a
+    // transition React slices it up, so taps and animations keep running.
+    startTransition(() => setLocaleState(newLocale));
     try {
       localStorage.setItem("preferred_language", newLocale);
-      document.documentElement.lang = newLocale;
     } catch {
       // Ignore localStorage errors
     }

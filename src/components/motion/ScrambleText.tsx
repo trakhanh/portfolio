@@ -11,9 +11,11 @@ export function ScrambleText({ text, className, duration = 900 }: { text: string
   const inView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
   const reduce = useReducedMotion();
   const [out, setOut] = useState(text);
+  const played = useRef(false);
 
   useEffect(() => {
-    if (!inView || reduce) {
+    // Scramble only on first sight; a later text change (language switch) just swaps.
+    if (!inView || reduce || played.current) {
       setOut(text);
       return;
     }
@@ -29,6 +31,7 @@ export function ScrambleText({ text, className, duration = 900 }: { text: string
       }
       setOut(s);
       if (p < 1) raf = requestAnimationFrame(tick);
+      else played.current = true;
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
