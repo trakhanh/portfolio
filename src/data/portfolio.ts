@@ -448,7 +448,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "eOffice Sun Media — Văn phòng điện tử nội bộ",
           "description": "Tự viết từ đầu ứng dụng web nội bộ của Sun Media: nhân sự, nghỉ phép và chấm công, tài chính dự án, KPI, tuyển dụng, hành chính và truyền thông nội bộ trong một hệ thống, có duyệt nhiều bước, ma trận phân quyền, nhật ký thao tác và chatbot nội quy dùng Gemini.",
           "result": "146 bảng · 51 nhóm API · ~150 màn hình · ~4.800 test",
-          "image": "./img/projects-v4/hrm-application.webp",
+          "image": "./img/projects-v4/eoffice-sunmedia.webp",
           "tags": [
             "React 19",
             "TypeScript",
@@ -1312,7 +1312,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "eOffice Sun Media — internal digital office",
           "description": "Wrote Sun Media's internal web app from scratch: HR, leave and attendance, project finance, KPIs, recruitment, administration and internal communications in one system, with multi-step approvals, a permission matrix, an audit log and a Gemini policy chatbot.",
           "result": "146 tables · 51 API groups · ~150 screens · ~4,800 tests",
-          "image": "./img/projects-v4/hrm-application.webp",
+          "image": "./img/projects-v4/eoffice-sunmedia.webp",
           "tags": [
             "React 19",
             "TypeScript",

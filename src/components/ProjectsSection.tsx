@@ -8,6 +8,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { asset } from "@/data/ui-strings";
 import type { ProjectItem } from "@/types/portfolio";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SectionHeading } from "./SectionHeading";
 import { GlassCard } from "./motion/GlassCard";
@@ -39,7 +40,7 @@ function FeaturedCard({ item, lead }: { item: ProjectItem; lead: boolean }) {
             alt=""
             fill
             sizes={lead ? "(min-width: 1024px) 55vw, 92vw" : "(min-width: 1024px) 18vw, (min-width: 640px) 40vw, 92vw"}
-            className="object-cover transition-transform duration-[1.2s] group-hover:scale-[1.04]"
+            className={cn("object-cover transition-transform duration-[1.2s] group-hover:scale-[1.04]", lead && "object-top")}
           />
         </div>
         <div className={lead ? "flex flex-col p-5 sm:p-8" : "flex min-w-0 flex-1 flex-col p-4 sm:p-5"}>
