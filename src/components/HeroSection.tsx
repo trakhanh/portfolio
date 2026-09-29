@@ -1,16 +1,31 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useAnimationFrame, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ParticleSphere } from "./ParticleSphere";
+import { ParticleSphere, INTRO, INTRO_REVEAL_AT, type Glyph } from "./ParticleSphere";
 import { Magnetic } from "./motion/Magnetic";
 import { CountUp } from "./motion/CountUp";
 import { EASE_OUT } from "./motion/Reveal";
+
+const INTRO_SESSION_KEY = "gk_particle_intro";
+
+/** Decided once per page load (effects may run twice in dev). */
+let introDecision: boolean | null = null;
+function decideIntro(): boolean {
+  if (introDecision !== null) return introDecision;
+  let play = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  try {
+    if (sessionStorage.getItem(INTRO_SESSION_KEY)) play = false;
+    else if (play) sessionStorage.setItem(INTRO_SESSION_KEY, "1");
+  } catch {}
+  introDecision = play;
+  return play;
+}
 
 /** "TRÀ NGUYỄN GIA KHÁNH" → ["Trà Nguyễn", "Gia Khánh"] */
 function nameLines(name: string, locale: string): [string, string] {
@@ -21,21 +36,56 @@ function nameLines(name: string, locale: string): [string, string] {
   return [words.slice(0, -2).join(" "), words.slice(-2).join(" ")];
 }
 
-/** Letters rise out of a blur, flash signal-cyan, then settle. */
-function NameLine({ text, delay, accent, ready }: { text: string; delay: number; accent?: boolean; ready: boolean }) {
+/**
+ * One line of the name. In particle mode the letters simply fade in over the
+ * particle lettering; otherwise they rise out of a blur, flash cyan, settle.
+ */
+function NameLine({
+  text,
+  delay,
+  accent,
+  ready,
+  particleMode,
+}: {
+  text: string;
+  delay: number;
+  accent?: boolean;
+  ready: boolean;
+  particleMode: boolean;
+}) {
   let n = 0;
+  const settled = accent ? "#3ee6d4" : "#ffffff";
   return (
-    <span className={cn("block whitespace-nowrap", accent && "[text-shadow:0_0_60px_rgba(62,230,212,0.35)]")}>
+    <span data-name-line className={cn("block whitespace-nowrap", accent && "[text-shadow:0_0_60px_rgba(62,230,212,0.35)]")}>
       {text.split(" ").map((word, wi, arr) => (
         <span key={`${word}-${wi}`} className="inline-block">
           {Array.from(word).map((ch) => {
             const i = n++;
-            return (
+            return particleMode ? (
               <motion.span
-                key={i}
+                key={`p${i}`}
+                data-ch
+                className="inline-block"
+                initial={{ opacity: 0, color: "#3ee6d4" }}
+                animate={ready ? { opacity: 1, color: settled } : undefined}
+                transition={{
+                  opacity: { duration: 0.7, delay: delay + i * 0.02, ease: "easeOut" },
+                  color: { duration: 1.2, delay: delay + i * 0.02 + 0.2 },
+                }}
+              >
+                {ch}
+              </motion.span>
+            ) : (
+              <motion.span
+                key={`n${i}`}
+                data-ch
                 className="inline-block"
                 initial={{ opacity: 0, y: "0.35em", filter: "blur(14px)", color: "#3ee6d4" }}
-                animate={ready ? { opacity: 1, y: "0em", filter: "blur(0px)", transitionEnd: { filter: "none" }, color: accent ? "#3ee6d4" : "#ffffff" } : undefined}
+                animate={
+                  ready
+                    ? { opacity: 1, y: "0em", filter: "blur(0px)", transitionEnd: { filter: "none" }, color: settled }
+                    : undefined
+                }
                 transition={{ duration: 0.9, delay: delay + i * 0.045, ease: EASE_OUT, color: { duration: 1.4, delay: delay + i * 0.045 + 0.3 } }}
               >
                 {ch}
@@ -91,24 +141,48 @@ function TypeRotator({ words, start }: { words: string[]; start: boolean }) {
   );
 }
 
-const ORBITERS = [
-  { icon: "openai.svg", label: "ChatGPT" },
-  { icon: "anthropic.svg", label: "Claude" },
-  { icon: "python.svg", label: "Python" },
-  { icon: "n8n.svg", label: "n8n" },
-  { icon: "googlegemini.svg", label: "Gemini" },
-  { icon: "pytorch.svg", label: "PyTorch" },
-  { icon: "googleappsscript.svg", label: "Apps Script" },
+/* ------------------------------------------------------------------ orbit */
+
+interface RingSpec {
+  /** radii as a share of the hero box, capped in px */
+  rx: number;
+  ry: number;
+  maxRx: number;
+  maxRy: number;
+  tilt: number; // degrees
+  speed: number; // radians per second (sign = direction)
+  tone: "signal" | "indigo";
+}
+
+const RINGS: RingSpec[] = [
+  { rx: 0.45, ry: 0.27, maxRx: 760, maxRy: 235, tilt: -9, speed: 0.1, tone: "signal" },
+  { rx: 0.37, ry: 0.19, maxRx: 620, maxRy: 165, tilt: 13, speed: -0.14, tone: "indigo" },
 ];
 
+const ORBITERS = [
+  { icon: "openai.svg", label: "ChatGPT", kind: "LLM", ring: 0 },
+  { icon: "python.svg", label: "Python", kind: "Data", ring: 0 },
+  { icon: "anthropic.svg", label: "Claude", kind: "LLM", ring: 0 },
+  { icon: "n8n.svg", label: "n8n", kind: "Automation", ring: 0 },
+  { icon: "googlegemini.svg", label: "Gemini", kind: "Multimodal", ring: 1 },
+  { icon: "pytorch.svg", label: "PyTorch", kind: "Deep learning", ring: 1 },
+  { icon: "googleappsscript.svg", label: "Apps Script", kind: "Workflow", ring: 1 },
+];
+
+const TRAIL = 16;
+const TONE = { signal: "62,230,212", indigo: "124,140,255" } as const;
+
 /**
- * Tool badges travelling an inclined elliptical orbit around the orb.
- * Badges on the near side grow and brighten; the far side recedes.
+ * Gyroscope of two inclined orbits around the orb. Each ring fades toward its
+ * far side, carries a comet with a glowing tail, and ferries tool badges that
+ * grow and light up on the near side, recede on the far side, and slip behind
+ * the copy while crossing the centre column.
  */
-function Orbit({ ready }: { ready: boolean }) {
+function Orbit({ ready, delay }: { ready: boolean; delay: number }) {
   const reduce = useReducedMotion();
   const boxRef = useRef<HTMLDivElement>(null);
   const chipRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const cometRefs = useRef<(SVGCircleElement | null)[][]>(RINGS.map(() => []));
   const [size, setSize] = useState({ w: 0, h: 0 });
 
   useEffect(() => {
@@ -119,25 +193,47 @@ function Orbit({ ready }: { ready: boolean }) {
     return () => ro.disconnect();
   }, []);
 
-  const rx = Math.min(size.w * 0.45, 760);
-  const ry = Math.min(size.h * 0.26, 230);
-  const tilt = (-9 * Math.PI) / 180;
+  const geo = RINGS.map((r) => ({
+    rx: Math.min(size.w * r.rx, r.maxRx),
+    ry: Math.min(size.h * r.ry, r.maxRy),
+    rad: (r.tilt * Math.PI) / 180,
+  }));
+  const cy = size.h * 0.44;
+  const perRing = RINGS.map((_, ri) => ORBITERS.filter((o) => o.ring === ri).length);
+  const slotOf = ORBITERS.map((o, i) => ORBITERS.slice(0, i).filter((p) => p.ring === o.ring).length);
 
   useAnimationFrame((t) => {
     const time = reduce ? 0 : t / 1000;
+
+    // Comets with trailing sparks (each ring's local, un-tilted frame)
+    RINGS.forEach((ring, ri) => {
+      const { rx, ry } = geo[ri];
+      const head = time * ring.speed * 2.4 + ri * 2;
+      cometRefs.current[ri].forEach((c, k) => {
+        if (!c) return;
+        const a = head - Math.sign(ring.speed) * k * 0.035;
+        c.setAttribute("cx", String(Math.cos(a) * rx));
+        c.setAttribute("cy", String(Math.sin(a) * ry));
+      });
+    });
+
+    // Badges
     chipRefs.current.forEach((el, i) => {
       if (!el) return;
-      const a = time * 0.11 + (i / ORBITERS.length) * Math.PI * 2;
+      const ri = ORBITERS[i].ring;
+      const { rx, ry, rad } = geo[ri];
+      const a = time * RINGS[ri].speed + (slotOf[i] / perRing[ri]) * Math.PI * 2 + ri * 0.7;
       const ex = Math.cos(a) * rx;
       const ey = Math.sin(a) * ry;
-      const x = ex * Math.cos(tilt) - ey * Math.sin(tilt);
-      const y = ex * Math.sin(tilt) + ey * Math.cos(tilt);
+      const x = ex * Math.cos(rad) - ey * Math.sin(rad);
+      const y = ex * Math.sin(rad) + ey * Math.cos(rad);
       const depth = (Math.sin(a) + 1) / 2; // 1 = nearest the viewer
-      el.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px) scale(${0.72 + depth * 0.36})`;
-      // Fade out while crossing the central text column so badges never cover copy or buttons.
       const clear = Math.min(1, Math.max(0, (Math.abs(x) - rx * 0.42) / (rx * 0.18)));
-      el.style.opacity = String((0.25 + depth * 0.75) * clear);
-      el.style.filter = depth < 0.35 ? `blur(${(0.35 - depth) * 5}px)` : "none";
+      el.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px) scale(${0.72 + depth * 0.42})`;
+      el.style.opacity = String((0.18 + depth * 0.82) * clear);
+      el.style.zIndex = String(Math.round(depth * 10));
+      el.style.filter = depth < 0.3 ? `blur(${(0.3 - depth) * 6}px)` : "none";
+      el.style.setProperty("--lit", depth.toFixed(3));
     });
   });
 
@@ -145,55 +241,116 @@ function Orbit({ ready }: { ready: boolean }) {
     <div ref={boxRef} aria-hidden className="pointer-events-none absolute inset-0">
       {size.w > 0 && (
         <motion.svg
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.92 }}
           animate={ready ? { opacity: 1, scale: 1 } : undefined}
-          transition={{ duration: 1.6, delay: 0.4, ease: EASE_OUT }}
+          transition={{ duration: 1.6, delay, ease: EASE_OUT }}
           className="absolute inset-0 hidden size-full overflow-visible lg:block"
         >
-          <g transform={`translate(${size.w / 2} ${size.h * 0.44}) rotate(-9)`}>
-            <ellipse rx={rx} ry={ry} fill="none" stroke="rgba(62,230,212,0.16)" strokeWidth="1" />
-            <ellipse
-              rx={rx}
-              ry={ry}
-              fill="none"
-              stroke="rgba(62,230,212,0.55)"
-              strokeWidth="1.2"
-              strokeDasharray="2 14"
-              className="animate-orbit-dash"
-            />
-            <ellipse rx={rx * 0.78} ry={ry * 0.78} fill="none" stroke="rgba(124,140,255,0.12)" strokeWidth="1" strokeDasharray="1 8" />
-          </g>
+          <defs>
+            {RINGS.map((ring, ri) => (
+              <linearGradient
+                key={ri}
+                id={`orbit-depth-${ri}`}
+                gradientUnits="userSpaceOnUse"
+                x1="0"
+                y1={-geo[ri].ry}
+                x2="0"
+                y2={geo[ri].ry}
+              >
+                <stop offset="0" stopColor={`rgb(${TONE[ring.tone]})`} stopOpacity="0.04" />
+                <stop offset="0.55" stopColor={`rgb(${TONE[ring.tone]})`} stopOpacity="0.22" />
+                <stop offset="1" stopColor={`rgb(${TONE[ring.tone]})`} stopOpacity="0.75" />
+              </linearGradient>
+            ))}
+            <filter id="comet-glow" x="-200%" y="-200%" width="500%" height="500%">
+              <feGaussianBlur stdDeviation="3" result="b" />
+              <feMerge>
+                <feMergeNode in="b" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          {RINGS.map((ring, ri) => {
+            const { rx, ry } = geo[ri];
+            const rgb = TONE[ring.tone];
+            return (
+              <g key={ri} transform={`translate(${size.w / 2} ${cy}) rotate(${ring.tilt})`}>
+                <ellipse rx={rx} ry={ry} fill="none" stroke={`url(#orbit-depth-${ri})`} strokeWidth="1.4" />
+                <ellipse
+                  rx={rx}
+                  ry={ry}
+                  fill="none"
+                  stroke={`url(#orbit-depth-${ri})`}
+                  strokeWidth="3"
+                  strokeDasharray="1 22"
+                  strokeLinecap="round"
+                  className="animate-orbit-dash"
+                  style={{ animationDirection: ring.speed < 0 ? "reverse" : "normal" }}
+                />
+                <g filter="url(#comet-glow)">
+                  {Array.from({ length: TRAIL }, (_, k) => (
+                    <circle
+                      key={k}
+                      ref={(el) => {
+                        cometRefs.current[ri][k] = el;
+                      }}
+                      r={k === 0 ? 3.2 : Math.max(0.6, 2.6 - k * 0.14)}
+                      fill={k === 0 ? "#ffffff" : `rgb(${rgb})`}
+                      opacity={k === 0 ? 1 : Math.max(0.05, 0.85 - k * 0.05)}
+                    />
+                  ))}
+                </g>
+              </g>
+            );
+          })}
         </motion.svg>
       )}
-      <div className="absolute top-[44%] left-1/2 hidden lg:block">
-        {ORBITERS.map((o, i) => (
-          <motion.div
-            key={o.icon}
-            initial={{ opacity: 0 }}
-            animate={ready ? { opacity: 1 } : undefined}
-            transition={{ delay: 1.2 + i * 0.1, duration: 0.8 }}
-            className="absolute top-0 left-0"
-          >
-            <div
-              ref={(el) => {
-                chipRefs.current[i] = el;
-              }}
-              className="flex items-center gap-2 rounded-xl border border-mist/12 bg-deep/85 py-1.5 pr-3 pl-1.5 whitespace-nowrap shadow-[0_18px_40px_-18px_rgba(0,0,0,0.9)] will-change-transform"
+
+      <div className="absolute left-1/2 hidden lg:block" style={{ top: cy }}>
+        {ORBITERS.map((o, i) => {
+          const rgb = TONE[RINGS[o.ring].tone];
+          return (
+            <motion.div
+              key={o.icon}
+              initial={{ opacity: 0 }}
+              animate={ready ? { opacity: 1 } : undefined}
+              transition={{ delay: delay + 0.5 + i * 0.1, duration: 0.8 }}
+              className="absolute top-0 left-0"
             >
-              <span className="grid size-7 place-items-center rounded-lg bg-mist/[0.06]">
-                <Image src={`/img/tool-icons/${o.icon}`} alt="" width={16} height={16} className="size-4 object-contain" />
-              </span>
-              <span className="font-mono text-[11px] text-mist">{o.label}</span>
-            </div>
-          </motion.div>
-        ))}
+              <div
+                ref={(el) => {
+                  chipRefs.current[i] = el;
+                }}
+                style={
+                  {
+                    "--rgb": rgb,
+                    boxShadow:
+                      "0 0 0 1px rgba(var(--rgb), calc(0.12 + var(--lit, 0) * 0.35)), 0 18px 40px -16px rgba(0,0,0,0.9), 0 0 calc(var(--lit, 0) * 34px) -6px rgba(var(--rgb), calc(var(--lit, 0) * 0.55))",
+                  } as React.CSSProperties
+                }
+                className="relative flex items-center gap-3 overflow-hidden rounded-2xl bg-[linear-gradient(180deg,rgba(18,36,48,0.96),rgba(6,14,20,0.96))] py-2 pr-4 pl-2 whitespace-nowrap will-change-transform"
+              >
+                {/* specular top edge */}
+                <span className="absolute inset-x-3 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                <span className="relative grid size-10 place-items-center rounded-xl bg-mist/[0.06] ring-1 ring-[rgba(var(--rgb),0.35)]">
+                  <span className="absolute inset-0 rounded-xl bg-[radial-gradient(circle_at_50%_40%,rgba(var(--rgb),0.35),transparent_70%)] opacity-[var(--lit,0)]" />
+                  <Image src={`/img/tool-icons/${o.icon}`} alt="" width={20} height={20} className="relative size-5 object-contain" />
+                </span>
+                <span className="flex flex-col leading-tight">
+                  <span className="text-[13px] font-medium text-white">{o.label}</span>
+                  <span className="font-mono text-[10px] tracking-[0.08em] text-[rgb(var(--rgb))] uppercase">{o.kind}</span>
+                </span>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
 }
 
 /** Viewfinder corners framing the hero. */
-function HudFrame({ ready }: { ready: boolean }) {
+function HudFrame({ ready, delay }: { ready: boolean; delay: number }) {
   const corners = [
     "top-0 left-0 border-t border-l",
     "top-0 right-0 border-t border-r",
@@ -205,7 +362,7 @@ function HudFrame({ ready }: { ready: boolean }) {
       aria-hidden
       initial={{ opacity: 0, scale: 1.04 }}
       animate={ready ? { opacity: 1, scale: 1 } : undefined}
-      transition={{ duration: 1.2, delay: 0.2, ease: EASE_OUT }}
+      transition={{ duration: 1.2, delay, ease: EASE_OUT }}
       className="pointer-events-none absolute inset-x-5 top-24 bottom-4 hidden sm:inset-x-8 md:block lg:inset-x-12"
     >
       {corners.map((c) => (
@@ -222,12 +379,38 @@ function HudFrame({ ready }: { ready: boolean }) {
   );
 }
 
+/* ------------------------------------------------------------------- hero */
+
 export function HeroSection({ ready = true }: { ready?: boolean }) {
   const { content, ui, locale } = useLanguage();
   const { hero, system } = content;
   const ref = useRef<HTMLElement>(null);
+  const nameRef = useRef<HTMLHeadingElement>(null);
   const [first, last] = nameLines(hero.name, locale);
   const roles = ui.heroRoles.split("|");
+
+  // The particle lettering plays once per browser session.
+  const [particleMode, setParticleMode] = useState<boolean | null>(null);
+  useEffect(() => {
+    setParticleMode(decideIntro());
+  }, []);
+  const go = ready && particleMode !== null;
+  const intro = !!particleMode;
+
+  /** Glyph positions of the real name, for the particles to spell out. */
+  const readGlyphs = useCallback((): Glyph[] => {
+    const h1 = nameRef.current;
+    if (!h1) return [];
+    const cs = getComputedStyle(h1);
+    const font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+    return Array.from(h1.querySelectorAll<HTMLElement>("[data-ch]")).map((el) => {
+      const line = el.closest("[data-name-line]")!.getBoundingClientRect();
+      return { ch: el.textContent ?? "", x: el.getBoundingClientRect().left, lineTop: line.top, lineHeight: line.height, font };
+    });
+  }, []);
+
+  // With the intro, the rest of the hero waits for the particles to settle.
+  const after = intro ? INTRO_REVEAL_AT - 0.4 : 0;
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const sphereScale = useTransform(scrollYProgress, [0, 1], [1, 1.35]);
@@ -237,7 +420,7 @@ export function HeroSection({ ready = true }: { ready?: boolean }) {
 
   const rise = (delay: number) => ({
     initial: { opacity: 0, y: 24, filter: "blur(8px)" },
-    animate: ready ? { opacity: 1, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } } : undefined,
+    animate: go ? { opacity: 1, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } } : undefined,
     transition: { duration: 1, delay, ease: EASE_OUT },
   });
 
@@ -246,25 +429,28 @@ export function HeroSection({ ready = true }: { ready?: boolean }) {
       <motion.div
         aria-hidden
         style={{ scale: sphereScale, opacity: sphereOpacity }}
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={ready ? { opacity: 1, scale: 1 } : undefined}
-        transition={{ duration: 1.8, ease: EASE_OUT }}
+        initial={{ opacity: 0 }}
+        animate={go ? { opacity: 1 } : undefined}
+        transition={{ duration: intro ? 0.3 : 1.4, ease: EASE_OUT }}
         className="absolute inset-0 -z-10 flex items-center justify-center"
       >
-        <div className="aspect-square h-[min(118vw,108svh)]">
-          <ParticleSphere />
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_46%_38%_at_center,rgba(5,13,20,0.6),transparent_74%)]" />
+        <div className="aspect-square h-[min(118vw,108svh)]">{go && <ParticleSphere intro={intro ? readGlyphs : null} />}</div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={go ? { opacity: 1 } : undefined}
+          transition={{ duration: 1.2, delay: intro ? INTRO_REVEAL_AT : 0 }}
+          className="absolute inset-0 bg-[radial-gradient(ellipse_46%_38%_at_center,rgba(5,13,20,0.6),transparent_74%)]"
+        />
       </motion.div>
 
-      <Orbit ready={ready} />
-      <HudFrame ready={ready} />
+      <Orbit ready={go} delay={intro ? INTRO.form + INTRO.hold + 0.4 : 0.4} />
+      <HudFrame ready={go} delay={intro ? INTRO_REVEAL_AT : 0.2} />
 
       <motion.div
         style={{ y: textY, opacity: textOpacity }}
         className="container-auros relative z-10 flex flex-1 flex-col items-center justify-center py-6 text-center"
       >
-        <motion.div {...rise(0.1)} className="glass-chip">
+        <motion.div {...rise(intro ? INTRO_REVEAL_AT : 0.1)} className="glass-chip">
           <span className="relative flex size-2">
             <span className="absolute inline-flex size-full animate-ping rounded-full bg-signal opacity-60" />
             <span className="relative inline-flex size-2 rounded-full bg-signal" />
@@ -273,22 +459,26 @@ export function HeroSection({ ready = true }: { ready?: boolean }) {
         </motion.div>
 
         <h1
+          ref={nameRef}
           aria-label={`${first} ${last}`}
           className="mt-7 text-[clamp(3.4rem,1rem+10vw,8.5rem)] leading-[1.08] font-medium tracking-[-0.025em] sm:mt-6"
         >
-          <NameLine text={first} delay={0.25} ready={ready} />
-          <NameLine text={last} delay={0.55} ready={ready} accent />
+          <NameLine text={first} delay={intro ? INTRO_REVEAL_AT : 0.25} ready={go} particleMode={intro} />
+          <NameLine text={last} delay={intro ? INTRO_REVEAL_AT + 0.1 : 0.55} ready={go} particleMode={intro} accent />
         </h1>
 
-        <motion.p {...rise(0.95)} className="mt-5 text-base sm:text-xl">
-          <TypeRotator words={roles} start={ready} />
+        <motion.p {...rise(after + 0.95)} className="mt-5 text-base sm:text-xl">
+          <TypeRotator words={roles} start={go} />
         </motion.p>
 
-        <motion.p {...rise(1.05)} className="mt-3 max-w-[34ch] text-xl leading-snug tracking-[-0.01em] text-mist sm:text-2xl">
+        <motion.p {...rise(after + 1.05)} className="mt-3 max-w-[34ch] text-xl leading-snug tracking-[-0.01em] text-mist sm:text-2xl">
           {hero.title}
         </motion.p>
 
-        <motion.div {...rise(1.15)} className="mt-8 flex w-full max-w-sm flex-col items-stretch gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:items-center sm:justify-center">
+        <motion.div
+          {...rise(after + 1.15)}
+          className="mt-8 flex w-full max-w-sm flex-col items-stretch gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:items-center sm:justify-center"
+        >
           <Magnetic className="flex sm:inline-flex">
             <Button asChild size="lg" className="w-full sm:w-auto">
               <a href="#projects">
@@ -303,7 +493,7 @@ export function HeroSection({ ready = true }: { ready?: boolean }) {
         </motion.div>
       </motion.div>
 
-      <motion.div {...rise(1.3)} className="relative z-10 container-auros pb-6">
+      <motion.div {...rise(after + 1.3)} className="relative z-10 container-auros pb-6">
         <div className="glass grid grid-cols-3 divide-x divide-mist/10 !rounded-2xl">
           {system.metrics.map((m) => (
             <div key={m.label} className="flex flex-col items-center gap-1.5 px-2 py-4 text-center sm:items-start sm:gap-2 sm:px-8 sm:py-6 sm:text-left">
