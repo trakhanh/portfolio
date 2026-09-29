@@ -1,177 +1,160 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import { ArrowUpRight, Menu } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
-import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, ArrowUpRight, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
+import { BrandMark } from "./BrandMark";
 
-export function Navbar() {
-  const { locale, toggleLocale, content } = useLanguage();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const SECTION_IDS = ["skills", "systems", "experience", "projects", "proof", "contact"] as const;
+
+export function Navbar({ onHome = true }: { onHome?: boolean }) {
+  const { locale, toggleLocale, content, ui } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [active, setActive] = useState<string>("");
+  const { scrollY } = useScroll();
 
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const prev = scrollY.getPrevious() ?? 0;
+    setScrolled(y > 24);
+    if (y > 480 && y > prev + 4) setHidden(true);
+    else if (y < prev - 4 || y <= 480) setHidden(false);
+  });
+
+  const labels: Record<(typeof SECTION_IDS)[number], string> = {
+    skills: ui.navSkills,
+    systems: content.nav.systems,
+    experience: content.nav.experience,
+    projects: content.nav.projects,
+    proof: content.nav.proof,
+    contact: content.nav.contact,
+  };
+
+  // Scroll-spy: highlight the section crossing the upper third of the viewport.
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    if (!onHome) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) if (entry.isIntersecting) setActive(entry.target.id);
+      },
+      { rootMargin: "-35% 0px -60% 0px" },
+    );
+    for (const id of SECTION_IDS) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+    return () => observer.disconnect();
+  }, [onHome]);
 
-  useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileMenuOpen]);
-
-  const navItems = [
-    { id: "systems", label: content.nav.systems },
-    { id: "projects", label: content.nav.projects },
-    { id: "experience", label: content.nav.experience },
-    { id: "proof", label: content.nav.proof },
-    { id: "contact", label: content.nav.contact },
-  ];
+  const href = (id: string) => (onHome ? `#${id}` : `/#${id}`);
 
   return (
-    <>
-      {/* Liquid Glass Header: 80px height, frosted glass with specular highlight */}
-      <header
-        className={`fixed top-0 left-0 w-full z-50 h-20 flex items-center transition-all duration-300 ${
-          scrolled
-            ? "liquid-glass-nav"
-            : "bg-[#000000]/60 backdrop-blur-md border-b border-white/[0.06]"
-        }`}
-      >
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-8 w-full flex items-center justify-between">
-          {/* Brand Logo & Wordmark */}
-          <Link
-            href="/#top"
-            className="flex items-center gap-3.5 group focus:outline-none"
-            aria-label="Gia Khánh Portfolio"
-          >
-            <div className="w-8 h-8 rounded-[6px] bg-white/[0.06] border border-white/15 flex items-center justify-center group-hover:border-[#8052ff] group-hover:shadow-[0_0_15px_rgba(128,82,255,0.5)] transition-all">
-              <Image
-                src="/img/logo-gk.svg"
-                alt="Logo"
-                width={18}
-                height={18}
-                className="w-4 h-4 object-contain"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[13px] font-medium text-white tracking-[0.04em] uppercase group-hover:text-white transition-colors">
-                Gia Khánh
-              </span>
-              <span className="text-[10px] font-mono text-[#ffb829] uppercase tracking-[0.15em]">
-                AI · ERP OS
-              </span>
-            </div>
-          </Link>
+    <motion.header
+      initial={{ y: -90, opacity: 0 }}
+      animate={{ y: hidden ? -90 : 0, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 260, damping: 32 }}
+      className="fixed inset-x-0 top-0 z-50"
+    >
+      <div className="container-auros flex h-20 items-center justify-between gap-4">
+        <Link href={onHome ? "#top" : "/"} className="group flex items-center gap-3" aria-label="Trà Nguyễn Gia Khánh">
+          <BrandMark className="size-9 transition-transform duration-500 group-hover:rotate-[-6deg]" />
+          <span className="hidden text-sm font-medium text-white sm:block">Gia Khánh</span>
+        </Link>
 
-          {/* Center Ghost Navigation Links with Liquid Hover Pill */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2 p-1.5 rounded-[8px] bg-white/[0.03] border border-white/[0.06]">
-            {navItems.map((item) => (
-              <a
-                key={item.id}
-                href={`/#${item.id}`}
-                className="relative px-3.5 py-1.5 rounded-[6px] text-[12px] font-medium uppercase tracking-[0.12em] text-[#bbc7c6] hover:text-white transition-all hover:bg-white/[0.06]"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Right Controls: Language & Liquid Primary Button (6px radius) */}
-          <div className="flex items-center gap-3">
-            {/* Language Switcher in Liquid Glass */}
-            <button
-              onClick={toggleLocale}
-              type="button"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] text-[11px] font-mono text-[#bbc7c6] hover:text-white border border-white/15 bg-white/[0.05] hover:bg-white/10 transition-all cursor-pointer backdrop-blur-md"
-              title="Switch language / Đổi ngôn ngữ"
-            >
-              <Globe className="w-3 h-3 text-[#ffb829]" />
-              <span className={locale === "vi" ? "text-white font-medium" : "text-[#707777]"}>
-                VI
-              </span>
-              <span className="text-white/20">/</span>
-              <span className={locale === "en" ? "text-white font-medium" : "text-[#707777]"}>
-                EN
-              </span>
-            </button>
-
-            {/* Signature Liquid Primary CTA */}
+        <nav
+          aria-label="Primary"
+          className={cn(
+            "hidden items-center gap-1 p-1.5 transition-all duration-500 lg:flex",
+            scrolled ? "glass !rounded-xl" : "rounded-xl border border-transparent",
+          )}
+        >
+          {SECTION_IDS.map((id) => (
             <a
-              href="https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:inline-flex btn-primary-liquid !py-2 !px-4 text-[12px] tracking-[0.08em]"
+              key={id}
+              href={href(id)}
+              className={cn(
+                "relative isolate rounded-md px-3.5 py-2 text-[12px] font-medium tracking-[0.12em] uppercase transition-colors",
+                active === id ? "text-white" : "text-silver hover:text-white",
+              )}
             >
-              <span>{content.hero.cv}</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              {active === id && (
+                <motion.span
+                  layoutId="nav-active"
+                  className="absolute inset-0 -z-10 rounded-md bg-mist/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
+                  transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                />
+              )}
+              {labels[id]}
             </a>
+          ))}
+        </nav>
 
-            {/* Mobile Hamburger Toggle */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              type="button"
-              className="md:hidden flex items-center justify-center w-8 h-8 rounded-[6px] border border-white/15 bg-white/[0.06] text-white hover:border-[#8052ff] transition-all cursor-pointer backdrop-blur-md"
-              aria-label={mobileMenuOpen ? "Đóng menu" : "Mở menu"}
-            >
-              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Drawer (Liquid Glass backdrop blur) */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-[#000000]/92 backdrop-blur-2xl md:hidden flex flex-col justify-between p-8 pt-28"
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={toggleLocale}
+            aria-label={ui.language}
+            className="glass flex h-9 cursor-pointer items-center !rounded-md p-1 text-[12px] font-medium tracking-[0.12em]"
           >
-            <div className="flex flex-col gap-6">
-              <span className="text-[11px] font-mono text-[#ffb829] tracking-[0.15em] uppercase">
-                // AUROS_LIQUID_NAVIGATION
-              </span>
-              <div className="flex flex-col gap-5">
-                {navItems.map((item) => (
-                  <a
-                    key={item.id}
-                    href={`/#${item.id}`}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-2xl font-medium text-white hover:text-[#8052ff] transition-colors"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-8 border-t border-white/10 flex flex-col gap-4">
-              <a
-                href="https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary-liquid w-full justify-center"
+            {(["vi", "en"] as const).map((l) => (
+              <span
+                key={l}
+                className={cn(
+                  "relative isolate grid h-full w-9 place-items-center uppercase transition-colors",
+                  locale === l ? "text-abyss" : "text-silver",
+                )}
               >
-                <span>{content.hero.cv}</span>
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-              <span className="text-xs font-mono text-[#707777] text-center">
-                AI × ERP OPERATING SYSTEM
+                {locale === l && <motion.span layoutId="locale-pill" className="bg-signal absolute inset-0 -z-10 rounded-[4px]" />}
+                {l}
               </span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+            ))}
+          </button>
+
+          <Button asChild size="sm" className="hidden sm:inline-flex">
+            <a href={content.hero.cvUrl} target="_blank" rel="noopener noreferrer">
+              {content.about.cv}
+              <ArrowUpRight />
+            </a>
+          </Button>
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="glass" size="icon" className="size-9 lg:hidden" aria-label={ui.menu}>
+                <Menu />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-full border-mist/10 p-8 pt-24 sm:max-w-sm">
+              <SheetTitle className="label-caps">Menu</SheetTitle>
+              <nav className="flex flex-col">
+                {SECTION_IDS.map((id, i) => (
+                  <SheetClose asChild key={id}>
+                    <motion.a
+                      href={href(id)}
+                      initial={{ opacity: 0, x: 24 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.08 + i * 0.05 }}
+                      className="border-b border-mist/10 py-4 text-2xl font-medium text-white"
+                    >
+                      {labels[id]}
+                    </motion.a>
+                  </SheetClose>
+                ))}
+              </nav>
+              <Button asChild className="mt-auto w-full">
+                <a href={content.hero.cvUrl} target="_blank" rel="noopener noreferrer">
+                  {content.about.cv}
+                  <ArrowUpRight />
+                </a>
+              </Button>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
+    </motion.header>
   );
 }

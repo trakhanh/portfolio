@@ -7,14 +7,14 @@ export interface ProjectLink {
 
 export interface ProjectItem {
   id: string;
-  phase: string;
+  phase: "foundation" | "professional" | string;
   phaseLabel: string;
   title: string;
   description: string;
   result: string;
   image: string;
-  tags: string[];
-  links?: ProjectLink[];
+  tags: readonly string[];
+  links?: readonly ProjectLink[];
 }
 
 export interface ProcessStep {
@@ -30,37 +30,32 @@ export interface TechnologyItem {
 export interface ProjectCase {
   role: string;
   challenge: string;
-  responsibilities: string[];
-  process: ProcessStep[];
-  technologies: TechnologyItem[];
+  responsibilities: readonly string[];
+  process: readonly ProcessStep[];
+  technologies: readonly TechnologyItem[];
   outcome: string;
-  evidence: string[];
+  evidence: readonly string[];
   learning: string;
-  privacy?: string;
   privacyNote?: string;
 }
 
 export interface CertificateItem {
-  id: string;
   title: string;
   issuer: string;
   date: string;
-  image: string;
   description: string;
-  skills: string[];
+  image: string;
+  tags: readonly string[];
   verifyUrl: string;
+  courseUrl?: string;
 }
 
 export interface ExperienceItem {
-  role: string;
+  date: string;
   company: string;
-  period: string;
-  location?: string;
-  summary?: string;
-  highlights: string[];
-  tags: string[];
-  verifiedNote?: string;
-  hasRecommendation?: boolean;
+  role: string;
+  current: boolean;
+  highlights: readonly string[];
 }
 
 export interface SystemStage {
@@ -68,34 +63,49 @@ export interface SystemStage {
   label: string;
   title: string;
   description: string;
-  tags: string[];
+  tags: readonly string[];
 }
 
-export interface ToolItem {
-  name: string;
-  category: string;
-  icon: string;
+export interface Metric {
+  value: string;
+  label: string;
+}
+
+export interface WorkArea {
+  index: string;
+  title: string;
+  description: string;
+  capabilities: readonly string[];
+  note: string;
+}
+
+export interface Recommendation {
+  eyebrow: string;
+  title: string;
+  description: string;
+  issuer: string;
+  issuerRole: string;
+  date: string;
+  highlights: readonly string[];
+  preview: string;
+  pages: readonly string[];
+  previewAlt: string;
+  file: string;
+  view: string;
+  download: string;
+  modalTitle: string;
+  pageLabel: string;
+  close: string;
 }
 
 export interface PortfolioContent {
-  meta: {
-    title: string;
-    description: string;
-  };
+  meta: { title: string; description: string };
   nav: {
     systems: string;
     experience: string;
     projects: string;
     proof: string;
     contact: string;
-  };
-  disclosure: {
-    profileEyebrow: string;
-    profileTitle: string;
-    profileOpen: string;
-    profileClose: string;
-    capabilityOpen: string;
-    capabilityClose: string;
   };
   hero: {
     eyebrow: string;
@@ -108,111 +118,96 @@ export interface PortfolioContent {
     cvUrl: string;
     status: string;
     footnote: string;
-    profileLabel: string;
-    profileDirection: string;
-    profileTitle: string;
-    profileAreas: { title: string; meta: string }[];
-    profileRouteLabel: string;
-    profileRoute: string[];
-    profileMetrics: string[];
+    profileAreas: readonly { title: string; meta: string }[];
+    profileRoute: readonly string[];
   };
   system: {
     eyebrow: string;
     status: string;
     title: string;
     intro: string;
-    stages: SystemStage[];
+    stages: readonly SystemStage[];
     tools: {
       eyebrow: string;
       title: string;
       intro: string;
-      categories?: {
-        id: string;
-        name: string;
-        items: string[];
-      }[];
-      groups?: {
-        index: string;
-        title: string;
-        items: string[];
-      }[];
+      groups: readonly { index: string; title: string; items: readonly string[] }[];
     };
+    metrics: readonly Metric[];
+    proofNote: string;
   };
-  journey?: {
+  journey: {
     eyebrow: string;
     title: string;
     intro: string;
-    milestones: {
-      year: string;
+    items: readonly {
+      number: string;
+      label: string;
       title: string;
-      role: string;
-      focus: string;
-      highlight: string;
+      description: string;
+      meta: string;
     }[];
   };
-  work?: {
+  work: {
     eyebrow: string;
     title: string;
     intro: string;
-    roles: {
-      title: string;
-      company: string;
-      period: string;
-      bullets: string[];
-      skills: string[];
-    }[];
+    education: {
+      label: string;
+      school: string;
+      degree: string;
+      description: string;
+      focusLabel: string;
+      focus: readonly string[];
+      status: string;
+    };
+    areas: readonly WorkArea[];
   };
   experience: {
     eyebrow: string;
     title: string;
     intro: string;
-    items: ExperienceItem[];
+    recommendation: Recommendation;
+    items: readonly ExperienceItem[];
   };
   projects: {
     eyebrow: string;
     title: string;
     intro: string;
-    filterAll: string;
-    categories: {
-      id: string;
-      label: string;
-    }[];
-    items: ProjectItem[];
+    filters: { all: string; foundation: string; professional: string };
+    items: readonly ProjectItem[];
   };
   certificates: {
     eyebrow: string;
     title: string;
     intro: string;
-    viewCredential: string;
-    items: CertificateItem[];
+    moreLabel: string;
+    moreItems: readonly { code: string; title: string; issuer: string; status: string }[];
+    verify: string;
+    course: string;
+    viewDetails: string;
+    modalSkillsLabel: string;
+    modalIssuerLabel: string;
+    modalDateLabel: string;
+    items: readonly CertificateItem[];
   };
-  about?: {
+  about: {
     eyebrow: string;
     title: string;
     intro: string;
-    paragraphs: string[];
-    skills: {
-      category: string;
-      items: string[];
-    }[];
+    groups: readonly { title: string; items: readonly string[] }[];
+    cv: string;
+    cvUrl: string;
   };
   contact: {
     eyebrow: string;
     title: string;
     intro: string;
-    email: string;
-    phone?: string;
-    linkedin: string;
-    github: string;
-    facebook?: string;
-    cta: string;
-    copied: string;
+    emailLabel: string;
+    phoneLabel: string;
+    socialLabel: string;
   };
-  footer: {
-    copyright: string;
-    builtWith: string;
-    top: string;
-  };
+  footer: string;
 }
 
 export interface CaseStudyData {

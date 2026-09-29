@@ -1,104 +1,97 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
-import { CertificateItem } from "@/types/portfolio";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "./ui/dialog";
-import { Award, ArrowUpRight, Calendar, Building2 } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { certImage } from "@/data/ui-strings";
+import type { CertificateItem } from "@/types/portfolio";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 interface CertificateModalProps {
-  certificate: CertificateItem | null;
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+  items: readonly CertificateItem[];
+  index: number | null;
+  onIndexChange: (index: number | null) => void;
 }
 
-export function CertificateModal({
-  certificate,
-  open,
-  onOpenChange,
-}: CertificateModalProps) {
-  if (!certificate) return null;
+export function CertificateModal({ items, index, onIndexChange }: CertificateModalProps) {
+  const { content, ui } = useLanguage();
+  const cert = index !== null ? items[index] : null;
+  const go = (d: number) => index !== null && onIndexChange((index + d + items.length) % items.length);
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl p-6 sm:p-8 rounded-[16px] bg-[#0c0c14] border border-white/10 text-white max-h-[90vh] overflow-y-auto">
-        <DialogHeader className="border-b border-white/[0.08] pb-4">
-          <div className="flex items-center gap-2 text-[#8052ff]">
-            <Award className="w-5 h-5" />
-            <DialogTitle className="text-xl font-medium text-white">
-              {certificate.title}
-            </DialogTitle>
-          </div>
-          <div className="flex flex-wrap items-center gap-4 pt-2 text-xs font-mono text-[#bbc7c6]">
-            <span className="flex items-center gap-1.5 text-white/90">
-              <Building2 className="w-3.5 h-3.5 text-[#ffb829]" />
-              {certificate.issuer}
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-[#8052ff]" />
-              {certificate.date}
-            </span>
-          </div>
-        </DialogHeader>
+    <Dialog open={cert !== null} onOpenChange={(o) => !o && onIndexChange(null)}>
+      <DialogContent
+        className="max-h-[92vh] overflow-y-auto p-0 sm:max-w-3xl"
+        onKeyDown={(e) => {
+          if (e.key === "ArrowRight") go(1);
+          if (e.key === "ArrowLeft") go(-1);
+        }}
+      >
+        {cert && (
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={cert.title}
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -24 }}
+              transition={{ duration: 0.3 }}
+            >
+              <DialogHeader className="p-6 pr-16 text-left sm:p-8 sm:pr-16">
+                <p className="label-caps">{cert.issuer}</p>
+                <DialogTitle className="text-2xl">{cert.title}</DialogTitle>
+                <DialogDescription>
+                  {content.certificates.modalDateLabel}: <span className="text-lavender">{cert.date}</span>
+                </DialogDescription>
+              </DialogHeader>
 
-        {/* Certificate Image View */}
-        <div className="relative w-full max-h-[48vh] min-h-[220px] my-3 bg-[#000000] rounded-[12px] border border-white/[0.08] flex items-center justify-center overflow-hidden p-2">
-          <Image
-            src={certificate.image}
-            alt={certificate.title}
-            width={700}
-            height={500}
-            className="w-full h-auto max-h-[46vh] object-contain rounded-[6px]"
-            priority
-          />
-        </div>
-
-        {/* Description & Skills */}
-        <div className="flex flex-col gap-4 pt-3 border-t border-white/[0.08]">
-          <p className="text-sm text-body-auros leading-[1.4]">
-            {certificate.description}
-          </p>
-
-          {/* Skills */}
-          {certificate.skills && certificate.skills.length > 0 && (
-            <div>
-              <span className="text-xs font-mono text-[#ffb829] uppercase tracking-wider block mb-2 font-medium">
-                Kỹ năng chứng thực:
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {certificate.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="chip-auros"
-                  >
-                    {skill}
-                  </span>
-                ))}
+              <div className="mx-6 overflow-hidden rounded-xl border border-mist/10 bg-white sm:mx-8">
+                <Image src={certImage(cert.image)} alt={cert.title} width={1200} height={900} className="h-auto max-h-[46vh] w-full object-contain" />
               </div>
-            </div>
-          )}
 
-          {/* Verify Link */}
-          {certificate.verifyUrl && (
-            <div className="pt-2 flex justify-end">
-              <a
-                href={certificate.verifyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary-auros !py-2 !px-4 text-xs uppercase"
-              >
-                <span>Xác minh chứng chỉ</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          )}
-        </div>
+              <div className="flex flex-col gap-6 p-6 sm:p-8">
+                <p className="text-silver">{cert.description}</p>
+                <div>
+                  <p className="label-caps mb-3">{ui.skillsVerified}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {cert.tags.map((t) => (
+                      <Badge key={t}>{t}</Badge>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-mist/10 pt-6">
+                  <div className="flex gap-2">
+                    <Button variant="glass" size="icon" className="size-10" onClick={() => go(-1)} aria-label="Previous">
+                      <ChevronLeft />
+                    </Button>
+                    <Button variant="glass" size="icon" className="size-10" onClick={() => go(1)} aria-label="Next">
+                      <ChevronRight />
+                    </Button>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {cert.courseUrl && (
+                      <Button asChild variant="glass" size="sm">
+                        <a href={cert.courseUrl} target="_blank" rel="noopener noreferrer">
+                          {ui.course}
+                        </a>
+                      </Button>
+                    )}
+                    {cert.verifyUrl && (
+                      <Button asChild size="sm">
+                        <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
+                          {ui.verify}
+                          <ArrowUpRight />
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        )}
       </DialogContent>
     </Dialog>
   );

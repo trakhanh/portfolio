@@ -334,7 +334,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "Hệ thống nhận dạng và đo kích thước vật thể",
           "description": "Đồ án tốt nghiệp ứng dụng YOLOv8, SORT và OpenCV để phát hiện, theo dõi và đo vật thể trên băng chuyền công nghiệp.",
           "result": "Đồ án tốt nghiệp · 9.5/10",
-          "image": "./img/projects-v3/computer-vision-inspection.jpg",
+          "image": "./img/projects-v4/computer-vision-inspection.webp",
           "tags": [
             "Python",
             "YOLOv8",
@@ -359,7 +359,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "Multi-Task Learning Research",
           "description": "Nghiên cứu đồng thời Object Detection, Segmentation và Depth Estimation trên BDD100K và KITTI.",
           "result": "Research notebook",
-          "image": "./img/projects-v3/multi-task-perception.jpg",
+          "image": "./img/projects-v4/multi-task-learning.webp",
           "tags": [
             "PyTorch",
             "BDD100K",
@@ -380,7 +380,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "Ứng dụng đếm ngón tay",
           "description": "Ứng dụng web real-time thử nghiệm CNN, VGG16, ResNet50 và U-Net cho bài toán nhận dạng và phân đoạn ảnh.",
           "result": "Web application prototype",
-          "image": "./img/projects-v3/hand-gesture-vision.jpg",
+          "image": "./img/projects-v4/finger-counting.webp",
           "tags": [
             "Streamlit",
             "CNN",
@@ -405,7 +405,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "Website & Chatbot AI đa kênh",
           "description": "Hỗ trợ xây dựng website chính thức của Bông Trà, tích hợp Chatbot AI trên web cho khách hàng và trên Fanpage tuyển dụng cho ứng viên; kết nối workflow n8n với AI và nguồn dữ liệu để tự động hóa phản hồi.",
           "result": "Customer & recruitment automation",
-          "image": "./img/projects-v3/recruitment-chatbot.jpg",
+          "image": "./img/projects-v4/recruitment-chatbot.webp",
           "tags": [
             "Website",
             "AI Chatbot",
@@ -432,7 +432,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "Công cụ tự động hóa nội bộ",
           "description": "Bộ công cụ gồm hệ thống đặt phòng họp tự động, gửi email bảng lương hàng loạt, FAQ chính sách nhân sự và thu thập đánh giá Google/Food App, được triển khai bằng Google Apps Script và workflow tự động hóa.",
           "result": "HR · administration · feedback workflows",
-          "image": "./img/projects-v3/internal-automation.jpg",
+          "image": "./img/projects-v4/internal-automation.webp",
           "tags": [
             "Apps Script",
             "Sheets API",
@@ -448,7 +448,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "Landing Page Pre-order & Workshop",
           "description": "Thiết lập các Landing Page Marketing cho chương trình Workshop và đặt hàng trà trước, tích hợp cổng thanh toán trực tuyến để giảm thao tác đăng ký và tiếp nhận đơn thủ công.",
           "result": "Marketing funnel · online payment",
-          "image": "./img/projects-v3/preorder-workshop.jpg",
+          "image": "./img/projects-v4/preorder-workshop-web.webp",
           "tags": [
             "Landing Page",
             "Online Payment",
@@ -464,7 +464,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "Ứng dụng HRM theo định hướng ERP",
           "description": "Trực tiếp xây dựng ứng dụng HRM như một sản phẩm chuyển đổi số theo định hướng ERP: số hóa quy trình nhân sự, tập trung dữ liệu, phân quyền theo vai trò, xây dựng giao diện quản trị và kết nối workflow vận hành. Chi tiết module được giới hạn theo phạm vi có thể công khai.",
           "result": "ERP-oriented transformation · HRM product",
-          "image": "./img/projects-v3/erp-hrm.jpg",
+          "image": "./img/projects-v4/hrm-application.webp",
           "tags": [
             "ERP",
             "HRM",
@@ -485,7 +485,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "AI Video Production & Tooling",
           "description": "Ứng dụng ChatGPT, Claude, Gemini, Antigravity và NotebookLM để hỗ trợ research, script, storyboard, asset, voice, tracking và publishing trong quy trình sản xuất video.",
           "result": "Current professional focus",
-          "image": "./img/projects-v3/ai-video-production.jpg",
+          "image": "./img/projects-v4/ai-creative-production.webp",
           "tags": [
             "ChatGPT",
             "Claude",
@@ -1015,7 +1015,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "Object detection and measurement system",
           "description": "A graduation project using YOLOv8, SORT and OpenCV to detect, track and measure objects on an industrial conveyor.",
           "result": "Graduation project · 9.5/10",
-          "image": "./img/projects-v3/computer-vision-inspection.jpg",
+          "image": "./img/projects-v4/computer-vision-inspection.webp",
           "tags": [
             "Python",
             "YOLOv8",
@@ -1040,7 +1040,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "Multi-Task Learning Research",
           "description": "Research combining Object Detection, Segmentation and Depth Estimation on BDD100K and KITTI.",
           "result": "Research notebook",
-          "image": "./img/projects-v3/multi-task-perception.jpg",
+          "image": "./img/projects-v4/multi-task-learning.webp",
           "tags": [
             "PyTorch",
             "BDD100K",
@@ -1061,7 +1061,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "Finger counting application",
           "description": "A real-time web application exploring CNN, VGG16, ResNet50 and U-Net for recognition and image segmentation.",
           "result": "Web application prototype",
-          "image": "./img/projects-v3/hand-gesture-vision.jpg",
+          "image": "./img/projects-v4/finger-counting.webp",
           "tags": [
             "Streamlit",
             "CNN",
@@ -1086,7 +1086,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "Website & multi-channel AI Chatbot",
           "description": "Supported the official Bong Tra website and integrated AI Chatbots for customers on the web and candidates on the recruitment Facebook page, with n8n workflows connecting AI and data sources for automated responses.",
           "result": "Customer & recruitment automation",
-          "image": "./img/projects-v3/recruitment-chatbot.jpg",
+          "image": "./img/projects-v4/recruitment-chatbot.webp",
           "tags": [
             "Website",
             "AI Chatbot",
@@ -1113,7 +1113,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "Internal automation tools",
           "description": "A toolset covering automated meeting-room booking, bulk payroll email delivery, an internal HR-policy FAQ and Google/Food App review collection, implemented with Google Apps Script and automation workflows.",
           "result": "HR · administration · feedback workflows",
-          "image": "./img/projects-v3/internal-automation.jpg",
+          "image": "./img/projects-v4/internal-automation.webp",
           "tags": [
             "Apps Script",
             "Sheets API",
@@ -1129,7 +1129,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "Pre-order & Workshop Landing Pages",
           "description": "Set up Marketing Landing Pages for workshops and tea pre-orders with online-payment integration, reducing manual registration and order-handling steps.",
           "result": "Marketing funnel · online payment",
-          "image": "./img/projects-v3/preorder-workshop.jpg",
+          "image": "./img/projects-v4/preorder-workshop-web.webp",
           "tags": [
             "Landing Page",
             "Online Payment",
@@ -1145,7 +1145,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "ERP-oriented HRM application",
           "description": "Built an HRM application as an ERP-oriented digital-transformation product: digitizing HR processes, centralizing data, implementing role-based access, building administration interfaces and connecting operational workflows. Module details remain limited to publicly shareable information.",
           "result": "ERP-oriented transformation · HRM product",
-          "image": "./img/projects-v3/erp-hrm.jpg",
+          "image": "./img/projects-v4/hrm-application.webp",
           "tags": [
             "ERP",
             "HRM",
@@ -1166,7 +1166,7 @@ export const PORTFOLIO_CONTENT = {
           "title": "AI Video Production & Tooling",
           "description": "Using ChatGPT, Claude, Gemini, Antigravity and NotebookLM to support research, scripts, storyboards, assets, voice, tracking and publishing across the video-production workflow.",
           "result": "Current professional focus",
-          "image": "./img/projects-v3/ai-video-production.jpg",
+          "image": "./img/projects-v4/ai-creative-production.webp",
           "tags": [
             "ChatGPT",
             "Claude",

@@ -1,27 +1,5 @@
-import { SplashLoader } from "@/components/SplashLoader";
-import { Navbar } from "@/components/Navbar";
-import { HeroSection } from "@/components/HeroSection";
-import { SystemSection } from "@/components/SystemSection";
-import { ExperienceSection } from "@/components/ExperienceSection";
-import { ProjectsSection } from "@/components/ProjectsSection";
-import { CertificatesSection } from "@/components/CertificatesSection";
-import { ContactSection } from "@/components/ContactSection";
-import { Footer } from "@/components/Footer";
+import { HomeClient } from "@/components/HomeClient";
 
 export default function HomePage() {
-  return (
-    <div className="min-h-screen flex flex-col bg-[#000000] text-white">
-      <SplashLoader />
-      <Navbar />
-      <main className="flex-1">
-        <HeroSection />
-        <SystemSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <CertificatesSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <HomeClient />;
 }

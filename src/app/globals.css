@@ -1,304 +1,331 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-@layer base {
-  :root {
-    /* Auros Surface Stack + Liquid Glass System */
-    --color-liquid-abyss: #000000;
-    --color-liquid-deep: #08080d;
-    --color-liquid-kelp: #0f0f18;
-    --color-slate-deep: #171724;
-
-    /* Typographic Color Tokens */
-    --color-platinum: #ffffff;
-    --color-silver-mist: #bbc7c6;
-    --color-liquid-mist: #edfffe;
-    --color-ash: #f2f2f2;
-
-    /* Brand Chromatic Accents */
-    --color-electric-iris: #8052ff;
-    --color-saffron-spark: #ffb829;
-    --color-lavender-phosphor: #fde9ff;
-    --color-bioluminescent-cyan: #00e5ff;
-    --color-deep-verdant: #15846e;
-
-    /* Signature Gradients */
-    --gradient-bioluminescent: linear-gradient(90deg, #8052ff 0%, #00e5ff 100%);
-    --gradient-aurora: linear-gradient(90deg, #8052ff 0%, #c084fc 40%, #ffb829 100%);
-
-    /* Radii tokens (Strict: cards 16px, small/buttons 6px) */
-    --radius-cards: 16px;
-    --radius-buttons: 6px;
-    --radius-small: 6px;
-
-    /* System fallbacks */
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 6%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 258 100% 66%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 90%;
-    --muted: 0 0% 8%;
-    --muted-foreground: 0 0% 65%;
-    --border: 0 0% 12%;
-  }
-
-  * {
-    border-color: rgba(255, 255, 255, 0.08);
-  }
-
-  html, body {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-    overflow-x: hidden;
-  }
-}
+@custom-variant dark (&:is(.dark *));
 
 /* ================================================================
-   LIQUID GLASS + AUROS TERMINAL DESIGN SYSTEM
-   Frosted refractive glass, 16px cards, 6px buttons, specular sheen
+   AUROS × LIQUID GLASS
+   Teal surface stack (abyss → deep → kelp), silver/mist type,
+   lavender-phosphor for figures, aurora gradient for the primary CTA.
+   Glass panels float over slow bioluminescent light.
    ================================================================ */
 
-/* Liquid Glass Cards (16px radius, frosted blur, specular top-edge) */
-.liquid-glass-card {
-  background: rgba(15, 15, 24, 0.65);
-  backdrop-filter: blur(24px) saturate(190%);
-  -webkit-backdrop-filter: blur(24px) saturate(190%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-top: 1px solid rgba(255, 255, 255, 0.22);
-  border-left: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 
-    0 16px 40px -10px rgba(0, 0, 0, 0.6),
-    inset 0 1px 1px rgba(255, 255, 255, 0.18),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.4);
-  border-radius: 16px;
+:root {
+  /* Auros palette */
+  --liquid-abyss: #050d14;
+  --liquid-deep: #03080d;
+  --liquid-kelp: #0b1a24;
+  --liquid-mist: #e8f6ff;
+  --platinum: #ffffff;
+  --silver-mist: #93a8b4;
+  --slate-deep: #5b6b75;
+  --lavender-phosphor: #b4c6ff;
+  --biolume: #0a6c8a;
+  --aqua: #b8f6ff;
+  --orchid: #7c8cff;
+  --signal: #3ee6d4;
+  --signal-hover: #72f0e3;
+
+  --gradient-aurora: linear-gradient(90deg, #b8f6ff 0%, #e8f6ff 26.25%, #f4fbff 47.57%, #7c8cff 88.96%);
+  --gradient-biolume: linear-gradient(90deg, #0a6c8a 0%, #b8f6ff 100%);
+
+  /* shadcn semantic tokens mapped onto Auros */
+  --radius: 0.375rem;
+  --background: var(--liquid-abyss);
+  --foreground: var(--platinum);
+  --card: rgba(11, 26, 36, 0.42);
+  --card-foreground: var(--platinum);
+  --popover: var(--liquid-deep);
+  --popover-foreground: var(--platinum);
+  --primary: var(--signal);
+  --primary-foreground: #04121a;
+  --secondary: var(--liquid-kelp);
+  --secondary-foreground: var(--liquid-mist);
+  --muted: var(--liquid-deep);
+  --muted-foreground: var(--silver-mist);
+  --accent: rgba(20, 56, 76, 0.5);
+  --accent-foreground: var(--platinum);
+  --destructive: #ff8a8a;
+  --border: rgba(232, 246, 255, 0.1);
+  --input: rgba(232, 246, 255, 0.14);
+  --ring: var(--signal);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-abyss: var(--liquid-abyss);
+  --color-deep: var(--liquid-deep);
+  --color-kelp: var(--liquid-kelp);
+  --color-mist: var(--liquid-mist);
+  --color-silver: var(--silver-mist);
+  --color-slate: var(--slate-deep);
+  --color-lavender: var(--lavender-phosphor);
+  --color-biolume: var(--biolume);
+  --color-aqua: var(--aqua);
+  --color-orchid: var(--orchid);
+  --color-signal: var(--signal);
+  --color-signal-hover: var(--signal-hover);
+
+  --font-sans: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-code), ui-monospace, "Cascadia Code", monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+
+  --text-display: clamp(2.75rem, 1.4rem + 5.6vw, 6rem);
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.04em;
+  --text-heading-lg: clamp(2.25rem, 1.5rem + 3vw, 3.8rem);
+  --text-heading-lg--line-height: 1;
+  --text-heading-lg--letter-spacing: -0.04em;
+  --text-kinetic: clamp(3.5rem, 1rem + 10vw, 10.5rem);
+  --text-kinetic--line-height: 1;
+  --text-kinetic--letter-spacing: -0.046em;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-padding-top: 96px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--liquid-abyss);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.4;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 500;
+    color: var(--platinum);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--signal);
+    color: var(--liquid-abyss);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------
+   Liquid glass surfaces
+   --------------------------------------------------------------- */
+
+/* Raised glass: kelp-tinted frosted pane with specular top edge. */
+@utility glass {
   position: relative;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.liquid-glass-card:hover {
-  background: rgba(20, 20, 32, 0.78);
-  border-color: rgba(128, 82, 255, 0.4);
-  border-top-color: rgba(255, 255, 255, 0.35);
-  box-shadow: 
-    0 24px 50px -10px rgba(0, 0, 0, 0.75),
-    0 0 30px rgba(128, 82, 255, 0.18),
-    inset 0 1px 2px rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-}
-
-/* Liquid Glass Navigation Bar (Frosted glass with bottom refraction) */
-.liquid-glass-nav {
-  background: rgba(8, 8, 14, 0.72);
-  backdrop-filter: blur(28px) saturate(210%);
-  -webkit-backdrop-filter: blur(28px) saturate(210%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.5),
-    inset 0 1px 1px rgba(255, 255, 255, 0.15);
-}
-
-/* Recessed Liquid Well (Level 1 surface) */
-.liquid-glass-recessed {
-  background: rgba(8, 8, 13, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  isolation: isolate;
   border-radius: 16px;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+  background:
+    linear-gradient(180deg, rgba(232, 246, 255, 0.075) 0%, rgba(232, 246, 255, 0.015) 42%, rgba(0, 0, 0, 0) 100%),
+    rgba(11, 26, 36, 0.36);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  backdrop-filter: blur(22px) saturate(165%);
+  border: 1px solid rgba(232, 246, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.22);
 }
 
-/* Primary Liquid Button (6px radius, Iris -> Cyan gradient with gloss top highlight) */
-.btn-primary-liquid {
-  background: linear-gradient(90deg, #8052ff 0%, #00e5ff 100%);
-  color: #ffffff;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 12px 24px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-  border: none;
-  box-shadow: 
-    0 4px 20px rgba(128, 82, 255, 0.4),
-    inset 0 1px 1px rgba(255, 255, 255, 0.4);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+/* Recessed glass: deeper well, used for wells inside a pane and footer-adjacent panels. */
+@utility glass-deep {
   position: relative;
-  overflow: hidden;
+  border-radius: 16px;
+  background: rgba(3, 8, 13, 0.62);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(232, 246, 255, 0.07);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
-.btn-primary-liquid:hover {
-  box-shadow: 
-    0 8px 30px rgba(128, 82, 255, 0.6),
-    0 0 20px rgba(0, 229, 255, 0.4),
-    inset 0 1px 2px rgba(255, 255, 255, 0.6);
-  transform: translateY(-1.5px);
+/* Opaque glass look without backdrop-filter — for surfaces that move (carousels). */
+@utility glass-solid {
+  position: relative;
+  isolation: isolate;
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg, rgba(232, 246, 255, 0.07) 0%, rgba(232, 246, 255, 0.012) 45%, rgba(0, 0, 0, 0) 100%),
+    rgba(9, 22, 31, 0.92);
+  border: 1px solid rgba(232, 246, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 30px 60px -30px rgba(0, 0, 0, 0.6);
 }
 
-/* Secondary Liquid Glass Button (6px radius, frosted translucent glass) */
-.btn-secondary-liquid {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  color: #ffffff;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 12px 24px;
+/* Small glass chip (6px) for tags and capability labels. */
+@utility glass-chip {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  transition: all 0.25s ease;
-}
-
-.btn-secondary-liquid:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(128, 82, 255, 0.5);
-  border-top-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 
-    0 6px 22px rgba(0, 0, 0, 0.45),
-    0 0 15px rgba(128, 82, 255, 0.2),
-    inset 0 1px 2px rgba(255, 255, 255, 0.25);
-  transform: translateY(-1px);
-}
-
-/* Square Arrow Icon Button in Liquid Glass (32x32, 6px radius) */
-.btn-arrow-liquid {
-  width: 32px;
-  height: 32px;
+  gap: 6px;
   border-radius: 6px;
-  background: rgba(128, 82, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(128, 82, 255, 0.3);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  flex-shrink: 0;
-}
-
-.btn-arrow-liquid:hover {
-  background: #8052ff;
-  border-color: #8052ff;
-  box-shadow: 0 0 16px rgba(128, 82, 255, 0.6);
-  transform: translate(1px, -1px);
-}
-
-/* Micro-Tag / Chip in Liquid Glass (6px radius) */
-.chip-liquid {
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  padding: 4px 10px;
-  font-size: 11px;
-  font-family: var(--font-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #bbc7c6;
-}
-
-/* Uppercase Tracked Section Label / Eyebrow */
-.eyebrow-auros {
+  padding: 5px 10px;
   font-size: 12px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #bbc7c6;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* Auros Typographic Classes (Medium weight only, tight display tracking, line-height 1.0) */
-.heading-display {
-  font-family: var(--font-sans), sans-serif;
-  font-weight: 500;
-  line-height: 1.0;
-  letter-spacing: -0.04em;
-  color: #ffffff;
-}
-
-.heading-sub {
-  font-family: var(--font-sans), sans-serif;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-}
-
-.text-body-auros {
-  font-family: var(--font-sans), sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.4;
-  color: #bbc7c6;
-}
-
-/* Stat counter number */
-.stat-number-auros {
-  font-family: var(--font-sans), sans-serif;
-  font-weight: 500;
-  line-height: 1.0;
-  letter-spacing: -0.04em;
-  color: #ffb829;
-}
-
-.stat-label-auros {
-  font-family: var(--font-sans), sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #bbc7c6;
   line-height: 1.3;
+  color: var(--liquid-mist);
+  background: rgba(232, 246, 255, 0.05);
+  border: 1px solid rgba(232, 246, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-/* Ambient Fluid Aurora Blobs (Slow morphing caustics beneath frosted glass) */
-@keyframes fluidDriftA {
-  0% { transform: translate(0px, 0px) scale(1); }
-  33% { transform: translate(50px, -40px) scale(1.12); }
-  66% { transform: translate(-40px, 30px) scale(0.94); }
-  100% { transform: translate(0px, 0px) scale(1); }
+/* Pointer-tracked specular highlight. GlassCard writes --mx / --my. */
+@utility glass-spotlight {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: var(--spot, 0);
+    transition: opacity 0.35s ease;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(184, 246, 255, 0.13),
+      rgba(124, 140, 255, 0.05) 40%,
+      transparent 70%
+    );
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    padding: 1px;
+    opacity: var(--spot, 0);
+    transition: opacity 0.35s ease;
+    background: radial-gradient(
+      260px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(184, 246, 255, 0.55),
+      rgba(124, 140, 255, 0.25) 45%,
+      transparent 75%
+    );
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
 }
 
-@keyframes fluidDriftB {
-  0% { transform: translate(0px, 0px) scale(1); }
-  33% { transform: translate(-55px, 45px) scale(0.9); }
-  66% { transform: translate(45px, -35px) scale(1.1); }
-  100% { transform: translate(0px, 0px) scale(1); }
+/* Uppercase instrument label — Auros eyebrow. */
+@utility label-caps {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--silver-mist);
 }
 
-.fluid-blob-iris {
-  animation: fluidDriftA 22s ease-in-out infinite alternate;
+@utility text-aurora {
+  background: var(--gradient-aurora);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.fluid-blob-cyan {
-  animation: fluidDriftB 26s ease-in-out infinite alternate;
+@utility bg-aurora {
+  background: var(--gradient-aurora);
+}
+
+@utility container-auros {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 20px;
+  @media (width >= 640px) {
+    padding-inline: 32px;
+  }
+  @media (width >= 1024px) {
+    padding-inline: 48px;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@utility animate-marquee { animation: marquee 60s linear infinite; }
+
+/* Lenis smooth scrolling */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+@utility animate-shimmer { animation: shimmer 1.6s ease-in-out infinite; }
+
+@keyframes orbit-dash {
+  to { stroke-dashoffset: -320; }
+}
+@utility animate-orbit-dash { animation: orbit-dash 14s linear infinite; }
+
+@keyframes border-beam {
+  to { stroke-dashoffset: -100; }
+}
+@utility animate-border-beam { animation: border-beam 9s linear infinite; }
+
+@keyframes cert-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes packet {
+  0% { left: 0%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { left: calc(100% - 8px); opacity: 0; }
 }

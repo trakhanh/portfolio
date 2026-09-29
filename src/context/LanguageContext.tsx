@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { Locale, PortfolioContent, CaseStudyData } from "@/types/portfolio";
 import { PORTFOLIO_CONTENT } from "@/data/portfolio";
 import { PROJECT_CASES } from "@/data/project-cases";
+import { uiStrings, type UiStrings } from "@/data/ui-strings";
 
 interface LanguageContextType {
   locale: Locale;
@@ -11,20 +12,19 @@ interface LanguageContextType {
   toggleLocale: () => void;
   content: PortfolioContent;
   cases: CaseStudyData;
+  ui: UiStrings;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("vi");
-  const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
-    setMounted(true);
     try {
       const saved = localStorage.getItem("preferred_language");
       if (saved === "vi" || saved === "en") {
         setLocaleState(saved);
+        document.documentElement.lang = saved;
       }
     } catch {
       // Ignore localStorage errors
@@ -46,11 +46,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setLocale(next);
   };
 
-  const content = (PORTFOLIO_CONTENT as unknown as Record<Locale, PortfolioContent>)[locale] || (PORTFOLIO_CONTENT as unknown as Record<Locale, PortfolioContent>).vi;
-  const cases = (PROJECT_CASES as unknown as Record<Locale, CaseStudyData>)[locale] || (PROJECT_CASES as unknown as Record<Locale, CaseStudyData>).vi;
+  const content: PortfolioContent = PORTFOLIO_CONTENT[locale] ?? PORTFOLIO_CONTENT.vi;
+  const cases: CaseStudyData = PROJECT_CASES[locale] ?? PROJECT_CASES.vi;
+  const ui = uiStrings(locale);
 
   return (
-    <LanguageContext.Provider value={{ locale, setLocale, toggleLocale, content, cases }}>
+    <LanguageContext.Provider value={{ locale, setLocale, toggleLocale, content, cases, ui }}>
       {children}
     </LanguageContext.Provider>
   );

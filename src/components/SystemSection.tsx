@@ -1,192 +1,187 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
+import { useRef, useState } from "react";
+import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from "motion/react";
 import { useLanguage } from "@/context/LanguageContext";
-import { motion } from "motion/react";
-import {
-  Database,
-  BrainCircuit,
-  Workflow,
-  TrendingUp,
-  ArrowRight,
-  Layers,
-} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { GlassCard } from "./motion/GlassCard";
+import { Reveal } from "./motion/Reveal";
+import { SplitText } from "./motion/SplitText";
 
-const STAGE_ICONS = [Database, BrainCircuit, Workflow, TrendingUp];
+/* Node positions for the molecular pipeline diagram (viewBox 400x440) */
+const NODES = [
+  { x: 150, y: 60 },
+  { x: 250, y: 170 },
+  { x: 150, y: 280 },
+  { x: 250, y: 390 },
+];
+const SATELLITES = [
+  { x: 230, y: 20, r: 4, link: 0 },
+  { x: 60, y: 120, r: 5, link: 0 },
+  { x: 350, y: 120, r: 6, link: 1 },
+  { x: 330, y: 240, r: 4, link: 1 },
+  { x: 60, y: 350, r: 6, link: 2 },
+  { x: 60, y: 230, r: 4, link: 2 },
+  { x: 350, y: 430, r: 5, link: 3 },
+];
+const PATH = `M ${NODES.map((n) => `${n.x} ${n.y}`).join(" L ")}`;
 
 export function SystemSection() {
-  const { content } = useLanguage();
+  const { content, ui } = useLanguage();
   const { system } = content;
+  const ref = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.6", "end 0.6"] });
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 28 });
+  const railScale = useTransform(progress, [0, 1], [0, 1]);
+
+  useMotionValueEvent(scrollYProgress, "change", (p) => {
+    setActive(Math.min(system.stages.length - 1, Math.max(0, Math.floor(p * system.stages.length))));
+  });
 
   return (
-    <section id="systems" className="py-24 sm:py-32 bg-[#000000] relative overflow-hidden">
-      {/* Background Ambient Fluid Aurora Blobs for Liquid Glass Refraction */}
-      <div className="absolute top-1/3 left-0 w-[550px] h-[550px] rounded-full bg-[#8052ff]/12 blur-[140px] pointer-events-none fluid-blob-iris" />
-      <div className="absolute bottom-10 right-0 w-[500px] h-[500px] rounded-full bg-[#00e5ff]/10 blur-[130px] pointer-events-none fluid-blob-cyan" />
-      <div className="absolute top-1/2 right-1/4 w-[350px] h-[350px] rounded-full bg-[#ffb829]/6 blur-[110px] pointer-events-none" />
+    <section id="systems" className="relative py-20 sm:py-28">
+      <div className="container-auros">
+        <div ref={ref} className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* Sticky narrative + diagram */}
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-28">
+              <Reveal>
+                <p className="label-caps flex items-center gap-2 !text-signal"><span aria-hidden className="size-1.5 bg-signal" />{ui.pipelineEyebrow}</p>
+              </Reveal>
+              <SplitText text={system.title} className="mt-5 text-heading-lg" />
+              <Reveal delay={0.1}>
+                <p className="mt-6 max-w-[52ch] text-silver sm:text-lg">{system.intro}</p>
+              </Reveal>
 
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-8 relative z-10">
-        {/* Section Headline Block with Balanced Typography (No awkward word-splitting) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-16 items-start">
-          <div className="lg:col-span-7">
-            {/* Eyebrow Pill */}
-            <div className="chip-liquid mb-4 w-fit flex items-center gap-2 border-[#ffb829]/30 text-[#ffb829]">
-              <span className="w-2 h-2 rounded-[2px] bg-[#ffb829] shadow-[0_0_8px_#ffb829] animate-pulse" />
-              <span className="text-xs font-mono uppercase tracking-[0.14em] font-medium">
-                {system.eyebrow || "01 · AI × ERP OPERATING MODEL"}
-              </span>
-            </div>
-
-            {/* Balanced Headline - Eliminates orphan "hành." */}
-            <h2 className="heading-display text-3xl sm:text-4xl lg:text-[52px] xl:text-[56px] text-white tracking-[-0.035em] leading-[1.12] [text-wrap:balance]">
-              Từ dữ liệu đến{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8052ff] via-[#00e5ff] to-white">
-                tác động vận hành.
-              </span>
-            </h2>
-          </div>
-
-          <div className="lg:col-span-5 pt-3">
-            <p className="text-body-auros text-base sm:text-lg leading-[1.55] text-[#bbc7c6]">
-              {system.intro}
-            </p>
-          </div>
-        </div>
-
-        {/* Pipeline Connectivity Stream (Flow indicator 01 -> 02 -> 03 -> 04) */}
-        <div className="hidden lg:flex items-center justify-between mb-6 px-6 py-3 rounded-[10px] bg-white/[0.02] border border-white/[0.06] backdrop-blur-md">
-          <div className="flex items-center gap-2 text-xs font-mono text-[#00ffaa]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00ffaa] shadow-[0_0_6px_#00ffaa] animate-pulse" />
-            <span>AI × ERP PIPELINE PIPESTREAM // ONLINE</span>
-          </div>
-
-          <div className="flex items-center gap-8 text-xs font-mono text-[#bbc7c6]/70">
-            <span className="text-white font-medium">01 DATA</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#8052ff]" />
-            <span className="text-white font-medium">02 INTELLIGENCE</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#00e5ff]" />
-            <span className="text-white font-medium">03 WORKFLOW</span>
-            <ArrowRight className="w-3.5 h-3.5 text-[#8052ff]" />
-            <span className="text-[#ffb829] font-medium">04 IMPACT</span>
-          </div>
-        </div>
-
-        {/* 4 Pipeline Stages (High-End Liquid Glass Cards: Glistening Specular Top Edges, No Cramped Text) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-          {system.stages.map((stage, idx) => {
-            const Icon = STAGE_ICONS[idx % STAGE_ICONS.length];
-            return (
-              <motion.div
-                key={stage.number}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -4 }}
-                className="liquid-glass-card p-7 sm:p-8 flex flex-col justify-between group cursor-default"
-              >
-                <div>
-                  {/* Card Header Row: Prominent Number + Glowing Icon Button */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#8052ff] to-[#00e5ff]">
-                        {stage.number}
-                      </span>
-                      <span className="text-white/20 font-mono text-xs">//</span>
-                      <span className="px-2 py-0.5 rounded-[4px] bg-white/[0.05] border border-white/10 text-[10px] font-mono text-[#00ffaa]">
-                        STAGE
-                      </span>
-                    </div>
-
-                    <div className="w-9 h-9 rounded-[8px] bg-white/[0.06] border border-white/20 flex items-center justify-center text-white group-hover:border-[#8052ff] group-hover:shadow-[0_0_15px_rgba(128,82,255,0.5)] transition-all">
-                      <Icon className="w-4 h-4 text-[#00e5ff]" />
-                    </div>
-                  </div>
-
-                  {/* Stage Subtitle / Label: Full Width, No Clumsy Wrapping */}
-                  <p className="text-[11px] font-mono text-[#ffb829] uppercase tracking-[0.14em] font-medium mb-3 leading-snug">
-                    {stage.label}
-                  </p>
-
-                  {/* Stage Title */}
-                  <h3 className="heading-sub text-2xl text-white mb-3 group-hover:text-[#8052ff] transition-colors font-medium">
-                    {stage.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-body-auros text-sm sm:text-[14.5px] leading-[1.55] text-[#bbc7c6] mb-6">
-                    {stage.description}
-                  </p>
-                </div>
-
-                {/* Bottom Tags: High Contrast, Crisp Liquid Glass Chips */}
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-white/[0.08]">
-                  {stage.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 text-xs font-mono font-medium rounded-[6px] bg-white/[0.06] border border-white/15 text-white/90 group-hover:border-white/25 hover:!border-[#8052ff] hover:!text-[#00e5ff] hover:bg-white/10 transition-all shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)]"
-                    >
-                      {tag}
-                    </span>
+              <div className="mt-10 hidden max-w-[400px] lg:block">
+                <svg viewBox="0 0 400 440" className="w-full" aria-hidden>
+                  {SATELLITES.map((s, i) => (
+                    <line
+                      key={`l${i}`}
+                      x1={s.x}
+                      y1={s.y}
+                      x2={NODES[s.link].x}
+                      y2={NODES[s.link].y}
+                      stroke="rgba(232,246,255,0.18)"
+                      strokeWidth="1"
+                    />
                   ))}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Telemetry Tool Ecosystem (Liquid Glass Panel) */}
-        {system.tools && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="liquid-glass-card p-8 sm:p-12"
-          >
-            <div className="mb-8">
-              <div className="flex items-center gap-2 mb-2">
-                <Layers className="w-4 h-4 text-[#ffb829]" />
-                <span className="text-xs font-mono text-[#ffb829] uppercase tracking-[0.15em] font-medium">
-                  {system.tools.eyebrow}
-                </span>
+                  <path d={PATH} fill="none" stroke="rgba(232,246,255,0.14)" strokeWidth="1.5" />
+                  <motion.path
+                    d={PATH}
+                    fill="none"
+                    stroke="#3ee6d4"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    style={{ pathLength: progress }}
+                  />
+                  {SATELLITES.map((s, i) => (
+                    <circle
+                      key={`s${i}`}
+                      cx={s.x}
+                      cy={s.y}
+                      r={s.r}
+                      fill={s.link <= active ? "#e8f6ff" : "rgba(232,246,255,0.25)"}
+                      className="transition-[fill] duration-700"
+                    />
+                  ))}
+                  {NODES.map((n, i) => (
+                    <g key={`n${i}`}>
+                      <motion.circle
+                        cx={n.x}
+                        cy={n.y}
+                        r={26}
+                        fill="none"
+                        stroke="#b8f6ff"
+                        strokeWidth="1"
+                        animate={{ opacity: i === active ? [0.6, 0] : 0, scale: i === active ? [1, 1.6] : 1 }}
+                        transition={{ duration: 1.8, repeat: i === active ? Infinity : 0 }}
+                        style={{ transformOrigin: `${n.x}px ${n.y}px` }}
+                      />
+                      <circle
+                        cx={n.x}
+                        cy={n.y}
+                        r={18}
+                        fill={i <= active ? "#3ee6d4" : "#0b1a24"}
+                        stroke="rgba(232,246,255,0.35)"
+                        className="transition-[fill] duration-700"
+                      />
+                      <text
+                        x={n.x}
+                        y={n.y + 4}
+                        textAnchor="middle"
+                        fontSize="11"
+                        fontWeight="500"
+                        fill={i <= active ? "#050d14" : "#93a8b4"}
+                        className="transition-[fill] duration-700"
+                      >
+                        {system.stages[i]?.number}
+                      </text>
+                      <text
+                        x={n.x < 200 ? n.x - 28 : n.x + 28}
+                        y={n.y + 4}
+                        textAnchor={n.x < 200 ? "end" : "start"}
+                        fontSize="12"
+                        letterSpacing="1.4"
+                        fill="#93a8b4"
+                      >
+                        {system.stages[i]?.title.toUpperCase()}
+                      </text>
+                    </g>
+                  ))}
+                </svg>
               </div>
-              <h3 className="heading-sub text-2xl sm:text-3xl text-white mb-2">
-                {system.tools.title}
-              </h3>
-              <p className="text-body-auros text-sm sm:text-base max-w-2xl">
-                {system.tools.intro}
-              </p>
             </div>
+          </div>
 
-            {(() => {
-              const toolGroups = system.tools.groups || (system.tools.categories ? system.tools.categories.map((c, i) => ({ index: `T${i+1}`, title: c.name, items: c.items })) : []);
-              return (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-6 border-t border-white/[0.08]">
-                  {toolGroups.map((group) => (
-                    <div key={group.title} className="flex flex-col gap-3">
-                      <span className="text-xs font-mono text-[#8052ff] uppercase tracking-wider font-medium">
-                        {group.index} // {group.title}
-                      </span>
-                      <div className="flex flex-wrap gap-2">
-                        {group.items.map((tool) => (
-                          <span
-                            key={tool}
-                            className="px-3 py-1.5 text-xs font-mono font-medium rounded-[6px] bg-white/[0.05] border border-white/15 text-white/90 hover:border-[#8052ff] hover:text-[#00e5ff] hover:bg-white/10 transition-all flex items-center gap-1.5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
-                          >
-                            <span className="w-1.5 h-1.5 rounded-[1px] bg-[#ffb829] shadow-[0_0_4px_#ffb829]" />
-                            <span>{tool}</span>
-                          </span>
+          {/* Stage cards with a scroll-filled rail */}
+          <div className="relative lg:col-span-7">
+            <div aria-hidden className="absolute top-0 bottom-0 left-[19px] hidden w-px bg-mist/10 sm:block">
+              <motion.div style={{ scaleY: railScale }} className="bg-signal h-full w-full origin-top" />
+            </div>
+            <ol className="flex flex-col gap-6">
+              {system.stages.map((stage, i) => (
+                <li key={stage.number} className="relative sm:pl-16">
+                  <span
+                    aria-hidden
+                    className={cn(
+                      "absolute top-10 left-0 hidden size-10 place-items-center rounded-full border text-sm font-medium transition-colors duration-500 sm:grid",
+                      i <= active ? "border-transparent bg-signal text-abyss" : "border-mist/20 bg-deep text-silver",
+                    )}
+                  >
+                    {stage.number}
+                  </span>
+                  <Reveal>
+                    <GlassCard
+                      className={cn(
+                        "p-8 transition-opacity duration-500 sm:p-10",
+                        i === active ? "opacity-100" : "opacity-70",
+                      )}
+                    >
+                      <p className="label-caps">{stage.label}</p>
+                      <h3 className="mt-4 text-4xl leading-none tracking-[-0.02em]">{stage.title}</h3>
+                      <p className="mt-4 max-w-[56ch] text-silver">{stage.description}</p>
+                      <div className="mt-8 flex flex-wrap gap-2">
+                        {stage.tags.map((tag) => (
+                          <Badge key={tag}>{tag}</Badge>
                         ))}
                       </div>
-                    </div>
-                  ))}
-                </div>
-              );
-            })()}
-          </motion.div>
-        )}
+                    </GlassCard>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <Reveal>
+          <blockquote className="mx-auto mt-24 max-w-4xl text-center text-2xl leading-snug tracking-[-0.02em] text-mist sm:text-[34px]">
+            {system.proofNote}
+          </blockquote>
+        </Reveal>
       </div>
     </section>
   );

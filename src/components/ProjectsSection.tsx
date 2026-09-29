@@ -1,184 +1,132 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
+import { useState } from "react";
 import Link from "next/link";
-import { useLanguage } from "@/context/LanguageContext";
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { asset } from "@/data/ui-strings";
+import type { ProjectItem } from "@/types/portfolio";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SectionHeading } from "./SectionHeading";
+import { GlassCard } from "./motion/GlassCard";
+import { Reveal, EASE_OUT } from "./motion/Reveal";
+import { CarouselDeck } from "./motion/CarouselDeck";
+import { FadeImage } from "./motion/FadeImage";
+
+type Filter = "all" | "foundation" | "professional";
+
+function ProjectSlide({ item, index }: { item: ProjectItem; index: number }) {
+  const { ui } = useLanguage();
+  return (
+    <GlassCard variant="solid" className="group h-full overflow-hidden">
+      <Link
+        href={`/projects/${item.id}/`}
+        draggable={false}
+        className="flex h-full flex-col"
+        aria-label={`${ui.openCase}: ${item.title}`}
+      >
+        <div className="relative aspect-[16/10] overflow-hidden border-b border-mist/10">
+          <div data-parallax className="absolute inset-y-0 -right-[5%] -left-[5%]">
+            <FadeImage
+              src={asset(item.image)}
+              alt=""
+              fill
+              draggable={false}
+              sizes="(min-width: 1280px) 40vw, (min-width: 640px) 62vw, 90vw"
+              className="object-cover transition-transform duration-[1.2s] group-hover:scale-[1.04]"
+            />
+          </div>
+        </div>
+        <div className="flex flex-1 flex-col p-6 sm:p-8">
+          <p className="font-mono text-[11px] tracking-[0.1em] text-signal uppercase">
+            {String(index + 1).padStart(2, "0")} · {item.phaseLabel}
+          </p>
+          <div className="mt-3 flex items-start justify-between gap-4">
+            <h3 className="text-xl leading-tight tracking-[-0.02em] sm:text-2xl">{item.title}</h3>
+            <span className="grid size-9 shrink-0 place-items-center rounded-md bg-[rgba(20,56,76,0.5)] transition-all duration-300 group-hover:bg-signal group-hover:text-abyss">
+              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:rotate-45" />
+            </span>
+          </div>
+          <p className="mt-3 line-clamp-3 text-sm text-silver">{item.description}</p>
+          <div className="mt-auto pt-6">
+            <p className="font-mono text-[11px] tracking-[0.12em] text-slate uppercase">{ui.result}</p>
+            <p className="mt-1 text-sm font-medium text-lavender">{item.result}</p>
+            <div className="mt-5 flex flex-wrap gap-1.5">
+              {item.tags.slice(0, 4).map((tag) => (
+                <Badge key={tag} variant="outline">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Link>
+    </GlassCard>
+  );
+}
 
 export function ProjectsSection() {
   const { content } = useLanguage();
   const { projects } = content;
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [filter, setFilter] = useState<Filter>("all");
 
-  const filterOptions = [
-    { id: "all", label: projects.filterAll || "Tất cả" },
-    ...(projects.categories || []),
+  const filters: { id: Filter; label: string; count: number }[] = [
+    { id: "all", label: projects.filters.all, count: projects.items.length },
+    { id: "professional", label: projects.filters.professional, count: projects.items.filter((p) => p.phase === "professional").length },
+    { id: "foundation", label: projects.filters.foundation, count: projects.items.filter((p) => p.phase === "foundation").length },
   ];
-
-  const getProjectCategory = (id: string, tags: string[] = []): string => {
-    const text = (id + " " + tags.join(" ")).toLowerCase();
-    if (
-      text.includes("video") ||
-      text.includes("creative") ||
-      text.includes("content") ||
-      text.includes("genai")
-    ) {
-      return "ai";
-    }
-    if (
-      text.includes("erp") ||
-      text.includes("hrm") ||
-      text.includes("apps script") ||
-      text.includes("internal")
-    ) {
-      return "erp";
-    }
-    return "vision";
-  };
-
-  const filteredProjects = projects.items.filter((item) => {
-    if (activeFilter === "all") return true;
-    return getProjectCategory(item.id, item.tags) === activeFilter;
-  });
+  const items = projects.items.filter((p) => filter === "all" || p.phase === filter);
 
   return (
-    <section id="projects" className="py-24 sm:py-32 bg-[#000000] relative overflow-hidden">
-      {/* Background Ambient Aurora Blob */}
-      <div className="absolute top-1/3 right-1/4 w-[480px] h-[480px] rounded-full bg-[#8052ff]/8 blur-[140px] pointer-events-none fluid-blob-iris" />
+    <section id="projects" className="relative py-20 sm:py-28">
+      <div className="container-auros">
+        <SectionHeading eyebrow={projects.eyebrow} title={projects.title} intro={projects.intro} />
 
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-8 relative z-10">
-        {/* Section Headline Block */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-14 items-start">
-          <div className="lg:col-span-7">
-            <div className="chip-liquid mb-3 w-fit flex items-center gap-2 border-[#ffb829]/30 text-[#ffb829]">
-              <span className="w-1.5 h-1.5 rounded-[2px] bg-[#ffb829]" />
-              <span className="text-[12px] font-medium tracking-[0.12em]">{projects.eyebrow}</span>
-            </div>
-            <h2 className="heading-display text-3xl sm:text-5xl lg:text-[61px] text-white tracking-[-0.04em] leading-[1.0]">
-              {projects.title}
-            </h2>
-          </div>
-
-          <div className="lg:col-span-5 pt-2">
-            <p className="text-body-auros text-base sm:text-lg leading-[1.4]">
-              {projects.intro}
-            </p>
-          </div>
-        </div>
-
-        {/* Liquid Glass Category Filter Switcher (with Motion spring pill) */}
-        <div className="inline-flex flex-wrap items-center gap-1.5 p-1.5 mb-12 rounded-[8px] bg-white/[0.04] border border-white/10 backdrop-blur-xl">
-          {filterOptions.map((filter) => {
-            const isActive = activeFilter === filter.id;
-            return (
-              <button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                type="button"
-                className={`relative px-4 py-2 rounded-[6px] text-[12px] font-medium uppercase tracking-[0.08em] transition-colors cursor-pointer ${
-                  isActive ? "text-white" : "text-[#bbc7c6] hover:text-white"
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeFilterLiquidPill"
-                    className="absolute inset-0 rounded-[6px] bg-gradient-to-r from-[#8052ff] to-[#6830f0] border border-white/25 shadow-[0_2px_15px_rgba(128,82,255,0.4)] z-0"
-                    transition={{ type: "spring", stiffness: 450, damping: 35 }}
-                  />
-                )}
-                <span className="relative z-10">{filter.label}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Projects Gallery Grid (Liquid Glass Cards with Frosted Reflection) */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence>
-            {filteredProjects.map((item) => (
-              <motion.article
-                layout
-                key={item.id}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.35 }}
-                className="liquid-glass-card group flex flex-col justify-between overflow-hidden"
-              >
-                <div>
-                  {/* Thumbnail Image with Glass Sheen */}
-                  <Link
-                    href={`/projects/${item.id}/`}
-                    className="block relative aspect-[16/10] w-full overflow-hidden bg-[#000000] border-b border-white/[0.08]"
-                  >
-                    <Image
-                      src={item.image || "/img/projects-v3/computer-vision-inspection.jpg"}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+        <Reveal className="mt-12">
+          <Tabs value={filter} onValueChange={(v) => setFilter(v as Filter)}>
+            <TabsList className="glass h-auto w-full gap-1 !rounded-xl bg-transparent p-1.5 sm:w-fit">
+              {filters.map((f) => (
+                <TabsTrigger
+                  key={f.id}
+                  value={f.id}
+                  className="relative isolate h-10 cursor-pointer px-2 text-[11px] tracking-[0.12em] text-silver uppercase data-[state=active]:bg-transparent data-[state=active]:text-abyss data-[state=active]:shadow-none sm:px-4 sm:text-[12px]"
+                >
+                  {filter === f.id && (
+                    <motion.span
+                      layoutId="project-filter"
+                      className="bg-signal absolute inset-0 -z-10 rounded-md"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
-
-                    {/* Phase Chip in Liquid Glass */}
-                    <div className="absolute top-3.5 left-3.5">
-                      <span className="chip-liquid !bg-[#000000]/75 !border-white/20 !text-white">
-                        {item.phase || item.phaseLabel}
-                      </span>
-                    </div>
-                  </Link>
-
-                  {/* Card Content: 36px padding */}
-                  <div className="p-8">
-                    {/* Header: Title + 32x32 Liquid Arrow Button */}
-                    <div className="flex items-start justify-between gap-4 mb-3">
-                      <h3 className="heading-sub text-xl text-white group-hover:text-[#8052ff] transition-colors leading-[1.2]">
-                        <Link href={`/projects/${item.id}/`}>
-                          {item.title}
-                        </Link>
-                      </h3>
-                      <Link
-                        href={`/projects/${item.id}/`}
-                        className="btn-arrow-liquid"
-                        aria-label={`Xem dự án ${item.title}`}
-                      >
-                        <ArrowUpRight className="w-4 h-4 text-white" />
-                      </Link>
-                    </div>
-
-                    <p className="text-body-auros text-sm leading-[1.4] mb-6 line-clamp-3">
-                      {item.description}
-                    </p>
-
-                    {/* Metric Highlight (Liquid Glass Well) */}
-                    <div className="p-3.5 rounded-[6px] bg-white/[0.03] border border-white/[0.08] mb-6 backdrop-blur-sm">
-                      <span className="text-[10px] font-mono text-[#bbc7c6] uppercase tracking-[0.12em] block mb-1">
-                        KẾT QUẢ ĐẠT ĐƯỢC
-                      </span>
-                      <span className="text-sm font-medium text-[#ffb829] leading-snug block">
-                        {item.result}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Footer Tags: 6px radius chips */}
-                <div className="p-8 pt-0 flex flex-wrap gap-1.5">
-                  {item.tags.map((tag) => (
-                    <span key={tag} className="chip-liquid">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.article>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+                  )}
+                  {f.label}
+                  <span className="hidden text-[11px] opacity-60 sm:inline">{String(f.count).padStart(2, "0")}</span>
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+        </Reveal>
       </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={filter}
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -16, filter: "blur(6px)" }}
+          transition={{ duration: 0.45, ease: EASE_OUT }}
+          className="mt-8"
+        >
+          <CarouselDeck
+            label="projects"
+            items={items}
+            getKey={(p) => p.id}
+            slideClassName="basis-[86%] sm:basis-[62%] lg:basis-[44%] xl:basis-[38%]"
+            renderSlide={(item, i) => <ProjectSlide item={item} index={i} />}
+          />
+        </motion.div>
+      </AnimatePresence>
     </section>
   );
 }
