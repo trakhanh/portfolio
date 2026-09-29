@@ -294,6 +294,18 @@ export const PORTFOLIO_CONTENT = {
           "company": "CÔNG TY CỔ PHẦN BÔNG TRÀ F&B",
           "role": "Thực tập sinh IT (AI)",
           "current": false,
+          "links": [
+            {
+              "label": "bongtra.vn",
+              "url": "https://www.bongtra.vn/?lang=vi",
+              "note": "Làm chatbot AI và hỗ trợ thiết kế website"
+            },
+            {
+              "label": "preorder.bongtra.vn",
+              "url": "https://preorder.bongtra.vn/?lang=vi",
+              "note": "Hỗ trợ xây dựng giao diện web landing page"
+            }
+          ],
           "highlights": [
             "Hỗ trợ xây dựng website chính thức của Bông Trà và tích hợp Chatbot AI trên web để tự động hóa tương tác với khách hàng.",
             "Tích hợp chatbot vào Fanpage Bông Trà Tuyển Dụng, giúp bộ phận HR trao đổi và giải đáp ứng viên nhanh hơn.",
@@ -416,8 +428,8 @@ export const PORTFOLIO_CONTENT = {
           ],
           "links": [
             {
-              "label": "Website",
-              "url": "https://bongtra.vn"
+              "label": "Website bongtra.vn",
+              "url": "https://www.bongtra.vn/?lang=vi"
             },
             {
               "label": "Fanpage",
@@ -455,7 +467,12 @@ export const PORTFOLIO_CONTENT = {
             "Pre-order",
             "Workshop"
           ],
-          "links": []
+          "links": [
+            {
+              "label": "Landing page Pre-order",
+              "url": "https://preorder.bongtra.vn/?lang=vi"
+            }
+          ]
         },
         {
           "id": "hrm-application",
@@ -975,6 +992,18 @@ export const PORTFOLIO_CONTENT = {
           "company": "BONG TRA F&B JOINT STOCK COMPANY",
           "role": "IT Intern (AI)",
           "current": false,
+          "links": [
+            {
+              "label": "bongtra.vn",
+              "url": "https://www.bongtra.vn/?lang=vi",
+              "note": "Built the AI chatbot and supported the website design"
+            },
+            {
+              "label": "preorder.bongtra.vn",
+              "url": "https://preorder.bongtra.vn/?lang=vi",
+              "note": "Supported building the landing-page UI"
+            }
+          ],
           "highlights": [
             "Supported the official Bong Tra website and integrated an AI Chatbot on the web to automate customer interactions.",
             "Integrated a chatbot into the Bong Tra Recruitment Facebook page, helping HR respond to candidates more quickly.",
@@ -1097,8 +1126,8 @@ export const PORTFOLIO_CONTENT = {
           ],
           "links": [
             {
-              "label": "Website",
-              "url": "https://bongtra.vn"
+              "label": "Website bongtra.vn",
+              "url": "https://www.bongtra.vn/?lang=vi"
             },
             {
               "label": "Fanpage",
@@ -1136,7 +1165,12 @@ export const PORTFOLIO_CONTENT = {
             "Pre-order",
             "Workshop"
           ],
-          "links": []
+          "links": [
+            {
+              "label": "Pre-order landing page",
+              "url": "https://preorder.bongtra.vn/?lang=vi"
+            }
+          ]
         },
         {
           "id": "hrm-application",

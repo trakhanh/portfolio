@@ -56,6 +56,8 @@ export interface ExperienceItem {
   role: string;
   current: boolean;
   highlights: readonly string[];
+  /** Live products shipped in this role. */
+  links?: readonly { label: string; url: string; note: string }[];
 }
 
 export interface SystemStage {

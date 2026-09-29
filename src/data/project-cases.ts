@@ -187,7 +187,7 @@ export const PROJECT_CASES = {
         "learning": "Mô hình phù hợp phải được chọn theo dữ liệu, độ trễ và môi trường sử dụng; kiến trúc lớn hơn không luôn tạo trải nghiệm tốt hơn."
       },
       "recruitment-chatbot": {
-        "role": "Hỗ trợ website và triển khai workflow AI Chatbot đa kênh",
+        "role": "Làm chatbot AI đa kênh và hỗ trợ thiết kế website",
         "challenge": "Doanh nghiệp cần trả lời hai nhóm nhu cầu khác nhau—khách hàng trên website và ứng viên trên Fanpage—trong khi nội dung, ngữ cảnh và nguồn dữ liệu không giống nhau.",
         "responsibilities": [
           "Thu thập nhóm câu hỏi thường gặp và phân loại ý định theo từng kênh.",
@@ -294,7 +294,7 @@ export const PROJECT_CASES = {
         "privacyNote": "Không công khai dữ liệu nhân sự, bảng lương, tài khoản tích hợp hoặc cấu hình workflow nội bộ."
       },
       "preorder-workshop-web": {
-        "role": "Thiết lập landing page và luồng đăng ký / đặt hàng",
+        "role": "Hỗ trợ xây dựng giao diện web landing page và luồng đăng ký / đặt hàng",
         "challenge": "Các chiến dịch Workshop và Pre-order cần một luồng rõ từ nội dung Marketing đến đăng ký, thanh toán và tiếp nhận thông tin, thay cho nhiều bước xử lý rời rạc.",
         "responsibilities": [
           "Phân tích hành trình người dùng và thông tin Marketing cần truyền tải.",
@@ -641,7 +641,7 @@ export const PROJECT_CASES = {
         "learning": "The right model depends on data, latency and usage context; a larger architecture does not always produce a better experience."
       },
       "recruitment-chatbot": {
-        "role": "Website support and multi-channel AI Chatbot workflow implementation",
+        "role": "Built the multi-channel AI chatbot and supported the website design",
         "challenge": "The business needed to serve two distinct audiences—website customers and Facebook candidates—whose content, context and data sources were different.",
         "responsibilities": [
           "Collected frequently asked questions and grouped intents by channel.",
@@ -748,7 +748,7 @@ export const PROJECT_CASES = {
         "privacyNote": "Employee data, payroll records, integration accounts and internal workflow configuration are not disclosed."
       },
       "preorder-workshop-web": {
-        "role": "Landing-page and registration / ordering flow setup",
+        "role": "Supported building the landing-page UI and the registration / ordering flow",
         "challenge": "Workshop and Pre-order campaigns needed a clear path from Marketing content to registration, payment and information capture instead of disconnected manual steps.",
         "responsibilities": [
           "Mapped the user journey and campaign information hierarchy.",

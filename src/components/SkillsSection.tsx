@@ -10,10 +10,13 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { SectionHeading } from "./SectionHeading";
 import { GlassCard } from "./motion/GlassCard";
 import { Reveal, EASE_OUT } from "./motion/Reveal";
+import { useLite } from "@/lib/perf";
 
 export function SkillsSection() {
   const { content, ui } = useLanguage();
   const { work, system } = content;
+  // Phones render the chips/icons in place instead of ~40 staggered animations.
+  const lite = useLite();
 
   return (
     <section id="skills" className="relative py-20 sm:py-28">
@@ -34,14 +37,14 @@ export function SkillsSection() {
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-                  transition={{ staggerChildren: 0.05, delayChildren: 0.2 }}
+                  transition={lite ? { duration: 0 } : { staggerChildren: 0.05, delayChildren: 0.2 }}
                 >
                   {area.capabilities.map((cap) => (
                     <motion.li
                       key={cap}
                       variants={{
                         hidden: { opacity: 0, y: 10, scale: 0.96 },
-                        show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: EASE_OUT } },
+                        show: { opacity: 1, y: 0, scale: 1, transition: lite ? { duration: 0.25 } : { duration: 0.5, ease: EASE_OUT } },
                       }}
                     >
                       <Badge>{cap}</Badge>
@@ -72,7 +75,7 @@ export function SkillsSection() {
                           initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
                           whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                           viewport={{ once: true }}
-                          transition={{ type: "spring", stiffness: 260, damping: 18, delay: gi * 0.12 + ti * 0.06 }}
+                          transition={lite ? { duration: 0.3 } : { type: "spring", stiffness: 260, damping: 18, delay: gi * 0.12 + ti * 0.06 }}
                         >
                           <Tooltip>
                             <TooltipTrigger asChild>

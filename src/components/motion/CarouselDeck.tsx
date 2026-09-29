@@ -8,6 +8,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { EASE_OUT } from "./Reveal";
+import { useLite } from "@/lib/perf";
 
 interface CarouselDeckProps<T> {
   items: readonly T[];
@@ -49,6 +50,7 @@ export function CarouselDeck<T>({
   const progress = useMotionValue(0);
   const progressSpring = useSpring(progress, { stiffness: 200, damping: 30 });
   const tweenFactor = useRef(0);
+  const lite = useLite();
 
   const plugins = useMemo(
     () => (autoplay ? [Autoplay({ delay: 4200, stopOnInteraction: false, stopOnMouseEnter: true })] : []),
@@ -136,7 +138,7 @@ export function CarouselDeck<T>({
                 initial={{ opacity: 0, x: 80, filter: "blur(10px)" }}
                 whileInView={{ opacity: 1, x: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } }}
                 viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-                transition={{ duration: 0.9, delay: Math.min(i, 4) * 0.08, ease: EASE_OUT }}
+                transition={{ duration: 0.9, delay: Math.min(i, 4) * 0.08, ease: EASE_OUT, filter: lite ? { duration: 0 } : undefined }}
                 className="h-full"
               >
                 <div data-tween className="h-full origin-center will-change-transform">

@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { SOCIAL_ICONS } from "./icons/SocialIcons";
 import { Magnetic } from "./motion/Magnetic";
 import { Reveal } from "./motion/Reveal";
+import { useLite } from "@/lib/perf";
 
 const ROLES = ["Applied AI", "AI Automation", "ERP / Digital Transformation", "AI Video Production", "R&D"];
 
@@ -38,9 +39,10 @@ function useTypewriter(total: number, start: boolean, speed = 16) {
   return n;
 }
 
-export function ContactSection() {
+/** The typing terminal — isolated so each typed character re-renders only this card. */
+function ContactTerminal() {
   const { content, ui } = useLanguage();
-  const { contact, hero } = content;
+  const { hero } = content;
   const [copied, setCopied] = useState(false);
   const termRef = useRef<HTMLDivElement>(null);
   const inView = useInView(termRef, { once: true, margin: "0px 0px -20% 0px" });
@@ -111,6 +113,125 @@ export function ContactSection() {
   });
 
   return (
+    <div
+      ref={termRef}
+      className="overflow-hidden rounded-xl border border-mist/12 bg-[#02070b]/95 font-mono text-[13px] shadow-[0_40px_90px_-40px_rgba(62,230,212,0.45)] sm:text-sm"
+    >
+      <div className="flex items-center justify-between gap-3 border-b border-mist/10 px-4 py-3">
+        <div className="flex gap-1.5" aria-hidden>
+          <span className="size-2.5 rounded-full bg-mist/20" />
+          <span className="size-2.5 rounded-full bg-mist/20" />
+          <span className="size-2.5 rounded-full bg-signal" />
+        </div>
+        <span className="text-xs text-silver">
+          <span className="hidden sm:inline">~/gia-khanh/</span>contact.ts
+        </span>
+        <span className="flex items-center gap-1.5 text-[11px] whitespace-nowrap text-signal">
+          <span className="size-1.5 animate-pulse rounded-full bg-signal" />
+          {ui.online}
+        </span>
+      </div>
+
+      <div className="relative min-h-[236px] p-5 leading-7 break-words sm:p-6">
+        <p className="sr-only">
+          {CONTACT.email} · {CONTACT.phone} · {location}
+        </p>
+        {rendered.map((line, li) =>
+          line.visible || li === cursorLine ? (
+            <div key={li} aria-hidden className="flex min-h-7 items-center justify-between gap-3">
+              <p className="min-w-0 whitespace-pre-wrap">
+                <span className="mr-4 inline-block w-4 text-right text-slate/60 select-none">{li + 1}</span>
+                {line.segs.map((s, si) =>
+                  s.href && done ? (
+                    <a key={si} href={s.href} className={cn(s.c, "underline-offset-4 hover:underline")}>
+                      {s.shown}
+                    </a>
+                  ) : (
+                    <span key={si} className={s.c}>
+                      {s.shown}
+                    </span>
+                  ),
+                )}
+                {li === cursorLine && (
+                  <motion.span
+                    className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 bg-signal"
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 1, repeat: Infinity, times: [0, 0.5, 1] }}
+                  />
+                )}
+              </p>
+              {li === 2 && done && (
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  type="button"
+                  onClick={copy}
+                  aria-label={copied ? ui.copied : ui.copyEmail}
+                  className="flex h-7 shrink-0 cursor-pointer items-center gap-1.5 rounded-md border border-mist/12 px-2 text-[11px] text-silver transition-colors hover:border-signal/50 hover:text-white"
+                >
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span
+                      key={copied ? "y" : "n"}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.15 }}
+                      className="flex items-center gap-1.5"
+                    >
+                      {copied ? <Check className="size-3.5 text-signal" /> : <Copy className="size-3.5" />}
+                      <span className="hidden sm:inline">{copied ? ui.copied : ui.copyEmail}</span>
+                    </motion.span>
+                  </AnimatePresence>
+                </motion.button>
+              )}
+            </div>
+          ) : null,
+        )}
+      </div>
+
+      <div className="border-t border-mist/10 p-3 sm:p-4">
+        <p className="px-2 pb-2 text-[11px] tracking-[0.12em] text-slate uppercase">$ {ui.socials}</p>
+        <ul className="grid gap-2 sm:grid-cols-3">
+          {CONTACT.socials.map((s, i) => {
+            const Icon = SOCIAL_ICONS[s.name];
+            return (
+              <motion.li
+                key={s.name}
+                initial={{ opacity: 0, y: 12 }}
+                animate={done ? { opacity: 1, y: 0 } : undefined}
+                transition={{ delay: 0.1 + i * 0.08, duration: 0.4 }}
+              >
+                <a
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 rounded-lg border border-mist/10 bg-mist/[0.03] p-3 transition-all hover:-translate-y-0.5 hover:border-signal/45 hover:bg-signal/[0.06]"
+                >
+                  <span className="grid size-9 shrink-0 place-items-center rounded-md border border-mist/12 bg-abyss text-mist transition-colors group-hover:border-signal/50 group-hover:text-signal">
+                    <Icon className="size-[18px]" />
+                  </span>
+                  <span className="min-w-0 flex-1 font-sans">
+                    <span className="block text-sm font-medium text-white">{s.name}</span>
+                    <span className="block truncate font-mono text-[11px] text-silver">@{s.handle}</span>
+                  </span>
+                  <ArrowUpRight className="size-4 shrink-0 text-slate transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-signal" />
+                </a>
+              </motion.li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export function ContactSection() {
+  const { content, ui } = useLanguage();
+  const { contact, hero } = content;
+  const lite = useLite();
+  const tel = `tel:${CONTACT.phone.replace(/\s+/g, "")}`;
+
+  return (
     <section id="contact" className="relative py-20 sm:py-28">
       <div className="container-auros">
         <div className="relative overflow-hidden rounded-2xl border border-mist/10 bg-deep/85">
@@ -125,8 +246,8 @@ export function ContactSection() {
               stroke="#3ee6d4"
               strokeWidth="1.5"
               strokeDasharray="12 88"
-              className="animate-border-beam"
-              style={{ width: "calc(100% - 1px)", height: "calc(100% - 1px)", filter: "drop-shadow(0 0 6px rgba(62,230,212,0.8))" }}
+              className={lite ? undefined : "animate-border-beam"}
+              style={{ width: "calc(100% - 1px)", height: "calc(100% - 1px)" }}
             />
           </svg>
           {/* Blueprint grid + glows */}
@@ -134,8 +255,8 @@ export function ContactSection() {
             aria-hidden
             className="absolute inset-0 [background-image:linear-gradient(rgba(62,230,212,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(62,230,212,0.06)_1px,transparent_1px)] [background-size:44px_44px] [mask-image:radial-gradient(ellipse_70%_80%_at_75%_50%,#000_25%,transparent_100%)]"
           />
-          <div aria-hidden className="absolute -top-32 right-[8%] h-[420px] w-[520px] rounded-full bg-signal/[0.12] blur-[120px]" />
-          <div aria-hidden className="absolute -bottom-40 left-[5%] h-[380px] w-[480px] rounded-full bg-orchid/[0.10] blur-[120px]" />
+          <div aria-hidden className="absolute -top-60 right-[-5%] h-[720px] w-[820px] bg-[radial-gradient(closest-side,rgba(62,230,212,0.13),transparent)]" />
+          <div aria-hidden className="absolute -bottom-72 left-[-10%] h-[680px] w-[780px] bg-[radial-gradient(closest-side,rgba(124,140,255,0.11),transparent)]" />
 
           <div className="relative grid gap-12 px-6 py-14 sm:px-12 sm:py-20 lg:grid-cols-12 lg:gap-14 lg:px-16">
             {/* Pitch */}
@@ -203,115 +324,7 @@ export function ContactSection() {
 
             {/* Terminal */}
             <Reveal delay={0.1} className="min-w-0 lg:col-span-6">
-              <div
-                ref={termRef}
-                className="overflow-hidden rounded-xl border border-mist/12 bg-[#02070b]/95 font-mono text-[13px] shadow-[0_40px_90px_-40px_rgba(62,230,212,0.45)] sm:text-sm"
-              >
-                <div className="flex items-center justify-between gap-3 border-b border-mist/10 px-4 py-3">
-                  <div className="flex gap-1.5" aria-hidden>
-                    <span className="size-2.5 rounded-full bg-mist/20" />
-                    <span className="size-2.5 rounded-full bg-mist/20" />
-                    <span className="size-2.5 rounded-full bg-signal" />
-                  </div>
-                  <span className="text-xs text-silver">
-                    <span className="hidden sm:inline">~/gia-khanh/</span>contact.ts
-                  </span>
-                  <span className="flex items-center gap-1.5 text-[11px] whitespace-nowrap text-signal">
-                    <span className="size-1.5 animate-pulse rounded-full bg-signal" />
-                    {ui.online}
-                  </span>
-                </div>
-
-                <div className="relative min-h-[236px] p-5 leading-7 break-words sm:p-6">
-                  <p className="sr-only">
-                    {CONTACT.email} · {CONTACT.phone} · {location}
-                  </p>
-                  {rendered.map((line, li) =>
-                    line.visible || li === cursorLine ? (
-                      <div key={li} aria-hidden className="flex min-h-7 items-center justify-between gap-3">
-                        <p className="min-w-0 whitespace-pre-wrap">
-                          <span className="mr-4 inline-block w-4 text-right text-slate/60 select-none">{li + 1}</span>
-                          {line.segs.map((s, si) =>
-                            s.href && done ? (
-                              <a key={si} href={s.href} className={cn(s.c, "underline-offset-4 hover:underline")}>
-                                {s.shown}
-                              </a>
-                            ) : (
-                              <span key={si} className={s.c}>
-                                {s.shown}
-                              </span>
-                            ),
-                          )}
-                          {li === cursorLine && (
-                            <motion.span
-                              className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 bg-signal"
-                              animate={{ opacity: [1, 0, 1] }}
-                              transition={{ duration: 1, repeat: Infinity, times: [0, 0.5, 1] }}
-                            />
-                          )}
-                        </p>
-                        {li === 2 && done && (
-                          <motion.button
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            type="button"
-                            onClick={copy}
-                            aria-label={copied ? ui.copied : ui.copyEmail}
-                            className="flex h-7 shrink-0 cursor-pointer items-center gap-1.5 rounded-md border border-mist/12 px-2 text-[11px] text-silver transition-colors hover:border-signal/50 hover:text-white"
-                          >
-                            <AnimatePresence mode="wait" initial={false}>
-                              <motion.span
-                                key={copied ? "y" : "n"}
-                                initial={{ opacity: 0, y: 6 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -6 }}
-                                transition={{ duration: 0.15 }}
-                                className="flex items-center gap-1.5"
-                              >
-                                {copied ? <Check className="size-3.5 text-signal" /> : <Copy className="size-3.5" />}
-                                <span className="hidden sm:inline">{copied ? ui.copied : ui.copyEmail}</span>
-                              </motion.span>
-                            </AnimatePresence>
-                          </motion.button>
-                        )}
-                      </div>
-                    ) : null,
-                  )}
-                </div>
-
-                <div className="border-t border-mist/10 p-3 sm:p-4">
-                  <p className="px-2 pb-2 text-[11px] tracking-[0.12em] text-slate uppercase">$ {ui.socials}</p>
-                  <ul className="grid gap-2 sm:grid-cols-3">
-                    {CONTACT.socials.map((s, i) => {
-                      const Icon = SOCIAL_ICONS[s.name];
-                      return (
-                        <motion.li
-                          key={s.name}
-                          initial={{ opacity: 0, y: 12 }}
-                          animate={done ? { opacity: 1, y: 0 } : undefined}
-                          transition={{ delay: 0.1 + i * 0.08, duration: 0.4 }}
-                        >
-                          <a
-                            href={s.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group flex items-center gap-3 rounded-lg border border-mist/10 bg-mist/[0.03] p-3 transition-all hover:-translate-y-0.5 hover:border-signal/45 hover:bg-signal/[0.06]"
-                          >
-                            <span className="grid size-9 shrink-0 place-items-center rounded-md border border-mist/12 bg-abyss text-mist transition-colors group-hover:border-signal/50 group-hover:text-signal">
-                              <Icon className="size-[18px]" />
-                            </span>
-                            <span className="min-w-0 flex-1 font-sans">
-                              <span className="block text-sm font-medium text-white">{s.name}</span>
-                              <span className="block truncate font-mono text-[11px] text-silver">@{s.handle}</span>
-                            </span>
-                            <ArrowUpRight className="size-4 shrink-0 text-slate transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-signal" />
-                          </a>
-                        </motion.li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </div>
+              <ContactTerminal />
             </Reveal>
           </div>
         </div>

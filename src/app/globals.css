@@ -332,3 +332,31 @@ html.lenis, html.lenis body { height: auto; }
   88% { opacity: 1; }
   100% { left: calc(100% - 8px); opacity: 0; }
 }
+
+/* ---------------------------------------------------------------
+   Lite render path for phones / touch screens.
+   backdrop-filter re-blurs everything behind each pane on every
+   scroll frame — the single most expensive effect on mobile GPUs.
+   Swap it for near-opaque tinted surfaces that look the same.
+   --------------------------------------------------------------- */
+@media (max-width: 767px), (pointer: coarse) {
+  .glass,
+  .glass-deep,
+  [class*="backdrop-blur"] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  .glass {
+    background:
+      linear-gradient(180deg, rgba(232, 246, 255, 0.07) 0%, rgba(232, 246, 255, 0.015) 42%, rgba(0, 0, 0, 0) 100%),
+      rgba(10, 24, 33, 0.94);
+  }
+  .glass-deep {
+    background: rgba(4, 11, 17, 0.94);
+  }
+  /* Pointer-only decorations */
+  .glass-spotlight::before,
+  .glass-spotlight::after {
+    display: none;
+  }
+}

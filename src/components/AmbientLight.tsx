@@ -1,13 +1,15 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "motion/react";
+import { useLite } from "@/lib/perf";
 
 /**
- * Fixed bioluminescent light field under every glass pane. It only moves with
- * scroll (never on its own), so backdrop-filtered glass above it is not forced
- * to re-blur on every idle frame.
+ * Fixed bioluminescent light field under every glass pane. The glows are
+ * radial gradients (no CSS blur filter), and they only drift with scroll on
+ * desktop, so nothing here repaints on idle frames.
  */
 export function AmbientLight() {
+  const lite = useLite();
   const { scrollYProgress } = useScroll();
   const y1 = useTransform(scrollYProgress, [0, 1], ["0vh", "60vh"]);
   const y2 = useTransform(scrollYProgress, [0, 1], ["0vh", "-50vh"]);
@@ -15,9 +17,18 @@ export function AmbientLight() {
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-abyss">
-      <motion.div style={{ y: y1 }} className="absolute -top-[20vh] -left-[10vw] h-[70vh] w-[60vw] rounded-full bg-biolume/35 blur-[120px]" />
-      <motion.div style={{ y: y2 }} className="absolute top-[40vh] -right-[15vw] h-[65vh] w-[55vw] rounded-full bg-orchid/[0.09] blur-[140px]" />
-      <motion.div style={{ x: x3 }} className="absolute -bottom-[25vh] left-[20vw] h-[60vh] w-[60vw] rounded-full bg-aqua/[0.07] blur-[130px]" />
+      <motion.div
+        style={lite ? undefined : { y: y1 }}
+        className="absolute -top-[30vh] -left-[20vw] h-[100vh] w-[85vw] bg-[radial-gradient(closest-side,rgba(10,108,138,0.42),rgba(10,108,138,0.12)_55%,transparent)]"
+      />
+      <motion.div
+        style={lite ? undefined : { y: y2 }}
+        className="absolute top-[30vh] -right-[25vw] h-[95vh] w-[80vw] bg-[radial-gradient(closest-side,rgba(124,140,255,0.13),rgba(124,140,255,0.04)_55%,transparent)]"
+      />
+      <motion.div
+        style={lite ? undefined : { x: x3 }}
+        className="absolute -bottom-[35vh] left-[10vw] h-[90vh] w-[85vw] bg-[radial-gradient(closest-side,rgba(184,246,255,0.08),rgba(184,246,255,0.02)_55%,transparent)]"
+      />
       {/* Faint engineering grid */}
       <div className="absolute inset-0 [background-image:linear-gradient(rgba(62,230,212,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(62,230,212,0.045)_1px,transparent_1px)] [background-size:64px_64px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_40%,#000_20%,transparent_85%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(3,8,13,0.75)_100%)]" />

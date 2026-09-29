@@ -11,6 +11,7 @@ import { ParticleSphere, INTRO, INTRO_REVEAL_AT, type Glyph } from "./ParticleSp
 import { Magnetic } from "./motion/Magnetic";
 import { CountUp } from "./motion/CountUp";
 import { EASE_OUT } from "./motion/Reveal";
+import { useLite } from "@/lib/perf";
 
 const INTRO_SESSION_KEY = "gk_particle_intro";
 
@@ -184,13 +185,29 @@ function Orbit({ ready, delay }: { ready: boolean; delay: number }) {
   const chipRefs = useRef<(HTMLDivElement | null)[]>([]);
   const cometRefs = useRef<(SVGCircleElement | null)[][]>(RINGS.map(() => []));
   const [size, setSize] = useState({ w: 0, h: 0 });
+  // Only animate when the orbit is actually shown (lg+) and on screen.
+  const activeRef = useRef(false);
 
   useEffect(() => {
     const el = boxRef.current;
     if (!el) return;
     const ro = new ResizeObserver(([e]) => setSize({ w: e.contentRect.width, h: e.contentRect.height }));
     ro.observe(el);
-    return () => ro.disconnect();
+    const mq = window.matchMedia("(min-width: 1024px)");
+    let onScreen = true;
+    const update = () => (activeRef.current = mq.matches && onScreen);
+    const io = new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      update();
+    });
+    io.observe(el);
+    mq.addEventListener("change", update);
+    update();
+    return () => {
+      ro.disconnect();
+      io.disconnect();
+      mq.removeEventListener("change", update);
+    };
   }, []);
 
   const geo = RINGS.map((r) => ({
@@ -203,6 +220,7 @@ function Orbit({ ready, delay }: { ready: boolean; delay: number }) {
   const slotOf = ORBITERS.map((o, i) => ORBITERS.slice(0, i).filter((p) => p.ring === o.ring).length);
 
   useAnimationFrame((t) => {
+    if (!activeRef.current) return;
     const time = reduce ? 0 : t / 1000;
 
     // Comets with trailing sparks (each ring's local, un-tilted frame)
@@ -262,13 +280,6 @@ function Orbit({ ready, delay }: { ready: boolean; delay: number }) {
                 <stop offset="1" stopColor={`rgb(${TONE[ring.tone]})`} stopOpacity="0.75" />
               </linearGradient>
             ))}
-            <filter id="comet-glow" x="-200%" y="-200%" width="500%" height="500%">
-              <feGaussianBlur stdDeviation="3" result="b" />
-              <feMerge>
-                <feMergeNode in="b" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
           </defs>
           {RINGS.map((ring, ri) => {
             const { rx, ry } = geo[ri];
@@ -287,16 +298,16 @@ function Orbit({ ready, delay }: { ready: boolean; delay: number }) {
                   className="animate-orbit-dash"
                   style={{ animationDirection: ring.speed < 0 ? "reverse" : "normal" }}
                 />
-                <g filter="url(#comet-glow)">
+                <g>
                   {Array.from({ length: TRAIL }, (_, k) => (
                     <circle
                       key={k}
                       ref={(el) => {
                         cometRefs.current[ri][k] = el;
                       }}
-                      r={k === 0 ? 3.2 : Math.max(0.6, 2.6 - k * 0.14)}
+                      r={k === 0 ? 3.2 : k === 1 ? 9 : Math.max(0.6, 2.6 - k * 0.14)}
                       fill={k === 0 ? "#ffffff" : `rgb(${rgb})`}
-                      opacity={k === 0 ? 1 : Math.max(0.05, 0.85 - k * 0.05)}
+                      opacity={k === 0 ? 1 : k === 1 ? 0.18 : Math.max(0.05, 0.85 - k * 0.05)}
                     />
                   ))}
                 </g>
@@ -346,6 +357,41 @@ function Orbit({ ready, delay }: { ready: boolean; delay: number }) {
         })}
       </div>
     </div>
+  );
+}
+
+/** Phones/tablets: the orbit's tools as a slow ribbon under the CTAs. */
+function ToolRibbon({ ready, delay }: { ready: boolean; delay: number }) {
+  const row = [...ORBITERS, ...ORBITERS];
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={ready ? { opacity: 1 } : undefined}
+      transition={{ duration: 0.8, delay }}
+      aria-hidden
+      className="mt-8 w-screen max-w-[100vw] overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_14%,#000_86%,transparent)] lg:hidden"
+    >
+      <div className="flex w-max animate-[marquee_28s_linear_infinite] gap-2.5">
+        {row.map((o, i) => {
+          const rgb = TONE[RINGS[o.ring].tone];
+          return (
+            <span
+              key={`${o.icon}-${i}`}
+              style={{ "--rgb": rgb } as React.CSSProperties}
+              className="flex items-center gap-2 rounded-xl border border-[rgba(var(--rgb),0.25)] bg-deep/80 py-1.5 pr-3 pl-1.5"
+            >
+              <span className="grid size-7 place-items-center rounded-lg bg-mist/[0.07]">
+                <Image src={`/img/tool-icons/${o.icon}`} alt="" width={16} height={16} className="size-4 object-contain" />
+              </span>
+              <span className="flex flex-col text-left leading-tight">
+                <span className="text-xs font-medium text-white">{o.label}</span>
+                <span className="font-mono text-[9px] tracking-[0.08em] text-[rgb(var(--rgb))] uppercase">{o.kind}</span>
+              </span>
+            </span>
+          );
+        })}
+      </div>
+    </motion.div>
   );
 }
 
@@ -418,10 +464,11 @@ export function HeroSection({ ready = true }: { ready?: boolean }) {
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
+  const lite = useLite();
   const rise = (delay: number) => ({
     initial: { opacity: 0, y: 24, filter: "blur(8px)" },
     animate: go ? { opacity: 1, y: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } } : undefined,
-    transition: { duration: 1, delay, ease: EASE_OUT },
+    transition: { duration: lite ? 0.8 : 1, delay, ease: EASE_OUT, filter: lite ? { duration: 0, delay } : undefined },
   });
 
   return (
@@ -491,6 +538,8 @@ export function HeroSection({ ready = true }: { ready?: boolean }) {
             <a href="#skills">{ui.navSkills}</a>
           </Button>
         </motion.div>
+
+        <ToolRibbon ready={go} delay={after + 1.3} />
       </motion.div>
 
       <motion.div {...rise(after + 1.3)} className="relative z-10 container-auros pb-6">

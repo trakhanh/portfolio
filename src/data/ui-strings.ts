@@ -87,6 +87,7 @@ const STRINGS = {
     letterHint: "Nhấp đúp để phóng to · kéo để di chuyển",
     verifiedLetter: "Có chữ ký & mộc đỏ",
     featured: "Đang xem",
+    liveProducts: "Sản phẩm đã triển khai",
   },
   en: {
     navSkills: "AI Skills",
@@ -141,6 +142,7 @@ const STRINGS = {
     letterHint: "Double-click to zoom · drag to pan",
     verifiedLetter: "Signed & stamped",
     featured: "Now viewing",
+    liveProducts: "Live products",
   },
 } as const;
 

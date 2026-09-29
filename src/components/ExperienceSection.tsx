@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowUpRight, BadgeCheck, Check, FileCheck2 } from "lucide-react";
+import { ArrowUpRight, BadgeCheck, Check, FileCheck2, Globe } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import type { ExperienceItem } from "@/types/portfolio";
 import { Button } from "@/components/ui/button";
@@ -97,6 +97,39 @@ function DetailPanel({ item, index, total }: { item: ExperienceItem; index: numb
             </motion.li>
           ))}
         </ul>
+
+        {item.links && item.links.length > 0 && (
+          <motion.div variants={rise} className="mt-8">
+            <p className="font-mono text-[11px] tracking-[0.12em] text-slate uppercase">{ui.liveProducts}</p>
+            <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+              {item.links.map((l) => (
+                <li key={l.url}>
+                  <a
+                    href={l.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex h-full items-start gap-3 rounded-xl border border-mist/12 bg-deep/60 p-4 transition-all hover:-translate-y-0.5 hover:border-signal/45 hover:bg-signal/[0.05]"
+                  >
+                    <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-signal/25 bg-signal/10 text-signal">
+                      <Globe className="size-4" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="flex items-center gap-2 font-mono text-sm text-white">
+                        <span className="relative flex size-1.5">
+                          <span className="absolute inline-flex size-full animate-ping rounded-full bg-signal opacity-60" />
+                          <span className="relative inline-flex size-1.5 rounded-full bg-signal" />
+                        </span>
+                        {l.label}
+                      </span>
+                      <span className="mt-1 block text-[13px] leading-snug text-silver">{l.note}</span>
+                    </span>
+                    <ArrowUpRight className="size-4 shrink-0 text-slate transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-signal" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
 
         <p className="mt-8 font-mono text-xs text-slate">
           {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}

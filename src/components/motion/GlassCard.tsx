@@ -31,7 +31,7 @@ export const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(functi
 
   const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {
     const el = ref.current;
-    if (el) {
+    if (el && e.pointerType === "mouse") {
       const r = el.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width;
       const y = (e.clientY - r.top) / r.height;
@@ -44,7 +44,7 @@ export const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(functi
   };
 
   const handleEnter = (e: React.PointerEvent<HTMLDivElement>) => {
-    ref.current?.style.setProperty("--spot", "1");
+    if (e.pointerType === "mouse") ref.current?.style.setProperty("--spot", "1");
     onPointerEnter?.(e);
   };
 

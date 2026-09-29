@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { useLite } from "@/lib/perf";
 import { EASE_OUT } from "./Reveal";
 
 interface SplitTextProps {
@@ -17,6 +18,7 @@ interface SplitTextProps {
 /** Word-by-word masked rise — each word slides up from behind its own clip line. */
 export function SplitText({ text, as = "h2", className, delay = 0, stagger = 0.05, immediate = false }: SplitTextProps) {
   const Tag = motion[as];
+  const lite = useLite();
   const words = text.split(" ");
   const trigger = immediate
     ? { initial: "hidden", animate: "show" }
@@ -35,7 +37,7 @@ export function SplitText({ text, as = "h2", className, delay = 0, stagger = 0.0
             className="inline-block"
             variants={{
               hidden: { y: "105%", opacity: 0, filter: "blur(6px)" },
-              show: { y: "0%", opacity: 1, filter: "blur(0px)", transitionEnd: { filter: "none" }, transition: { duration: 0.9, ease: EASE_OUT } },
+              show: { y: "0%", opacity: 1, filter: "blur(0px)", transitionEnd: { filter: "none" }, transition: { duration: 0.9, ease: EASE_OUT, filter: lite ? { duration: 0 } : undefined } },
             }}
           >
             {word}

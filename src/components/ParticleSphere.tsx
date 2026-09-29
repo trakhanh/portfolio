@@ -59,7 +59,21 @@ export function ParticleSphere({
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const small = window.innerWidth < 768;
-    const count = Math.round((small ? 1100 : 2200) * density);
+    const lite = small || window.matchMedia("(pointer: coarse)").matches;
+    const count = Math.round((small ? 800 : lite ? 1400 : 2200) * density);
+    // fillStyle strings are cached per colour + quantised alpha, so the hot
+    // loop allocates nothing.
+    const styleCache = new Map<number, string>();
+    const style = (r: number, g: number, b: number, a: number) => {
+      const q = Math.max(0, Math.min(20, Math.round(a * 20)));
+      const key = ((r * 256 + g) * 256 + b) * 32 + q;
+      let s = styleCache.get(key);
+      if (!s) {
+        s = `rgba(${r},${g},${b},${q / 20})`;
+        styleCache.set(key, s);
+      }
+      return s;
+    };
 
     const particles: Particle[] = [];
     const golden = Math.PI * (3 - Math.sqrt(5));
@@ -69,7 +83,7 @@ export function ParticleSphere({
       const t = golden * i;
       particles.push({ x: Math.cos(t) * r, y, z: Math.sin(t) * r, seed: Math.random(), sx: 0, sy: 0, tx: 0, ty: 0, d: 0 });
     }
-    const ringCount = small ? 140 : 260;
+    const ringCount = small ? 110 : 260;
     const ring = Array.from({ length: ringCount }, (_, i) => {
       const a = (i / ringCount) * Math.PI * 2;
       const rr = 1.32 + (Math.random() - 0.5) * 0.08;
@@ -81,7 +95,7 @@ export function ParticleSphere({
     let radius = 0;
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, lite ? 1.5 : 2);
       width = rect.width;
       height = rect.height;
       canvas.width = Math.round(width * dpr);
@@ -280,7 +294,7 @@ export function ParticleSphere({
           alpha = Math.min(1, alpha + push / 60);
         }
 
-        ctx!.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+        ctx!.fillStyle = style(r, g, b, alpha);
         ctx!.fillRect(px - size / 2, py - size / 2, size, size);
       }
 
@@ -295,20 +309,26 @@ export function ParticleSphere({
           const z2 = p.y * sinX + z1 * cosX;
           const depth = (z2 / 1.32 + 1) / 2;
           const size = 0.6 + depth * 1.1;
-          ctx!.fillStyle = `rgba(124,160,255,${(0.08 + depth * 0.5) * orbIn})`;
+          ctx!.fillStyle = style(124, 160, 255, (0.08 + depth * 0.5) * orbIn);
           ctx!.fillRect(cx + x1 * radius - size / 2, cy + y2 * radius - size / 2, size, size);
         }
       }
     }
 
+    // Phones draw at ~30fps outside the intro; the orb turns slowly enough
+    // that the difference is invisible, and it halves canvas work.
+    let last = 0;
     function frame(time: number) {
       if (!visible) {
         raf = 0;
         return;
       }
-      spin += 0.0022;
-      draw(time);
       raf = requestAnimationFrame(frame);
+      const minGap = lite && introState !== "running" ? 30 : 0;
+      if (time - last < minGap) return;
+      spin += 0.0022 * (last ? Math.min(3, (time - last) / 16.7) : 1);
+      last = time;
+      draw(time);
     }
 
     if (reduce) {
