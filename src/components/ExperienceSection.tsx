@@ -46,7 +46,7 @@ function DetailPanel({ item, index, total }: { item: ExperienceItem; index: numb
   const months = duration(item);
 
   return (
-    <GlassCard className="relative h-full overflow-hidden p-6 sm:p-10">
+    <GlassCard className="relative h-full overflow-hidden p-5 sm:p-10">
       <span
         aria-hidden
         className="pointer-events-none absolute -top-6 right-4 font-mono text-[140px] leading-none font-medium text-transparent [-webkit-text-stroke:1px_rgba(62,230,212,0.14)] sm:text-[180px]"
@@ -118,7 +118,7 @@ function DetailPanel({ item, index, total }: { item: ExperienceItem; index: numb
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="block text-sm leading-snug font-medium text-white">{p.title}</span>
-                      <span className="mt-0.5 block truncate text-xs text-lavender">{p.result}</span>
+                      <span className="mt-0.5 line-clamp-2 text-xs text-lavender sm:line-clamp-1">{p.result}</span>
                     </span>
                     <ArrowUpRight className="size-4 shrink-0 text-slate transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-signal" />
                   </Link>
@@ -218,7 +218,8 @@ export function ExperienceSection() {
               })}
             </TabsList>
 
-            <div className="min-w-0 lg:col-span-8">
+            {/* overflow-x-clip: the panel slides in from x:30, which otherwise nudges the page sideways on phones */}
+            <div className="min-w-0 overflow-x-clip lg:col-span-8">
               <AnimatePresence mode="wait">
                 {experience.items.map((item, i) =>
                   active === String(i) ? (
@@ -242,7 +243,7 @@ export function ExperienceSection() {
 
         {/* Signed recommendation */}
         <Reveal className="mt-10">
-          <GlassCard variant="deep" className="grid gap-10 overflow-hidden p-8 sm:p-12 lg:grid-cols-12">
+          <GlassCard variant="deep" className="grid grid-cols-[minmax(0,1fr)] gap-10 overflow-hidden p-6 sm:p-12 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <div className="flex items-center gap-3">
                 <span className="grid size-8 place-items-center rounded-md bg-[rgba(20,56,76,0.5)]">

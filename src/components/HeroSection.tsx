@@ -514,8 +514,10 @@ export function HeroSection({ ready = true }: { ready?: boolean }) {
           aria-label={`${first} ${last}`}
           className="mt-7 text-[clamp(3.4rem,1rem+10vw,8.5rem)] leading-[1.08] font-medium tracking-[-0.025em] sm:mt-6"
         >
-          <NameLine text={first} delay={intro ? INTRO_REVEAL_AT : 0.25} ready={go} particleMode={intro} />
-          <NameLine text={last} delay={intro ? INTRO_REVEAL_AT + 0.1 : 0.55} ready={go} particleMode={intro} accent />
+          {/* Keyed by text so a language switch replays the whole line; per-word keys
+              left words shared by both locales ("Gia") frozen while the rest animated. */}
+          <NameLine key={first} text={first} delay={intro ? INTRO_REVEAL_AT : 0.25} ready={go} particleMode={intro} />
+          <NameLine key={last} text={last} delay={intro ? INTRO_REVEAL_AT + 0.1 : 0.55} ready={go} particleMode={intro} accent />
         </h1>
 
         <motion.p {...rise(after + 0.95)} className="mt-5 text-base sm:text-xl">

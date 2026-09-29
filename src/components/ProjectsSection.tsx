@@ -92,12 +92,12 @@ export function ProjectsSection() {
 
         <Reveal className="mt-12">
           <Tabs value={filter} onValueChange={(v) => setFilter(v as Filter)}>
-            <TabsList className="glass h-auto w-full gap-1 !rounded-xl bg-transparent p-1.5 sm:w-fit">
+            <TabsList className="glass h-auto w-full gap-1 !rounded-xl bg-transparent p-1.5 max-sm:grid max-sm:grid-cols-2 sm:w-fit">
               {filters.map((f) => (
                 <TabsTrigger
                   key={f.id}
                   value={f.id}
-                  className="relative isolate h-10 min-w-0 cursor-pointer px-1.5 text-[11px] tracking-[0.06em] text-silver uppercase sm:px-4 sm:tracking-[0.12em] data-[state=active]:bg-transparent data-[state=active]:text-abyss data-[state=active]:shadow-none sm:text-[12px]"
+                  className="relative isolate h-10 min-w-0 cursor-pointer px-2 text-[11px] tracking-[0.1em] text-silver uppercase sm:px-4 sm:tracking-[0.12em] data-[state=active]:bg-transparent data-[state=active]:text-abyss data-[state=active]:shadow-none sm:text-[12px]"
                 >
                   {filter === f.id && (
                     <motion.span

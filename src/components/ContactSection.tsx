@@ -138,27 +138,31 @@ function ContactTerminal() {
         </p>
         {rendered.map((line, li) =>
           line.visible || li === cursorLine ? (
-            <div key={li} aria-hidden className="flex min-h-7 items-center justify-between gap-3">
-              <p className="min-w-0 whitespace-pre-wrap">
-                <span className="mr-3 inline-block w-3 text-right text-slate/60 select-none sm:mr-4 sm:w-4">{li + 1}</span>
-                {line.segs.map((s, si) =>
-                  s.href && done ? (
-                    <a key={si} href={s.href} className={cn(s.c, "underline-offset-4 hover:underline")}>
-                      {s.shown}
-                    </a>
-                  ) : (
-                    <span key={si} className={s.c}>
-                      {s.shown}
-                    </span>
-                  ),
-                )}
-                {li === cursorLine && (
-                  <motion.span
-                    className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 bg-signal"
-                    animate={{ opacity: [1, 0, 1] }}
-                    transition={{ duration: 1, repeat: Infinity, times: [0, 0.5, 1] }}
-                  />
-                )}
+            <div key={li} aria-hidden className="flex min-h-7 items-start justify-between gap-3">
+              {/* Gutter and code are separate columns, and wrapped code hangs one
+                  level deeper than its key, so narrow screens still read as code. */}
+              <p className="flex min-w-0">
+                <span className="mr-3 w-3 shrink-0 text-right text-slate/60 select-none sm:mr-4 sm:w-4">{li + 1}</span>
+                <span className="min-w-0 -indent-[4ch] pl-[4ch] whitespace-pre-wrap">
+                  {line.segs.map((s, si) =>
+                    s.href && done ? (
+                      <a key={si} href={s.href} className={cn(s.c, "underline-offset-4 hover:underline")}>
+                        {s.shown}
+                      </a>
+                    ) : (
+                      <span key={si} className={s.c}>
+                        {s.shown}
+                      </span>
+                    ),
+                  )}
+                  {li === cursorLine && (
+                    <motion.span
+                      className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 bg-signal"
+                      animate={{ opacity: [1, 0, 1] }}
+                      transition={{ duration: 1, repeat: Infinity, times: [0, 0.5, 1] }}
+                    />
+                  )}
+                </span>
               </p>
               {li === 2 && done && (
                 <motion.button
@@ -205,13 +209,13 @@ function ContactTerminal() {
                   href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col items-center gap-2 rounded-lg border border-mist/10 bg-mist/[0.03] p-3 text-center transition-all sm:flex-row sm:gap-3 sm:text-left hover:-translate-y-0.5 hover:border-signal/45 hover:bg-signal/[0.06]"
+                  className="group flex min-w-0 flex-col items-center gap-2 rounded-lg border border-mist/10 bg-mist/[0.03] px-1.5 py-3 text-center sm:p-3 transition-all sm:flex-row sm:gap-3 sm:text-left hover:-translate-y-0.5 hover:border-signal/45 hover:bg-signal/[0.06]"
                 >
                   <span className="grid size-9 shrink-0 place-items-center rounded-md border border-mist/12 bg-abyss text-mist transition-colors group-hover:border-signal/50 group-hover:text-signal">
                     <Icon className="size-[18px]" />
                   </span>
                   <span className="w-full min-w-0 flex-1 font-sans">
-                    <span className="block text-sm font-medium text-white">{s.name}</span>
+                    <span className="block truncate text-[13px] font-medium text-white sm:text-sm">{s.name}</span>
                     <span className="hidden truncate font-mono text-[11px] text-silver sm:block">@{s.handle}</span>
                   </span>
                   <ArrowUpRight className="hidden size-4 shrink-0 text-slate transition-all sm:block group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-signal" />
