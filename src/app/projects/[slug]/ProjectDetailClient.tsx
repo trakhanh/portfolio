@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, ViewTransition } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -16,6 +16,7 @@ import { Reveal, EASE_OUT } from "@/components/motion/Reveal";
 import { SplitText } from "@/components/motion/SplitText";
 import { cn } from "@/lib/utils";
 import type { ArchitectureDiagram } from "@/types/portfolio";
+import { clearCoverTransition, coverName, isCoverTransition, markCoverTransition } from "@/lib/cover-transition";
 
 /* Icons for each technology entry in the case data */
 const TECH_ICONS: Record<string, string[]> = {
@@ -109,7 +110,13 @@ function Architecture({ arch, label }: { arch: ArchitectureDiagram; label: strin
                 <div aria-hidden className="grid sm:grid-cols-[112px_1fr] sm:gap-4">
                   <span className="hidden sm:block" />
                   <span className="flex flex-col items-center py-1">
-                    <span className="h-4 w-px bg-gradient-to-b from-signal/15 to-signal/70" />
+                    <span className="relative h-4 w-px bg-gradient-to-b from-signal/15 to-signal/70">
+                      {/* a packet travelling down the connector, staggered tier by tier */}
+                      <span
+                        className="absolute top-0 -left-[2px] size-[5px] rounded-full bg-signal opacity-0 shadow-[0_0_8px_2px_rgba(62,230,212,0.7)] motion-safe:animate-[flow-down_1.8s_linear_infinite] motion-reduce:hidden"
+                        style={{ animationDelay: `${i * 0.45}s` }}
+                      />
+                    </span>
                     <ArrowDown className="-mt-1 size-3 text-signal/80" />
                   </span>
                 </div>
@@ -153,6 +160,9 @@ function CheckItem({ children }: { children: React.ReactNode }) {
 export function ProjectDetailClient({ slug }: { slug: string }) {
   const { content, cases, ui, href } = useLanguage();
   const [active, setActive] = useState<SectionId>("challenge");
+  // Arrived from a card: the cover is flown in by the view transition, so it must not also fade in.
+  const [handedOff] = useState(() => isCoverTransition(slug));
+  useEffect(() => clearCoverTransition(), []);
 
   const all = content.projects.items;
   const idx = all.findIndex((p) => p.id === slug);
@@ -238,8 +248,9 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
             </motion.div>
           )}
 
+          <ViewTransition name={coverName(slug)}>
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.98 }}
+            initial={handedOff ? false : { opacity: 0, y: 30, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ delay: 0.45, duration: 1.1, ease: EASE_OUT }}
             className="mt-12 overflow-hidden rounded-2xl border border-mist/10"
@@ -254,6 +265,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
               className="h-auto w-full"
             />
           </motion.div>
+          </ViewTransition>
 
           <dl className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-mist/10 bg-mist/10 sm:grid-cols-2 lg:grid-cols-4">
             {facts.map((f) => (
@@ -400,14 +412,17 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
               <Link
                 key={dir}
                 href={href(`/projects/${p.id}/`)}
+                onClick={() => markCoverTransition(p.id)}
                 className={cn(
                   "group flex items-center gap-5 overflow-hidden rounded-2xl border border-mist/10 bg-deep/60 p-4 transition-colors hover:border-signal/40",
                   dir === "next" && "sm:flex-row-reverse sm:text-right",
                 )}
               >
-                <span className="relative aspect-[16/10] w-32 shrink-0 overflow-hidden rounded-lg">
-                  <Image src={asset(p.image)} alt="" fill sizes="128px" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                </span>
+                <ViewTransition name={coverName(p.id)}>
+                  <span className="relative aspect-[16/10] w-32 shrink-0 overflow-hidden rounded-lg">
+                    <Image src={asset(p.image)} alt="" fill sizes="128px" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                  </span>
+                </ViewTransition>
                 <span className="min-w-0">
                   <span className={cn("flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-slate uppercase", dir === "next" && "sm:justify-end")}>
                     {dir === "prev" && <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-1" />}

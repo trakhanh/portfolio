@@ -369,3 +369,43 @@ html.lenis, html.lenis body { height: auto; }
     display: none;
   }
 }
+
+/* ---------------------------------------------------------------
+   View transitions
+   - Project cards and case-study covers share a name, so opening a
+     project flies the card's cover into the case study (and back).
+   - Full page loads (the VI/EN switch) cross-fade between documents.
+   --------------------------------------------------------------- */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-group(*) {
+  animation-duration: 0.55s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+}
+/* Covers crop differently on each page; scale both snapshots to the box instead of stretching. */
+::view-transition-old(*):not(:only-child),
+::view-transition-new(*):not(:only-child) {
+  height: 100%;
+  object-fit: cover;
+  overflow: clip;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* Architecture diagrams: a data packet runs down each connector. */
+@keyframes flow-down {
+  0% { transform: translateY(-2px); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(18px); opacity: 0; }
+}

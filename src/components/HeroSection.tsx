@@ -248,9 +248,9 @@ function Orbit({ ready, delay }: { ready: boolean; delay: number }) {
       const depth = (Math.sin(a) + 1) / 2; // 1 = nearest the viewer
       const clear = Math.min(1, Math.max(0, (Math.abs(x) - rx * 0.42) / (rx * 0.18)));
       el.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px) scale(${0.72 + depth * 0.42})`;
-      el.style.opacity = String((0.18 + depth * 0.82) * clear);
+      el.style.opacity = String((0.05 + Math.pow(depth, 1.6) * 0.95) * clear);
       el.style.zIndex = String(Math.round(depth * 10));
-      el.style.filter = depth < 0.3 ? `blur(${(0.3 - depth) * 6}px)` : "none";
+      el.style.filter = depth < 0.35 ? `blur(${(0.35 - depth) * 8}px)` : "none";
       el.style.setProperty("--lit", depth.toFixed(3));
     });
   });
@@ -262,7 +262,7 @@ function Orbit({ ready, delay }: { ready: boolean; delay: number }) {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={ready ? { opacity: 1, scale: 1 } : undefined}
           transition={{ duration: 1.6, delay, ease: EASE_OUT }}
-          className="absolute inset-0 hidden size-full overflow-visible lg:block"
+          className="absolute inset-0 hidden size-full overflow-visible [mask-image:radial-gradient(ellipse_36%_40%_at_50%_46%,transparent_0,transparent_55%,rgba(0,0,0,0.35)_72%,#000_100%)] lg:block"
         >
           <defs>
             {RINGS.map((ring, ri) => (
@@ -512,7 +512,7 @@ export function HeroSection({ ready = true }: { ready?: boolean }) {
         <h1
           ref={nameRef}
           aria-label={`${first} ${last}`}
-          className="mt-7 text-[clamp(3.4rem,1rem+10vw,8.5rem)] leading-[1.08] font-medium tracking-[-0.025em] sm:mt-6"
+          className="mt-7 text-[clamp(3.4rem,min(1rem_+_10vw,15svh),8.5rem)] leading-[1.08] font-medium tracking-[-0.025em] sm:mt-6 [@media(max-height:820px)]:mt-4"
         >
           {/* Keyed by text so a language switch replays the whole line; per-word keys
               left words shared by both locales ("Gia") frozen while the rest animated. */}
@@ -524,13 +524,13 @@ export function HeroSection({ ready = true }: { ready?: boolean }) {
           <TypeRotator words={roles} start={go} />
         </motion.p>
 
-        <motion.p {...rise(after + 1.05)} className="mt-3 max-w-[34ch] text-xl leading-snug tracking-[-0.01em] text-mist sm:text-2xl">
+        <motion.p {...rise(after + 1.05)} className="mt-3 max-w-[34ch] text-xl leading-snug tracking-[-0.01em] text-white sm:text-2xl lg:text-[26px]">
           {hero.title}
         </motion.p>
 
         <motion.div
           {...rise(after + 1.15)}
-          className="mt-8 flex w-full max-w-sm flex-col items-stretch gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:items-center sm:justify-center"
+          className="mt-8 flex w-full max-w-sm flex-col items-stretch gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:items-center sm:justify-center [@media(max-height:820px)]:mt-6"
         >
           <Magnetic className="flex sm:inline-flex">
             <Button asChild size="lg" className="w-full sm:w-auto">
