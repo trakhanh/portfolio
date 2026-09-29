@@ -7,6 +7,7 @@ export const PROJECT_CASES = {
       "scope": "Phạm vi",
       "academic": "Dự án học thuật",
       "professional": "Dự án thực tế",
+      "product": "Sản phẩm tự phát triển",
       "map": "Bản đồ case study",
       "challenge": "Bài toán",
       "roleSection": "Vai trò & trách nhiệm",
@@ -29,6 +30,171 @@ export const PROJECT_CASES = {
       "notFoundButton": "Quay lại portfolio"
     },
     "items": {
+      "kt-ai-video-studio": {
+        "role": "Tác giả – thiết kế và xây dựng toàn bộ sản phẩm",
+        "challenge": "Làm một video ngắn có giọng đọc, phụ đề và hình minh hoạ thường tốn hàng giờ thao tác tay qua nhiều công cụ. Mục tiêu là rút về một ô nhập và một nút bấm, mà video ra vẫn đúng nhịp giọng đọc, phụ đề đúng chữ, hình đúng chủ đề và dựng lại lúc nào cũng cho cùng một kết quả.",
+        "responsibilities": [
+          "Thiết kế dây chuyền 9 bước: khởi tạo, viết kịch bản, tìm hình, thu giọng, bóc phụ đề, sửa phụ đề, lắp spec, kết xuất và tự kiểm.",
+          "Xây 75 mẫu thuộc 20 họ bằng Remotion (React), mỗi mẫu có bản dọc 9:16 và ngang 16:9 cùng một tài liệu luật viết riêng cho AI.",
+          "Xây giao diện web cục bộ với Bàn dựng, Kho băng, Hướng dẫn và Cài đặt (thử khoá API trực tiếp).",
+          "Viết bộ tự kiểm năm phép đo trên khung hình và bộ kiểm thử cho pipeline, chuẩn hoá kế hoạch và gióng phụ đề."
+        ],
+        "process": [
+          {
+            "title": "Kịch bản theo luật từng mẫu",
+            "description": "Gemini đọc đúng tài liệu luật của mẫu đang chọn rồi viết plan.json, xoay tua nhiều key và model; key hết hạn mức (429) bị bỏ qua, model bận (503) thì thử lại rồi nhảy sang model dự phòng."
+          },
+          {
+            "title": "Giọng đọc và phụ đề bám từng từ",
+            "description": "Gemini TTS đọc từng đoạn ≤ 60 từ để giọng không trôi; Groq Whisper cho mốc thời gian, chữ hiện lên là chữ kịch bản được gióng bằng dãy con chung dài nhất."
+          },
+          {
+            "title": "Hình đúng chủ đề",
+            "description": "Tìm theo thứ tự ảnh bài báo → Wikimedia Commons → web (DuckDuckGo, Bing) → Pexels → hình vẽ; Gemini nhìn lại ảnh sản phẩm trước khi dùng."
+          },
+          {
+            "title": "Dựng và tự kiểm",
+            "description": "Độ dài cảnh lấy từ mốc giọng đọc thật; Remotion kết xuất một tab để chữ không rung, sau đó năm phép đo kiểm độ phủ khung, chữ rung, chữ nhảy, tương phản phụ đề và khung ảnh."
+          }
+        ],
+        "technologies": [
+          {
+            "name": "Remotion / React",
+            "purpose": "Dựng mọi khung hình bằng mã nguồn: sửa được, đo được và dựng lại luôn ra đúng như cũ."
+          },
+          {
+            "name": "Node.js / FFmpeg",
+            "purpose": "Điều phối pipeline, máy chủ giao diện chỉ lắng nghe 127.0.0.1, xử lý âm thanh và video."
+          },
+          {
+            "name": "Gemini",
+            "purpose": "Viết kịch bản, đọc giọng tiếng Việt (TTS) và kiểm tra lại ảnh sản phẩm."
+          },
+          {
+            "name": "Groq Whisper",
+            "purpose": "Bóc mốc thời gian từng từ để phụ đề và nhịp cảnh khớp giọng đọc."
+          }
+        ],
+        "outcome": "Từ một chủ đề, dàn ý hay link bài báo ra thẳng MP4 hoàn chỉnh, ở cả khổ dọc cho TikTok/Reels/Shorts lẫn khổ ngang cho YouTube/Facebook. Mỗi video được tự kiểm sau khi dựng và ghi cảnh báo vào nhật ký.",
+        "evidence": [
+          "75 mẫu thuộc 20 họ, mọi mẫu có bố cục dọc và ngang riêng.",
+          "Dây chuyền 9 bước tự động từ nội dung đến MP4.",
+          "Đo trên mẫu bản tin: dựng 8 tab rung chữ 3/7 cảnh, dựng 1 tab 0/7 cảnh.",
+          "Tự kiểm năm phép đo trên khung hình sau mỗi lượt dựng."
+        ],
+        "learning": "Với video tự động, độ ổn định quan trọng hơn tốc độ: đo từng lỗi trên khung hình rồi mới quyết định (ví dụ dựng một tab) giúp chất lượng lặp lại được ở mọi lượt dựng.",
+        "privacyNote": "Mã nguồn đang để private trên GitHub; có thể demo trực tiếp khi trao đổi."
+      },
+      "kt-voice-studio": {
+        "role": "Tác giả – thiết kế và xây dựng toàn bộ ứng dụng",
+        "challenge": "Lồng tiếng một video cần nghe chép, dịch, đọc lại và trộn âm sao cho giữ nguyên nhạc nền, câu nào đúng mốc câu đó, không bị méo tiếng. Làm thủ công rất lâu, còn dịch vụ miễn phí thì bị chặn hạn mức giữa chừng.",
+        "responsibilities": [
+          "Xây ứng dụng desktop PyQt6 với hai chế độ: lồng tiếng đầy đủ và bóc băng phụ đề SRT.",
+          "Tích hợp faster-whisper, Demucs và NLLB-200 chạy trên GPU (CUDA), tự lùi về CPU khi cần.",
+          "Viết bộ trộn âm NumPy: chuẩn hoá -18 dBFS, ducking, limiter theo khối, neo từng câu vào mốc thời gian.",
+          "Xây hàng chờ nhiều video, nhiều giọng, nhiều người nói; đóng gói .exe kèm bộ tự kiểm sau mỗi lần build."
+        ],
+        "process": [
+          {
+            "title": "Nghe chép và tách nhạc",
+            "description": "faster-whisper có lọc khoảng lặng VAD; Demucs tách giọng và nhạc nền, cắt đoạn 10 phút để không tràn VRAM."
+          },
+          {
+            "title": "Dịch đúng ngữ cảnh",
+            "description": "Gộp mảnh thoại thành câu trước khi dịch; dịch offline bằng NLLB-200 hoặc qua Google/MyMemory, gộp 20 câu mỗi lượt gọi để tránh bị chặn."
+          },
+          {
+            "title": "Đọc và khớp thời lượng",
+            "description": "5 dịch vụ giọng đọc; câu dài được đọc lại nhanh hơn thay vì kéo giãn file để không méo tiếng; tự cắt khoảng lặng thừa của Edge-TTS."
+          },
+          {
+            "title": "Trộn, xuất và báo cáo",
+            "description": "Trộn một lượt bằng NumPy, xuất video, SRT hai thứ tiếng, giọng đọc và nhạc nền tách riêng kèm báo cáo đồng bộ từng câu."
+          }
+        ],
+        "technologies": [
+          {
+            "name": "Python / PyQt6",
+            "purpose": "Giao diện desktop tự co theo ba mốc bề ngang, hàng chờ và cài đặt."
+          },
+          {
+            "name": "faster-whisper / CTranslate2",
+            "purpose": "Nghe chép trên GPU (int8_float16), cache model giữa các lần chạy."
+          },
+          {
+            "name": "Demucs / NLLB-200",
+            "purpose": "Tách nhạc nền và dịch offline 74 ngôn ngữ, không hạn mức, không cần mạng."
+          },
+          {
+            "name": "Edge-TTS / Gemini TTS",
+            "purpose": "318 giọng đọc miễn phí và 30 giọng Gemini chỉnh sắc thái bằng câu lệnh."
+          }
+        ],
+        "outcome": "Thả một video vào là nhận lại video đã lồng tiếng, phụ đề hai thứ tiếng, giọng đọc và nhạc nền tách riêng. Nội dung được xử lý hoàn toàn trên máy, không gửi đi đâu.",
+        "evidence": [
+          "Chỉ xuất SRT: 13,1 giây thay vì 168,7 giây cho cả quy trình (nhanh hơn 92%).",
+          "Nhiều giọng cho cùng video dùng chung Demucs và Whisper: bản giọng thứ hai chỉ còn khoảng 29 giây.",
+          "Tách người nói: 100% với 4 người (2 nam, 2 nữ) trên giọng dựng sẵn.",
+          "Dịch offline 489 câu trong 82 giây, không sót câu nào."
+        ],
+        "learning": "Đo trước rồi mới tối ưu: số liệu thật (thời gian từng khâu, độ lệch từng câu) cho biết phải bỏ khâu nào và giữ chất lượng ở đâu, thay vì đoán.",
+        "privacyNote": "Mã nguồn đang để private trên GitHub; có thể demo trực tiếp khi trao đổi."
+      },
+      "kt-epub-studio": {
+        "role": "Tác giả – thiết kế và xây dựng toàn bộ ứng dụng",
+        "challenge": "Dịch cả một cuốn sách bằng AI thường vấp ba vấn đề: bị chặn hạn mức giữa chừng, tên riêng và xưng hô không nhất quán giữa các chương, và mất định dạng (hình, mục lục, chú thích, drop cap).",
+        "responsibilities": [
+          "Xây bộ đọc EPUB/PDF trên trình duyệt: mục lục, hình ảnh, 4 giao diện, lưu tiến trình vào file cục bộ.",
+          "Viết engine dịch với Gemini xoay tua nhiều key, structured output theo JSON Schema và kiểm tra chất lượng từng đoạn.",
+          "Tự lập sổ tay nhân vật, giới tính, xưng hô và thuật ngữ trước khi dịch để thống nhất cả cuốn.",
+          "Đóng gói chạy 1-click trên Windows: tự dò hoặc cài Python, cài thư viện và mở trình duyệt."
+        ],
+        "process": [
+          {
+            "title": "Đọc lướt và lập sổ tay",
+            "description": "AI đọc khắp cuốn sách để lập danh sách nhân vật, xưng hô và thuật ngữ; sổ tay được đưa vào mọi lô dịch."
+          },
+          {
+            "title": "Dịch song song có ngữ cảnh",
+            "description": "Dịch nhiều chương song song, mỗi chương gửi kèm vài đoạn đã dịch làm ngữ cảnh; xoay key và cooldown khi gặp 429."
+          },
+          {
+            "title": "Kiểm tra và dịch lại",
+            "description": "Phát hiện đoạn chưa dịch, sai ngôn ngữ, bỏ sót hay mất liên kết để tự dịch lại; đoạn khó chuyển sang model dự phòng trước khi dùng Google NMT."
+          },
+          {
+            "title": "Giữ nguyên cấu trúc",
+            "description": "Bảo toàn ảnh, anchor mục lục, <br>, <code> bằng ký hiệu giữ chỗ; dịch cả nav.xhtml và toc.ncx; lưu cache để dừng rồi dịch tiếp không tốn quota."
+          }
+        ],
+        "technologies": [
+          {
+            "name": "Python / FastAPI",
+            "purpose": "Máy chủ cục bộ cho bộ đọc, xưởng dịch, thư viện và cài đặt."
+          },
+          {
+            "name": "Gemini",
+            "purpose": "Dịch văn học với nhiều key xoay tua, structured output và sổ tay dịch."
+          },
+          {
+            "name": "EPUB / BeautifulSoup",
+            "purpose": "Bóc tách chương, mục lục và dựng lại sách giữ nguyên định dạng."
+          },
+          {
+            "name": "JavaScript / Web App",
+            "purpose": "Giao diện đọc và dịch trên trình duyệt với log trực tiếp."
+          }
+        ],
+        "outcome": "Một bộ công cụ chạy cục bộ để đọc và dịch trọn cuốn sách sang tiếng Việt, giữ nguyên hình ảnh và mục lục; sao chép thư mục sang máy khác và nhấp đúp là chạy.",
+        "evidence": [
+          "Dịch cả nav.xhtml, toc.ncx, danh sách và bảng; không làm mất ảnh hay anchor mục lục.",
+          "Dừng rồi dịch tiếp từ cache, không tốn lại quota.",
+          "Kiểm tra sức khoẻ từng API key: độ trễ và hạn mức khả dụng.",
+          "Khởi chạy 1-click trên Windows, tự cài Python và thư viện khi thiếu."
+        ],
+        "learning": "Chất lượng dịch dài hơi đến từ quy trình hơn là từ model: sổ tay nhất quán, ngữ cảnh chương và vòng kiểm tra – dịch lại quan trọng không kém prompt.",
+        "privacyNote": "Mã nguồn đang để private trên GitHub; có thể demo trực tiếp khi trao đổi."
+      },
       "computer-vision-inspection": {
         "role": "Phát triển pipeline Computer Vision và ứng dụng demo",
         "challenge": "Bài toán không chỉ yêu cầu phát hiện vật thể trên băng chuyền, mà còn phải giữ đúng định danh khi vật thể di chuyển qua nhiều khung hình và ước lượng kích thước ổn định từ dữ liệu camera.",
@@ -461,6 +627,7 @@ export const PROJECT_CASES = {
       "scope": "Scope",
       "academic": "Academic project",
       "professional": "Professional project",
+      "product": "Self-built product",
       "map": "Case study map",
       "challenge": "The challenge",
       "roleSection": "Role & responsibilities",
@@ -483,6 +650,171 @@ export const PROJECT_CASES = {
       "notFoundButton": "Back to portfolio"
     },
     "items": {
+      "kt-ai-video-studio": {
+        "role": "Author – designed and built the whole product",
+        "challenge": "A short video with narration, subtitles and illustrations usually takes hours of manual work across several tools. The goal was one input box and one button, while keeping the pacing tied to the voice, the subtitles word-accurate, the visuals on topic and every re-render identical.",
+        "responsibilities": [
+          "Designed a 9-stage pipeline: setup, script, visuals, voice, transcription, subtitle alignment, spec assembly, render and self-check.",
+          "Built 75 templates in 20 families with Remotion (React), each with 9:16 and 16:9 layouts and its own writing rules for the AI.",
+          "Built a local web UI with a render desk, video library, guide and settings (live API-key testing).",
+          "Wrote a five-metric frame audit plus tests for the pipeline, plan normalisation and subtitle alignment."
+        ],
+        "process": [
+          {
+            "title": "Scripts that follow each template",
+            "description": "Gemini reads the selected template's rule document and writes plan.json, rotating keys and models; exhausted keys (429) are skipped, busy models (503) retry then fall back."
+          },
+          {
+            "title": "Voice and word-level subtitles",
+            "description": "Gemini TTS reads chunks of ≤ 60 words so the voice doesn't drift; Groq Whisper supplies timings and the on-screen text is the script, aligned with a longest-common-subsequence match."
+          },
+          {
+            "title": "On-topic visuals",
+            "description": "Article images → Wikimedia Commons → web (DuckDuckGo, Bing) → Pexels → drawn art; Gemini double-checks product photos before use."
+          },
+          {
+            "title": "Render and self-check",
+            "description": "Scene lengths come from the real narration timings; Remotion renders in one tab to avoid text jitter, then five frame metrics check coverage, jitter, jumps, subtitle contrast and image edges."
+          }
+        ],
+        "technologies": [
+          {
+            "name": "Remotion / React",
+            "purpose": "Every frame is source code: editable, measurable and identical on every re-render."
+          },
+          {
+            "name": "Node.js / FFmpeg",
+            "purpose": "Pipeline orchestration, a UI server bound to 127.0.0.1, audio and video processing."
+          },
+          {
+            "name": "Gemini",
+            "purpose": "Script writing, Vietnamese TTS and a second look at product images."
+          },
+          {
+            "name": "Groq Whisper",
+            "purpose": "Word-level timings so subtitles and scene cuts follow the voice."
+          }
+        ],
+        "outcome": "A topic, outline or news link goes straight to a finished MP4, in vertical for TikTok/Reels/Shorts or landscape for YouTube/Facebook. Each video is audited after rendering and warnings go to the log.",
+        "evidence": [
+          "75 templates in 20 families, each with dedicated vertical and landscape layouts.",
+          "A 9-stage automated pipeline from content to MP4.",
+          "Measured on a news template: 8-tab renders jittered in 3/7 scenes, single-tab renders in 0/7.",
+          "Five frame metrics checked after every render."
+        ],
+        "learning": "For automated video, consistency matters more than speed: measuring each defect on the frames before deciding (such as single-tab rendering) makes quality repeatable on every run.",
+        "privacyNote": "The source code is private on GitHub; a live demo is available on request."
+      },
+      "kt-voice-studio": {
+        "role": "Author – designed and built the whole application",
+        "challenge": "Dubbing a video means transcribing, translating, re-voicing and remixing while keeping the music, pinning every line to its timestamp and avoiding distortion. Done by hand it is slow, and free services get rate-limited halfway through.",
+        "responsibilities": [
+          "Built a PyQt6 desktop app with two modes: full dubbing and SRT transcription.",
+          "Integrated faster-whisper, Demucs and NLLB-200 on the GPU (CUDA) with automatic CPU fallback.",
+          "Wrote a NumPy mixer: -18 dBFS normalisation, ducking, block limiter, every line anchored to its timestamp.",
+          "Built a multi-video, multi-voice, multi-speaker queue; packaged an .exe with a self-test after every build."
+        ],
+        "process": [
+          {
+            "title": "Transcribe and separate",
+            "description": "faster-whisper with VAD silence filtering; Demucs splits voice from music, chunked into 10-minute pieces to stay within VRAM."
+          },
+          {
+            "title": "Translate in context",
+            "description": "Fragments are merged into sentences before translation; offline NLLB-200 or Google/MyMemory, batching 20 lines per call to avoid rate limits."
+          },
+          {
+            "title": "Voice and fit",
+            "description": "Five voice services; long lines are re-read faster instead of time-stretching the file, and Edge-TTS padding silence is trimmed."
+          },
+          {
+            "title": "Mix, export, report",
+            "description": "Single-pass NumPy mix, exporting the video, bilingual SRT, separate voice and music stems, plus a per-line sync report."
+          }
+        ],
+        "technologies": [
+          {
+            "name": "Python / PyQt6",
+            "purpose": "A desktop UI that adapts to three widths, with the queue and settings."
+          },
+          {
+            "name": "faster-whisper / CTranslate2",
+            "purpose": "GPU transcription (int8_float16) with the model cached between runs."
+          },
+          {
+            "name": "Demucs / NLLB-200",
+            "purpose": "Music separation and offline translation for 74 languages, no quotas, no network."
+          },
+          {
+            "name": "Edge-TTS / Gemini TTS",
+            "purpose": "318 free voices plus 30 Gemini voices steered by natural-language prompts."
+          }
+        ],
+        "outcome": "Drop in a video and get back the dubbed video, bilingual subtitles, and separate voice and music tracks. Everything is processed on the machine; nothing is uploaded.",
+        "evidence": [
+          "SRT only: 13.1 s instead of 168.7 s for the full pipeline (92% faster).",
+          "Multiple voices for one video share Demucs and Whisper: the second voice takes about 29 s.",
+          "Speaker separation: 100% with 4 speakers (2 male, 2 female) on synthetic voices.",
+          "Offline translation of 489 lines in 82 s with none missed."
+        ],
+        "learning": "Measure before optimising: real numbers (time per stage, offset per line) show which stage to drop and where to protect quality, instead of guessing.",
+        "privacyNote": "The source code is private on GitHub; a live demo is available on request."
+      },
+      "kt-epub-studio": {
+        "role": "Author – designed and built the whole application",
+        "challenge": "Translating an entire book with AI hits three walls: rate limits halfway through, names and forms of address drifting between chapters, and lost formatting (images, table of contents, footnotes, drop caps).",
+        "responsibilities": [
+          "Built an in-browser EPUB/PDF reader: TOC, images, four themes, progress saved to a local file.",
+          "Wrote a translation engine with multi-key Gemini rotation, JSON-Schema structured output and per-paragraph quality checks.",
+          "Generated a character, gender, address and terminology bible before translating to keep the whole book consistent.",
+          "Packaged a 1-click Windows launcher that finds or installs Python, installs libraries and opens the browser."
+        ],
+        "process": [
+          {
+            "title": "Skim and build the bible",
+            "description": "The AI skims the whole book to list characters, forms of address and terms; the bible is sent with every batch."
+          },
+          {
+            "title": "Parallel, context-aware translation",
+            "description": "Chapters run in parallel, each with a few already-translated paragraphs as context; keys rotate and cool down on 429."
+          },
+          {
+            "title": "Check and retranslate",
+            "description": "Untranslated, wrong-language, truncated or link-broken paragraphs are retried; hard ones go to a fallback model before Google NMT."
+          },
+          {
+            "title": "Keep the structure",
+            "description": "Images, TOC anchors, <br> and <code> are protected with placeholders; nav.xhtml and toc.ncx are translated too; a cache lets you stop and resume without spending quota."
+          }
+        ],
+        "technologies": [
+          {
+            "name": "Python / FastAPI",
+            "purpose": "A local server for the reader, translation studio, library and settings."
+          },
+          {
+            "name": "Gemini",
+            "purpose": "Literary translation with key rotation, structured output and a translation bible."
+          },
+          {
+            "name": "EPUB / BeautifulSoup",
+            "purpose": "Parsing chapters and TOC, rebuilding the book with its formatting intact."
+          },
+          {
+            "name": "JavaScript / Web App",
+            "purpose": "The browser reading and translation UI with a live log."
+          }
+        ],
+        "outcome": "A local toolkit to read and translate whole books into Vietnamese with images and TOC intact; copy the folder to another PC and double-click to run.",
+        "evidence": [
+          "Translates nav.xhtml, toc.ncx, lists and tables without losing images or TOC anchors.",
+          "Stop and resume from cache without spending quota again.",
+          "Per-key health checks: latency and remaining quota.",
+          "1-click launch on Windows, installing Python and libraries when missing."
+        ],
+        "learning": "Long-form translation quality comes from process more than the model: a consistent bible, chapter context and a check-and-retry loop matter as much as the prompt.",
+        "privacyNote": "The source code is private on GitHub; a live demo is available on request."
+      },
       "computer-vision-inspection": {
         "role": "Computer Vision pipeline and demo application development",
         "challenge": "The task required more than detecting objects on a conveyor: the system also had to preserve identity across frames and estimate dimensions consistently from camera data.",

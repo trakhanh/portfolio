@@ -7,7 +7,7 @@ export interface ProjectLink {
 
 export interface ProjectItem {
   id: string;
-  phase: "foundation" | "professional" | string;
+  phase: "foundation" | "professional" | "product" | string;
   phaseLabel: string;
   title: string;
   description: string;
@@ -176,7 +176,7 @@ export interface PortfolioContent {
     eyebrow: string;
     title: string;
     intro: string;
-    filters: { all: string; foundation: string; professional: string };
+    filters: { all: string; foundation: string; professional: string; product: string };
     items: readonly ProjectItem[];
   };
   certificates: {
@@ -220,6 +220,7 @@ export interface CaseStudyData {
     scope: string;
     academic: string;
     professional: string;
+    product: string;
     map: string;
     challenge: string;
     roleSection: string;

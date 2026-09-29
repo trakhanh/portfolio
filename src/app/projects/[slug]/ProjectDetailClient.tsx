@@ -45,6 +45,16 @@ const TECH_ICONS: Record<string, string[]> = {
   CNN: ["dl.svg"],
   "VGG16 / ResNet50": ["dl.svg"],
   "U-Net": ["vision.svg"],
+  "Remotion / React": ["video.svg", "javascript.svg"],
+  "Node.js / FFmpeg": ["javascript.svg", "video.svg"],
+  Gemini: ["googlegemini.svg"],
+  "Groq Whisper": ["voice.svg"],
+  "Python / PyQt6": ["python.svg"],
+  "faster-whisper / CTranslate2": ["voice.svg"],
+  "Demucs / NLLB-200": ["dl.svg", "api.svg"],
+  "Edge-TTS / Gemini TTS": ["voice.svg", "googlegemini.svg"],
+  "Python / FastAPI": ["python.svg", "api.svg"],
+  "EPUB / BeautifulSoup": ["data.svg"],
 };
 
 const SECTIONS = ["challenge", "role", "process", "technology", "outcome"] as const;
@@ -112,7 +122,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
   const facts = [
     { label: L.role, value: data.role },
     { label: L.result, value: item.result, accent: true },
-    { label: L.scope, value: item.phase === "foundation" ? L.academic : L.professional },
+    { label: L.scope, value: item.phase === "foundation" ? L.academic : item.phase === "product" ? L.product : L.professional },
   ];
 
   return (

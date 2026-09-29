@@ -24,7 +24,7 @@ export const PORTFOLIO_CONTENT = {
       "name": "TRÀ NGUYỄN GIA KHÁNH",
       "title": "Biến AI thành hệ thống vận hành thực tế.",
       "intro": "Tốt nghiệp Khoa học Dữ liệu, tôi ứng dụng AI vào tự động hóa, sản xuất video và triển khai ERP/HRM — phù hợp với Applied AI, AI Automation và Digital Transformation.",
-      "primary": "Xem 08 case study",
+      "primary": "Xem 11 dự án",
       "secondary": "Xem mô hình AI × ERP",
       "cv": "Xem CV ↗",
       "cvUrl": "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing",
@@ -162,7 +162,7 @@ export const PORTFOLIO_CONTENT = {
           "label": "Môi trường doanh nghiệp thực tế"
         },
         {
-          "value": "08",
+          "value": "11",
           "label": "Dự án theo hành trình năng lực"
         }
       ],
@@ -331,14 +331,68 @@ export const PORTFOLIO_CONTENT = {
     },
     "projects": {
       "eyebrow": "03 · SELECTED WORK",
-      "title": "08 case study thể hiện cách tôi giải quyết vấn đề.",
-      "intro": "Tám dự án cho thấy cách tôi phân tích bài toán, chọn công nghệ và tạo đầu ra có thể sử dụng.",
+      "title": "11 dự án thể hiện cách tôi giải quyết vấn đề.",
+      "intro": "Ba sản phẩm AI tự phát triển cùng tám case study từ học tập và công việc, cho thấy cách tôi phân tích bài toán, chọn công nghệ và tạo đầu ra có thể sử dụng.",
       "filters": {
         "all": "Tất cả",
         "foundation": "Nền tảng",
-        "professional": "Công việc"
+        "professional": "Công việc",
+        "product": "Sản phẩm"
       },
       "items": [
+        {
+          "id": "kt-ai-video-studio",
+          "phase": "product",
+          "phaseLabel": "SẢN PHẨM · AI VIDEO",
+          "title": "KT AI Video Studio",
+          "description": "Xưởng dựng video tự động bằng AI: đưa vào một chủ đề, dàn ý hay link bài báo, nhận về MP4 có giọng đọc tiếng Việt, phụ đề bám từng từ, nhạc nền và hình minh hoạ. Toàn bộ hình ảnh dựng bằng Remotion (React), dọc 9:16 lẫn ngang 16:9.",
+          "result": "75 mẫu · 20 họ · 9 bước tự động",
+          "image": "./img/projects-v4/kt-ai-video-studio.webp",
+          "tags": [
+            "Remotion",
+            "React",
+            "Node.js",
+            "FFmpeg",
+            "Gemini",
+            "Groq Whisper"
+          ],
+          "links": []
+        },
+        {
+          "id": "kt-voice-studio",
+          "phase": "product",
+          "phaseLabel": "SẢN PHẨM · AI AUDIO",
+          "title": "KT Voice Studio",
+          "description": "Ứng dụng desktop lồng tiếng video, bóc băng phụ đề và xưởng giọng đọc chạy cục bộ: nghe chép bằng faster-whisper, tách nhạc bằng Demucs, dịch offline bằng NLLB-200 trên GPU; 318 giọng đọc, 74 ngôn ngữ đích, nhiều người nói trong cùng một video.",
+          "result": "Chỉ xuất SRT nhanh hơn 92% · 74 ngôn ngữ",
+          "image": "./img/projects-v4/kt-voice-studio.webp",
+          "tags": [
+            "Python",
+            "PyQt6",
+            "faster-whisper",
+            "Demucs",
+            "NLLB-200",
+            "CUDA"
+          ],
+          "links": []
+        },
+        {
+          "id": "kt-epub-studio",
+          "phase": "product",
+          "phaseLabel": "SẢN PHẨM · AI DỊCH THUẬT",
+          "title": "KT EPUB Studio",
+          "description": "Hệ sinh thái đọc sách và dịch văn học chạy cục bộ: bộ đọc EPUB/PDF lưu tiến trình không cần máy chủ, xưởng dịch sách bằng Gemini xoay tua nhiều key với sổ tay nhân vật – xưng hô tự động, giữ nguyên hình ảnh, mục lục và drop cap.",
+          "result": "Dịch cả cuốn · giữ 100% cấu trúc sách",
+          "image": "./img/projects-v4/kt-epub-studio.webp",
+          "tags": [
+            "Python",
+            "FastAPI",
+            "Gemini",
+            "EPUB",
+            "BeautifulSoup"
+          ],
+          "links": []
+        },
         {
           "id": "computer-vision-inspection",
           "phase": "foundation",
@@ -722,7 +776,7 @@ export const PORTFOLIO_CONTENT = {
       "name": "TRA NGUYEN GIA KHANH",
       "title": "Turning AI into real operating systems.",
       "intro": "A Data Science graduate applying AI to automation, video production and ERP/HRM implementation — ready for Applied AI, AI Automation and Digital Transformation roles.",
-      "primary": "View 08 case studies",
+      "primary": "View 11 projects",
       "secondary": "Explore AI × ERP model",
       "cv": "View CV ↗",
       "cvUrl": "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing",
@@ -860,7 +914,7 @@ export const PORTFOLIO_CONTENT = {
           "label": "Real business environments"
         },
         {
-          "value": "08",
+          "value": "11",
           "label": "Projects mapped to capability growth"
         }
       ],
@@ -1029,14 +1083,68 @@ export const PORTFOLIO_CONTENT = {
     },
     "projects": {
       "eyebrow": "03 · SELECTED WORK",
-      "title": "08 case studies that show how I solve problems.",
-      "intro": "Eight projects show how I frame problems, choose technology and deliver usable outcomes.",
+      "title": "11 projects that show how I solve problems.",
+      "intro": "Three self-built AI products and eight academic and professional case studies show how I frame problems, choose technology and deliver usable outcomes.",
       "filters": {
         "all": "All",
         "foundation": "Foundation",
-        "professional": "Professional"
+        "professional": "Professional",
+        "product": "Products"
       },
       "items": [
+        {
+          "id": "kt-ai-video-studio",
+          "phase": "product",
+          "phaseLabel": "PRODUCT · AI VIDEO",
+          "title": "KT AI Video Studio",
+          "description": "An automated AI video studio: give it a topic, an outline or a news link and get an MP4 with Vietnamese narration, word-level subtitles, music and illustrations. Every frame is rendered by Remotion (React), in both 9:16 and 16:9.",
+          "result": "75 templates · 20 families · 9 automated stages",
+          "image": "./img/projects-v4/kt-ai-video-studio.webp",
+          "tags": [
+            "Remotion",
+            "React",
+            "Node.js",
+            "FFmpeg",
+            "Gemini",
+            "Groq Whisper"
+          ],
+          "links": []
+        },
+        {
+          "id": "kt-voice-studio",
+          "phase": "product",
+          "phaseLabel": "PRODUCT · AI AUDIO",
+          "title": "KT Voice Studio",
+          "description": "A local desktop app for video dubbing, transcription and voice-over: faster-whisper transcription, Demucs stem separation and offline NLLB-200 translation on the GPU; 318 voices, 74 target languages and multi-speaker dubbing in a single video.",
+          "result": "SRT-only runs 92% faster · 74 languages",
+          "image": "./img/projects-v4/kt-voice-studio.webp",
+          "tags": [
+            "Python",
+            "PyQt6",
+            "faster-whisper",
+            "Demucs",
+            "NLLB-200",
+            "CUDA"
+          ],
+          "links": []
+        },
+        {
+          "id": "kt-epub-studio",
+          "phase": "product",
+          "phaseLabel": "PRODUCT · AI TRANSLATION",
+          "title": "KT EPUB Studio",
+          "description": "A local-first reading and literary-translation suite: an EPUB/PDF reader that saves progress without a server, and a Gemini book-translation studio with multi-key rotation and an automatic character/terminology bible that keeps images, TOC and drop caps intact.",
+          "result": "Whole-book translation · 100% structure kept",
+          "image": "./img/projects-v4/kt-epub-studio.webp",
+          "tags": [
+            "Python",
+            "FastAPI",
+            "Gemini",
+            "EPUB",
+            "BeautifulSoup"
+          ],
+          "links": []
+        },
         {
           "id": "computer-vision-inspection",
           "phase": "foundation",

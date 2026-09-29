@@ -15,7 +15,7 @@ import { Reveal, EASE_OUT } from "./motion/Reveal";
 import { CarouselDeck } from "./motion/CarouselDeck";
 import { FadeImage } from "./motion/FadeImage";
 
-type Filter = "all" | "foundation" | "professional";
+type Filter = "all" | "product" | "professional" | "foundation";
 
 function ProjectSlide({ item, index }: { item: ProjectItem; index: number }) {
   const { ui } = useLanguage();
@@ -74,6 +74,7 @@ export function ProjectsSection() {
 
   const filters: { id: Filter; label: string; count: number }[] = [
     { id: "all", label: projects.filters.all, count: projects.items.length },
+    { id: "product", label: projects.filters.product, count: projects.items.filter((p) => p.phase === "product").length },
     { id: "professional", label: projects.filters.professional, count: projects.items.filter((p) => p.phase === "professional").length },
     { id: "foundation", label: projects.filters.foundation, count: projects.items.filter((p) => p.phase === "foundation").length },
   ];

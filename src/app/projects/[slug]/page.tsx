@@ -2,6 +2,9 @@ import { ProjectDetailClient } from "./ProjectDetailClient";
 import { Metadata } from "next";
 
 const PROJECT_SLUGS = [
+  "kt-ai-video-studio",
+  "kt-voice-studio",
+  "kt-epub-studio",
   "computer-vision-inspection",
   "multi-task-learning",
   "finger-counting",
