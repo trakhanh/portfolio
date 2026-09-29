@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ProjectDetailClient } from "./ProjectDetailClient";
+import { ProjectDetailClient } from "@/app/projects/[slug]/ProjectDetailClient";
 import { projectIds, projectMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -12,7 +12,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  return projectMetadata(slug, "vi");
+  return projectMetadata(slug, "en");
 }
 
 export default async function ProjectPage({ params }: PageProps) {

@@ -1,15 +1,19 @@
 "use client";
 
-import React, { createContext, startTransition, useContext, useEffect, useLayoutEffect, useState } from "react";
+import React, { createContext, useContext, useLayoutEffect, useMemo } from "react";
+import { usePathname } from "next/navigation";
 import { Locale, PortfolioContent, CaseStudyData } from "@/types/portfolio";
 import { PORTFOLIO_CONTENT } from "@/data/portfolio";
 import { PROJECT_CASES } from "@/data/project-cases";
 import { uiStrings, type UiStrings } from "@/data/ui-strings";
+import { localeFromPath, localizePath } from "@/lib/i18n";
 
 interface LanguageContextType {
   locale: Locale;
-  setLocale: (locale: Locale) => void;
+  /** Opens the current page in the other language. */
   toggleLocale: () => void;
+  /** A site path in the current language: href("/projects/x/") → "/en/projects/x/" on English pages. */
+  href: (path: string) => string;
   content: PortfolioContent;
   cases: CaseStudyData;
   ui: UiStrings;
@@ -17,48 +21,48 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("vi");
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("preferred_language");
-      if (saved === "vi" || saved === "en") setLocaleState(saved);
-    } catch {
-      // Ignore localStorage errors
-    }
-  }, []);
+/** The section currently on screen, so a language switch lands in the same place. */
+function currentSectionHash(): string {
+  let id = "";
+  for (const s of document.querySelectorAll<HTMLElement>("section[id]")) {
+    if (s.getBoundingClientRect().top <= window.innerHeight * 0.35) id = s.id;
+  }
+  return id && id !== "top" ? `#${id}` : "";
+}
 
-  // Changing <html lang> restyles the whole document. Doing it in the same
-  // commit as the new text folds that into one style pass instead of two.
+/**
+ * The language comes from the URL: Vietnamese at the root, English under /en.
+ * Both are prerendered, so switching language loads the other static page
+ * instead of re-rendering (and restyling) the whole document in place.
+ */
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const locale = localeFromPath(usePathname());
+
   useLayoutEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
 
-  const setLocale = (newLocale: Locale) => {
-    // Re-rendering every section in the new language is a big render; as a
-    // transition React slices it up, so taps and animations keep running.
-    startTransition(() => setLocaleState(newLocale));
-    try {
-      localStorage.setItem("preferred_language", newLocale);
-    } catch {
-      // Ignore localStorage errors
-    }
-  };
+  const value = useMemo<LanguageContextType>(() => {
+    const toggleLocale = () => {
+      const next: Locale = locale === "vi" ? "en" : "vi";
+      try {
+        localStorage.setItem("preferred_language", next);
+      } catch {
+        // Ignore localStorage errors
+      }
+      window.location.assign(localizePath(window.location.pathname, next) + currentSectionHash());
+    };
+    return {
+      locale,
+      toggleLocale,
+      href: (path) => localizePath(path, locale),
+      content: PORTFOLIO_CONTENT[locale] ?? PORTFOLIO_CONTENT.vi,
+      cases: PROJECT_CASES[locale] ?? PROJECT_CASES.vi,
+      ui: uiStrings(locale),
+    };
+  }, [locale]);
 
-  const toggleLocale = () => {
-    const next = locale === "vi" ? "en" : "vi";
-    setLocale(next);
-  };
-
-  const content: PortfolioContent = PORTFOLIO_CONTENT[locale] ?? PORTFOLIO_CONTENT.vi;
-  const cases: CaseStudyData = PROJECT_CASES[locale] ?? PROJECT_CASES.vi;
-  const ui = uiStrings(locale);
-
-  return (
-    <LanguageContext.Provider value={{ locale, setLocale, toggleLocale, content, cases, ui }}>
-      {children}
-    </LanguageContext.Provider>
-  );
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
 
 export function useLanguage() {

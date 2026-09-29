@@ -20,11 +20,11 @@ type Filter = "all" | "product" | "professional" | "foundation";
 
 /** One pinned project. `lead` is the large card; the others are compact rows beside it. */
 function FeaturedCard({ item, lead }: { item: ProjectItem; lead: boolean }) {
-  const { ui } = useLanguage();
+  const { ui, href } = useLanguage();
   return (
     <GlassCard variant="solid" className="group h-full overflow-hidden">
       <Link
-        href={`/projects/${item.id}/`}
+        href={href(`/projects/${item.id}/`)}
         aria-label={`${ui.openCase}: ${item.title}`}
         className={lead ? "flex h-full flex-col" : "flex h-full flex-row"}
       >
@@ -91,11 +91,11 @@ function FeaturedProjects({ label, items }: { label: string; items: ProjectItem[
 }
 
 function ProjectSlide({ item, index }: { item: ProjectItem; index: number }) {
-  const { ui } = useLanguage();
+  const { ui, href } = useLanguage();
   return (
     <GlassCard variant="solid" className="group h-full overflow-hidden">
       <Link
-        href={`/projects/${item.id}/`}
+        href={href(`/projects/${item.id}/`)}
         draggable={false}
         className="flex h-full flex-col"
         aria-label={`${ui.openCase}: ${item.title}`}

@@ -37,8 +37,10 @@ export const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(functi
       const y = (e.clientY - r.top) / r.height;
       el.style.setProperty("--mx", `${x * 100}%`);
       el.style.setProperty("--my", `${y * 100}%`);
-      px.set(x);
-      py.set(y);
+      if (!reduce) {
+        px.set(x);
+        py.set(y);
+      }
     }
     onPointerMove?.(e);
   };
@@ -55,7 +57,10 @@ export const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(functi
     onPointerLeave?.(e);
   };
 
-  const useTilt = tilt > 0 && !reduce;
+  // Tilt is bound whenever requested and simply never moves under reduced motion:
+  // useReducedMotion() differs between server and client, so gating the style on
+  // it broke hydration.
+  const useTilt = tilt > 0;
 
   return (
     <motion.div

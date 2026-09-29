@@ -22,7 +22,9 @@ export function Magnetic({
     <motion.div
       ref={ref}
       className={className}
-      style={reduce ? undefined : { x, y }}
+      // Always bound: useReducedMotion() differs between server and client, so a
+      // conditional style broke hydration. The handlers below skip when reduced.
+      style={{ x, y }}
       onPointerMove={(e) => {
         if (reduce || e.pointerType !== "mouse" || !ref.current) return;
         const r = ref.current.getBoundingClientRect();

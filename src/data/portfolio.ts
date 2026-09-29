@@ -348,7 +348,7 @@ export const PORTFOLIO_CONTENT = {
       "featured": {
         "label": "Dự án nổi bật",
         "ids": [
-          "hrm-application",
+          "eoffice",
           "recruitment-chatbot",
           "internal-automation"
         ]
@@ -442,7 +442,7 @@ export const PORTFOLIO_CONTENT = {
           "period": ""
         },
         {
-          "id": "hrm-application",
+          "id": "eoffice",
           "phase": "professional",
           "phaseLabel": "CÔNG VIỆC · CHUYỂN ĐỔI SỐ",
           "title": "eOffice Sun Media — Văn phòng điện tử nội bộ",
@@ -1212,7 +1212,7 @@ export const PORTFOLIO_CONTENT = {
       "featured": {
         "label": "Featured work",
         "ids": [
-          "hrm-application",
+          "eoffice",
           "recruitment-chatbot",
           "internal-automation"
         ]
@@ -1306,7 +1306,7 @@ export const PORTFOLIO_CONTENT = {
           "period": ""
         },
         {
-          "id": "hrm-application",
+          "id": "eoffice",
           "phase": "professional",
           "phaseLabel": "PROFESSIONAL · DIGITAL TRANSFORMATION",
           "title": "eOffice Sun Media — internal digital office",

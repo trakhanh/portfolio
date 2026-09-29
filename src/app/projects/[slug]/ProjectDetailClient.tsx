@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { motion } from "motion/react";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Lightbulb, ShieldAlert } from "lucide-react";
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Check, Lightbulb, ShieldAlert } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { asset } from "@/data/ui-strings";
 import { Navbar } from "@/components/Navbar";
@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Reveal, EASE_OUT } from "@/components/motion/Reveal";
 import { SplitText } from "@/components/motion/SplitText";
 import { cn } from "@/lib/utils";
+import type { ArchitectureDiagram } from "@/types/portfolio";
 
 /* Icons for each technology entry in the case data */
 const TECH_ICONS: Record<string, string[]> = {
@@ -92,6 +93,52 @@ function Section({ id, index, title, children }: { id: SectionId; index: number;
   );
 }
 
+/** Tiers stacked top to bottom with a connector between each — reads the same on a phone and a desktop. */
+function Architecture({ arch, label }: { arch: ArchitectureDiagram; label: string }) {
+  return (
+    <Reveal>
+      <figure className="mb-8 rounded-2xl border border-mist/10 bg-deep/50 p-4 sm:p-6">
+        <figcaption>
+          <p className="font-mono text-[11px] tracking-[0.12em] text-signal uppercase">{label}</p>
+          {arch.caption && <p className="mt-2 text-[15px] leading-relaxed text-silver">{arch.caption}</p>}
+        </figcaption>
+        <ol className="mt-5">
+          {arch.tiers.map((tier, i) => (
+            <li key={tier.label}>
+              {i > 0 && (
+                <div aria-hidden className="grid sm:grid-cols-[112px_1fr] sm:gap-4">
+                  <span className="hidden sm:block" />
+                  <span className="flex flex-col items-center py-1">
+                    <span className="h-4 w-px bg-gradient-to-b from-signal/15 to-signal/70" />
+                    <ArrowDown className="-mt-1 size-3 text-signal/80" />
+                  </span>
+                </div>
+              )}
+              <div className="grid gap-2 sm:grid-cols-[112px_1fr] sm:items-center sm:gap-4">
+                <p className="font-mono text-[10px] tracking-[0.12em] text-slate uppercase">{tier.label}</p>
+                <div className="flex flex-wrap gap-2">
+                  {tier.nodes.map((n) => (
+                    <div
+                      key={n.name}
+                      className={cn(
+                        "min-w-0 flex-1 basis-[160px] rounded-lg border px-3 py-2.5",
+                        n.accent ? "border-signal/35 bg-signal/[0.06]" : "border-mist/12 bg-abyss/70",
+                      )}
+                    >
+                      <p className="text-sm leading-snug font-medium text-white">{n.name}</p>
+                      {n.note && <p className="mt-0.5 text-xs leading-snug text-silver">{n.note}</p>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </figure>
+    </Reveal>
+  );
+}
+
 function CheckItem({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex gap-4">
@@ -104,7 +151,7 @@ function CheckItem({ children }: { children: React.ReactNode }) {
 }
 
 export function ProjectDetailClient({ slug }: { slug: string }) {
-  const { content, cases, ui } = useLanguage();
+  const { content, cases, ui, href } = useLanguage();
   const [active, setActive] = useState<SectionId>("challenge");
 
   const all = content.projects.items;
@@ -154,7 +201,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
         <header className="container-auros max-w-[1200px]">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap items-center justify-between gap-4">
             <Button asChild variant="ghost" size="sm" className="-ml-3.5">
-              <Link href="/#projects">
+              <Link href={`${href("/")}#projects`}>
                 <ArrowLeft />
                 {L.back}
               </Link>
@@ -285,6 +332,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
             </Section>
 
             <Section id="technology" index={3} title={titles.technology}>
+              {data.architecture && <Architecture arch={data.architecture} label={L.architecture ?? titles.technology} />}
               <ul className="divide-y divide-mist/10 rounded-2xl border border-mist/10">
                 {data.technologies.map((t) => (
                   <li key={t.name} className="flex flex-col gap-3 p-5 transition-colors hover:bg-mist/[0.03] sm:flex-row sm:gap-5">
@@ -351,7 +399,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
             ].map(({ p, label, dir }) => (
               <Link
                 key={dir}
-                href={`/projects/${p.id}/`}
+                href={href(`/projects/${p.id}/`)}
                 className={cn(
                   "group flex items-center gap-5 overflow-hidden rounded-2xl border border-mist/10 bg-deep/60 p-4 transition-colors hover:border-signal/40",
                   dir === "next" && "sm:flex-row-reverse sm:text-right",
@@ -377,7 +425,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
               <p className="label-caps !text-signal">{L.contactEyebrow}</p>
               <h2 className="mt-5 max-w-[24ch] text-3xl leading-tight tracking-[-0.02em] sm:text-4xl">{L.contactTitle}</h2>
               <Button asChild size="lg" className="mt-8">
-                <Link href="/#contact">
+                <Link href={`${href("/")}#contact`}>
                   {L.contactButton}
                   <ArrowUpRight />
                 </Link>

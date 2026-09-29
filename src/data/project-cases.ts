@@ -31,7 +31,8 @@ export const PROJECT_CASES = {
       "org": "Đơn vị",
       "period": "Thời gian",
       "related": "Dự án tại đây",
-      "at": "Làm tại"
+      "at": "Làm tại",
+      "architecture": "Kiến trúc hệ thống"
     },
     "items": {
       "kt-ai-video-studio": {
@@ -87,7 +88,70 @@ export const PROJECT_CASES = {
           "Tự kiểm năm phép đo trên khung hình sau mỗi lượt dựng."
         ],
         "learning": "Với video tự động, độ ổn định quan trọng hơn tốc độ: đo từng lỗi trên khung hình rồi mới quyết định (ví dụ dựng một tab) giúp chất lượng lặp lại được ở mọi lượt dựng.",
-        "privacyNote": "Mã nguồn đang để private trên GitHub; có thể demo trực tiếp khi trao đổi."
+        "privacyNote": "Mã nguồn đang để private trên GitHub; có thể demo trực tiếp khi trao đổi.",
+        "architecture": {
+          "caption": "Mỗi bước có đường lui: key hoặc model lỗi thì xoay tua, ảnh không đạt thì tìm nguồn kế tiếp.",
+          "tiers": [
+            {
+              "label": "Đầu vào",
+              "nodes": [
+                {
+                  "name": "Chủ đề · dàn ý · link bài báo"
+                }
+              ]
+            },
+            {
+              "label": "Kịch bản",
+              "nodes": [
+                {
+                  "name": "Gemini",
+                  "note": "plan.json theo luật từng mẫu · xoay key và model",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Giọng & hình",
+              "nodes": [
+                {
+                  "name": "Gemini TTS",
+                  "note": "đoạn ≤ 60 từ"
+                },
+                {
+                  "name": "Groq Whisper",
+                  "note": "mốc thời gian từng từ"
+                },
+                {
+                  "name": "Tìm ảnh",
+                  "note": "bài báo → Wikimedia → web → Pexels"
+                }
+              ]
+            },
+            {
+              "label": "Dựng",
+              "nodes": [
+                {
+                  "name": "Remotion · React",
+                  "note": "Node.js · FFmpeg điều phối",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Tự kiểm",
+              "nodes": [
+                {
+                  "name": "5 phép đo",
+                  "note": "độ phủ · chữ rung · chữ nhảy · tương phản · khung ảnh"
+                },
+                {
+                  "name": "MP4",
+                  "note": "dọc 9:16 · ngang 16:9"
+                }
+              ]
+            }
+          ]
+        }
       },
       "kt-voice-studio": {
         "role": "Tác giả – thiết kế và xây dựng toàn bộ ứng dụng",
@@ -142,7 +206,67 @@ export const PROJECT_CASES = {
           "Dịch offline 489 câu trong 82 giây, không sót câu nào."
         ],
         "learning": "Đo trước rồi mới tối ưu: số liệu thật (thời gian từng khâu, độ lệch từng câu) cho biết phải bỏ khâu nào và giữ chất lượng ở đâu, thay vì đoán.",
-        "privacyNote": "Mã nguồn đang để private trên GitHub; có thể demo trực tiếp khi trao đổi."
+        "privacyNote": "Mã nguồn đang để private trên GitHub; có thể demo trực tiếp khi trao đổi.",
+        "architecture": {
+          "caption": "Chạy trên máy với GPU; dịch được hoàn toàn offline bằng NLLB-200.",
+          "tiers": [
+            {
+              "label": "Giao diện",
+              "nodes": [
+                {
+                  "name": "PyQt6 desktop",
+                  "note": "hàng chờ · cài đặt"
+                }
+              ]
+            },
+            {
+              "label": "Nghe & tách",
+              "nodes": [
+                {
+                  "name": "faster-whisper",
+                  "note": "lọc khoảng lặng VAD · GPU",
+                  "accent": true
+                },
+                {
+                  "name": "Demucs",
+                  "note": "tách giọng và nhạc nền"
+                }
+              ]
+            },
+            {
+              "label": "Dịch",
+              "nodes": [
+                {
+                  "name": "NLLB-200",
+                  "note": "offline · 74 ngôn ngữ",
+                  "accent": true
+                },
+                {
+                  "name": "Google · MyMemory",
+                  "note": "20 câu mỗi lượt gọi"
+                }
+              ]
+            },
+            {
+              "label": "Đọc",
+              "nodes": [
+                {
+                  "name": "Edge-TTS · Gemini TTS",
+                  "note": "khớp thời lượng từng câu"
+                }
+              ]
+            },
+            {
+              "label": "Xuất",
+              "nodes": [
+                {
+                  "name": "Trộn NumPy",
+                  "note": "video · SRT hai thứ tiếng · báo cáo đồng bộ"
+                }
+              ]
+            }
+          ]
+        }
       },
       "kt-epub-studio": {
         "role": "Tác giả – thiết kế và xây dựng toàn bộ ứng dụng",
@@ -197,7 +321,67 @@ export const PROJECT_CASES = {
           "Khởi chạy 1-click trên Windows, tự cài Python và thư viện khi thiếu."
         ],
         "learning": "Chất lượng dịch dài hơi đến từ quy trình hơn là từ model: sổ tay nhất quán, ngữ cảnh chương và vòng kiểm tra – dịch lại quan trọng không kém prompt.",
-        "privacyNote": "Mã nguồn đang để private trên GitHub; có thể demo trực tiếp khi trao đổi."
+        "privacyNote": "Mã nguồn đang để private trên GitHub; có thể demo trực tiếp khi trao đổi.",
+        "architecture": {
+          "caption": "Sổ tay nhân vật được lập trước và gửi kèm mọi lô dịch để cả cuốn thống nhất.",
+          "tiers": [
+            {
+              "label": "Giao diện",
+              "nodes": [
+                {
+                  "name": "Trình duyệt",
+                  "note": "bộ đọc EPUB/PDF · xưởng dịch"
+                }
+              ]
+            },
+            {
+              "label": "Máy chủ cục bộ",
+              "nodes": [
+                {
+                  "name": "FastAPI · Python",
+                  "note": "thư viện · cài đặt · log trực tiếp",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Chuẩn bị",
+              "nodes": [
+                {
+                  "name": "BeautifulSoup",
+                  "note": "tách chương · giữ chỗ định dạng"
+                },
+                {
+                  "name": "Sổ tay dịch",
+                  "note": "nhân vật · xưng hô · thuật ngữ"
+                }
+              ]
+            },
+            {
+              "label": "Dịch",
+              "nodes": [
+                {
+                  "name": "Gemini",
+                  "note": "nhiều key xoay tua · structured output",
+                  "accent": true
+                },
+                {
+                  "name": "Dự phòng",
+                  "note": "model phụ → Google NMT"
+                }
+              ]
+            },
+            {
+              "label": "Đầu ra",
+              "nodes": [
+                {
+                  "name": "EPUB đã dịch",
+                  "note": "giữ ảnh · mục lục · drop cap · cache"
+                }
+              ]
+            }
+          ]
+        }
       },
       "computer-vision-inspection": {
         "role": "Phát triển pipeline Computer Vision và ứng dụng demo",
@@ -250,7 +434,59 @@ export const PROJECT_CASES = {
           "Video demo mô tả luồng phát hiện, theo dõi và đo.",
           "Kết quả đồ án tốt nghiệp: 9.5/10."
         ],
-        "learning": "Độ chính xác mô hình chỉ là một phần; độ ổn định thực tế còn phụ thuộc camera, hiệu chỉnh, tracking và quy tắc xử lý ngoại lệ."
+        "learning": "Độ chính xác mô hình chỉ là một phần; độ ổn định thực tế còn phụ thuộc camera, hiệu chỉnh, tracking và quy tắc xử lý ngoại lệ.",
+        "architecture": {
+          "caption": "Mỗi vật thể giữ một ID xuyên suốt video nên không bị đếm hay đo trùng.",
+          "tiers": [
+            {
+              "label": "Đầu vào",
+              "nodes": [
+                {
+                  "name": "Video camera",
+                  "note": "góc và vùng đo cố định"
+                }
+              ]
+            },
+            {
+              "label": "Phát hiện",
+              "nodes": [
+                {
+                  "name": "YOLOv8",
+                  "note": "vị trí và lớp vật thể từng khung",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Theo dõi",
+              "nodes": [
+                {
+                  "name": "SORT",
+                  "note": "giữ ID qua các khung hình"
+                }
+              ]
+            },
+            {
+              "label": "Đo",
+              "nodes": [
+                {
+                  "name": "OpenCV",
+                  "note": "hình học ảnh · quy đổi ra kích thước",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Hiển thị",
+              "nodes": [
+                {
+                  "name": "Ứng dụng demo",
+                  "note": "kích thước từng vật thể"
+                }
+              ]
+            }
+          ]
+        }
       },
       "multi-task-learning": {
         "role": "Nghiên cứu, thiết kế thí nghiệm và xây dựng notebook",
@@ -409,7 +645,60 @@ export const PROJECT_CASES = {
           "Được ghi nhận trong thư giới thiệu của Bông Trà F&B."
         ],
         "learning": "Chatbot doanh nghiệp cần kiến trúc ngữ cảnh, fallback và quyền kiểm soát của con người—không thể chỉ dựa vào một prompt dài.",
-        "privacyNote": "Case study chỉ mô tả kiến trúc và cách tiếp cận; prompt hệ thống, dữ liệu nội bộ và thông tin người dùng không được công khai."
+        "privacyNote": "Case study chỉ mô tả kiến trúc và cách tiếp cận; prompt hệ thống, dữ liệu nội bộ và thông tin người dùng không được công khai.",
+        "architecture": {
+          "caption": "Một bộ não cho hai kênh: n8n nhận sự kiện, gọi AI, lấy dữ liệu và trả lời về đúng nơi.",
+          "tiers": [
+            {
+              "label": "Kênh",
+              "nodes": [
+                {
+                  "name": "Website bongtra.vn",
+                  "note": "khách hàng"
+                },
+                {
+                  "name": "Fanpage tuyển dụng",
+                  "note": "ứng viên"
+                }
+              ]
+            },
+            {
+              "label": "Điều phối",
+              "nodes": [
+                {
+                  "name": "n8n",
+                  "note": "nhận sự kiện · kiểm điều kiện · định tuyến",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "AI & dữ liệu",
+              "nodes": [
+                {
+                  "name": "GPT · Gemini",
+                  "note": "hiểu câu hỏi · soạn trả lời"
+                },
+                {
+                  "name": "Supabase",
+                  "note": "FAQ · dữ liệu tham chiếu"
+                }
+              ]
+            },
+            {
+              "label": "Phản hồi",
+              "nodes": [
+                {
+                  "name": "Trả lời đúng kênh"
+                },
+                {
+                  "name": "Chuyển nhân viên",
+                  "note": "khi câu trả lời chưa chắc chắn"
+                }
+              ]
+            }
+          ]
+        }
       },
       "internal-automation": {
         "role": "Phân tích và xây dựng bộ công cụ tự động hóa nội bộ",
@@ -463,7 +752,48 @@ export const PROJECT_CASES = {
           "FAQ HR và luồng thu thập đánh giá."
         ],
         "learning": "Automation hiệu quả nhất khi rule đơn giản, quyền rõ ràng và tài liệu đủ để người dùng tự vận hành.",
-        "privacyNote": "Không công khai dữ liệu nhân sự, bảng lương, tài khoản tích hợp hoặc cấu hình workflow nội bộ."
+        "privacyNote": "Không công khai dữ liệu nhân sự, bảng lương, tài khoản tích hợp hoặc cấu hình workflow nội bộ.",
+        "architecture": {
+          "caption": "Dữ liệu và cấu hình nằm trong Google Sheets; Apps Script đọc chúng và gọi các dịch vụ Google.",
+          "tiers": [
+            {
+              "label": "Nguồn",
+              "nodes": [
+                {
+                  "name": "Google Sheets",
+                  "note": "dữ liệu · cấu hình · trạng thái",
+                  "accent": true
+                },
+                {
+                  "name": "Biểu mẫu"
+                }
+              ]
+            },
+            {
+              "label": "Logic",
+              "nodes": [
+                {
+                  "name": "Google Apps Script",
+                  "note": "rule nghiệp vụ · kiểm lỗi · phân quyền",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Dịch vụ",
+              "nodes": [
+                {
+                  "name": "Calendar API",
+                  "note": "kiểm tra và đặt phòng họp"
+                },
+                {
+                  "name": "Gmail",
+                  "note": "bảng lương · thông báo"
+                }
+              ]
+            }
+          ]
+        }
       },
       "preorder-workshop-web": {
         "role": "Hỗ trợ xây dựng giao diện web landing page và luồng đăng ký / đặt hàng",
@@ -579,9 +909,64 @@ export const PROJECT_CASES = {
           "4 kiểu khung máy quay: Classic REC, Modern Cinema, Vlogger DSLR, Retro VHS.",
           "Xuất 1920×1080 (16:9) hoặc 1080×1920 (9:16), toạ độ tự co giãn theo khung."
         ],
-        "learning": "Với công cụ dựng video, xem trước nhanh quan trọng hơn render nhanh: khi mọi chỉnh sửa hiện ngay trên khung xem trước, người dùng chỉ phải render một lần. Tách giao diện (Node.js) và phần xử lý nặng (Python và FFmpeg) thành hai tiến trình giúp giao diện không bị treo khi Whisper hay FFmpeg đang chạy."
+        "learning": "Với công cụ dựng video, xem trước nhanh quan trọng hơn render nhanh: khi mọi chỉnh sửa hiện ngay trên khung xem trước, người dùng chỉ phải render một lần. Tách giao diện (Node.js) và phần xử lý nặng (Python và FFmpeg) thành hai tiến trình giúp giao diện không bị treo khi Whisper hay FFmpeg đang chạy.",
+        "architecture": {
+          "caption": "Giao diện và phần xử lý nặng là hai tiến trình riêng, nên giao diện không treo khi đang render.",
+          "tiers": [
+            {
+              "label": "Giao diện",
+              "nodes": [
+                {
+                  "name": "Next.js · React",
+                  "note": "8 tab biên tập · xem trước trực tiếp",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Xử lý nền",
+              "nodes": [
+                {
+                  "name": "Python worker",
+                  "note": "pydantic kiểm cấu hình · điều phối"
+                }
+              ]
+            },
+            {
+              "label": "Công cụ",
+              "nodes": [
+                {
+                  "name": "Whisper · PyTorch",
+                  "note": "phụ đề có mốc thời gian"
+                },
+                {
+                  "name": "FFmpeg",
+                  "note": "sóng âm · làm mờ · ghép lớp",
+                  "accent": true
+                },
+                {
+                  "name": "Pillow",
+                  "note": "mặt nạ ảnh phủ"
+                },
+                {
+                  "name": "AI xoá nền",
+                  "note": "PNG trong suốt"
+                }
+              ]
+            },
+            {
+              "label": "Đầu ra",
+              "nodes": [
+                {
+                  "name": "MP4",
+                  "note": "1920×1080 hoặc 1080×1920 · 12 Mbps"
+                }
+              ]
+            }
+          ]
+        }
       },
-      "hrm-application": {
+      "eoffice": {
         "role": "Xây dựng từ đầu và vận hành toàn bộ hệ thống: dữ liệu, API, giao diện, kiểm thử và triển khai",
         "challenge": "Sun Media cần một nơi thay cho bảng tính, biểu mẫu và email rời rạc: đơn từ phải đi đúng tuyến duyệt, dữ liệu nhân sự, chấm công, lương và dự án phải khớp nhau, và mỗi người chỉ thấy đúng phần việc của mình.",
         "responsibilities": [
@@ -657,7 +1042,62 @@ export const PROJECT_CASES = {
           "Chatbot nội quy dùng Google Gemini, trả lời dựa trên Sổ tay và nội quy công ty."
         ],
         "learning": "Với hệ thống nội bộ, điều quyết định không phải số màn hình mà là dữ liệu có khớp nhau hay không. Khi nhân sự, tuyến quản lý và quyền được dựng đúng từ đầu, các module sau như chấm công, lương hay tài chính dự án chỉ việc tham chiếu và cộng dồn. Test tự động là thứ cho phép thêm module mới mỗi tuần mà không sợ làm hỏng module cũ.",
-        "privacyNote": "Case study chỉ nêu phạm vi chức năng và công nghệ; không công khai dữ liệu, tài khoản, ảnh chụp màn hình nội bộ hay cấu hình phân quyền cụ thể."
+        "privacyNote": "Case study chỉ nêu phạm vi chức năng và công nghệ; không công khai dữ liệu, tài khoản, ảnh chụp màn hình nội bộ hay cấu hình phân quyền cụ thể.",
+        "architecture": {
+          "caption": "Một máy chủ phục vụ cả API lẫn giao diện; mọi module dùng chung một cơ sở dữ liệu.",
+          "tiers": [
+            {
+              "label": "Người dùng",
+              "nodes": [
+                {
+                  "name": "Trình duyệt",
+                  "note": "React 19 · TypeScript · ~150 màn hình"
+                }
+              ]
+            },
+            {
+              "label": "Biên",
+              "nodes": [
+                {
+                  "name": "Cloudflare",
+                  "note": "tên miền · proxy · bảo vệ"
+                }
+              ]
+            },
+            {
+              "label": "Máy chủ · Docker",
+              "nodes": [
+                {
+                  "name": "Express + TypeScript",
+                  "note": "51 nhóm API · phục vụ cả giao diện",
+                  "accent": true
+                },
+                {
+                  "name": "Lớp bảo mật",
+                  "note": "Google login · cookie ký · CSP · rate limit · Zod"
+                }
+              ]
+            },
+            {
+              "label": "Dữ liệu & dịch vụ",
+              "nodes": [
+                {
+                  "name": "PostgreSQL · Prisma 7",
+                  "note": "146 bảng",
+                  "accent": true
+                },
+                {
+                  "name": "Google Gemini",
+                  "note": "chatbot nội quy"
+                },
+                {
+                  "name": "SMTP · Nodemailer",
+                  "note": "email đơn từ · bản tin"
+                }
+              ]
+            }
+          ]
+        }
       },
       "ai-creative-production": {
         "role": "R&D công cụ AI và thiết kế workflow hỗ trợ sản xuất video",
@@ -846,7 +1286,8 @@ export const PROJECT_CASES = {
       "org": "Organisation",
       "period": "Period",
       "related": "Projects here",
-      "at": "Built at"
+      "at": "Built at",
+      "architecture": "System architecture"
     },
     "items": {
       "kt-ai-video-studio": {
@@ -902,7 +1343,70 @@ export const PROJECT_CASES = {
           "Five frame metrics checked after every render."
         ],
         "learning": "For automated video, consistency matters more than speed: measuring each defect on the frames before deciding (such as single-tab rendering) makes quality repeatable on every run.",
-        "privacyNote": "The source code is private on GitHub; a live demo is available on request."
+        "privacyNote": "The source code is private on GitHub; a live demo is available on request.",
+        "architecture": {
+          "caption": "Every step has a fallback: failing keys or models rotate, rejected images move to the next source.",
+          "tiers": [
+            {
+              "label": "Input",
+              "nodes": [
+                {
+                  "name": "Topic · outline · news link"
+                }
+              ]
+            },
+            {
+              "label": "Script",
+              "nodes": [
+                {
+                  "name": "Gemini",
+                  "note": "plan.json per template rules · key and model rotation",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Voice & visuals",
+              "nodes": [
+                {
+                  "name": "Gemini TTS",
+                  "note": "chunks ≤ 60 words"
+                },
+                {
+                  "name": "Groq Whisper",
+                  "note": "word-level timestamps"
+                },
+                {
+                  "name": "Image search",
+                  "note": "article → Wikimedia → web → Pexels"
+                }
+              ]
+            },
+            {
+              "label": "Render",
+              "nodes": [
+                {
+                  "name": "Remotion · React",
+                  "note": "orchestrated by Node.js · FFmpeg",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Self-check",
+              "nodes": [
+                {
+                  "name": "5 measurements",
+                  "note": "coverage · text jitter · jumps · contrast · image frame"
+                },
+                {
+                  "name": "MP4",
+                  "note": "9:16 portrait · 16:9 landscape"
+                }
+              ]
+            }
+          ]
+        }
       },
       "kt-voice-studio": {
         "role": "Author – designed and built the whole application",
@@ -957,7 +1461,67 @@ export const PROJECT_CASES = {
           "Offline translation of 489 lines in 82 s with none missed."
         ],
         "learning": "Measure before optimising: real numbers (time per stage, offset per line) show which stage to drop and where to protect quality, instead of guessing.",
-        "privacyNote": "The source code is private on GitHub; a live demo is available on request."
+        "privacyNote": "The source code is private on GitHub; a live demo is available on request.",
+        "architecture": {
+          "caption": "Runs locally on the GPU; translation can be fully offline with NLLB-200.",
+          "tiers": [
+            {
+              "label": "Interface",
+              "nodes": [
+                {
+                  "name": "PyQt6 desktop",
+                  "note": "queue · settings"
+                }
+              ]
+            },
+            {
+              "label": "Listen & split",
+              "nodes": [
+                {
+                  "name": "faster-whisper",
+                  "note": "VAD silence filter · GPU",
+                  "accent": true
+                },
+                {
+                  "name": "Demucs",
+                  "note": "voice / music separation"
+                }
+              ]
+            },
+            {
+              "label": "Translate",
+              "nodes": [
+                {
+                  "name": "NLLB-200",
+                  "note": "offline · 74 languages",
+                  "accent": true
+                },
+                {
+                  "name": "Google · MyMemory",
+                  "note": "20 sentences per call"
+                }
+              ]
+            },
+            {
+              "label": "Voice",
+              "nodes": [
+                {
+                  "name": "Edge-TTS · Gemini TTS",
+                  "note": "timed to each sentence"
+                }
+              ]
+            },
+            {
+              "label": "Export",
+              "nodes": [
+                {
+                  "name": "NumPy mix",
+                  "note": "video · bilingual SRT · sync report"
+                }
+              ]
+            }
+          ]
+        }
       },
       "kt-epub-studio": {
         "role": "Author – designed and built the whole application",
@@ -1012,7 +1576,67 @@ export const PROJECT_CASES = {
           "1-click launch on Windows, installing Python and libraries when missing."
         ],
         "learning": "Long-form translation quality comes from process more than the model: a consistent bible, chapter context and a check-and-retry loop matter as much as the prompt.",
-        "privacyNote": "The source code is private on GitHub; a live demo is available on request."
+        "privacyNote": "The source code is private on GitHub; a live demo is available on request.",
+        "architecture": {
+          "caption": "A character notebook is built first and sent with every batch so the whole book stays consistent.",
+          "tiers": [
+            {
+              "label": "Interface",
+              "nodes": [
+                {
+                  "name": "Browser",
+                  "note": "EPUB/PDF reader · translation studio"
+                }
+              ]
+            },
+            {
+              "label": "Local server",
+              "nodes": [
+                {
+                  "name": "FastAPI · Python",
+                  "note": "library · settings · live log",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Preparation",
+              "nodes": [
+                {
+                  "name": "BeautifulSoup",
+                  "note": "chapter split · format placeholders"
+                },
+                {
+                  "name": "Translation notebook",
+                  "note": "characters · forms of address · terms"
+                }
+              ]
+            },
+            {
+              "label": "Translate",
+              "nodes": [
+                {
+                  "name": "Gemini",
+                  "note": "rotating keys · structured output",
+                  "accent": true
+                },
+                {
+                  "name": "Fallback",
+                  "note": "backup model → Google NMT"
+                }
+              ]
+            },
+            {
+              "label": "Output",
+              "nodes": [
+                {
+                  "name": "Translated EPUB",
+                  "note": "keeps images · TOC · drop caps · cache"
+                }
+              ]
+            }
+          ]
+        }
       },
       "computer-vision-inspection": {
         "role": "Computer Vision pipeline and demo application development",
@@ -1065,7 +1689,59 @@ export const PROJECT_CASES = {
           "Video demonstration of the full workflow.",
           "Graduation-project score: 9.5/10."
         ],
-        "learning": "Model accuracy is only one layer; production stability also depends on camera setup, calibration, tracking and exception rules."
+        "learning": "Model accuracy is only one layer; production stability also depends on camera setup, calibration, tracking and exception rules.",
+        "architecture": {
+          "caption": "Each object keeps one ID across the video, so nothing is counted or measured twice.",
+          "tiers": [
+            {
+              "label": "Input",
+              "nodes": [
+                {
+                  "name": "Camera video",
+                  "note": "fixed angle and measuring zone"
+                }
+              ]
+            },
+            {
+              "label": "Detect",
+              "nodes": [
+                {
+                  "name": "YOLOv8",
+                  "note": "position and class per frame",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Track",
+              "nodes": [
+                {
+                  "name": "SORT",
+                  "note": "keeps IDs across frames"
+                }
+              ]
+            },
+            {
+              "label": "Measure",
+              "nodes": [
+                {
+                  "name": "OpenCV",
+                  "note": "image geometry · real-size conversion",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Display",
+              "nodes": [
+                {
+                  "name": "Demo app",
+                  "note": "size of every object"
+                }
+              ]
+            }
+          ]
+        }
       },
       "multi-task-learning": {
         "role": "Research, experiment design and notebook development",
@@ -1224,7 +1900,60 @@ export const PROJECT_CASES = {
           "Recognised in the Bong Tra F&B recommendation letter."
         ],
         "learning": "Business chatbots need context architecture, fallbacks and human control—not simply a long prompt.",
-        "privacyNote": "The case study covers architecture and approach only; system prompts, internal data and user information are not disclosed."
+        "privacyNote": "The case study covers architecture and approach only; system prompts, internal data and user information are not disclosed.",
+        "architecture": {
+          "caption": "One brain for two channels: n8n takes the event, calls the AI, fetches data and replies in the right place.",
+          "tiers": [
+            {
+              "label": "Channels",
+              "nodes": [
+                {
+                  "name": "bongtra.vn website",
+                  "note": "customers"
+                },
+                {
+                  "name": "Recruitment fanpage",
+                  "note": "candidates"
+                }
+              ]
+            },
+            {
+              "label": "Orchestration",
+              "nodes": [
+                {
+                  "name": "n8n",
+                  "note": "events · conditions · routing",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "AI & data",
+              "nodes": [
+                {
+                  "name": "GPT · Gemini",
+                  "note": "understand · draft replies"
+                },
+                {
+                  "name": "Supabase",
+                  "note": "FAQ · reference data"
+                }
+              ]
+            },
+            {
+              "label": "Response",
+              "nodes": [
+                {
+                  "name": "Reply on the same channel"
+                },
+                {
+                  "name": "Hand off to staff",
+                  "note": "when the answer is uncertain"
+                }
+              ]
+            }
+          ]
+        }
       },
       "internal-automation": {
         "role": "Internal-process analysis and automation tool development",
@@ -1278,7 +2007,48 @@ export const PROJECT_CASES = {
           "HR FAQ and review-collection flows."
         ],
         "learning": "Automation works best when rules are simple, permissions are explicit and documentation lets users operate independently.",
-        "privacyNote": "Employee data, payroll records, integration accounts and internal workflow configuration are not disclosed."
+        "privacyNote": "Employee data, payroll records, integration accounts and internal workflow configuration are not disclosed.",
+        "architecture": {
+          "caption": "Data and configuration live in Google Sheets; Apps Script reads them and calls Google services.",
+          "tiers": [
+            {
+              "label": "Sources",
+              "nodes": [
+                {
+                  "name": "Google Sheets",
+                  "note": "data · configuration · status",
+                  "accent": true
+                },
+                {
+                  "name": "Forms"
+                }
+              ]
+            },
+            {
+              "label": "Logic",
+              "nodes": [
+                {
+                  "name": "Google Apps Script",
+                  "note": "business rules · error checks · access",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Services",
+              "nodes": [
+                {
+                  "name": "Calendar API",
+                  "note": "check and book meeting rooms"
+                },
+                {
+                  "name": "Gmail",
+                  "note": "payslips · notifications"
+                }
+              ]
+            }
+          ]
+        }
       },
       "preorder-workshop-web": {
         "role": "Supported building the landing-page UI and the registration / ordering flow",
@@ -1394,9 +2164,64 @@ export const PROJECT_CASES = {
           "4 camera frames: Classic REC, Modern Cinema, Vlogger DSLR, Retro VHS.",
           "Exports 1920×1080 (16:9) or 1080×1920 (9:16) with coordinates that scale to the frame."
         ],
-        "learning": "For a video tool, fast preview matters more than fast rendering: when every edit shows up in the preview, users render only once. Splitting the interface (Node.js) from the heavy processing (Python and FFmpeg) keeps the UI responsive while Whisper or FFmpeg is running."
+        "learning": "For a video tool, fast preview matters more than fast rendering: when every edit shows up in the preview, users render only once. Splitting the interface (Node.js) from the heavy processing (Python and FFmpeg) keeps the UI responsive while Whisper or FFmpeg is running.",
+        "architecture": {
+          "caption": "The interface and the heavy processing run as separate processes, so the UI never freezes while rendering.",
+          "tiers": [
+            {
+              "label": "Interface",
+              "nodes": [
+                {
+                  "name": "Next.js · React",
+                  "note": "8 editing tabs · live preview",
+                  "accent": true
+                }
+              ]
+            },
+            {
+              "label": "Background",
+              "nodes": [
+                {
+                  "name": "Python worker",
+                  "note": "pydantic-validated config · orchestration"
+                }
+              ]
+            },
+            {
+              "label": "Tools",
+              "nodes": [
+                {
+                  "name": "Whisper · PyTorch",
+                  "note": "timestamped subtitles"
+                },
+                {
+                  "name": "FFmpeg",
+                  "note": "waveform · blur · compositing",
+                  "accent": true
+                },
+                {
+                  "name": "Pillow",
+                  "note": "overlay masks"
+                },
+                {
+                  "name": "AI background removal",
+                  "note": "transparent PNG"
+                }
+              ]
+            },
+            {
+              "label": "Output",
+              "nodes": [
+                {
+                  "name": "MP4",
+                  "note": "1920×1080 or 1080×1920 · 12 Mbps"
+                }
+              ]
+            }
+          ]
+        }
       },
-      "hrm-application": {
+      "eoffice": {
         "role": "Built from scratch and runs the whole system: data, API, interface, testing and deployment",
         "challenge": "Sun Media needed one place to replace scattered spreadsheets, forms and email: requests had to follow the right approval chain, HR, attendance, payroll and project data had to agree with each other, and each person should see only their own share of the work.",
         "responsibilities": [
@@ -1472,7 +2297,62 @@ export const PROJECT_CASES = {
           "A policy chatbot on Google Gemini that answers from the company handbook and rules."
         ],
         "learning": "For an internal system, what decides success is not the number of screens but whether the data agrees. Once people, the management line and permissions are modelled right, later modules such as attendance, payroll or project finance simply reference and roll up. Automated tests are what make it safe to add a module every week without breaking the old ones.",
-        "privacyNote": "This case study covers scope and technology only; no data, accounts, internal screenshots or specific permission settings are disclosed."
+        "privacyNote": "This case study covers scope and technology only; no data, accounts, internal screenshots or specific permission settings are disclosed.",
+        "architecture": {
+          "caption": "One server serves both the API and the interface; every module shares one database.",
+          "tiers": [
+            {
+              "label": "Users",
+              "nodes": [
+                {
+                  "name": "Browser",
+                  "note": "React 19 · TypeScript · ~150 screens"
+                }
+              ]
+            },
+            {
+              "label": "Edge",
+              "nodes": [
+                {
+                  "name": "Cloudflare",
+                  "note": "domain · proxy · protection"
+                }
+              ]
+            },
+            {
+              "label": "Server · Docker",
+              "nodes": [
+                {
+                  "name": "Express + TypeScript",
+                  "note": "51 API groups · also serves the UI",
+                  "accent": true
+                },
+                {
+                  "name": "Security layer",
+                  "note": "Google login · signed cookies · CSP · rate limit · Zod"
+                }
+              ]
+            },
+            {
+              "label": "Data & services",
+              "nodes": [
+                {
+                  "name": "PostgreSQL · Prisma 7",
+                  "note": "146 tables",
+                  "accent": true
+                },
+                {
+                  "name": "Google Gemini",
+                  "note": "policy chatbot"
+                },
+                {
+                  "name": "SMTP · Nodemailer",
+                  "note": "request email · newsletter"
+                }
+              ]
+            }
+          ]
+        }
       },
       "ai-creative-production": {
         "role": "AI-tool R&D and video-production workflow design",

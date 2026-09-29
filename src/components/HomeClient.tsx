@@ -13,6 +13,7 @@ import { CertificatesSection } from "./CertificatesSection";
 import { ContactSection } from "./ContactSection";
 import { Footer } from "./Footer";
 import { ScrollToTop } from "./ScrollToTop";
+import { ContactFab } from "./ContactFab";
 
 export function HomeClient() {
   const [ready, setReady] = useState(false);
@@ -32,6 +33,7 @@ export function HomeClient() {
         <ContactSection />
       </main>
       <Footer />
+      <ContactFab />
       <ScrollToTop />
     </>
   );

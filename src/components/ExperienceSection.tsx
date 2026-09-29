@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowUpRight, BadgeCheck, Check, FileCheck2, Globe } from "lucide-react";
+import { ArrowUpRight, BadgeCheck, Check, ChevronDown, FileCheck2, Globe } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { asset } from "@/data/ui-strings";
 import type { ExperienceItem } from "@/types/portfolio";
@@ -15,6 +15,9 @@ import { SectionHeading } from "./SectionHeading";
 import { GlassCard } from "./motion/GlassCard";
 import { Reveal, EASE_OUT } from "./motion/Reveal";
 import { RecommendationModal } from "./RecommendationModal";
+
+/** Highlights shown before "Show more" — keeps the panel short on phones. */
+const HIGHLIGHT_LIMIT = 3;
 
 const MONTHS_EN = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
 
@@ -41,7 +44,8 @@ const rise = {
 };
 
 function DetailPanel({ item, index, total }: { item: ExperienceItem; index: number; total: number }) {
-  const { ui, content, cases } = useLanguage();
+  const { ui, content, cases, href } = useLanguage();
+  const [open, setOpen] = useState(false);
   const related = item.key ? content.projects.items.filter((p) => p.orgKey === item.key) : [];
   const months = duration(item);
 
@@ -87,7 +91,7 @@ function DetailPanel({ item, index, total }: { item: ExperienceItem; index: numb
           {ui.highlights} · {String(item.highlights.length).padStart(2, "0")}
         </motion.p>
         <ul className="mt-4 grid gap-2">
-          {item.highlights.map((h) => (
+          {(open ? item.highlights : item.highlights.slice(0, HIGHLIGHT_LIMIT)).map((h) => (
             <motion.li
               key={h}
               variants={{ hidden: { opacity: 0, x: -14 }, show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: EASE_OUT } } }}
@@ -100,6 +104,17 @@ function DetailPanel({ item, index, total }: { item: ExperienceItem; index: numb
             </motion.li>
           ))}
         </ul>
+        {item.highlights.length > HIGHLIGHT_LIMIT && (
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            className="mt-2 ml-2 flex cursor-pointer items-center gap-1.5 font-mono text-xs tracking-[0.08em] text-signal uppercase hover:text-white"
+          >
+            {open ? ui.showLess : `${ui.showMore} · +${item.highlights.length - HIGHLIGHT_LIMIT}`}
+            <ChevronDown className={cn("size-3.5 transition-transform", open && "rotate-180")} />
+          </button>
+        )}
 
         {related.length > 0 && (
           <motion.div variants={rise} className="mt-8">
@@ -110,7 +125,7 @@ function DetailPanel({ item, index, total }: { item: ExperienceItem; index: numb
               {related.map((p) => (
                 <li key={p.id} className="min-w-0">
                   <Link
-                    href={`/projects/${p.id}/`}
+                    href={href(`/projects/${p.id}/`)}
                     className="group flex h-full items-center gap-3 rounded-xl border border-mist/12 bg-deep/60 p-2.5 pr-4 transition-all hover:-translate-y-0.5 hover:border-signal/45 hover:bg-signal/[0.05]"
                   >
                     <span className="relative aspect-[16/10] w-20 shrink-0 overflow-hidden rounded-lg sm:w-24">

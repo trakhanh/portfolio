@@ -31,6 +31,12 @@ export interface TechnologyItem {
   purpose: string;
 }
 
+/** A system drawn as stacked tiers, top to bottom; `accent` marks the core pieces. */
+export interface ArchitectureDiagram {
+  caption?: string;
+  tiers: readonly { label: string; nodes: readonly { name: string; note?: string; accent?: boolean }[] }[];
+}
+
 export interface ProjectCase {
   role: string;
   challenge: string;
@@ -41,6 +47,7 @@ export interface ProjectCase {
   evidence: readonly string[];
   learning: string;
   privacyNote?: string;
+  architecture?: ArchitectureDiagram;
 }
 
 export interface CertificateItem {
@@ -232,6 +239,7 @@ export interface CaseStudyData {
     org: string;
     period: string;
     related: string;
+    architecture?: string;
     at: string;
     map: string;
     challenge: string;

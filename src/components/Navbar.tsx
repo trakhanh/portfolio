@@ -13,7 +13,7 @@ import { BrandMark } from "./BrandMark";
 const SECTION_IDS = ["skills", "systems", "experience", "projects", "proof", "contact"] as const;
 
 export function Navbar({ onHome = true }: { onHome?: boolean }) {
-  const { locale, toggleLocale, content, ui } = useLanguage();
+  const { locale, toggleLocale, href: localHref, content, ui } = useLanguage();
   // The page switches language as a transition; the pill answers the tap at once.
   const [pillLocale, setPillLocale] = useState<typeof locale | null>(null);
   const pill = pillLocale ?? locale;
@@ -55,7 +55,7 @@ export function Navbar({ onHome = true }: { onHome?: boolean }) {
     return () => observer.disconnect();
   }, [onHome]);
 
-  const href = (id: string) => (onHome ? `#${id}` : `/#${id}`);
+  const href = (id: string) => (onHome ? `#${id}` : `${localHref("/")}#${id}`);
 
   return (
     <motion.header
@@ -65,7 +65,7 @@ export function Navbar({ onHome = true }: { onHome?: boolean }) {
       className="fixed inset-x-0 top-0 z-50"
     >
       <div className="container-auros flex h-20 items-center justify-between gap-4">
-        <Link href={onHome ? "#top" : "/"} className="group flex items-center gap-3" aria-label="Trà Nguyễn Gia Khánh">
+        <Link href={onHome ? "#top" : localHref("/")} className="group flex items-center gap-3" aria-label="Trà Nguyễn Gia Khánh">
           <BrandMark className="size-9 transition-transform duration-500 group-hover:rotate-[-6deg]" />
           <span className="hidden text-sm font-medium text-white sm:block">Gia Khánh</span>
         </Link>

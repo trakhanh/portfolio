@@ -4,6 +4,8 @@ import "./globals.css";
 import { Providers } from "@/components/Providers";
 import { AmbientLight } from "@/components/AmbientLight";
 import { SPLASH_GATE_SCRIPT } from "@/lib/splash";
+import { LANG_GATE_SCRIPT } from "@/lib/i18n";
+import { SITE_URL } from "@/lib/seo";
 
 const display = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
@@ -20,12 +22,10 @@ const code = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://portfolio.khanhtra.io.vn"),
-  title: "Trà Nguyễn Gia Khánh — Applied AI × ERP",
-  description:
-    "Portfolio của Trà Nguyễn Gia Khánh — Applied AI, AI Automation, ERP & Digital Transformation với nền tảng Data Science.",
+  metadataBase: new URL(SITE_URL),
   keywords: [
     "Trà Nguyễn Gia Khánh",
+    "Tra Nguyen Gia Khanh",
     "Applied AI",
     "AI Automation",
     "ERP Specialist",
@@ -44,18 +44,6 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/icons/gk-180-v3.png?v=5", sizes: "180x180" }],
   },
-  openGraph: {
-    title: "Trà Nguyễn Gia Khánh — Applied AI × ERP",
-    description: "Biến AI thành hệ thống vận hành thực tế.",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Gia Khanh Portfolio" }],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Trà Nguyễn Gia Khánh — Applied AI × ERP",
-    description: "Biến AI thành hệ thống vận hành thực tế.",
-    images: ["/og.png"],
-  },
 };
 
 export const viewport: Viewport = {
@@ -68,6 +56,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="vi" className={`${display.variable} ${code.variable}`} suppressHydrationWarning>
       <head>
+        {/* English pages share this layout; the gate sets lang="en" there before paint. */}
+        <script dangerouslySetInnerHTML={{ __html: LANG_GATE_SCRIPT }} />
         <script dangerouslySetInnerHTML={{ __html: SPLASH_GATE_SCRIPT }} />
       </head>
       <body className="min-h-screen antialiased" suppressHydrationWarning>
