@@ -1,52 +1,52 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useLanguage } from "@/context/LanguageContext";
 import { EASE_OUT } from "./motion/Reveal";
 import { BrandMark } from "./BrandMark";
-
-const KEY = "splash_seen";
+import { SPLASH_KEY } from "@/lib/splash";
 
 /**
- * One short intro per session: the GK mark resolves out of blur while an
- * signal line fills, then the panel lifts away and hands off to the hero.
+ * First-visit intro: the GK mark resolves out of blur while a signal line
+ * fills, then the panel lifts away and hands off to the hero.
  */
 export function SplashLoader({ onDone }: { onDone: () => void }) {
   const { content, ui } = useLanguage();
   const [visible, setVisible] = useState(true);
+  const doneRef = useRef(false);
+
+  const handOff = () => {
+    if (doneRef.current) return;
+    doneRef.current = true;
+    onDone();
+  };
 
   useEffect(() => {
-    let seen = false;
-    try {
-      seen = sessionStorage.getItem(KEY) === "true";
-    } catch {}
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (seen || reduce) {
+    if (document.documentElement.dataset.splash === "off") {
+      // Already hidden by CSS before paint — just start the hero.
       setVisible(false);
-      onDone();
+      handOff();
       return;
     }
-    const t = setTimeout(() => finish(), 1700);
+    // Record now, so a reload mid-intro doesn't replay it.
+    try {
+      localStorage.setItem(SPLASH_KEY, String(Date.now()));
+    } catch {}
+    const t = setTimeout(() => setVisible(false), 1600);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const finish = () => {
-    try {
-      sessionStorage.setItem(KEY, "true");
-    } catch {}
-    setVisible(false);
-  };
-
   return (
-    <AnimatePresence onExitComplete={onDone}>
+    <AnimatePresence onExitComplete={handOff}>
       {visible && (
         <motion.div
           key="splash"
+          data-splash-root
           role="status"
           aria-label={ui.booting}
-          onClick={finish}
+          onClick={() => setVisible(false)}
           exit={{ opacity: 0, filter: "blur(12px)", scale: 1.04 }}
           transition={{ duration: 0.7, ease: EASE_OUT }}
           className="fixed inset-0 z-[100] grid cursor-pointer place-items-center bg-abyss"
@@ -71,7 +71,7 @@ export function SplashLoader({ onDone }: { onDone: () => void }) {
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: 1.5, ease: [0.65, 0, 0.35, 1] }}
+                transition={{ duration: 1.4, ease: [0.65, 0, 0.35, 1] }}
                 className="bg-signal h-full origin-left"
               />
             </div>

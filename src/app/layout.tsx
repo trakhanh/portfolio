@@ -3,6 +3,7 @@ import { Be_Vietnam_Pro, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
 import { AmbientLight } from "@/components/AmbientLight";
+import { SPLASH_GATE_SCRIPT } from "@/lib/splash";
 
 const display = Be_Vietnam_Pro({
   subsets: ["latin", "vietnamese"],
@@ -65,7 +66,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="vi" className={`${display.variable} ${code.variable}`}>
+    <html lang="vi" className={`${display.variable} ${code.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: SPLASH_GATE_SCRIPT }} />
+      </head>
       <body className="min-h-screen antialiased" suppressHydrationWarning>
         <Providers>
           <AmbientLight />

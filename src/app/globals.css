@@ -296,6 +296,9 @@
 }
 @utility animate-marquee { animation: marquee 60s linear infinite; }
 
+/* Returning visitors: hide the intro overlay before first paint (see lib/splash.ts) */
+html[data-splash="off"] [data-splash-root] { display: none !important; }
+
 /* Lenis smooth scrolling */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
