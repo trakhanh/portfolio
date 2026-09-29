@@ -55,6 +55,9 @@ const TECH_ICONS: Record<string, string[]> = {
   "Edge-TTS / Gemini TTS": ["voice.svg", "googlegemini.svg"],
   "Python / FastAPI": ["python.svg", "api.svg"],
   "EPUB / BeautifulSoup": ["data.svg"],
+  "Odoo Online": ["erp.svg"],
+  "AMIS MISA": ["erp.svg"],
+  "AI Marketing": ["ml.svg"],
 };
 
 const SECTIONS = ["challenge", "role", "process", "technology", "outcome"] as const;
@@ -120,6 +123,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
     outcome: L.outcome,
   };
   const facts = [
+    { label: item.period ? `${L.org} · ${L.period}` : L.org, value: item.period ? `${item.org} · ${item.period}` : item.org },
     { label: L.role, value: data.role },
     { label: L.result, value: item.result, accent: true },
     { label: L.scope, value: item.phase === "foundation" ? L.academic : item.phase === "product" ? L.product : L.professional },
@@ -188,7 +192,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
             />
           </motion.div>
 
-          <dl className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-mist/10 bg-mist/10 sm:grid-cols-3">
+          <dl className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-mist/10 bg-mist/10 sm:grid-cols-2 lg:grid-cols-4">
             {facts.map((f) => (
               <div key={f.label} className="bg-deep px-6 py-5">
                 <dt className="font-mono text-[11px] tracking-[0.12em] text-slate uppercase">{f.label}</dt>

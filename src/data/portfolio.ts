@@ -24,7 +24,7 @@ export const PORTFOLIO_CONTENT = {
       "name": "TRÀ NGUYỄN GIA KHÁNH",
       "title": "Biến AI thành hệ thống vận hành thực tế.",
       "intro": "Tốt nghiệp Khoa học Dữ liệu, tôi ứng dụng AI vào tự động hóa, sản xuất video và triển khai ERP/HRM — phù hợp với Applied AI, AI Automation và Digital Transformation.",
-      "primary": "Xem 11 dự án",
+      "primary": "Xem 13 dự án",
       "secondary": "Xem mô hình AI × ERP",
       "cv": "Xem CV ↗",
       "cvUrl": "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing",
@@ -162,7 +162,7 @@ export const PORTFOLIO_CONTENT = {
           "label": "Môi trường doanh nghiệp thực tế"
         },
         {
-          "value": "11",
+          "value": "13",
           "label": "Dự án theo hành trình năng lực"
         }
       ],
@@ -287,7 +287,8 @@ export const PORTFOLIO_CONTENT = {
             "Xây dựng và vận hành hệ thống Văn phòng Điện tử eOffice (https://eoffice.sunmedia.net.vn) phục vụ số hóa quy trình và quản trị vận hành nội bộ.",
             "Bắt đầu ở vị trí Nhân viên AI, ứng dụng AI để hỗ trợ quy trình sản xuất video và nội dung.",
             "Sau đó chuyển sang Nhân viên R&D, tập trung nghiên cứu công cụ, quy trình và giải pháp AI phục vụ sản xuất và chuyển đổi số."
-          ]
+          ],
+          "key": "sunmedia"
         },
         {
           "date": "Tháng 7/2025 — Tháng 9/2025",
@@ -314,7 +315,8 @@ export const PORTFOLIO_CONTENT = {
             "Thiết lập Landing Page Pre-order và Workshop có tích hợp thanh toán trực tuyến, rút ngắn quy trình đăng ký và đặt hàng thủ công.",
             "Đề xuất ý tưởng ERP bằng Odoo Online và triển khai demo thử nghiệm, tạo cơ sở cho quyết định áp dụng trên toàn công ty.",
             "Soạn tài liệu hướng dẫn giúp nhân viên rút ngắn thời gian làm quen hệ thống."
-          ]
+          ],
+          "key": "bongtra"
         },
         {
           "date": "Tháng 4/2025 — Tháng 6/2025",
@@ -325,14 +327,15 @@ export const PORTFOLIO_CONTENT = {
             "Hỗ trợ vận hành và khắc phục sự cố CNTT trong hệ thống nội bộ.",
             "Tham gia triển khai ERP AMIS MISA, đặc biệt module AI Marketing, giúp đội ngũ Sales tăng hiệu quả theo dõi khách hàng tiềm năng.",
             "Soạn thảo tài liệu hướng dẫn và hỗ trợ đào tạo Sales về CRM, đảm bảo quá trình chuyển đổi sang hệ thống mới diễn ra mượt mà."
-          ]
+          ],
+          "key": "vanthinh"
         }
       ]
     },
     "projects": {
       "eyebrow": "03 · SELECTED WORK",
-      "title": "11 dự án thể hiện cách tôi giải quyết vấn đề.",
-      "intro": "Ba sản phẩm AI tự phát triển cùng tám case study từ học tập và công việc, cho thấy cách tôi phân tích bài toán, chọn công nghệ và tạo đầu ra có thể sử dụng.",
+      "title": "13 dự án thể hiện cách tôi giải quyết vấn đề.",
+      "intro": "Ba sản phẩm AI tự phát triển, bảy dự án tại Sun Media, Bông Trà F&B và Vạn Thịnh, cùng ba dự án học thuật tại HUFLIT.",
       "filters": {
         "all": "Tất cả",
         "foundation": "Nền tảng",
@@ -356,7 +359,10 @@ export const PORTFOLIO_CONTENT = {
             "Gemini",
             "Groq Whisper"
           ],
-          "links": []
+          "links": [],
+          "orgKey": "personal",
+          "org": "Sản phẩm cá nhân",
+          "period": ""
         },
         {
           "id": "kt-voice-studio",
@@ -374,7 +380,10 @@ export const PORTFOLIO_CONTENT = {
             "NLLB-200",
             "CUDA"
           ],
-          "links": []
+          "links": [],
+          "orgKey": "personal",
+          "org": "Sản phẩm cá nhân",
+          "period": ""
         },
         {
           "id": "kt-epub-studio",
@@ -391,86 +400,61 @@ export const PORTFOLIO_CONTENT = {
             "EPUB",
             "BeautifulSoup"
           ],
-          "links": []
+          "links": [],
+          "orgKey": "personal",
+          "org": "Sản phẩm cá nhân",
+          "period": ""
         },
         {
-          "id": "computer-vision-inspection",
-          "phase": "foundation",
-          "phaseLabel": "NỀN TẢNG · COMPUTER VISION",
-          "title": "Hệ thống nhận dạng và đo kích thước vật thể",
-          "description": "Đồ án tốt nghiệp ứng dụng YOLOv8, SORT và OpenCV để phát hiện, theo dõi và đo vật thể trên băng chuyền công nghiệp.",
-          "result": "Đồ án tốt nghiệp · 9.5/10",
-          "image": "./img/projects-v4/computer-vision-inspection.webp",
+          "id": "hrm-application",
+          "phase": "professional",
+          "phaseLabel": "CÔNG VIỆC · CHUYỂN ĐỔI SỐ",
+          "title": "Ứng dụng HRM theo định hướng ERP",
+          "description": "Trực tiếp xây dựng ứng dụng HRM như một sản phẩm chuyển đổi số theo định hướng ERP: số hóa quy trình nhân sự, tập trung dữ liệu, phân quyền theo vai trò, xây dựng giao diện quản trị và kết nối workflow vận hành. Chi tiết module được giới hạn theo phạm vi có thể công khai.",
+          "result": "Hệ thống eOffice đang vận hành",
+          "image": "./img/projects-v4/hrm-application.webp",
           "tags": [
-            "Python",
-            "YOLOv8",
-            "SORT",
-            "OpenCV"
+            "ERP",
+            "HRM",
+            "Workflow",
+            "Role-based Access"
           ],
           "links": [
             {
-              "label": "Mã nguồn",
-              "url": "https://github.com/trakhanh/AppDetectAndMeasureObject.git"
-            },
-            {
-              "label": "Video demo",
-              "url": "https://youtu.be/L07IJW2GpZo"
+              "label": "eOffice Sun Media ↗",
+              "url": "https://eoffice.sunmedia.net.vn"
             }
-          ]
+          ],
+          "orgKey": "sunmedia",
+          "org": "Sun Media",
+          "period": "10/2025 — nay"
         },
         {
-          "id": "multi-task-learning",
-          "phase": "foundation",
-          "phaseLabel": "NỀN TẢNG · AI RESEARCH",
-          "title": "Multi-Task Learning Research",
-          "description": "Nghiên cứu đồng thời Object Detection, Segmentation và Depth Estimation trên BDD100K và KITTI.",
-          "result": "Research notebook",
-          "image": "./img/projects-v4/multi-task-learning.webp",
+          "id": "ai-creative-production",
+          "phase": "professional",
+          "phaseLabel": "CÔNG VIỆC · AI CREATIVE",
+          "title": "AI Video Production & Tooling",
+          "description": "Ứng dụng ChatGPT, Claude, Gemini, Antigravity và NotebookLM để hỗ trợ research, script, storyboard, asset, voice, tracking và publishing trong quy trình sản xuất video.",
+          "result": "Quy trình AI từ research đến xuất bản",
+          "image": "./img/projects-v4/ai-creative-production.webp",
           "tags": [
-            "PyTorch",
-            "BDD100K",
-            "KITTI",
-            "Deep Learning"
+            "ChatGPT",
+            "Claude",
+            "Antigravity",
+            "AI Video"
           ],
-          "links": [
-            {
-              "label": "Xem nghiên cứu",
-              "url": "https://www.kaggle.com/code/khanhtraa/multi-task-bdd100k"
-            }
-          ]
-        },
-        {
-          "id": "finger-counting",
-          "phase": "foundation",
-          "phaseLabel": "NỀN TẢNG · DEEP LEARNING",
-          "title": "Ứng dụng đếm ngón tay",
-          "description": "Ứng dụng web real-time thử nghiệm CNN, VGG16, ResNet50 và U-Net cho bài toán nhận dạng và phân đoạn ảnh.",
-          "result": "Web application prototype",
-          "image": "./img/projects-v4/finger-counting.webp",
-          "tags": [
-            "Streamlit",
-            "CNN",
-            "ResNet50",
-            "U-Net"
-          ],
-          "links": [
-            {
-              "label": "Mã nguồn",
-              "url": "https://github.com/trakhanh/UngDungDemNgonTay5-9.git"
-            },
-            {
-              "label": "Video demo",
-              "url": "https://youtu.be/NEbpUe2FScA"
-            }
-          ]
+          "links": [],
+          "orgKey": "sunmedia",
+          "org": "Sun Media",
+          "period": "10/2025 — nay"
         },
         {
           "id": "recruitment-chatbot",
           "phase": "professional",
           "phaseLabel": "CÔNG VIỆC · AI AUTOMATION",
-          "title": "Website & Chatbot AI đa kênh",
+          "title": "Website bongtra.vn & Chatbot AI đa kênh",
           "description": "Hỗ trợ xây dựng website chính thức của Bông Trà, tích hợp Chatbot AI trên web cho khách hàng và trên Fanpage tuyển dụng cho ứng viên; kết nối workflow n8n với AI và nguồn dữ liệu để tự động hóa phản hồi.",
-          "result": "Customer & recruitment automation",
+          "result": "Website bongtra.vn + chatbot AI trên 2 kênh",
           "image": "./img/projects-v4/recruitment-chatbot.webp",
           "tags": [
             "Website",
@@ -489,23 +473,10 @@ export const PORTFOLIO_CONTENT = {
               "label": "Fanpage",
               "url": "https://www.facebook.com/bongtratuyendung"
             }
-          ]
-        },
-        {
-          "id": "internal-automation",
-          "phase": "professional",
-          "phaseLabel": "CÔNG VIỆC · INTERNAL TOOLS",
-          "title": "Công cụ tự động hóa nội bộ",
-          "description": "Bộ công cụ gồm hệ thống đặt phòng họp tự động, gửi email bảng lương hàng loạt, FAQ chính sách nhân sự và thu thập đánh giá Google/Food App, được triển khai bằng Google Apps Script và workflow tự động hóa.",
-          "result": "HR · administration · feedback workflows",
-          "image": "./img/projects-v4/internal-automation.webp",
-          "tags": [
-            "Apps Script",
-            "Sheets API",
-            "Calendar API",
-            "Email Automation"
           ],
-          "links": []
+          "orgKey": "bongtra",
+          "org": "Bông Trà F&B",
+          "period": "07 — 09/2025"
         },
         {
           "id": "preorder-workshop-web",
@@ -513,7 +484,7 @@ export const PORTFOLIO_CONTENT = {
           "phaseLabel": "CÔNG VIỆC · WEB EXPERIENCE",
           "title": "Landing Page Pre-order & Workshop",
           "description": "Thiết lập các Landing Page Marketing cho chương trình Workshop và đặt hàng trà trước, tích hợp cổng thanh toán trực tuyến để giảm thao tác đăng ký và tiếp nhận đơn thủ công.",
-          "result": "Marketing funnel · online payment",
+          "result": "Đăng ký & thanh toán online trên preorder.bongtra.vn",
           "image": "./img/projects-v4/preorder-workshop-web.webp",
           "tags": [
             "Landing Page",
@@ -526,44 +497,147 @@ export const PORTFOLIO_CONTENT = {
               "label": "Landing page Pre-order",
               "url": "https://preorder.bongtra.vn/?lang=vi"
             }
-          ]
+          ],
+          "orgKey": "bongtra",
+          "org": "Bông Trà F&B",
+          "period": "07 — 09/2025"
         },
         {
-          "id": "hrm-application",
+          "id": "internal-automation",
           "phase": "professional",
-          "phaseLabel": "CÔNG VIỆC · CHUYỂN ĐỔI SỐ",
-          "title": "Ứng dụng HRM theo định hướng ERP",
-          "description": "Trực tiếp xây dựng ứng dụng HRM như một sản phẩm chuyển đổi số theo định hướng ERP: số hóa quy trình nhân sự, tập trung dữ liệu, phân quyền theo vai trò, xây dựng giao diện quản trị và kết nối workflow vận hành. Chi tiết module được giới hạn theo phạm vi có thể công khai.",
-          "result": "ERP-oriented transformation · HRM product",
-          "image": "./img/projects-v4/hrm-application.webp",
+          "phaseLabel": "CÔNG VIỆC · INTERNAL TOOLS",
+          "title": "Công cụ tự động hóa nội bộ",
+          "description": "Bộ công cụ gồm hệ thống đặt phòng họp tự động, gửi email bảng lương hàng loạt, FAQ chính sách nhân sự và thu thập đánh giá Google/Food App, được triển khai bằng Google Apps Script và workflow tự động hóa.",
+          "result": "Góp phần giảm ~80% xử lý thủ công",
+          "image": "./img/projects-v4/internal-automation.webp",
           "tags": [
+            "Apps Script",
+            "Sheets API",
+            "Calendar API",
+            "Email Automation"
+          ],
+          "links": [],
+          "orgKey": "bongtra",
+          "org": "Bông Trà F&B",
+          "period": "07 — 09/2025"
+        },
+        {
+          "id": "odoo-erp-demo",
+          "phase": "professional",
+          "phaseLabel": "CÔNG VIỆC · ERP",
+          "title": "Đề xuất & demo ERP bằng Odoo Online",
+          "description": "Đề xuất ý tưởng ứng dụng ERP bằng Odoo Online cho Bông Trà và triển khai bản demo thử nghiệm, tạo cơ sở để ban lãnh đạo cân nhắc áp dụng trên toàn công ty.",
+          "result": "Bản demo làm cơ sở quyết định áp dụng ERP",
+          "image": "./img/projects-v4/odoo-erp-demo.webp",
+          "tags": [
+            "Odoo Online",
             "ERP",
-            "HRM",
-            "Workflow",
-            "Role-based Access"
+            "Process mapping",
+            "Demo"
+          ],
+          "links": [],
+          "orgKey": "bongtra",
+          "org": "Bông Trà F&B",
+          "period": "07 — 09/2025"
+        },
+        {
+          "id": "amis-misa-erp",
+          "phase": "professional",
+          "phaseLabel": "CÔNG VIỆC · TRIỂN KHAI ERP",
+          "title": "Triển khai ERP AMIS MISA & AI Marketing",
+          "description": "Tham gia triển khai ERP AMIS MISA, đặc biệt module AI Marketing giúp đội Sales theo dõi khách hàng tiềm năng; soạn tài liệu và hỗ trợ đào tạo CRM để chuyển sang hệ thống mới suôn sẻ.",
+          "result": "Sales chuyển sang CRM mới có tài liệu & đào tạo",
+          "image": "./img/projects-v4/amis-misa-erp.webp",
+          "tags": [
+            "AMIS MISA",
+            "ERP",
+            "CRM",
+            "AI Marketing"
+          ],
+          "links": [],
+          "orgKey": "vanthinh",
+          "org": "KHKT Vạn Thịnh",
+          "period": "04 — 06/2025"
+        },
+        {
+          "id": "computer-vision-inspection",
+          "phase": "foundation",
+          "phaseLabel": "NỀN TẢNG · COMPUTER VISION",
+          "title": "Hệ thống nhận dạng và đo kích thước vật thể",
+          "description": "Đồ án tốt nghiệp ứng dụng YOLOv8, SORT và OpenCV để phát hiện, theo dõi và đo vật thể trên băng chuyền công nghiệp.",
+          "result": "Điểm đồ án 9.5/10 · YOLOv8 + SORT",
+          "image": "./img/projects-v4/computer-vision-inspection.webp",
+          "tags": [
+            "Python",
+            "YOLOv8",
+            "SORT",
+            "OpenCV"
           ],
           "links": [
             {
-              "label": "eOffice Sun Media ↗",
-              "url": "https://eoffice.sunmedia.net.vn"
+              "label": "Mã nguồn",
+              "url": "https://github.com/trakhanh/AppDetectAndMeasureObject.git"
+            },
+            {
+              "label": "Video demo",
+              "url": "https://youtu.be/L07IJW2GpZo"
             }
-          ]
+          ],
+          "orgKey": "huflit",
+          "org": "HUFLIT · Đồ án tốt nghiệp",
+          "period": ""
         },
         {
-          "id": "ai-creative-production",
-          "phase": "professional",
-          "phaseLabel": "CÔNG VIỆC · AI CREATIVE",
-          "title": "AI Video Production & Tooling",
-          "description": "Ứng dụng ChatGPT, Claude, Gemini, Antigravity và NotebookLM để hỗ trợ research, script, storyboard, asset, voice, tracking và publishing trong quy trình sản xuất video.",
-          "result": "Current professional focus",
-          "image": "./img/projects-v4/ai-creative-production.webp",
+          "id": "multi-task-learning",
+          "phase": "foundation",
+          "phaseLabel": "NỀN TẢNG · AI RESEARCH",
+          "title": "Multi-Task Learning Research",
+          "description": "Nghiên cứu đồng thời Object Detection, Segmentation và Depth Estimation trên BDD100K và KITTI.",
+          "result": "Notebook nghiên cứu công khai trên Kaggle",
+          "image": "./img/projects-v4/multi-task-learning.webp",
           "tags": [
-            "ChatGPT",
-            "Claude",
-            "Antigravity",
-            "AI Video"
+            "PyTorch",
+            "BDD100K",
+            "KITTI",
+            "Deep Learning"
           ],
-          "links": []
+          "links": [
+            {
+              "label": "Xem nghiên cứu",
+              "url": "https://www.kaggle.com/code/khanhtraa/multi-task-bdd100k"
+            }
+          ],
+          "orgKey": "huflit",
+          "org": "HUFLIT · Nghiên cứu",
+          "period": ""
+        },
+        {
+          "id": "finger-counting",
+          "phase": "foundation",
+          "phaseLabel": "NỀN TẢNG · DEEP LEARNING",
+          "title": "Ứng dụng đếm ngón tay",
+          "description": "Ứng dụng web real-time thử nghiệm CNN, VGG16, ResNet50 và U-Net cho bài toán nhận dạng và phân đoạn ảnh.",
+          "result": "Web demo nhận dạng real-time",
+          "image": "./img/projects-v4/finger-counting.webp",
+          "tags": [
+            "Streamlit",
+            "CNN",
+            "ResNet50",
+            "U-Net"
+          ],
+          "links": [
+            {
+              "label": "Mã nguồn",
+              "url": "https://github.com/trakhanh/UngDungDemNgonTay5-9.git"
+            },
+            {
+              "label": "Video demo",
+              "url": "https://youtu.be/NEbpUe2FScA"
+            }
+          ],
+          "orgKey": "huflit",
+          "org": "HUFLIT · Dự án học thuật",
+          "period": ""
         }
       ]
     },
@@ -776,7 +850,7 @@ export const PORTFOLIO_CONTENT = {
       "name": "TRA NGUYEN GIA KHANH",
       "title": "Turning AI into real operating systems.",
       "intro": "A Data Science graduate applying AI to automation, video production and ERP/HRM implementation — ready for Applied AI, AI Automation and Digital Transformation roles.",
-      "primary": "View 11 projects",
+      "primary": "View 13 projects",
       "secondary": "Explore AI × ERP model",
       "cv": "View CV ↗",
       "cvUrl": "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing",
@@ -914,7 +988,7 @@ export const PORTFOLIO_CONTENT = {
           "label": "Real business environments"
         },
         {
-          "value": "11",
+          "value": "13",
           "label": "Projects mapped to capability growth"
         }
       ],
@@ -1039,7 +1113,8 @@ export const PORTFOLIO_CONTENT = {
             "Built and managed the eOffice digital system (https://eoffice.sunmedia.net.vn) for internal workflow automation and operational management.",
             "Started as an AI Specialist, applying AI to support video and content-production workflows.",
             "Later moved into an R&D role focused on researching tools, workflows and AI solutions for production and digital transformation."
-          ]
+          ],
+          "key": "sunmedia"
         },
         {
           "date": "Jul 2025 — Sep 2025",
@@ -1066,7 +1141,8 @@ export const PORTFOLIO_CONTENT = {
             "Set up Pre-order and Workshop Landing Pages with online-payment integration, reducing manual registration and order handling.",
             "Proposed an ERP direction using Odoo Online and delivered an experimental demo that supported the company-wide adoption decision.",
             "Prepared user guides that shortened employees’ system onboarding time."
-          ]
+          ],
+          "key": "bongtra"
         },
         {
           "date": "Apr 2025 — Jun 2025",
@@ -1077,14 +1153,15 @@ export const PORTFOLIO_CONTENT = {
             "Supported internal IT operations and troubleshooting.",
             "Participated in the AMIS MISA ERP implementation, particularly the AI Marketing module, helping the Sales team improve lead tracking.",
             "Prepared user documentation and supported CRM training for Sales, enabling a smoother transition to the new system."
-          ]
+          ],
+          "key": "vanthinh"
         }
       ]
     },
     "projects": {
       "eyebrow": "03 · SELECTED WORK",
-      "title": "11 projects that show how I solve problems.",
-      "intro": "Three self-built AI products and eight academic and professional case studies show how I frame problems, choose technology and deliver usable outcomes.",
+      "title": "13 projects that show how I solve problems.",
+      "intro": "Three self-built AI products, seven projects at Sun Media, Bong Tra F&B and Van Thinh, and three academic projects at HUFLIT.",
       "filters": {
         "all": "All",
         "foundation": "Foundation",
@@ -1108,7 +1185,10 @@ export const PORTFOLIO_CONTENT = {
             "Gemini",
             "Groq Whisper"
           ],
-          "links": []
+          "links": [],
+          "orgKey": "personal",
+          "org": "Personal product",
+          "period": ""
         },
         {
           "id": "kt-voice-studio",
@@ -1126,7 +1206,10 @@ export const PORTFOLIO_CONTENT = {
             "NLLB-200",
             "CUDA"
           ],
-          "links": []
+          "links": [],
+          "orgKey": "personal",
+          "org": "Personal product",
+          "period": ""
         },
         {
           "id": "kt-epub-studio",
@@ -1143,86 +1226,61 @@ export const PORTFOLIO_CONTENT = {
             "EPUB",
             "BeautifulSoup"
           ],
-          "links": []
+          "links": [],
+          "orgKey": "personal",
+          "org": "Personal product",
+          "period": ""
         },
         {
-          "id": "computer-vision-inspection",
-          "phase": "foundation",
-          "phaseLabel": "FOUNDATION · COMPUTER VISION",
-          "title": "Object detection and measurement system",
-          "description": "A graduation project using YOLOv8, SORT and OpenCV to detect, track and measure objects on an industrial conveyor.",
-          "result": "Graduation project · 9.5/10",
-          "image": "./img/projects-v4/computer-vision-inspection.webp",
+          "id": "hrm-application",
+          "phase": "professional",
+          "phaseLabel": "PROFESSIONAL · DIGITAL TRANSFORMATION",
+          "title": "ERP-oriented HRM application",
+          "description": "Built an HRM application as an ERP-oriented digital-transformation product: digitizing HR processes, centralizing data, implementing role-based access, building administration interfaces and connecting operational workflows. Module details remain limited to publicly shareable information.",
+          "result": "eOffice system in production",
+          "image": "./img/projects-v4/hrm-application.webp",
           "tags": [
-            "Python",
-            "YOLOv8",
-            "SORT",
-            "OpenCV"
+            "ERP",
+            "HRM",
+            "Workflow",
+            "Role-based Access"
           ],
           "links": [
             {
-              "label": "Source code",
-              "url": "https://github.com/trakhanh/AppDetectAndMeasureObject.git"
-            },
-            {
-              "label": "Video demo",
-              "url": "https://youtu.be/L07IJW2GpZo"
+              "label": "eOffice Sun Media ↗",
+              "url": "https://eoffice.sunmedia.net.vn"
             }
-          ]
+          ],
+          "orgKey": "sunmedia",
+          "org": "Sun Media",
+          "period": "Oct 2025 — now"
         },
         {
-          "id": "multi-task-learning",
-          "phase": "foundation",
-          "phaseLabel": "FOUNDATION · AI RESEARCH",
-          "title": "Multi-Task Learning Research",
-          "description": "Research combining Object Detection, Segmentation and Depth Estimation on BDD100K and KITTI.",
-          "result": "Research notebook",
-          "image": "./img/projects-v4/multi-task-learning.webp",
+          "id": "ai-creative-production",
+          "phase": "professional",
+          "phaseLabel": "PROFESSIONAL · AI CREATIVE",
+          "title": "AI Video Production & Tooling",
+          "description": "Using ChatGPT, Claude, Gemini, Antigravity and NotebookLM to support research, scripts, storyboards, assets, voice, tracking and publishing across the video-production workflow.",
+          "result": "AI workflow from research to publishing",
+          "image": "./img/projects-v4/ai-creative-production.webp",
           "tags": [
-            "PyTorch",
-            "BDD100K",
-            "KITTI",
-            "Deep Learning"
+            "ChatGPT",
+            "Claude",
+            "Antigravity",
+            "AI Video"
           ],
-          "links": [
-            {
-              "label": "View research",
-              "url": "https://www.kaggle.com/code/khanhtraa/multi-task-bdd100k"
-            }
-          ]
-        },
-        {
-          "id": "finger-counting",
-          "phase": "foundation",
-          "phaseLabel": "FOUNDATION · DEEP LEARNING",
-          "title": "Finger counting application",
-          "description": "A real-time web application exploring CNN, VGG16, ResNet50 and U-Net for recognition and image segmentation.",
-          "result": "Web application prototype",
-          "image": "./img/projects-v4/finger-counting.webp",
-          "tags": [
-            "Streamlit",
-            "CNN",
-            "ResNet50",
-            "U-Net"
-          ],
-          "links": [
-            {
-              "label": "Source code",
-              "url": "https://github.com/trakhanh/UngDungDemNgonTay5-9.git"
-            },
-            {
-              "label": "Video demo",
-              "url": "https://youtu.be/NEbpUe2FScA"
-            }
-          ]
+          "links": [],
+          "orgKey": "sunmedia",
+          "org": "Sun Media",
+          "period": "Oct 2025 — now"
         },
         {
           "id": "recruitment-chatbot",
           "phase": "professional",
           "phaseLabel": "PROFESSIONAL · AI AUTOMATION",
-          "title": "Website & multi-channel AI Chatbot",
+          "title": "bongtra.vn website & multi-channel AI chatbot",
           "description": "Supported the official Bong Tra website and integrated AI Chatbots for customers on the web and candidates on the recruitment Facebook page, with n8n workflows connecting AI and data sources for automated responses.",
-          "result": "Customer & recruitment automation",
+          "result": "bongtra.vn website + AI chatbot on 2 channels",
           "image": "./img/projects-v4/recruitment-chatbot.webp",
           "tags": [
             "Website",
@@ -1241,23 +1299,10 @@ export const PORTFOLIO_CONTENT = {
               "label": "Fanpage",
               "url": "https://www.facebook.com/bongtratuyendung"
             }
-          ]
-        },
-        {
-          "id": "internal-automation",
-          "phase": "professional",
-          "phaseLabel": "PROFESSIONAL · INTERNAL TOOLS",
-          "title": "Internal automation tools",
-          "description": "A toolset covering automated meeting-room booking, bulk payroll email delivery, an internal HR-policy FAQ and Google/Food App review collection, implemented with Google Apps Script and automation workflows.",
-          "result": "HR · administration · feedback workflows",
-          "image": "./img/projects-v4/internal-automation.webp",
-          "tags": [
-            "Apps Script",
-            "Sheets API",
-            "Calendar API",
-            "Email Automation"
           ],
-          "links": []
+          "orgKey": "bongtra",
+          "org": "Bong Tra F&B",
+          "period": "Jul — Sep 2025"
         },
         {
           "id": "preorder-workshop-web",
@@ -1265,7 +1310,7 @@ export const PORTFOLIO_CONTENT = {
           "phaseLabel": "PROFESSIONAL · WEB EXPERIENCE",
           "title": "Pre-order & Workshop Landing Pages",
           "description": "Set up Marketing Landing Pages for workshops and tea pre-orders with online-payment integration, reducing manual registration and order-handling steps.",
-          "result": "Marketing funnel · online payment",
+          "result": "Online registration & payment on preorder.bongtra.vn",
           "image": "./img/projects-v4/preorder-workshop-web.webp",
           "tags": [
             "Landing Page",
@@ -1278,44 +1323,147 @@ export const PORTFOLIO_CONTENT = {
               "label": "Pre-order landing page",
               "url": "https://preorder.bongtra.vn/?lang=vi"
             }
-          ]
+          ],
+          "orgKey": "bongtra",
+          "org": "Bong Tra F&B",
+          "period": "Jul — Sep 2025"
         },
         {
-          "id": "hrm-application",
+          "id": "internal-automation",
           "phase": "professional",
-          "phaseLabel": "PROFESSIONAL · DIGITAL TRANSFORMATION",
-          "title": "ERP-oriented HRM application",
-          "description": "Built an HRM application as an ERP-oriented digital-transformation product: digitizing HR processes, centralizing data, implementing role-based access, building administration interfaces and connecting operational workflows. Module details remain limited to publicly shareable information.",
-          "result": "ERP-oriented transformation · HRM product",
-          "image": "./img/projects-v4/hrm-application.webp",
+          "phaseLabel": "PROFESSIONAL · INTERNAL TOOLS",
+          "title": "Internal automation tools",
+          "description": "A toolset covering automated meeting-room booking, bulk payroll email delivery, an internal HR-policy FAQ and Google/Food App review collection, implemented with Google Apps Script and automation workflows.",
+          "result": "Helped cut ~80% of manual processing",
+          "image": "./img/projects-v4/internal-automation.webp",
           "tags": [
+            "Apps Script",
+            "Sheets API",
+            "Calendar API",
+            "Email Automation"
+          ],
+          "links": [],
+          "orgKey": "bongtra",
+          "org": "Bong Tra F&B",
+          "period": "Jul — Sep 2025"
+        },
+        {
+          "id": "odoo-erp-demo",
+          "phase": "professional",
+          "phaseLabel": "PROFESSIONAL · ERP",
+          "title": "Odoo Online ERP proposal & demo",
+          "description": "Proposed an ERP approach with Odoo Online for Bong Tra and built a trial demo, giving leadership a concrete basis for a company-wide adoption decision.",
+          "result": "A working demo to base the ERP decision on",
+          "image": "./img/projects-v4/odoo-erp-demo.webp",
+          "tags": [
+            "Odoo Online",
             "ERP",
-            "HRM",
-            "Workflow",
-            "Role-based Access"
+            "Process mapping",
+            "Demo"
+          ],
+          "links": [],
+          "orgKey": "bongtra",
+          "org": "Bong Tra F&B",
+          "period": "Jul — Sep 2025"
+        },
+        {
+          "id": "amis-misa-erp",
+          "phase": "professional",
+          "phaseLabel": "PROFESSIONAL · ERP ROLLOUT",
+          "title": "AMIS MISA ERP & AI Marketing rollout",
+          "description": "Supported the AMIS MISA ERP rollout, especially the AI Marketing module that helps Sales track leads; wrote guides and helped train Sales on the CRM for a smooth switch-over.",
+          "result": "Sales moved to the new CRM with guides & training",
+          "image": "./img/projects-v4/amis-misa-erp.webp",
+          "tags": [
+            "AMIS MISA",
+            "ERP",
+            "CRM",
+            "AI Marketing"
+          ],
+          "links": [],
+          "orgKey": "vanthinh",
+          "org": "Van Thinh Sci-Tech",
+          "period": "Apr — Jun 2025"
+        },
+        {
+          "id": "computer-vision-inspection",
+          "phase": "foundation",
+          "phaseLabel": "FOUNDATION · COMPUTER VISION",
+          "title": "Object detection and measurement system",
+          "description": "A graduation project using YOLOv8, SORT and OpenCV to detect, track and measure objects on an industrial conveyor.",
+          "result": "Graded 9.5/10 · YOLOv8 + SORT",
+          "image": "./img/projects-v4/computer-vision-inspection.webp",
+          "tags": [
+            "Python",
+            "YOLOv8",
+            "SORT",
+            "OpenCV"
           ],
           "links": [
             {
-              "label": "eOffice Sun Media ↗",
-              "url": "https://eoffice.sunmedia.net.vn"
+              "label": "Source code",
+              "url": "https://github.com/trakhanh/AppDetectAndMeasureObject.git"
+            },
+            {
+              "label": "Video demo",
+              "url": "https://youtu.be/L07IJW2GpZo"
             }
-          ]
+          ],
+          "orgKey": "huflit",
+          "org": "HUFLIT · Graduation project",
+          "period": ""
         },
         {
-          "id": "ai-creative-production",
-          "phase": "professional",
-          "phaseLabel": "PROFESSIONAL · AI CREATIVE",
-          "title": "AI Video Production & Tooling",
-          "description": "Using ChatGPT, Claude, Gemini, Antigravity and NotebookLM to support research, scripts, storyboards, assets, voice, tracking and publishing across the video-production workflow.",
-          "result": "Current professional focus",
-          "image": "./img/projects-v4/ai-creative-production.webp",
+          "id": "multi-task-learning",
+          "phase": "foundation",
+          "phaseLabel": "FOUNDATION · AI RESEARCH",
+          "title": "Multi-Task Learning Research",
+          "description": "Research combining Object Detection, Segmentation and Depth Estimation on BDD100K and KITTI.",
+          "result": "Public research notebook on Kaggle",
+          "image": "./img/projects-v4/multi-task-learning.webp",
           "tags": [
-            "ChatGPT",
-            "Claude",
-            "Antigravity",
-            "AI Video"
+            "PyTorch",
+            "BDD100K",
+            "KITTI",
+            "Deep Learning"
           ],
-          "links": []
+          "links": [
+            {
+              "label": "View research",
+              "url": "https://www.kaggle.com/code/khanhtraa/multi-task-bdd100k"
+            }
+          ],
+          "orgKey": "huflit",
+          "org": "HUFLIT · Research",
+          "period": ""
+        },
+        {
+          "id": "finger-counting",
+          "phase": "foundation",
+          "phaseLabel": "FOUNDATION · DEEP LEARNING",
+          "title": "Finger counting application",
+          "description": "A real-time web application exploring CNN, VGG16, ResNet50 and U-Net for recognition and image segmentation.",
+          "result": "Real-time recognition web demo",
+          "image": "./img/projects-v4/finger-counting.webp",
+          "tags": [
+            "Streamlit",
+            "CNN",
+            "ResNet50",
+            "U-Net"
+          ],
+          "links": [
+            {
+              "label": "Source code",
+              "url": "https://github.com/trakhanh/UngDungDemNgonTay5-9.git"
+            },
+            {
+              "label": "Video demo",
+              "url": "https://youtu.be/NEbpUe2FScA"
+            }
+          ],
+          "orgKey": "huflit",
+          "org": "HUFLIT · Academic project",
+          "period": ""
         }
       ]
     },

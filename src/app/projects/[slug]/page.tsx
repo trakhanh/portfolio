@@ -5,14 +5,16 @@ const PROJECT_SLUGS = [
   "kt-ai-video-studio",
   "kt-voice-studio",
   "kt-epub-studio",
+  "hrm-application",
+  "ai-creative-production",
+  "recruitment-chatbot",
+  "preorder-workshop-web",
+  "internal-automation",
+  "odoo-erp-demo",
+  "amis-misa-erp",
   "computer-vision-inspection",
   "multi-task-learning",
   "finger-counting",
-  "recruitment-chatbot",
-  "internal-automation",
-  "preorder-workshop-web",
-  "hrm-application",
-  "ai-creative-production",
 ];
 
 export function generateStaticParams() {

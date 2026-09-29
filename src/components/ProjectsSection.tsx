@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Building2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { asset } from "@/data/ui-strings";
 import type { ProjectItem } from "@/types/portfolio";
@@ -42,6 +42,11 @@ function ProjectSlide({ item, index }: { item: ProjectItem; index: number }) {
         <div className="flex flex-1 flex-col p-6 sm:p-8">
           <p className="font-mono text-[11px] tracking-[0.1em] text-signal uppercase">
             {String(index + 1).padStart(2, "0")} · {item.phaseLabel}
+          </p>
+          <p className="mt-1.5 flex flex-wrap items-center gap-x-2 text-xs text-silver">
+            <Building2 className="size-3.5 text-slate" />
+            <span className="text-mist">{item.org}</span>
+            {item.period && <span className="font-mono text-slate">· {item.period}</span>}
           </p>
           <div className="mt-3 flex items-start justify-between gap-4">
             <h3 className="text-xl leading-tight tracking-[-0.02em] sm:text-2xl">{item.title}</h3>

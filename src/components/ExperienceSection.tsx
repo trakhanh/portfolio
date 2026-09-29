@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight, BadgeCheck, Check, FileCheck2, Globe } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { asset } from "@/data/ui-strings";
 import type { ExperienceItem } from "@/types/portfolio";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -39,7 +41,8 @@ const rise = {
 };
 
 function DetailPanel({ item, index, total }: { item: ExperienceItem; index: number; total: number }) {
-  const { ui } = useLanguage();
+  const { ui, content, cases } = useLanguage();
+  const related = item.key ? content.projects.items.filter((p) => p.orgKey === item.key) : [];
   const months = duration(item);
 
   return (
@@ -98,10 +101,37 @@ function DetailPanel({ item, index, total }: { item: ExperienceItem; index: numb
           ))}
         </ul>
 
+        {related.length > 0 && (
+          <motion.div variants={rise} className="mt-8">
+            <p className="font-mono text-[11px] tracking-[0.12em] text-slate uppercase">
+              {cases.labels.related} · {String(related.length).padStart(2, "0")}
+            </p>
+            <ul className="mt-3 grid grid-cols-[minmax(0,1fr)] gap-3 sm:grid-cols-2">
+              {related.map((p) => (
+                <li key={p.id} className="min-w-0">
+                  <Link
+                    href={`/projects/${p.id}/`}
+                    className="group flex h-full items-center gap-3 rounded-xl border border-mist/12 bg-deep/60 p-2.5 pr-4 transition-all hover:-translate-y-0.5 hover:border-signal/45 hover:bg-signal/[0.05]"
+                  >
+                    <span className="relative aspect-[16/10] w-20 shrink-0 overflow-hidden rounded-lg sm:w-24">
+                      <Image src={asset(p.image)} alt="" fill sizes="96px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-sm leading-snug font-medium text-white">{p.title}</span>
+                      <span className="mt-0.5 block truncate text-xs text-lavender">{p.result}</span>
+                    </span>
+                    <ArrowUpRight className="size-4 shrink-0 text-slate transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-signal" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+
         {item.links && item.links.length > 0 && (
           <motion.div variants={rise} className="mt-8">
             <p className="font-mono text-[11px] tracking-[0.12em] text-slate uppercase">{ui.liveProducts}</p>
-            <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+            <ul className="mt-3 grid grid-cols-[minmax(0,1fr)] gap-3 sm:grid-cols-2">
               {item.links.map((l) => (
                 <li key={l.url}>
                   <a

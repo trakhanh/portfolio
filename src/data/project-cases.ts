@@ -27,7 +27,11 @@ export const PROJECT_CASES = {
       "prevSection": "Phần trước",
       "notFoundTitle": "Không tìm thấy dự án",
       "notFoundText": "Đường dẫn này không khớp với case study nào trong portfolio.",
-      "notFoundButton": "Quay lại portfolio"
+      "notFoundButton": "Quay lại portfolio",
+      "org": "Đơn vị",
+      "period": "Thời gian",
+      "related": "Dự án tại đây",
+      "at": "Làm tại"
     },
     "items": {
       "kt-ai-video-studio": {
@@ -399,8 +403,10 @@ export const PROJECT_CASES = {
         ],
         "outcome": "Hình thành hai luồng hỗ trợ tự động cho website và tuyển dụng, giúp nhóm vận hành có một nền tảng phản hồi nhất quán hơn.",
         "evidence": [
-          "Website Bông Trà đang hoạt động.",
-          "Fanpage tuyển dụng được liên kết trong portfolio."
+          "Website bongtra.vn đang hoạt động, có chatbot AI hỗ trợ khách hàng.",
+          "Chatbot tích hợp trên Fanpage Bông Trà Tuyển Dụng cho ứng viên.",
+          "Workflow n8n kết nối AI (GPT/Gemini) với dữ liệu trên Supabase.",
+          "Được ghi nhận trong thư giới thiệu của Bông Trà F&B."
         ],
         "learning": "Chatbot doanh nghiệp cần kiến trúc ngữ cảnh, fallback và quyền kiểm soát của con người—không thể chỉ dựa vào một prompt dài.",
         "privacyNote": "Case study chỉ mô tả kiến trúc và cách tiếp cận; prompt hệ thống, dữ liệu nội bộ và thông tin người dùng không được công khai."
@@ -506,8 +512,9 @@ export const PROJECT_CASES = {
         ],
         "outcome": "Tạo luồng số hóa gọn hơn cho đăng ký Workshop và đặt hàng Pre-order, hỗ trợ Marketing triển khai chiến dịch nhanh và giảm bước tiếp nhận thủ công.",
         "evidence": [
+          "Landing page preorder.bongtra.vn đang hoạt động.",
           "Hai nhóm landing page: Workshop và Pre-order.",
-          "Luồng thanh toán trực tuyến được tích hợp."
+          "Tích hợp thanh toán trực tuyến vào luồng đăng ký / đặt hàng."
         ],
         "learning": "Một landing page tốt phải nối đúng Marketing với vận hành phía sau; giao diện đẹp nhưng dữ liệu đầu ra khó xử lý vẫn tạo thêm việc."
       },
@@ -616,6 +623,106 @@ export const PROJECT_CASES = {
         ],
         "learning": "AI tăng tốc sản xuất nhưng không thay thế art direction, fact-checking và quản lý phiên bản; chất lượng cuối cùng vẫn cần người chịu trách nhiệm.",
         "privacyNote": "Không công khai tài sản khách hàng, nội dung chưa phát hành hoặc cấu hình workflow sản xuất nội bộ."
+      },
+      "odoo-erp-demo": {
+        "role": "Đề xuất giải pháp và dựng bản demo ERP",
+        "challenge": "Dữ liệu và quy trình vận hành của một doanh nghiệp F&B đang phát triển nằm rải rác ở nhiều công cụ. Trước khi đầu tư ERP, công ty cần thấy cụ thể một hệ thống tập trung sẽ trông như thế nào với chính quy trình của mình.",
+        "responsibilities": [
+          "Tìm hiểu quy trình hiện tại và xác định các luồng nên đưa vào ERP trước.",
+          "Đề xuất Odoo Online như một lựa chọn khởi đầu gọn, không cần hạ tầng riêng.",
+          "Cấu hình bản demo thử nghiệm với các module phù hợp.",
+          "Trình bày demo để làm cơ sở cho quyết định áp dụng toàn công ty."
+        ],
+        "process": [
+          {
+            "title": "Khảo sát quy trình",
+            "description": "Ghi lại cách các bộ phận đang làm và điểm dữ liệu bị nhập lặp hoặc rời rạc."
+          },
+          {
+            "title": "Chọn phạm vi demo",
+            "description": "Ưu tiên những luồng thể hiện rõ lợi ích của dữ liệu tập trung, thay vì cố dựng mọi module."
+          },
+          {
+            "title": "Dựng demo trên Odoo Online",
+            "description": "Cấu hình module và dữ liệu mẫu để người dùng thấy được luồng làm việc thật."
+          },
+          {
+            "title": "Trình bày và tiếp nhận góp ý",
+            "description": "Demo cho các bên liên quan và ghi lại câu hỏi, yêu cầu làm đầu vào cho bước quyết định."
+          }
+        ],
+        "technologies": [
+          {
+            "name": "Odoo Online",
+            "purpose": "Nền tảng ERP SaaS để dựng demo nhanh, không cần máy chủ riêng."
+          },
+          {
+            "name": "ERP / HRM Model",
+            "purpose": "Tư duy module, dữ liệu tập trung và luồng phê duyệt."
+          },
+          {
+            "name": "Workflow / API",
+            "purpose": "Mô hình hoá luồng nghiệp vụ trước khi cấu hình."
+          }
+        ],
+        "outcome": "Bản demo Odoo Online giúp ban lãnh đạo thấy cụ thể hệ thống ERP vận hành ra sao với quy trình của công ty, tạo cơ sở cho quyết định áp dụng trên toàn công ty.",
+        "evidence": [
+          "Đề xuất ý tưởng ERP bằng Odoo Online.",
+          "Bản demo thử nghiệm được triển khai và trình bày.",
+          "Nội dung được xác nhận trong thư giới thiệu của Bông Trà F&B."
+        ],
+        "learning": "Một bản demo chạy được thuyết phục hơn nhiều trang đề xuất: người dùng góp ý đúng hơn khi nhìn thấy quy trình của chính họ trên hệ thống.",
+        "privacyNote": "Không công khai dữ liệu, cấu hình hay ảnh màn hình nội bộ của doanh nghiệp."
+      },
+      "amis-misa-erp": {
+        "role": "Thực tập sinh IT – hỗ trợ triển khai ERP và đào tạo người dùng",
+        "challenge": "Chuyển đội Sales sang một hệ thống ERP/CRM mới luôn gặp lực cản: người dùng cần hiểu cách làm mới, dữ liệu khách hàng tiềm năng phải được theo dõi đúng cách, và công việc hằng ngày không được gián đoạn.",
+        "responsibilities": [
+          "Tham gia triển khai ERP AMIS MISA, tập trung module AI Marketing.",
+          "Soạn tài liệu hướng dẫn sử dụng CRM cho đội Sales.",
+          "Hỗ trợ đào tạo và giải đáp trong giai đoạn chuyển đổi.",
+          "Hỗ trợ vận hành và xử lý sự cố CNTT trong hệ thống nội bộ."
+        ],
+        "process": [
+          {
+            "title": "Nắm module và nhu cầu",
+            "description": "Tìm hiểu module AI Marketing và cách đội Sales đang theo dõi khách hàng tiềm năng."
+          },
+          {
+            "title": "Hỗ trợ cấu hình và triển khai",
+            "description": "Tham gia các bước đưa module vào sử dụng cùng đội triển khai."
+          },
+          {
+            "title": "Tài liệu hoá",
+            "description": "Viết hướng dẫn theo đúng thao tác hằng ngày của Sales để tự tra cứu được."
+          },
+          {
+            "title": "Đào tạo và hỗ trợ",
+            "description": "Hướng dẫn trực tiếp, giải đáp và xử lý vướng mắc trong giai đoạn đầu dùng hệ thống."
+          }
+        ],
+        "technologies": [
+          {
+            "name": "AMIS MISA",
+            "purpose": "Hệ thống ERP/CRM được triển khai cho doanh nghiệp."
+          },
+          {
+            "name": "ERP / HRM Model",
+            "purpose": "Hiểu luồng dữ liệu khách hàng và phân quyền trong ERP."
+          },
+          {
+            "name": "AI Marketing",
+            "purpose": "Module hỗ trợ Sales theo dõi và chăm sóc khách hàng tiềm năng."
+          }
+        ],
+        "outcome": "Đội Sales có tài liệu và được hỗ trợ đào tạo để chuyển sang CRM mới, dùng module AI Marketing theo dõi khách hàng tiềm năng hiệu quả hơn.",
+        "evidence": [
+          "Tham gia triển khai ERP AMIS MISA, module AI Marketing.",
+          "Tài liệu hướng dẫn CRM cho đội Sales.",
+          "Hỗ trợ đào tạo trong quá trình chuyển đổi hệ thống."
+        ],
+        "learning": "Triển khai ERP thành công phụ thuộc vào người dùng nhiều như vào phần mềm: tài liệu sát thao tác thật và hỗ trợ tận nơi giúp hệ thống được dùng thật.",
+        "privacyNote": "Không công khai dữ liệu khách hàng hay cấu hình hệ thống của doanh nghiệp."
       }
     }
   },
@@ -647,7 +754,11 @@ export const PROJECT_CASES = {
       "prevSection": "Previous section",
       "notFoundTitle": "Project not found",
       "notFoundText": "This URL does not match a case study in the portfolio.",
-      "notFoundButton": "Back to portfolio"
+      "notFoundButton": "Back to portfolio",
+      "org": "Organisation",
+      "period": "Period",
+      "related": "Projects here",
+      "at": "Built at"
     },
     "items": {
       "kt-ai-video-studio": {
@@ -1019,8 +1130,10 @@ export const PROJECT_CASES = {
         ],
         "outcome": "Established two automated support flows for website and recruitment use cases, giving operations a more consistent response foundation.",
         "evidence": [
-          "Live Bong Tra website.",
-          "Recruitment Facebook page linked from the portfolio."
+          "bongtra.vn is live with an AI chatbot for customers.",
+          "Chatbot integrated on the Bong Tra Recruitment Facebook page for candidates.",
+          "n8n workflows connect AI (GPT/Gemini) with data on Supabase.",
+          "Recognised in the Bong Tra F&B recommendation letter."
         ],
         "learning": "Business chatbots need context architecture, fallbacks and human control—not simply a long prompt.",
         "privacyNote": "The case study covers architecture and approach only; system prompts, internal data and user information are not disclosed."
@@ -1126,8 +1239,9 @@ export const PROJECT_CASES = {
         ],
         "outcome": "Delivered a more compact digital flow for Workshop registration and Pre-order campaigns, helping Marketing launch faster and reducing manual intake steps.",
         "evidence": [
-          "Landing-page flows for Workshop and Pre-order.",
-          "Online-payment integration."
+          "preorder.bongtra.vn is live.",
+          "Two landing-page groups: Workshop and Pre-order.",
+          "Online payment built into the registration / ordering flow."
         ],
         "learning": "A landing page must connect Marketing with downstream operations; a beautiful page that produces difficult data still creates more work."
       },
@@ -1236,6 +1350,106 @@ export const PROJECT_CASES = {
         ],
         "learning": "AI accelerates production but does not replace art direction, fact-checking or version control; a human must remain accountable for the final output.",
         "privacyNote": "Client assets, unreleased content and internal production-workflow configuration are not disclosed."
+      },
+      "odoo-erp-demo": {
+        "role": "Proposed the solution and built the ERP demo",
+        "challenge": "A growing F&B business had data and operations spread across many tools. Before investing in ERP, the company needed to see concretely what a centralised system would look like with its own processes.",
+        "responsibilities": [
+          "Mapped current processes and picked the flows to bring into ERP first.",
+          "Proposed Odoo Online as a lean starting point with no infrastructure to run.",
+          "Configured a trial demo with the relevant modules.",
+          "Presented the demo as the basis for a company-wide decision."
+        ],
+        "process": [
+          {
+            "title": "Map the process",
+            "description": "Recorded how each team works today and where data is re-entered or scattered."
+          },
+          {
+            "title": "Scope the demo",
+            "description": "Prioritised flows that show the value of centralised data rather than every module."
+          },
+          {
+            "title": "Build on Odoo Online",
+            "description": "Configured modules and sample data so users could see a real working flow."
+          },
+          {
+            "title": "Present and collect feedback",
+            "description": "Demoed to stakeholders and captured questions and requirements for the decision."
+          }
+        ],
+        "technologies": [
+          {
+            "name": "Odoo Online",
+            "purpose": "SaaS ERP for a fast demo with no servers to run."
+          },
+          {
+            "name": "ERP / HRM Model",
+            "purpose": "Modular thinking, centralised data and approval flows."
+          },
+          {
+            "name": "Workflow / API",
+            "purpose": "Modelling business flows before configuration."
+          }
+        ],
+        "outcome": "The Odoo Online demo showed leadership concretely how ERP would run with the company's processes, giving a basis for a company-wide adoption decision.",
+        "evidence": [
+          "Proposed an ERP approach with Odoo Online.",
+          "Built and presented a trial demo.",
+          "Confirmed in the Bong Tra F&B recommendation letter."
+        ],
+        "learning": "A working demo convinces more than pages of proposal: users give better feedback when they see their own process in the system.",
+        "privacyNote": "Internal data, configuration and screenshots are not published."
+      },
+      "amis-misa-erp": {
+        "role": "IT intern – supported the ERP rollout and user training",
+        "challenge": "Moving a Sales team to a new ERP/CRM always meets resistance: people need to learn new ways of working, leads must be tracked properly, and daily work cannot stop.",
+        "responsibilities": [
+          "Supported the AMIS MISA ERP rollout, focusing on the AI Marketing module.",
+          "Wrote CRM user guides for the Sales team.",
+          "Helped train and support users during the switch-over.",
+          "Supported internal IT operations and troubleshooting."
+        ],
+        "process": [
+          {
+            "title": "Understand the module and needs",
+            "description": "Learned the AI Marketing module and how Sales tracked leads."
+          },
+          {
+            "title": "Support configuration and rollout",
+            "description": "Joined the rollout steps with the implementation team."
+          },
+          {
+            "title": "Document",
+            "description": "Wrote guides that follow Sales' daily tasks so they could self-serve."
+          },
+          {
+            "title": "Train and support",
+            "description": "Hands-on guidance and troubleshooting in the first weeks of use."
+          }
+        ],
+        "technologies": [
+          {
+            "name": "AMIS MISA",
+            "purpose": "The ERP/CRM system rolled out for the business."
+          },
+          {
+            "name": "ERP / HRM Model",
+            "purpose": "Understanding customer data flow and permissions in ERP."
+          },
+          {
+            "name": "AI Marketing",
+            "purpose": "Module helping Sales track and nurture leads."
+          }
+        ],
+        "outcome": "Sales had guides and training support to move to the new CRM and use the AI Marketing module to track leads more effectively.",
+        "evidence": [
+          "Supported the AMIS MISA ERP rollout, AI Marketing module.",
+          "CRM user guides for the Sales team.",
+          "Training support during the system switch-over."
+        ],
+        "learning": "ERP success depends on people as much as software: guides that match real tasks and on-site support are what make a system actually used.",
+        "privacyNote": "Customer data and system configuration are not published."
       }
     }
   }

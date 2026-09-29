@@ -15,6 +15,10 @@ export interface ProjectItem {
   image: string;
   tags: readonly string[];
   links?: readonly ProjectLink[];
+  /** Where the work was done, e.g. "Bông Trà F&B"; orgKey links it to an experience entry. */
+  org: string;
+  orgKey: string;
+  period: string;
 }
 
 export interface ProcessStep {
@@ -56,6 +60,8 @@ export interface ExperienceItem {
   role: string;
   current: boolean;
   highlights: readonly string[];
+  /** Matches ProjectItem.orgKey to list the projects done in this role. */
+  key?: string;
   /** Live products shipped in this role. */
   links?: readonly { label: string; url: string; note: string }[];
 }
@@ -221,6 +227,10 @@ export interface CaseStudyData {
     academic: string;
     professional: string;
     product: string;
+    org: string;
+    period: string;
+    related: string;
+    at: string;
     map: string;
     challenge: string;
     roleSection: string;
