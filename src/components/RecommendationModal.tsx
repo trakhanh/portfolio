@@ -58,7 +58,7 @@ export function RecommendationModal({ open, onOpenChange }: RecommendationModalP
         if (!o) setZoom(1);
       }}
     >
-      <DialogContent className="flex h-[94vh] w-[97vw] flex-col gap-0 overflow-hidden p-0 sm:max-w-[1280px] lg:grid lg:grid-cols-[320px_minmax(0,1fr)]">
+      <DialogContent className="flex h-[94dvh] w-[97vw] flex-col gap-0 overflow-hidden p-0 sm:max-w-[1280px] lg:grid lg:grid-cols-[320px_minmax(0,1fr)]">
         {/* Sidebar */}
         <aside className="flex flex-col border-b border-mist/10 bg-deep/70 p-4 lg:border-r lg:border-b-0 lg:p-7">
           <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-signal uppercase">

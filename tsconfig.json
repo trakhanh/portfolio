@@ -40,8 +40,6 @@
     "out",
     "dist",
     "scripts",
-    "scratch",
-    "rebuild_zigzag.py",
-    "scratch_replace.py"
+    "scratch"
   ]
 }

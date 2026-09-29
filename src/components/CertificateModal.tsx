@@ -24,12 +24,14 @@ export function CertificateModal({ items, index, onIndexChange }: CertificateMod
   return (
     <Dialog open={cert !== null} onOpenChange={(o) => !o && onIndexChange(null)}>
       <DialogContent
-        className="max-h-[92vh] overflow-y-auto p-0 sm:max-w-3xl"
+        className="flex max-h-[92dvh] flex-col overflow-hidden p-0 sm:max-w-3xl"
         onKeyDown={(e) => {
           if (e.key === "ArrowRight") go(1);
           if (e.key === "ArrowLeft") go(-1);
         }}
       >
+        {/* Only this inner part scrolls, so the close button in the frame stays visible. */}
+        <div className="min-h-0 overflow-y-auto overscroll-contain">
         {cert && (
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
@@ -65,7 +67,7 @@ export function CertificateModal({ items, index, onIndexChange }: CertificateMod
                   width={1200}
                   height={900}
                   draggable={false}
-                  className="pointer-events-none h-auto max-h-[46vh] w-full object-contain"
+                  className="pointer-events-none h-auto max-h-[46dvh] w-full object-contain"
                 />
               </motion.div>
 
@@ -110,6 +112,7 @@ export function CertificateModal({ items, index, onIndexChange }: CertificateMod
             </motion.div>
           </AnimatePresence>
         )}
+        </div>
       </DialogContent>
     </Dialog>
   );

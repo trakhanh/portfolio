@@ -293,8 +293,10 @@ export function ExperienceSection() {
               animate="rest"
               whileHover="spread"
               whileFocus="spread"
-              className="group relative mx-auto h-[380px] w-full max-w-[380px] cursor-pointer sm:h-[440px] lg:col-span-5"
+              className="group relative mx-auto h-[330px] w-full max-w-[380px] cursor-pointer sm:h-[440px] lg:col-span-5"
             >
+              {/* Scaled down on phones: at full size the two tilted pages spilled past the card. */}
+              <span className="absolute inset-0 max-sm:scale-[0.78]">
               {[
                 { src: "/img/thumbs/letter-page-2.webp", rest: { rotate: 7, x: 34, y: 10 }, spread: { rotate: 12, x: 92, y: 18 } },
                 { src: "/img/thumbs/letter-page-1.webp", rest: { rotate: -3, x: -10, y: 0 }, spread: { rotate: -8, x: -52, y: -8 } },
@@ -309,6 +311,7 @@ export function ExperienceSection() {
                   <Image src={pg.src} alt={i === 1 ? rec.previewAlt : ""} width={360} height={520} className="h-auto w-full" />
                 </motion.span>
               ))}
+              </span>
               <motion.span
                 variants={{ rest: { scale: 1, rotate: -8 }, spread: { scale: 1.08, rotate: 0 } }}
                 className="absolute right-2 bottom-6 z-10 flex items-center gap-1.5 rounded-full border border-signal/40 bg-deep/90 px-3.5 py-2 font-mono text-[11px] tracking-[0.08em] text-signal uppercase shadow-[0_10px_30px_-10px_rgba(62,230,212,0.6)] sm:right-0"
