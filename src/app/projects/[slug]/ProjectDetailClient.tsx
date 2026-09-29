@@ -435,7 +435,8 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
             ))}
           </div>
 
-          <Reveal className="pb-24">
+          {/* Fade only: sliding in moved the button out from under a quick tap. */}
+          <Reveal y={0} className="pb-24">
             <div className="glass-deep flex flex-col items-center px-6 py-16 text-center sm:py-20">
               <p className="label-caps !text-signal">{L.contactEyebrow}</p>
               <h2 className="mt-5 max-w-[24ch] text-3xl leading-tight tracking-[-0.02em] sm:text-4xl">{L.contactTitle}</h2>

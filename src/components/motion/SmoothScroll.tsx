@@ -51,9 +51,38 @@ export function SmoothScroll() {
     popped.current = false;
     // New page without a hash starts at the top; hash and back/forward keep
     // wherever Next and the browser put them.
-    const y = back || window.location.hash ? window.scrollY : 0;
+    const hash = window.location.hash;
+    const y = back || hash ? window.scrollY : 0;
     if (lenis) lenis.scrollTo(y, { immediate: true, force: true });
     else window.scrollTo(0, y);
+    if (back || !hash) return;
+
+    // Landing on a section (e.g. "Contact" from a case study): on a slow phone
+    // the page can still shift after Next's first jump, leaving the section
+    // off screen. Re-aim a few times while the layout settles, unless the
+    // visitor has started scrolling themselves.
+    const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (!target) return;
+    let cancelled = false;
+    const cancel = () => (cancelled = true);
+    const aim = () => {
+      if (cancelled) return;
+      const pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+      const top = target.getBoundingClientRect().top + window.scrollY - pad;
+      if (Math.abs(target.getBoundingClientRect().top - pad) < 2) return;
+      if (lenis) lenis.scrollTo(top, { immediate: true, force: true });
+      else window.scrollTo(0, top);
+    };
+    window.addEventListener("wheel", cancel, { passive: true, once: true });
+    window.addEventListener("touchstart", cancel, { passive: true, once: true });
+    const raf = requestAnimationFrame(aim);
+    const timers = [150, 400, 900].map((ms) => window.setTimeout(aim, ms));
+    return () => {
+      cancelAnimationFrame(raf);
+      timers.forEach(clearTimeout);
+      window.removeEventListener("wheel", cancel);
+      window.removeEventListener("touchstart", cancel);
+    };
   }, [pathname]);
 
   return null;
