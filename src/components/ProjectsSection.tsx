@@ -17,6 +17,78 @@ import { FadeImage } from "./motion/FadeImage";
 
 type Filter = "all" | "product" | "professional" | "foundation";
 
+/** One pinned project. `lead` is the large card; the others are compact rows beside it. */
+function FeaturedCard({ item, lead }: { item: ProjectItem; lead: boolean }) {
+  const { ui } = useLanguage();
+  return (
+    <GlassCard variant="solid" className="group h-full overflow-hidden">
+      <Link
+        href={`/projects/${item.id}/`}
+        aria-label={`${ui.openCase}: ${item.title}`}
+        className={lead ? "flex h-full flex-col" : "flex h-full flex-row"}
+      >
+        <div
+          className={
+            lead
+              ? "relative aspect-[16/9] overflow-hidden border-b border-mist/10 lg:aspect-auto lg:min-h-[280px] lg:flex-1"
+              : "relative min-h-[132px] w-[36%] shrink-0 overflow-hidden border-r border-mist/10 sm:w-[42%]"
+          }
+        >
+          <FadeImage
+            src={asset(item.image)}
+            alt=""
+            fill
+            sizes={lead ? "(min-width: 1024px) 55vw, 92vw" : "(min-width: 1024px) 18vw, (min-width: 640px) 40vw, 92vw"}
+            className="object-cover transition-transform duration-[1.2s] group-hover:scale-[1.04]"
+          />
+        </div>
+        <div className={lead ? "flex flex-col p-5 sm:p-8" : "flex min-w-0 flex-1 flex-col p-4 sm:p-5"}>
+          <p className="flex flex-wrap items-center gap-x-2 text-xs text-silver">
+            <Building2 className="size-3.5 text-slate" />
+            <span className="text-mist">{item.org}</span>
+            {item.period && <span className="font-mono text-slate">· {item.period}</span>}
+          </p>
+          <div className="mt-2.5 flex items-start justify-between gap-4">
+            <h3 className={lead ? "text-xl leading-tight tracking-[-0.02em] sm:text-[28px]" : "text-base leading-tight tracking-[-0.02em] sm:text-lg"}>
+              {item.title}
+            </h3>
+            <span className="grid size-8 shrink-0 place-items-center rounded-md bg-[rgba(20,56,76,0.5)] transition-all duration-300 group-hover:bg-signal group-hover:text-abyss sm:size-9">
+              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:rotate-45" />
+            </span>
+          </div>
+          <p className={lead ? "mt-2 text-sm font-medium text-lavender" : "mt-1.5 text-[13px] font-medium text-lavender sm:mt-2 sm:text-sm"}>{item.result}</p>
+          <p className={lead ? "mt-3 line-clamp-3 text-sm text-silver" : "mt-2 line-clamp-2 text-sm text-silver max-sm:hidden"}>{item.description}</p>
+        </div>
+      </Link>
+    </GlassCard>
+  );
+}
+
+function FeaturedProjects({ label, items }: { label: string; items: ProjectItem[] }) {
+  const [lead, ...rest] = items;
+  if (!lead) return null;
+  return (
+    <Reveal className="mt-12">
+      <p className="flex items-center gap-2 font-mono text-[11px] tracking-[0.12em] text-signal uppercase">
+        <span aria-hidden className="size-1.5 bg-signal" />
+        {label}
+      </p>
+      <div className="mt-4 grid grid-cols-[minmax(0,1fr)] gap-4 lg:grid-cols-12 lg:gap-5">
+        <div className="lg:col-span-7">
+          <FeaturedCard item={lead} lead />
+        </div>
+        {rest.length > 0 && (
+          <div className="grid gap-4 lg:col-span-5 lg:gap-5">
+            {rest.map((p) => (
+              <FeaturedCard key={p.id} item={p} lead={false} />
+            ))}
+          </div>
+        )}
+      </div>
+    </Reveal>
+  );
+}
+
 function ProjectSlide({ item, index }: { item: ProjectItem; index: number }) {
   const { ui } = useLanguage();
   return (
@@ -84,15 +156,20 @@ export function ProjectsSection() {
     { id: "foundation", label: projects.filters.foundation, count: projects.items.filter((p) => p.phase === "foundation").length },
   ];
   const items = projects.items.filter((p) => filter === "all" || p.phase === filter);
+  const featured = (projects.featured?.ids ?? [])
+    .map((id) => projects.items.find((p) => p.id === id))
+    .filter((p): p is ProjectItem => !!p);
 
   return (
     <section id="projects" className="relative py-20 sm:py-28">
       <div className="container-auros">
         <SectionHeading eyebrow={projects.eyebrow} title={projects.title} intro={projects.intro} />
 
+        {featured.length > 0 && <FeaturedProjects label={projects.featured!.label} items={featured} />}
+
         <Reveal className="mt-12">
           <Tabs value={filter} onValueChange={(v) => setFilter(v as Filter)}>
-            <TabsList className="glass h-auto w-full gap-1 !rounded-xl bg-transparent p-1.5 max-sm:grid max-sm:grid-cols-2 sm:w-fit">
+            <TabsList className="glass h-auto w-full gap-1 !rounded-xl bg-transparent p-1.5 group-data-[orientation=horizontal]/tabs:h-auto max-sm:grid max-sm:grid-cols-2 sm:w-fit">
               {filters.map((f) => (
                 <TabsTrigger
                   key={f.id}

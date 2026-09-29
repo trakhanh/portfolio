@@ -5,6 +5,7 @@ const PROJECT_SLUGS = [
   "kt-ai-video-studio",
   "kt-voice-studio",
   "kt-epub-studio",
+  "waveform-edit-studio",
   "hrm-application",
   "ai-creative-production",
   "recruitment-chatbot",

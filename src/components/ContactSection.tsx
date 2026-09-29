@@ -138,56 +138,55 @@ function ContactTerminal() {
         </p>
         {rendered.map((line, li) =>
           line.visible || li === cursorLine ? (
-            <div key={li} aria-hidden className="flex min-h-7 items-start justify-between gap-3">
+            <div key={li} aria-hidden className="flex min-h-7">
               {/* Gutter and code are separate columns, and wrapped code hangs one
                   level deeper than its key, so narrow screens still read as code. */}
-              <p className="flex min-w-0">
-                <span className="mr-3 w-3 shrink-0 text-right text-slate/60 select-none sm:mr-4 sm:w-4">{li + 1}</span>
-                <span className="min-w-0 -indent-[4ch] pl-[4ch] whitespace-pre-wrap">
-                  {line.segs.map((s, si) =>
-                    s.href && done ? (
-                      <a key={si} href={s.href} className={cn(s.c, "underline-offset-4 hover:underline")}>
-                        {s.shown}
-                      </a>
-                    ) : (
-                      <span key={si} className={s.c}>
-                        {s.shown}
-                      </span>
-                    ),
-                  )}
-                  {li === cursorLine && (
-                    <motion.span
-                      className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 bg-signal"
-                      animate={{ opacity: [1, 0, 1] }}
-                      transition={{ duration: 1, repeat: Infinity, times: [0, 0.5, 1] }}
-                    />
-                  )}
-                </span>
+              <span className="mr-3 w-3 shrink-0 text-right text-slate/60 select-none sm:mr-4 sm:w-4">{li + 1}</span>
+              <p className="min-w-0 flex-1 -indent-[4ch] pl-[4ch] whitespace-pre-wrap">
+                {/* Floated so it only narrows the "email:" line; the address below gets the full width. */}
+                {li === 2 && done && (
+                  <motion.button
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    type="button"
+                    onClick={copy}
+                    aria-label={copied ? ui.copied : ui.copyEmail}
+                    className="float-right ml-3 flex h-7 cursor-pointer items-center gap-1.5 rounded-md border border-mist/12 px-2 indent-0 text-[11px] text-silver transition-colors hover:border-signal/50 hover:text-white"
+                  >
+                    <AnimatePresence mode="wait" initial={false}>
+                      <motion.span
+                        key={copied ? "y" : "n"}
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.15 }}
+                        className="flex items-center gap-1.5"
+                      >
+                        {copied ? <Check className="size-3.5 text-signal" /> : <Copy className="size-3.5" />}
+                        <span className="hidden sm:inline">{copied ? ui.copied : ui.copyEmail}</span>
+                      </motion.span>
+                    </AnimatePresence>
+                  </motion.button>
+                )}
+                {line.segs.map((s, si) =>
+                  s.href && done ? (
+                    <a key={si} href={s.href} className={cn(s.c, "underline-offset-4 hover:underline")}>
+                      {s.shown}
+                    </a>
+                  ) : (
+                    <span key={si} className={s.c}>
+                      {s.shown}
+                    </span>
+                  ),
+                )}
+                {li === cursorLine && (
+                  <motion.span
+                    className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 bg-signal"
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 1, repeat: Infinity, times: [0, 0.5, 1] }}
+                  />
+                )}
               </p>
-              {li === 2 && done && (
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  type="button"
-                  onClick={copy}
-                  aria-label={copied ? ui.copied : ui.copyEmail}
-                  className="flex h-7 shrink-0 cursor-pointer items-center gap-1.5 rounded-md border border-mist/12 px-2 text-[11px] text-silver transition-colors hover:border-signal/50 hover:text-white"
-                >
-                  <AnimatePresence mode="wait" initial={false}>
-                    <motion.span
-                      key={copied ? "y" : "n"}
-                      initial={{ opacity: 0, y: 6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -6 }}
-                      transition={{ duration: 0.15 }}
-                      className="flex items-center gap-1.5"
-                    >
-                      {copied ? <Check className="size-3.5 text-signal" /> : <Copy className="size-3.5" />}
-                      <span className="hidden sm:inline">{copied ? ui.copied : ui.copyEmail}</span>
-                    </motion.span>
-                  </AnimatePresence>
-                </motion.button>
-              )}
             </div>
           ) : null,
         )}

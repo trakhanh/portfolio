@@ -55,6 +55,22 @@ const TECH_ICONS: Record<string, string[]> = {
   "Edge-TTS / Gemini TTS": ["voice.svg", "googlegemini.svg"],
   "Python / FastAPI": ["python.svg", "api.svg"],
   "EPUB / BeautifulSoup": ["data.svg"],
+  "React 19 / TypeScript": ["javascript.svg", "webapp.svg"],
+  "Node.js / Express": ["javascript.svg", "api.svg"],
+  "PostgreSQL / Prisma 7": ["data.svg"],
+  "Google Login / RBAC": ["google.svg", "rbac.svg"],
+  "Helmet / Zod / sanitize-html": ["rbac.svg"],
+  "Gemini / Nodemailer": ["googlegemini.svg", "gmail.svg"],
+  "xlsx / sharp": ["googlesheets.svg", "visual.svg"],
+  "Vitest / Playwright": ["process.svg"],
+  "Docker Compose / Cloudflare": ["webapp.svg"],
+  "Next.js / React": ["javascript.svg", "webapp.svg"],
+  "Python worker": ["python.svg"],
+  FFmpeg: ["video.svg"],
+  "Whisper / PyTorch": ["voice.svg", "pytorch.svg"],
+  Pillow: ["visual.svg"],
+  "AI xoá nền": ["vision.svg"],
+  "AI background removal": ["vision.svg"],
   "Odoo Online": ["erp.svg"],
   "AMIS MISA": ["erp.svg"],
   "AI Marketing": ["ml.svg"],
@@ -271,7 +287,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
             <Section id="technology" index={3} title={titles.technology}>
               <ul className="divide-y divide-mist/10 rounded-2xl border border-mist/10">
                 {data.technologies.map((t) => (
-                  <li key={t.name} className="flex gap-5 p-5 transition-colors hover:bg-mist/[0.03]">
+                  <li key={t.name} className="flex flex-col gap-3 p-5 transition-colors hover:bg-mist/[0.03] sm:flex-row sm:gap-5">
                     <div className="flex shrink-0 gap-1.5">
                       {(TECH_ICONS[t.name] ?? []).map((ic) => (
                         <span key={ic} className="grid size-10 place-items-center rounded-lg bg-mist/95">

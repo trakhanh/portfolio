@@ -518,58 +518,146 @@ export const PROJECT_CASES = {
         ],
         "learning": "Một landing page tốt phải nối đúng Marketing với vận hành phía sau; giao diện đẹp nhưng dữ liệu đầu ra khó xử lý vẫn tạo thêm việc."
       },
-      "hrm-application": {
-        "role": "Trực tiếp xây dựng ứng dụng HRM theo định hướng ERP",
-        "challenge": "Bài toán nhân sự cần số hóa quy trình, tập trung dữ liệu, phân quyền theo vai trò và tạo giao diện quản trị nhất quán mà không biến hệ thống thành tập hợp form rời rạc.",
+      "waveform-edit-studio": {
+        "role": "Tác giả – thiết kế và xây dựng toàn bộ ứng dụng",
+        "challenge": "Video sóng âm cho podcast, nhạc hay truyện đọc thường phải dựng tay trong phần mềm edit: căn sóng âm theo nhạc, gõ phụ đề, bo ảnh, thêm khung. Mỗi video lặp lại cùng một chuỗi thao tác, và bố cục rất dễ lệch khi chuyển giữa khung ngang 16:9 và khung dọc 9:16.",
         "responsibilities": [
-          "Khảo sát quy trình và xác định dữ liệu cốt lõi của từng luồng nhân sự.",
-          "Thiết kế cấu trúc module, trạng thái và mối quan hệ dữ liệu.",
-          "Xây giao diện quản trị và cơ chế phân quyền theo vai trò.",
-          "Kết nối workflow, kiểm thử, tài liệu hóa và hỗ trợ đưa vào vận hành."
+          "Xây giao diện Next.js theo đúng luồng biên tập: 8 tab từ tệp nguồn, nền, ảnh phủ, sóng âm, phụ đề, khung máy quay, xoá nền đến cấu hình render, cạnh một khung xem trước trực tiếp.",
+          "Viết Python worker chạy ngầm cho phần xử lý nặng: phân tích dải tần âm thanh, tạo mặt nạ bo ảnh bằng Pillow và dựng chuỗi filter FFmpeg để ghép video.",
+          "Tích hợp Whisper (Base, Small, Medium) tạo phụ đề có mốc thời gian, báo tiến trình theo thời gian thực và cho phép huỷ giữa chừng.",
+          "Thiết kế hệ toạ độ theo tỷ lệ để phụ đề, ảnh phủ và khung máy quay tự co giãn đúng khi đổi giữa 1920×1080 và 1080×1920."
         ],
         "process": [
           {
-            "title": "Khảo sát quy trình thật",
-            "description": "Bắt đầu từ người dùng, biểu mẫu hiện có, điểm bàn giao và các vấn đề dữ liệu thay vì bắt đầu từ màn hình."
+            "title": "Nguyên liệu vào một chỗ",
+            "description": "Video nền, giọng đọc hoặc nhạc, phụ đề .srt có sẵn và danh sách ảnh phủ được chọn ở tab đầu tiên; các tab sau chỉ còn là cấu hình."
           },
           {
-            "title": "Mô hình hóa dữ liệu và module",
-            "description": "Xác định thực thể, trạng thái, quan hệ và luồng phê duyệt theo tư duy hệ thống ERP."
+            "title": "Xem trước rồi mới render",
+            "description": "Mọi thay đổi về nền, sóng âm, ảnh phủ và phụ đề hiện ngay trên khung xem trước, nên chỉ cần render khi bố cục đã đúng."
           },
           {
-            "title": "Xây ứng dụng và phân quyền",
-            "description": "Phát triển giao diện web quản trị, kiểm soát truy cập theo vai trò và kết nối các bước workflow."
+            "title": "Phụ đề bằng AI",
+            "description": "Whisper nghe giọng đọc và tạo phụ đề có mốc thời gian. Thuật toán ngắt dòng giữ mỗi câu tối đa 2 dòng, kèm các hiệu ứng Word Reveal, Karaoke, Pop, Fade và chế độ chữ đơn RSVP."
           },
           {
-            "title": "Kiểm thử và chuyển giao",
-            "description": "Kiểm tra quyền, dữ liệu, tình huống ngoại lệ; sau đó tài liệu hóa và hỗ trợ người dùng làm quen."
+            "title": "Ghép bằng FFmpeg",
+            "description": "Worker dựng một chuỗi filter FFmpeg: làm mờ nền nhiều tầng, vẽ sóng âm, chồng ảnh phủ và khung, đốt phụ đề vào video. Bitrate mặc định 12 Mbps, có thanh tiến trình và nhật ký."
           }
         ],
         "technologies": [
           {
-            "name": "JavaScript / Web App",
-            "purpose": "Xây giao diện và trải nghiệm quản trị trên web."
+            "name": "Next.js / React",
+            "purpose": "Giao diện glassmorphism theo 8 tab biên tập, khung xem trước trực tiếp và bảng nhật ký render."
           },
           {
-            "name": "ERP / HRM Model",
-            "purpose": "Tổ chức module, dữ liệu tập trung và luồng nghiệp vụ."
+            "name": "Python worker",
+            "purpose": "Tiến trình chạy ngầm nhận cấu hình từ Node.js, kiểm dữ liệu bằng pydantic và điều phối các bước xử lý nặng."
           },
           {
-            "name": "RBAC",
-            "purpose": "Kiểm soát quyền xem và thao tác theo vai trò người dùng."
+            "name": "FFmpeg",
+            "purpose": "Giải mã âm thanh, vẽ 7 kiểu sóng âm, làm mờ nền bằng boxblur, chồng lớp và ghép phụ đề vào video."
           },
           {
-            "name": "Workflow / API",
-            "purpose": "Kết nối trạng thái, hành động và các bước vận hành liên quan."
+            "name": "Whisper / PyTorch",
+            "purpose": "Chuyển giọng đọc thành phụ đề có mốc thời gian; torch và torchaudio tăng tốc bằng phần cứng."
+          },
+          {
+            "name": "Pillow",
+            "purpose": "Tạo mặt nạ tròn, lục giác, vuông, chữ nhật và viền mềm cho ảnh phủ."
+          },
+          {
+            "name": "AI xoá nền",
+            "purpose": "Tách chân dung khỏi nền, xuất PNG trong suốt để chèn thẳng làm ảnh phủ."
           }
         ],
-        "outcome": "Tạo nền tảng HRM phục vụ số hóa quy trình nhân sự và quản trị vận hành theo hướng ERP; đồng thời tích lũy kinh nghiệm từ khảo sát đến bàn giao hệ thống.",
+        "outcome": "Một studio dựng video sóng âm chạy trên máy cá nhân: từ một file âm thanh và vài tấm ảnh ra video hoàn chỉnh có sóng âm, phụ đề AI, ảnh phủ nhún theo nhạc và khung máy quay, ở cả khung ngang lẫn khung dọc cho TikTok và Shorts.",
         "evidence": [
-          "Ứng dụng HRM có giao diện quản trị và RBAC.",
-          "Hệ thống eOffice Sun Media được liên kết công khai."
+          "Mã nguồn công khai trên GitHub: trakhanh/WaveForm-Edit-Studio.",
+          "7 kiểu sóng âm: Linear, Circle, Vertical, Rectangle, Triangle, Hexagon, Custom; có dải màu gradient và đối xứng gương.",
+          "Phụ đề Whisper với 4 hiệu ứng (Word Reveal, Karaoke, Pop, Fade), chữ đơn RSVP và giới hạn 2 dòng.",
+          "4 kiểu khung máy quay: Classic REC, Modern Cinema, Vlogger DSLR, Retro VHS.",
+          "Xuất 1920×1080 (16:9) hoặc 1080×1920 (9:16), toạ độ tự co giãn theo khung."
         ],
-        "learning": "Chuyển đổi số phải chuẩn hóa quy trình và quyền trước khi số hóa giao diện; nếu không, phần mềm chỉ làm quy trình cũ chạy nhanh hơn.",
-        "privacyNote": "Để bảo vệ doanh nghiệp và người dùng, case study không công khai tên module nhạy cảm, cấu trúc dữ liệu, tài khoản, ảnh màn hình nội bộ hoặc logic phân quyền chi tiết."
+        "learning": "Với công cụ dựng video, xem trước nhanh quan trọng hơn render nhanh: khi mọi chỉnh sửa hiện ngay trên khung xem trước, người dùng chỉ phải render một lần. Tách giao diện (Node.js) và phần xử lý nặng (Python và FFmpeg) thành hai tiến trình giúp giao diện không bị treo khi Whisper hay FFmpeg đang chạy."
+      },
+      "hrm-application": {
+        "role": "Xây dựng từ đầu và vận hành toàn bộ hệ thống: dữ liệu, API, giao diện, kiểm thử và triển khai",
+        "challenge": "Sun Media cần một nơi thay cho bảng tính, biểu mẫu và email rời rạc: đơn từ phải đi đúng tuyến duyệt, dữ liệu nhân sự, chấm công, lương và dự án phải khớp nhau, và mỗi người chỉ thấy đúng phần việc của mình.",
+        "responsibilities": [
+          "Mô hình hoá nghiệp vụ thành 146 bảng dữ liệu PostgreSQL (qua Prisma 7) và 51 nhóm API Node.js/Express viết bằng TypeScript.",
+          "Xây gần 150 màn hình React 19 cho nhân sự, nghỉ phép và chấm công, tài chính dự án, KPI, tuyển dụng, hành chính và truyền thông nội bộ.",
+          "Thiết kế luồng duyệt nhiều bước theo tuyến quản lý, Hộp chờ duyệt gom mọi loại đơn, thông báo trực tiếp và lịch nhắc tự động.",
+          "Làm ma trận phân quyền với vai trò tuỳ biến, nhật ký thao tác có che nội dung nhạy cảm, tài khoản quan sát viên và bật/tắt từng module.",
+          "Bảo mật: đăng nhập bằng Google, phiên cookie có ký, Helmet và CSP, giới hạn tần suất gọi API, Zod kiểm dữ liệu đầu vào, sanitize-html lọc HTML.",
+          "Viết khoảng 4.800 ca test tự động và triển khai bằng Docker Compose trên VPS Debian sau Cloudflare."
+        ],
+        "process": [
+          {
+            "title": "Bắt đầu từ quy trình thật",
+            "description": "Đi từ các việc đang làm tay: đơn nghỉ phép, bảng công, đề xuất mua sắm, đề xuất tuyển dụng. Với mỗi việc, xác định ai tạo, ai duyệt, dữ liệu nào cần giữ lại."
+          },
+          {
+            "title": "Một mô hình dữ liệu chung",
+            "description": "Nhân sự, phòng ban và tuyến quản lý là gốc. Nghỉ phép, chấm công, chi phí nhân công, KPI và lương đều tham chiếu về đó, nên số liệu cộng dồn được lên từng cấp quản lý."
+          },
+          {
+            "title": "Phân quyền và kiểm soát từ đầu",
+            "description": "Mỗi module gắn với quyền trong ma trận vai trò; mọi thao tác được ghi nhật ký. Nhờ vậy có thể mở thêm module mới mà không phải làm lại phần kiểm soát."
+          },
+          {
+            "title": "Kiểm thử tự động, triển khai liên tục",
+            "description": "API được test trên CSDL test riêng bằng Vitest và Supertest, giao diện bằng Playwright. Hệ thống đóng gói bằng Docker Compose và cập nhật liên tục trên VPS."
+          }
+        ],
+        "technologies": [
+          {
+            "name": "React 19 / TypeScript",
+            "purpose": "Giao diện gần 150 màn hình, build bằng Vite 6, Tailwind CSS; Tiptap để soạn thảo, Recharts cho biểu đồ, Lucide và Motion."
+          },
+          {
+            "name": "Node.js / Express",
+            "purpose": "Một máy chủ TypeScript chạy chung một cổng, vừa phục vụ API vừa phục vụ giao diện."
+          },
+          {
+            "name": "PostgreSQL / Prisma 7",
+            "purpose": "146 bảng dữ liệu, truy cập có kiểu dữ liệu chặt qua Prisma."
+          },
+          {
+            "name": "Google Login / RBAC",
+            "purpose": "Đăng nhập bằng Gmail, phiên lưu bằng cookie có ký, mật khẩu băm bcrypt; ma trận quyền theo vai trò tuỳ biến."
+          },
+          {
+            "name": "Helmet / Zod / sanitize-html",
+            "purpose": "Header bảo mật và CSP, giới hạn tần suất gọi API, kiểm dữ liệu đầu vào, lọc HTML người dùng nhập."
+          },
+          {
+            "name": "Gemini / Nodemailer",
+            "purpose": "Chatbot hỏi đáp nội quy dựa trên Sổ tay nhân viên; email đơn từ, thư mời phỏng vấn và bản tin qua SMTP."
+          },
+          {
+            "name": "xlsx / sharp",
+            "purpose": "Nhập và xuất Excel (dữ liệu máy chấm công, bảng lương), xử lý ảnh, đóng gói tệp bằng jszip."
+          },
+          {
+            "name": "Vitest / Playwright",
+            "purpose": "Khoảng 4.800 ca test: API chạy trên CSDL test riêng qua Supertest, luồng giao diện qua Playwright."
+          },
+          {
+            "name": "Docker Compose / Cloudflare",
+            "purpose": "Triển khai trên VPS Debian, đứng sau Cloudflare, tại eoffice.sunmedia.net.vn."
+          }
+        ],
+        "outcome": "eOffice đang chạy thật tại eoffice.sunmedia.net.vn, gom nhân sự, nghỉ phép và chấm công, tài chính dự án, KPI, tuyển dụng, hành chính và truyền thông nội bộ vào một hệ thống có phân quyền và nhật ký. Sau khoảng ba tháng kể từ ngày khởi tạo (25/06/2026), hệ thống có khoảng 1.130 commit.",
+        "evidence": [
+          "Đang vận hành tại eoffice.sunmedia.net.vn.",
+          "Khoảng 1.130 commit · 146 bảng dữ liệu · 51 nhóm API · gần 150 màn hình.",
+          "Khoảng 4.800 ca test tự động (Vitest, Supertest, Playwright).",
+          "Hộp chờ duyệt gom mọi loại đơn; duyệt nhiều bước theo tuyến quản lý.",
+          "Chatbot nội quy dùng Google Gemini, trả lời dựa trên Sổ tay và nội quy công ty."
+        ],
+        "learning": "Với hệ thống nội bộ, điều quyết định không phải số màn hình mà là dữ liệu có khớp nhau hay không. Khi nhân sự, tuyến quản lý và quyền được dựng đúng từ đầu, các module sau như chấm công, lương hay tài chính dự án chỉ việc tham chiếu và cộng dồn. Test tự động là thứ cho phép thêm module mới mỗi tuần mà không sợ làm hỏng module cũ.",
+        "privacyNote": "Case study chỉ nêu phạm vi chức năng và công nghệ; không công khai dữ liệu, tài khoản, ảnh chụp màn hình nội bộ hay cấu hình phân quyền cụ thể."
       },
       "ai-creative-production": {
         "role": "R&D công cụ AI và thiết kế workflow hỗ trợ sản xuất video",
@@ -1245,58 +1333,146 @@ export const PROJECT_CASES = {
         ],
         "learning": "A landing page must connect Marketing with downstream operations; a beautiful page that produces difficult data still creates more work."
       },
-      "hrm-application": {
-        "role": "Direct development of an ERP-oriented HRM application",
-        "challenge": "HR operations needed digitized workflows, centralized data, role-based access and a consistent administration experience—not a collection of disconnected forms.",
+      "waveform-edit-studio": {
+        "role": "Author – designed and built the whole application",
+        "challenge": "Waveform videos for podcasts, music or audiobooks are usually assembled by hand in an editor: fit the waveform to the audio, type subtitles, mask images, add frames. Every video repeats the same steps, and layouts drift when switching between 16:9 landscape and 9:16 portrait.",
         "responsibilities": [
-          "Reviewed processes and identified the core data for each HR flow.",
-          "Designed module structure, states and data relationships.",
-          "Built administration interfaces and role-based access.",
-          "Connected workflows, tested behavior, documented the system and supported adoption."
+          "Built a Next.js interface that follows the editing flow: 8 tabs from source files, background, overlays, waveform, subtitles, camera frame and background removal to render settings, next to a live preview.",
+          "Wrote a background Python worker for the heavy lifting: audio frequency analysis, Pillow image masks and the FFmpeg filter chain that assembles the video.",
+          "Integrated Whisper (Base, Small, Medium) for timestamped subtitles with real-time progress and a cancel button.",
+          "Designed a proportional coordinate system so subtitles, overlays and camera frames scale correctly between 1920×1080 and 1080×1920."
         ],
         "process": [
           {
-            "title": "Study real processes",
-            "description": "Started with users, existing forms, handoff points and data issues rather than screens."
+            "title": "All inputs in one place",
+            "description": "Background video, voice or music, an optional .srt file and the overlay images are picked in the first tab; the remaining tabs are pure configuration."
           },
           {
-            "title": "Model data and modules",
-            "description": "Defined entities, states, relationships and approvals with an ERP-oriented mindset."
+            "title": "Preview before rendering",
+            "description": "Every change to background, waveform, overlays and subtitles shows up in the live preview, so rendering happens only once the layout is right."
           },
           {
-            "title": "Build the app and access model",
-            "description": "Developed web administration, RBAC controls and connected workflow steps."
+            "title": "AI subtitles",
+            "description": "Whisper listens to the voice track and produces timestamped subtitles. A line-breaking algorithm keeps every sentence to at most two lines, with Word Reveal, Karaoke, Pop and Fade effects and a single-word RSVP mode."
           },
           {
-            "title": "Test and hand over",
-            "description": "Validated permissions, data and edge cases, then documented and supported user onboarding."
+            "title": "Assembly with FFmpeg",
+            "description": "The worker builds one FFmpeg filter chain: multi-pass background blur, waveform drawing, overlays and frames, burned-in subtitles. Default bitrate 12 Mbps, with a progress bar and log."
           }
         ],
         "technologies": [
           {
-            "name": "JavaScript / Web App",
-            "purpose": "Built the web administration experience."
+            "name": "Next.js / React",
+            "purpose": "Glassmorphic interface with 8 editing tabs, live preview and a render log."
           },
           {
-            "name": "ERP / HRM Model",
-            "purpose": "Structured modules, centralized data and business flows."
+            "name": "Python worker",
+            "purpose": "A background process that takes configuration from Node.js, validates it with pydantic and orchestrates the heavy steps."
           },
           {
-            "name": "RBAC",
-            "purpose": "Controlled visibility and actions by user role."
+            "name": "FFmpeg",
+            "purpose": "Audio decoding, 7 waveform styles, boxblur backgrounds, layer compositing and subtitle burn-in."
           },
           {
-            "name": "Workflow / API",
-            "purpose": "Connected states, actions and related operational steps."
+            "name": "Whisper / PyTorch",
+            "purpose": "Speech-to-subtitle with timestamps; torch and torchaudio provide hardware acceleration."
+          },
+          {
+            "name": "Pillow",
+            "purpose": "Circle, hexagon, square, rectangle and feathered masks for image overlays."
+          },
+          {
+            "name": "AI background removal",
+            "purpose": "Cuts portraits out of their background as transparent PNGs, ready to use as overlays."
           }
         ],
-        "outcome": "Created an HRM foundation for digitized HR and ERP-oriented operations while gaining implementation experience from discovery through handover.",
+        "outcome": "A local studio for waveform videos: from one audio file and a few images to a finished video with waveform, AI subtitles, bass-reactive overlays and a camera frame, in both landscape and portrait for TikTok and Shorts.",
         "evidence": [
-          "HRM application with administration and RBAC.",
-          "Public link to the Sun Media eOffice system."
+          "Open source on GitHub: trakhanh/WaveForm-Edit-Studio.",
+          "7 waveform styles: Linear, Circle, Vertical, Rectangle, Triangle, Hexagon, Custom; with gradients and mirroring.",
+          "Whisper subtitles with 4 effects (Word Reveal, Karaoke, Pop, Fade), single-word RSVP and a two-line limit.",
+          "4 camera frames: Classic REC, Modern Cinema, Vlogger DSLR, Retro VHS.",
+          "Exports 1920×1080 (16:9) or 1080×1920 (9:16) with coordinates that scale to the frame."
         ],
-        "learning": "Digital transformation should standardize process and access rules before digitizing screens; otherwise software only accelerates the old process.",
-        "privacyNote": "To protect the business and its users, sensitive module names, data structures, accounts, internal screenshots and detailed access logic are not disclosed."
+        "learning": "For a video tool, fast preview matters more than fast rendering: when every edit shows up in the preview, users render only once. Splitting the interface (Node.js) from the heavy processing (Python and FFmpeg) keeps the UI responsive while Whisper or FFmpeg is running."
+      },
+      "hrm-application": {
+        "role": "Built from scratch and runs the whole system: data, API, interface, testing and deployment",
+        "challenge": "Sun Media needed one place to replace scattered spreadsheets, forms and email: requests had to follow the right approval chain, HR, attendance, payroll and project data had to agree with each other, and each person should see only their own share of the work.",
+        "responsibilities": [
+          "Modelled the business into 146 PostgreSQL tables (via Prisma 7) and 51 Node.js/Express API groups written in TypeScript.",
+          "Built close to 150 React 19 screens covering HR, leave and attendance, project finance, KPIs, recruitment, administration and internal communications.",
+          "Designed multi-step approvals along the management line, a single approval inbox for every request type, live notifications and scheduled reminders.",
+          "Built a permission matrix with custom roles, an audit log that masks sensitive content, read-only observer accounts and per-module on/off switches.",
+          "Security: Google sign-in, signed session cookies, Helmet and CSP, API rate limiting, Zod input validation and sanitize-html for user HTML.",
+          "Wrote about 4,800 automated tests and deployed with Docker Compose on a Debian VPS behind Cloudflare."
+        ],
+        "process": [
+          {
+            "title": "Start from the real process",
+            "description": "Began with the work still done by hand: leave requests, timesheets, purchase requests, hiring requests. For each one, pinned down who creates it, who approves it and what data must be kept."
+          },
+          {
+            "title": "One shared data model",
+            "description": "People, departments and the management line are the root. Leave, attendance, labour cost, KPIs and payroll all reference them, so figures roll up to every level of management."
+          },
+          {
+            "title": "Access control from day one",
+            "description": "Every module is tied to permissions in the role matrix and every action is logged, so new modules ship without reworking the controls."
+          },
+          {
+            "title": "Automated tests, continuous delivery",
+            "description": "The API is tested against a dedicated test database with Vitest and Supertest, the interface with Playwright. The system is packaged with Docker Compose and updated continuously on the VPS."
+          }
+        ],
+        "technologies": [
+          {
+            "name": "React 19 / TypeScript",
+            "purpose": "Close to 150 screens built with Vite 6 and Tailwind CSS; Tiptap for rich text, Recharts for charts, Lucide and Motion."
+          },
+          {
+            "name": "Node.js / Express",
+            "purpose": "A single TypeScript server on one port that serves both the API and the interface."
+          },
+          {
+            "name": "PostgreSQL / Prisma 7",
+            "purpose": "146 tables with strictly typed access through Prisma."
+          },
+          {
+            "name": "Google Login / RBAC",
+            "purpose": "Gmail sign-in, signed cookie sessions, bcrypt-hashed passwords; a permission matrix with custom roles."
+          },
+          {
+            "name": "Helmet / Zod / sanitize-html",
+            "purpose": "Security headers and CSP, API rate limiting, input validation and filtering of user-supplied HTML."
+          },
+          {
+            "name": "Gemini / Nodemailer",
+            "purpose": "A policy Q&A chatbot grounded in the employee handbook; request, interview-invite and newsletter email over SMTP."
+          },
+          {
+            "name": "xlsx / sharp",
+            "purpose": "Excel import and export (attendance-machine data, payroll), image processing and file bundling with jszip."
+          },
+          {
+            "name": "Vitest / Playwright",
+            "purpose": "About 4,800 tests: API against a dedicated test database via Supertest, interface flows via Playwright."
+          },
+          {
+            "name": "Docker Compose / Cloudflare",
+            "purpose": "Deployed on a Debian VPS behind Cloudflare at eoffice.sunmedia.net.vn."
+          }
+        ],
+        "outcome": "eOffice is live at eoffice.sunmedia.net.vn, bringing HR, leave and attendance, project finance, KPIs, recruitment, administration and internal communications into one system with access control and an audit log. About three months after it started (25 June 2026) it stands at roughly 1,130 commits.",
+        "evidence": [
+          "Live at eoffice.sunmedia.net.vn.",
+          "About 1,130 commits · 146 tables · 51 API groups · close to 150 screens.",
+          "About 4,800 automated tests (Vitest, Supertest, Playwright).",
+          "One approval inbox for every request type; multi-step approvals along the management line.",
+          "A policy chatbot on Google Gemini that answers from the company handbook and rules."
+        ],
+        "learning": "For an internal system, what decides success is not the number of screens but whether the data agrees. Once people, the management line and permissions are modelled right, later modules such as attendance, payroll or project finance simply reference and roll up. Automated tests are what make it safe to add a module every week without breaking the old ones.",
+        "privacyNote": "This case study covers scope and technology only; no data, accounts, internal screenshots or specific permission settings are disclosed."
       },
       "ai-creative-production": {
         "role": "AI-tool R&D and video-production workflow design",

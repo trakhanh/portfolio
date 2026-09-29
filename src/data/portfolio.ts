@@ -24,7 +24,7 @@ export const PORTFOLIO_CONTENT = {
       "name": "TRÀ NGUYỄN GIA KHÁNH",
       "title": "Biến AI thành hệ thống vận hành thực tế.",
       "intro": "Tốt nghiệp Khoa học Dữ liệu, tôi ứng dụng AI vào tự động hóa, sản xuất video và triển khai ERP/HRM — phù hợp với Applied AI, AI Automation và Digital Transformation.",
-      "primary": "Xem 13 dự án",
+      "primary": "Xem 14 dự án",
       "secondary": "Xem mô hình AI × ERP",
       "cv": "Xem CV ↗",
       "cvUrl": "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing",
@@ -162,7 +162,7 @@ export const PORTFOLIO_CONTENT = {
           "label": "Môi trường doanh nghiệp thực tế"
         },
         {
-          "value": "13",
+          "value": "14",
           "label": "Dự án theo hành trình năng lực"
         }
       ],
@@ -284,9 +284,12 @@ export const PORTFOLIO_CONTENT = {
           "role": "Nhân viên AI → Nhân viên R&D",
           "current": true,
           "highlights": [
-            "Xây dựng và vận hành hệ thống Văn phòng Điện tử eOffice (https://eoffice.sunmedia.net.vn) phục vụ số hóa quy trình và quản trị vận hành nội bộ.",
-            "Bắt đầu ở vị trí Nhân viên AI, ứng dụng AI để hỗ trợ quy trình sản xuất video và nội dung.",
-            "Sau đó chuyển sang Nhân viên R&D, tập trung nghiên cứu công cụ, quy trình và giải pháp AI phục vụ sản xuất và chuyển đổi số."
+            "Xây dựng từ đầu và vận hành eOffice (eoffice.sunmedia.net.vn), ứng dụng web nội bộ gom nhân sự, nghỉ phép và chấm công, tài chính dự án, KPI, tuyển dụng, hành chính và truyền thông nội bộ vào một hệ thống.",
+            "Dựng toàn bộ tầng dữ liệu và máy chủ: 146 bảng PostgreSQL (Prisma 7), 51 nhóm API Node.js/Express viết bằng TypeScript, cùng gần 150 màn hình React 19.",
+            "Thiết kế phân quyền và kiểm soát: ma trận quyền theo vai trò, duyệt nhiều bước theo tuyến quản lý, nhật ký thao tác che dữ liệu nhạy cảm; đăng nhập Google, CSP, giới hạn tần suất API, kiểm dữ liệu đầu vào.",
+            "Giữ chất lượng bằng khoảng 4.800 ca test tự động (Vitest, Supertest, Playwright); triển khai bằng Docker Compose trên VPS sau Cloudflare.",
+            "Tích hợp Google Gemini làm chatbot hỏi đáp nội quy dựa trên Sổ tay nhân viên, cùng email tự động cho đơn từ, thư mời phỏng vấn và bản tin nội bộ.",
+            "Bắt đầu ở vị trí Nhân viên AI, ứng dụng AI vào quy trình sản xuất video và nội dung; sau đó chuyển sang R&D, nghiên cứu công cụ và giải pháp AI cho sản xuất và chuyển đổi số."
           ],
           "key": "sunmedia"
         },
@@ -334,13 +337,21 @@ export const PORTFOLIO_CONTENT = {
     },
     "projects": {
       "eyebrow": "03 · SELECTED WORK",
-      "title": "13 dự án thể hiện cách tôi giải quyết vấn đề.",
-      "intro": "Ba sản phẩm AI tự phát triển, bảy dự án tại Sun Media, Bông Trà F&B và Vạn Thịnh, cùng ba dự án học thuật tại HUFLIT.",
+      "title": "14 dự án thể hiện cách tôi giải quyết vấn đề.",
+      "intro": "Bốn sản phẩm AI tự phát triển, bảy dự án tại Sun Media, Bông Trà F&B và Vạn Thịnh, cùng ba dự án học thuật tại HUFLIT.",
       "filters": {
         "all": "Tất cả",
         "foundation": "Nền tảng",
         "professional": "Công việc",
         "product": "Sản phẩm"
+      },
+      "featured": {
+        "label": "Dự án nổi bật",
+        "ids": [
+          "hrm-application",
+          "recruitment-chatbot",
+          "internal-automation"
+        ]
       },
       "items": [
         {
@@ -406,18 +417,45 @@ export const PORTFOLIO_CONTENT = {
           "period": ""
         },
         {
+          "id": "waveform-edit-studio",
+          "phase": "product",
+          "phaseLabel": "SẢN PHẨM · AI VIDEO",
+          "title": "WaveForm Edit Studio",
+          "description": "Studio dựng video sóng âm chạy trên máy: giao diện Next.js xem trước trực tiếp, Python worker gọi FFmpeg vẽ 7 kiểu sóng âm, Whisper tạo phụ đề hiệu ứng từng từ, ảnh phủ bo hình nhún theo nhịp bass, khung máy quay HUD và xoá nền ảnh chân dung bằng AI.",
+          "result": "7 kiểu sóng âm · phụ đề Whisper · 16:9 & 9:16",
+          "image": "./img/projects-v4/waveform-edit-studio.webp",
+          "tags": [
+            "Next.js",
+            "Python",
+            "FFmpeg",
+            "Whisper",
+            "PyTorch"
+          ],
+          "links": [
+            {
+              "label": "GitHub ↗",
+              "url": "https://github.com/trakhanh/WaveForm-Edit-Studio"
+            }
+          ],
+          "orgKey": "personal",
+          "org": "Sản phẩm cá nhân",
+          "period": ""
+        },
+        {
           "id": "hrm-application",
           "phase": "professional",
           "phaseLabel": "CÔNG VIỆC · CHUYỂN ĐỔI SỐ",
-          "title": "Ứng dụng HRM theo định hướng ERP",
-          "description": "Trực tiếp xây dựng ứng dụng HRM như một sản phẩm chuyển đổi số theo định hướng ERP: số hóa quy trình nhân sự, tập trung dữ liệu, phân quyền theo vai trò, xây dựng giao diện quản trị và kết nối workflow vận hành. Chi tiết module được giới hạn theo phạm vi có thể công khai.",
-          "result": "Hệ thống eOffice đang vận hành",
+          "title": "eOffice Sun Media — Văn phòng điện tử nội bộ",
+          "description": "Tự viết từ đầu ứng dụng web nội bộ của Sun Media: nhân sự, nghỉ phép và chấm công, tài chính dự án, KPI, tuyển dụng, hành chính và truyền thông nội bộ trong một hệ thống, có duyệt nhiều bước, ma trận phân quyền, nhật ký thao tác và chatbot nội quy dùng Gemini.",
+          "result": "146 bảng · 51 nhóm API · ~150 màn hình · ~4.800 test",
           "image": "./img/projects-v4/hrm-application.webp",
           "tags": [
-            "ERP",
-            "HRM",
-            "Workflow",
-            "Role-based Access"
+            "React 19",
+            "TypeScript",
+            "PostgreSQL",
+            "Prisma",
+            "Node.js",
+            "Docker"
           ],
           "links": [
             {
@@ -427,7 +465,7 @@ export const PORTFOLIO_CONTENT = {
           ],
           "orgKey": "sunmedia",
           "org": "Sun Media",
-          "period": "10/2025 — nay"
+          "period": "06/2026 — nay"
         },
         {
           "id": "ai-creative-production",
@@ -850,7 +888,7 @@ export const PORTFOLIO_CONTENT = {
       "name": "TRA NGUYEN GIA KHANH",
       "title": "Turning AI into real operating systems.",
       "intro": "A Data Science graduate applying AI to automation, video production and ERP/HRM implementation — ready for Applied AI, AI Automation and Digital Transformation roles.",
-      "primary": "View 13 projects",
+      "primary": "View 14 projects",
       "secondary": "Explore AI × ERP model",
       "cv": "View CV ↗",
       "cvUrl": "https://drive.google.com/drive/folders/1DyqSabuMZM8SSXEn5prEhj6KoVvWKn66?usp=sharing",
@@ -988,7 +1026,7 @@ export const PORTFOLIO_CONTENT = {
           "label": "Real business environments"
         },
         {
-          "value": "13",
+          "value": "14",
           "label": "Projects mapped to capability growth"
         }
       ],
@@ -1110,9 +1148,12 @@ export const PORTFOLIO_CONTENT = {
           "role": "AI Specialist → R&D Specialist",
           "current": true,
           "highlights": [
-            "Built and managed the eOffice digital system (https://eoffice.sunmedia.net.vn) for internal workflow automation and operational management.",
-            "Started as an AI Specialist, applying AI to support video and content-production workflows.",
-            "Later moved into an R&D role focused on researching tools, workflows and AI solutions for production and digital transformation."
+            "Built from scratch and runs eOffice (eoffice.sunmedia.net.vn), the internal web app that brings HR, leave and attendance, project finance, KPIs, recruitment, administration and internal communications into one system.",
+            "Built the entire data and server layer: 146 PostgreSQL tables (Prisma 7) and 51 Node.js/Express API groups in TypeScript, plus close to 150 React 19 screens.",
+            "Designed access and controls: a role-based permission matrix, multi-step approvals along the management line and an audit log that masks sensitive data; Google sign-in, CSP, API rate limiting and input validation.",
+            "Keeps quality up with about 4,800 automated tests (Vitest, Supertest, Playwright); deploys with Docker Compose on a VPS behind Cloudflare.",
+            "Integrated Google Gemini as a policy Q&A chatbot grounded in the employee handbook, plus automated email for requests, interview invites and the internal newsletter.",
+            "Started as an AI Specialist applying AI to video and content production, then moved to R&D, researching AI tools and solutions for production and digital transformation."
           ],
           "key": "sunmedia"
         },
@@ -1160,13 +1201,21 @@ export const PORTFOLIO_CONTENT = {
     },
     "projects": {
       "eyebrow": "03 · SELECTED WORK",
-      "title": "13 projects that show how I solve problems.",
-      "intro": "Three self-built AI products, seven projects at Sun Media, Bong Tra F&B and Van Thinh, and three academic projects at HUFLIT.",
+      "title": "14 projects that show how I solve problems.",
+      "intro": "Four self-built AI products, seven projects at Sun Media, Bong Tra F&B and Van Thinh, and three academic projects at HUFLIT.",
       "filters": {
         "all": "All",
         "foundation": "Foundation",
         "professional": "Professional",
         "product": "Products"
+      },
+      "featured": {
+        "label": "Featured work",
+        "ids": [
+          "hrm-application",
+          "recruitment-chatbot",
+          "internal-automation"
+        ]
       },
       "items": [
         {
@@ -1232,18 +1281,45 @@ export const PORTFOLIO_CONTENT = {
           "period": ""
         },
         {
+          "id": "waveform-edit-studio",
+          "phase": "product",
+          "phaseLabel": "PRODUCT · AI VIDEO",
+          "title": "WaveForm Edit Studio",
+          "description": "A local studio for audio-waveform videos: a Next.js interface with live preview, a Python worker driving FFmpeg to draw 7 waveform styles, Whisper subtitles with word-level effects, masked image overlays that bounce to the bass, camera HUD frames and AI background removal for portraits.",
+          "result": "7 waveform styles · Whisper subtitles · 16:9 & 9:16",
+          "image": "./img/projects-v4/waveform-edit-studio.webp",
+          "tags": [
+            "Next.js",
+            "Python",
+            "FFmpeg",
+            "Whisper",
+            "PyTorch"
+          ],
+          "links": [
+            {
+              "label": "GitHub ↗",
+              "url": "https://github.com/trakhanh/WaveForm-Edit-Studio"
+            }
+          ],
+          "orgKey": "personal",
+          "org": "Personal product",
+          "period": ""
+        },
+        {
           "id": "hrm-application",
           "phase": "professional",
           "phaseLabel": "PROFESSIONAL · DIGITAL TRANSFORMATION",
-          "title": "ERP-oriented HRM application",
-          "description": "Built an HRM application as an ERP-oriented digital-transformation product: digitizing HR processes, centralizing data, implementing role-based access, building administration interfaces and connecting operational workflows. Module details remain limited to publicly shareable information.",
-          "result": "eOffice system in production",
+          "title": "eOffice Sun Media — internal digital office",
+          "description": "Wrote Sun Media's internal web app from scratch: HR, leave and attendance, project finance, KPIs, recruitment, administration and internal communications in one system, with multi-step approvals, a permission matrix, an audit log and a Gemini policy chatbot.",
+          "result": "146 tables · 51 API groups · ~150 screens · ~4,800 tests",
           "image": "./img/projects-v4/hrm-application.webp",
           "tags": [
-            "ERP",
-            "HRM",
-            "Workflow",
-            "Role-based Access"
+            "React 19",
+            "TypeScript",
+            "PostgreSQL",
+            "Prisma",
+            "Node.js",
+            "Docker"
           ],
           "links": [
             {
@@ -1253,7 +1329,7 @@ export const PORTFOLIO_CONTENT = {
           ],
           "orgKey": "sunmedia",
           "org": "Sun Media",
-          "period": "Oct 2025 — now"
+          "period": "Jun 2026 — now"
         },
         {
           "id": "ai-creative-production",

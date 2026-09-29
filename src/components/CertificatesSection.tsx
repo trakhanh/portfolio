@@ -26,6 +26,7 @@ export function CertificatesSection() {
   const [hover, setHover] = useState(false);
   const [modal, setModal] = useState<number | null>(null);
   const boxRef = useRef<HTMLDivElement>(null);
+  const dragged = useRef(false);
   const inView = useInView(boxRef, { margin: "-20% 0px -20% 0px" });
   const cert = items[active];
   const paused = hover || !inView || modal !== null;
@@ -54,7 +55,11 @@ export function CertificatesSection() {
                       key={active}
                       type="button"
                       custom={dir}
-                      onTap={() => setModal(active)}
+                      // A swipe ends with the finger still on the image, which motion
+                      // reports as a tap too; only open the viewer for a real tap.
+                      onPointerDown={() => (dragged.current = false)}
+                      onDragStart={() => (dragged.current = true)}
+                      onTap={() => !dragged.current && setModal(active)}
                       aria-label={`${ui.zoomIn}: ${cert.title}`}
                       drag="x"
                       dragDirectionLock

@@ -183,6 +183,8 @@ export interface PortfolioContent {
     title: string;
     intro: string;
     filters: { all: string; foundation: string; professional: string; product: string };
+    /** Projects pinned above the carousel; the first one gets the large card. */
+    featured?: { label: string; ids: readonly string[] };
     items: readonly ProjectItem[];
   };
   certificates: {
