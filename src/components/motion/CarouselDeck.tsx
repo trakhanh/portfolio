@@ -131,9 +131,9 @@ export function CarouselDeck<T>({
         aria-label={label}
         className="relative"
       >
-        <CarouselContent className={cn("-ml-5 py-4", dragging ? "cursor-grabbing" : "cursor-grab")}>
+        <CarouselContent className={cn("-ml-3 py-4 sm:-ml-5", dragging ? "cursor-grabbing" : "cursor-grab")}>
           {items.map((item, i) => (
-            <CarouselItem key={getKey(item)} className={cn("pl-5", slideClassName)}>
+            <CarouselItem key={getKey(item)} className={cn("pl-3 sm:pl-5", slideClassName)}>
               <motion.div
                 initial={{ opacity: 0, x: 80, filter: "blur(10px)" }}
                 whileInView={{ opacity: 1, x: 0, filter: "blur(0px)", transitionEnd: { filter: "none" } }}

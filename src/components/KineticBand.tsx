@@ -42,12 +42,13 @@ function StageWord({
 /** Connector between stages: a hairline with a data packet travelling along it. */
 function Connector({ delay }: { delay: number }) {
   return (
-    <span aria-hidden className="relative mx-[2vw] inline-block h-px w-[9vw] min-w-12 translate-y-[-0.3em] bg-mist/15 align-middle">
+    // align-middle lands on the x-height centre; nudge up to sit between it and cap centre.
+    <span aria-hidden className="relative mx-[max(2vw,0.9rem)] inline-block h-px w-[9vw] min-w-12 translate-y-[-0.1em] bg-mist/15 align-middle">
       <span
         className="absolute top-1/2 left-0 size-2 -translate-y-1/2 rounded-full bg-signal shadow-[0_0_12px_2px_rgba(62,230,212,0.7)]"
         style={{ animation: `packet 2.4s ${delay}s linear infinite` }}
       />
-      <span className="absolute top-1/2 -right-1 size-2 -translate-y-1/2 rotate-45 border-t border-r border-mist/40" />
+      <span className="absolute top-1/2 right-0 size-2 -translate-y-1/2 rotate-45 border-t border-r border-mist/40" />
     </span>
   );
 }

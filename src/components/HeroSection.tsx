@@ -481,12 +481,16 @@ export function HeroSection({ ready = true }: { ready?: boolean }) {
         transition={{ duration: intro ? 0.3 : 1.4, ease: EASE_OUT }}
         className="absolute inset-0 -z-10 flex items-center justify-center"
       >
-        <div className="aspect-square h-[min(118vw,108svh)]">{go && <ParticleSphere intro={intro ? readGlyphs : null} />}</div>
+        {/* Below lg the copy stacks tall, so the section's centre lands behind the
+            CTAs; lift the orb to halo the name instead. */}
+        <div className="aspect-square h-[min(118vw,108svh)] max-lg:absolute max-lg:top-[34svh] max-lg:left-1/2 max-lg:-translate-x-1/2 max-lg:-translate-y-1/2">
+          {go && <ParticleSphere intro={intro ? readGlyphs : null} />}
+        </div>
         <motion.div
           initial={{ opacity: 0 }}
           animate={go ? { opacity: 1 } : undefined}
           transition={{ duration: 1.2, delay: intro ? INTRO_REVEAL_AT : 0 }}
-          className="absolute inset-0 bg-[radial-gradient(ellipse_46%_38%_at_center,rgba(5,13,20,0.6),transparent_74%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_46%_38%_at_center,rgba(5,13,20,0.6),transparent_74%)] max-lg:bg-[radial-gradient(ellipse_46%_26%_at_50%_34svh,rgba(5,13,20,0.5),transparent_74%)]"
         />
       </motion.div>
 

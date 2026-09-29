@@ -39,7 +39,7 @@ export function CertificateModal({ items, index, onIndexChange }: CertificateMod
               exit={{ opacity: 0, x: -24 }}
               transition={{ duration: 0.3 }}
             >
-              <DialogHeader className="p-6 pr-16 text-left sm:p-8 sm:pr-16">
+              <DialogHeader className="p-5 pr-14 text-left sm:p-8 sm:pr-16">
                 <p className="label-caps">{cert.issuer}</p>
                 <DialogTitle className="text-2xl">{cert.title}</DialogTitle>
                 <DialogDescription>
@@ -47,11 +47,29 @@ export function CertificateModal({ items, index, onIndexChange }: CertificateMod
                 </DialogDescription>
               </DialogHeader>
 
-              <div className="mx-6 overflow-hidden rounded-xl border border-mist/10 bg-white sm:mx-8">
-                <Image src={certImage(cert.image)} alt={cert.title} width={1200} height={900} className="h-auto max-h-[46vh] w-full object-contain" />
-              </div>
+              <motion.div
+                drag="x"
+                dragDirectionLock
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.4}
+                onDragEnd={(_, info) => {
+                  const swipe = info.offset.x + info.velocity.x * 0.2;
+                  if (swipe < -60) go(1);
+                  else if (swipe > 60) go(-1);
+                }}
+                className="mx-4 cursor-grab overflow-hidden rounded-xl border border-mist/10 bg-white active:cursor-grabbing sm:mx-8"
+              >
+                <Image
+                  src={certImage(cert.image)}
+                  alt={cert.title}
+                  width={1200}
+                  height={900}
+                  draggable={false}
+                  className="pointer-events-none h-auto max-h-[46vh] w-full object-contain"
+                />
+              </motion.div>
 
-              <div className="flex flex-col gap-6 p-6 sm:p-8">
+              <div className="flex flex-col gap-6 p-5 sm:p-8">
                 <p className="text-silver">{cert.description}</p>
                 <div>
                   <p className="label-caps mb-3">{ui.skillsVerified}</p>

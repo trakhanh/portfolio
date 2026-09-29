@@ -15,6 +15,8 @@ import { FadeImage } from "./motion/FadeImage";
 import { CertificateModal } from "./CertificateModal";
 
 const AUTOPLAY_MS = 6000;
+const NAV_BTN =
+  "grid size-10 cursor-pointer place-items-center rounded-full border border-mist/15 bg-deep/70 text-mist transition-colors hover:border-signal/60 hover:text-signal";
 
 export function CertificatesSection() {
   const { content, ui } = useLanguage();
@@ -44,7 +46,7 @@ export function CertificatesSection() {
           >
             {/* Featured viewer */}
             <div className="glass-solid overflow-hidden lg:col-span-7">
-              <div className="relative bg-[linear-gradient(180deg,#0e2130,#07121a)] p-4 sm:p-7">
+              <div className="relative bg-[linear-gradient(180deg,#0e2130,#07121a)] p-3 sm:p-7">
                 <div aria-hidden className="absolute inset-0 [background-image:linear-gradient(rgba(62,230,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(62,230,212,0.05)_1px,transparent_1px)] [background-size:32px_32px]" />
                 <div className="relative aspect-[3300/2550] [perspective:1400px]">
                   <AnimatePresence initial={false} custom={dir} mode="popLayout">
@@ -55,11 +57,13 @@ export function CertificatesSection() {
                       onTap={() => setModal(active)}
                       aria-label={`${ui.zoomIn}: ${cert.title}`}
                       drag="x"
+                      dragDirectionLock
                       dragConstraints={{ left: 0, right: 0 }}
                       dragElastic={0.5}
                       onDragEnd={(_, info) => {
-                        if (info.offset.x < -80) go(active + 1, 1);
-                        else if (info.offset.x > 80) go(active - 1, -1);
+                        // A short flick counts as much as a long drag.
+                        const swipe = info.offset.x + info.velocity.x * 0.2;                        if (swipe < -60) go(active + 1, 1);
+                        else if (swipe > 60) go(active - 1, -1);
                       }}
                       variants={{
                         enter: (d: number) => ({ opacity: 0, x: d * 90, rotateY: d * -14, scale: 0.94 }),
@@ -82,66 +86,98 @@ export function CertificatesSection() {
                         wrapperClassName="bg-white"
                         className="pointer-events-none object-contain"
                       />
-                      <span className="absolute right-3 bottom-3 flex items-center gap-1.5 rounded-md bg-deep/85 px-2.5 py-1.5 font-mono text-[11px] text-mist opacity-0 transition-opacity group-hover:opacity-100">
+                      <span className="absolute right-2 bottom-2 flex items-center gap-1.5 rounded-md bg-deep/85 p-1.5 font-mono text-[11px] text-mist transition-opacity sm:right-3 sm:bottom-3 lg:px-2.5 lg:opacity-0 lg:group-hover:opacity-100">
                         <Expand className="size-3.5" />
-                        {ui.zoomIn}
+                        <span className="hidden lg:inline">{ui.zoomIn}</span>
                       </span>
                     </motion.button>
                   </AnimatePresence>
                 </div>
-              </div>
 
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={active}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.35, ease: EASE_OUT }}
-                  className="p-6 sm:p-8"
-                >
-                  <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] tracking-[0.1em] uppercase">
-                    <span className="text-slate">{cert.issuer}</span>
-                    <span className="flex items-center gap-1 rounded-md bg-signal/12 px-2 py-0.5 text-signal">
-                      <BadgeCheck className="size-3.5" />
-                      {cert.date}
-                    </span>
-                  </div>
-                  <h3 className="mt-3 text-2xl leading-tight tracking-[-0.02em] sm:text-[28px]">{cert.title}</h3>
-                  <p className="mt-3 max-w-[60ch] text-silver">{cert.description}</p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {cert.tags.map((t) => (
-                      <Badge key={t}>{t}</Badge>
+                {/* Phones/tablets: position + controls sit right under the image */}
+                <div className="relative mt-3 flex items-center gap-3 lg:hidden">
+                  <p className="w-14 font-mono text-xs text-silver tabular-nums">
+                    <span className="text-white">{String(active + 1).padStart(2, "0")}</span> / {String(items.length).padStart(2, "0")}
+                  </p>
+                  <div className="flex flex-1 items-center justify-center gap-1.5">
+                    {items.map((c, i) => (
+                      <button
+                        key={c.title}
+                        type="button"
+                        aria-label={c.title}
+                        aria-current={i === active}
+                        onClick={() => go(i)}
+                        className="grid h-6 cursor-pointer place-items-center"
+                      >
+                        <span
+                          className={cn(
+                            "block h-1.5 rounded-full transition-[width,background-color] duration-300",
+                            i === active ? "w-5 bg-signal" : "w-1.5 bg-mist/25",
+                          )}
+                        />
+                      </button>
                     ))}
                   </div>
-                  <div className="mt-7 flex flex-wrap gap-3">
-                    {cert.verifyUrl && (
-                      <Button asChild size="sm">
-                        <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
-                          {ui.verify}
-                          <ArrowUpRight />
-                        </a>
-                      </Button>
-                    )}
-                    {cert.courseUrl && (
-                      <Button asChild size="sm" variant="glass">
-                        <a href={cert.courseUrl} target="_blank" rel="noopener noreferrer">
-                          {ui.course}
-                        </a>
-                      </Button>
-                    )}
-                    <Button size="sm" variant="ghost" onClick={() => setModal(active)}>
-                      <Expand />
-                      {ui.zoomIn}
-                    </Button>
+                  <div className="flex gap-2">
+                    <button type="button" aria-label={ui.prev} onClick={() => go(active - 1, -1)} className={NAV_BTN}>
+                      <ArrowLeft className="size-4" />
+                    </button>
+                    <button type="button" aria-label={ui.next} onClick={() => go(active + 1, 1)} className={NAV_BTN}>
+                      <ArrowRight className="size-4" />
+                    </button>
                   </div>
-                </motion.div>
-              </AnimatePresence>
+                </div>
+              </div>
+
+              {/* Enter-only swap: no empty exit phase, so the page doesn't jump. */}
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, ease: EASE_OUT }}
+                className="p-5 sm:p-8"
+              >
+                <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] tracking-[0.1em] uppercase">
+                  <span className="text-slate">{cert.issuer}</span>
+                  <span className="flex items-center gap-1 rounded-md bg-signal/12 px-2 py-0.5 text-signal">
+                    <BadgeCheck className="size-3.5" />
+                    {cert.date}
+                  </span>
+                </div>
+                <h3 className="mt-3 text-xl leading-tight tracking-[-0.02em] sm:text-[28px]">{cert.title}</h3>
+                <p className="mt-3 max-w-[60ch] text-silver">{cert.description}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {cert.tags.map((t) => (
+                    <Badge key={t}>{t}</Badge>
+                  ))}
+                </div>
+                <div className="mt-6 flex flex-wrap gap-2.5 sm:mt-7 sm:gap-3">
+                  {cert.verifyUrl && (
+                    <Button asChild size="sm" className="max-sm:flex-1">
+                      <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
+                        {ui.verify}
+                        <ArrowUpRight />
+                      </a>
+                    </Button>
+                  )}
+                  {cert.courseUrl && (
+                    <Button asChild size="sm" variant="glass" className="max-sm:flex-1">
+                      <a href={cert.courseUrl} target="_blank" rel="noopener noreferrer">
+                        {ui.course}
+                      </a>
+                    </Button>
+                  )}
+                  <Button size="sm" variant="ghost" className="max-lg:hidden" onClick={() => setModal(active)}>
+                    <Expand />
+                    {ui.zoomIn}
+                  </Button>
+                </div>
+              </motion.div>
             </div>
 
             {/* Index rail */}
             <div className="flex min-w-0 flex-col lg:col-span-5">
-              <div className="mb-3 flex items-center justify-between">
+              <div className="mb-3 hidden items-center justify-between lg:flex">
                 <p className="font-mono text-xs text-silver tabular-nums">
                   <span className="text-white">{String(active + 1).padStart(2, "0")}</span> / {String(items.length).padStart(2, "0")}
                 </p>
@@ -150,7 +186,7 @@ export function CertificatesSection() {
                     type="button"
                     aria-label={ui.prev}
                     onClick={() => go(active - 1, -1)}
-                    className="grid size-10 cursor-pointer place-items-center rounded-full border border-mist/15 bg-deep/70 text-mist transition-colors hover:border-signal/60 hover:text-signal"
+                    className={NAV_BTN}
                   >
                     <ArrowLeft className="size-4" />
                   </button>
@@ -158,18 +194,20 @@ export function CertificatesSection() {
                     type="button"
                     aria-label={ui.next}
                     onClick={() => go(active + 1, 1)}
-                    className="grid size-10 cursor-pointer place-items-center rounded-full border border-mist/15 bg-deep/70 text-mist transition-colors hover:border-signal/60 hover:text-signal"
+                    className={NAV_BTN}
                   >
                     <ArrowRight className="size-4" />
                   </button>
                 </div>
               </div>
 
-              <ul className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] lg:flex-col lg:overflow-visible">
+              {/* lg+ only. Its progress bar drives autoplay, so hiding it also stops
+                  autoplay on phones, where the swap would shift the page mid-read. */}
+              <ul className="hidden flex-col gap-2 lg:flex">
                 {items.map((c, i) => {
                   const on = i === active;
                   return (
-                    <li key={c.title} className="w-[240px] shrink-0 lg:w-auto">
+                    <li key={c.title}>
                       <button
                         type="button"
                         onClick={() => go(i)}
@@ -186,7 +224,7 @@ export function CertificatesSection() {
                             transition={{ type: "spring", stiffness: 380, damping: 34 }}
                           />
                         )}
-                        <span className="relative aspect-[3300/2550] w-20 shrink-0 overflow-hidden rounded-md bg-white ring-1 ring-white/10 sm:w-24">
+                        <span className="relative aspect-[3300/2550] w-24 shrink-0 overflow-hidden rounded-md bg-white ring-1 ring-white/10">
                           <Image src={certImage(c.image)} alt="" fill sizes="96px" className="object-contain" />
                         </span>
                         <span className="min-w-0">
@@ -212,7 +250,7 @@ export function CertificatesSection() {
                 })}
               </ul>
 
-              <div className="mt-auto pt-6">
+              <div className="mt-auto lg:pt-6">
                 <div className="rounded-xl border border-mist/10 bg-deep/60 p-5">
                   <p className="font-mono text-[11px] tracking-[0.12em] text-slate uppercase">{certificates.moreLabel}</p>
                   <div className="mt-3 flex flex-wrap gap-2">

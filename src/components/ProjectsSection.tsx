@@ -27,7 +27,7 @@ function ProjectSlide({ item, index }: { item: ProjectItem; index: number }) {
         className="flex h-full flex-col"
         aria-label={`${ui.openCase}: ${item.title}`}
       >
-        <div className="relative aspect-[16/10] overflow-hidden border-b border-mist/10">
+        <div className="relative aspect-[16/9] overflow-hidden border-b border-mist/10 sm:aspect-[16/10]">
           <div data-parallax className="absolute inset-y-0 -right-[5%] -left-[5%]">
             <FadeImage
               src={asset(item.image)}
@@ -39,7 +39,7 @@ function ProjectSlide({ item, index }: { item: ProjectItem; index: number }) {
             />
           </div>
         </div>
-        <div className="flex flex-1 flex-col p-6 sm:p-8">
+        <div className="flex flex-1 flex-col p-5 sm:p-8">
           <p className="font-mono text-[11px] tracking-[0.1em] text-signal uppercase">
             {String(index + 1).padStart(2, "0")} · {item.phaseLabel}
           </p>
@@ -49,18 +49,18 @@ function ProjectSlide({ item, index }: { item: ProjectItem; index: number }) {
             {item.period && <span className="font-mono text-slate">· {item.period}</span>}
           </p>
           <div className="mt-3 flex items-start justify-between gap-4">
-            <h3 className="text-xl leading-tight tracking-[-0.02em] sm:text-2xl">{item.title}</h3>
-            <span className="grid size-9 shrink-0 place-items-center rounded-md bg-[rgba(20,56,76,0.5)] transition-all duration-300 group-hover:bg-signal group-hover:text-abyss">
+            <h3 className="text-lg leading-tight tracking-[-0.02em] sm:text-2xl">{item.title}</h3>
+            <span className="grid size-8 shrink-0 place-items-center rounded-md sm:size-9 bg-[rgba(20,56,76,0.5)] transition-all duration-300 group-hover:bg-signal group-hover:text-abyss">
               <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:rotate-45" />
             </span>
           </div>
-          <p className="mt-3 line-clamp-3 text-sm text-silver">{item.description}</p>
-          <div className="mt-auto pt-6">
+          <p className="mt-2.5 line-clamp-2 text-sm text-silver sm:mt-3 sm:line-clamp-3">{item.description}</p>
+          <div className="mt-auto pt-5 sm:pt-6">
             <p className="font-mono text-[11px] tracking-[0.12em] text-slate uppercase">{ui.result}</p>
             <p className="mt-1 text-sm font-medium text-lavender">{item.result}</p>
-            <div className="mt-5 flex flex-wrap gap-1.5">
-              {item.tags.slice(0, 4).map((tag) => (
-                <Badge key={tag} variant="outline">
+            <div className="mt-4 flex flex-wrap gap-1.5 sm:mt-5">
+              {item.tags.slice(0, 4).map((tag, ti) => (
+                <Badge key={tag} variant="outline" className={ti > 2 ? "max-sm:hidden" : undefined}>
                   {tag}
                 </Badge>
               ))}
@@ -97,7 +97,7 @@ export function ProjectsSection() {
                 <TabsTrigger
                   key={f.id}
                   value={f.id}
-                  className="relative isolate h-10 cursor-pointer px-2 text-[11px] tracking-[0.12em] text-silver uppercase data-[state=active]:bg-transparent data-[state=active]:text-abyss data-[state=active]:shadow-none sm:px-4 sm:text-[12px]"
+                  className="relative isolate h-10 min-w-0 cursor-pointer px-1.5 text-[11px] tracking-[0.06em] text-silver uppercase sm:px-4 sm:tracking-[0.12em] data-[state=active]:bg-transparent data-[state=active]:text-abyss data-[state=active]:shadow-none sm:text-[12px]"
                 >
                   {filter === f.id && (
                     <motion.span
@@ -128,7 +128,7 @@ export function ProjectsSection() {
             label="projects"
             items={items}
             getKey={(p) => p.id}
-            slideClassName="basis-[86%] sm:basis-[62%] lg:basis-[44%] xl:basis-[38%]"
+            slideClassName="basis-[80%] sm:basis-[62%] lg:basis-[44%] xl:basis-[38%]"
             renderSlide={(item, i) => <ProjectSlide item={item} index={i} />}
           />
         </motion.div>
