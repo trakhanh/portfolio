@@ -88,6 +88,7 @@ const STRINGS = {
     verifiedLetter: "Có chữ ký & mộc đỏ",
     featured: "Đang xem",
     liveProducts: "Sản phẩm đã triển khai",
+    relatedProjects: "Dự án tại đây",
   },
   en: {
     navSkills: "AI Skills",
@@ -143,6 +144,7 @@ const STRINGS = {
     verifiedLetter: "Signed & stamped",
     featured: "Now viewing",
     liveProducts: "Live products",
+    relatedProjects: "Projects here",
   },
 } as const;
 

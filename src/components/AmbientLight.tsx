@@ -29,8 +29,8 @@ export function AmbientLight() {
         style={lite ? undefined : { x: x3 }}
         className="absolute -bottom-[35vh] left-[10vw] h-[90vh] w-[85vw] bg-[radial-gradient(closest-side,rgba(184,246,255,0.08),rgba(184,246,255,0.02)_55%,transparent)]"
       />
-      {/* Faint engineering grid */}
-      <div className="absolute inset-0 [background-image:linear-gradient(rgba(62,230,212,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(62,230,212,0.045)_1px,transparent_1px)] [background-size:64px_64px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_40%,#000_20%,transparent_85%)]" />
+      {/* Film grain: breaks up gradient banding and gives the glass something to refract */}
+      <div className="bg-grain absolute inset-0 opacity-[0.055] [mask-image:radial-gradient(ellipse_90%_80%_at_50%_40%,#000_30%,transparent_95%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(3,8,13,0.75)_100%)]" />
     </div>
   );

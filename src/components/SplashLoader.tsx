@@ -7,28 +7,36 @@ import { EASE_OUT } from "./motion/Reveal";
 import { BrandMark } from "./BrandMark";
 import { SPLASH_KEY } from "@/lib/splash";
 
+/** Set once the intro has started in this tab, so coming back to the page never replays it. */
+let playedThisSession = false;
+
 /**
  * First-visit intro: the GK mark resolves out of blur while a signal line
  * fills, then the panel lifts away and hands off to the hero.
  */
 export function SplashLoader({ onDone }: { onDone: () => void }) {
   const { content, ui } = useLanguage();
-  const [visible, setVisible] = useState(true);
+  // Module state, not the <html> flag: the flag only exists after a full load, so
+  // reading it here would disagree with the server render and break hydration.
+  const skip = useRef(playedThisSession);
+  const [visible, setVisible] = useState(!skip.current);
   const doneRef = useRef(false);
 
   const handOff = () => {
     if (doneRef.current) return;
     doneRef.current = true;
+    document.documentElement.dataset.splash = "off";
     onDone();
   };
 
   useEffect(() => {
-    if (document.documentElement.dataset.splash === "off") {
+    if (skip.current || document.documentElement.dataset.splash === "off") {
       // Already hidden by CSS before paint — just start the hero.
       setVisible(false);
       handOff();
       return;
     }
+    playedThisSession = true;
     // Record now, so a reload mid-intro doesn't replay it.
     try {
       localStorage.setItem(SPLASH_KEY, String(Date.now()));

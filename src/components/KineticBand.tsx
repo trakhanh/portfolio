@@ -2,7 +2,18 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
+import {
+  motion,
+  useAnimationFrame,
+  useInView,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+  useVelocity,
+  type MotionValue,
+} from "motion/react";
 import { useLanguage } from "@/context/LanguageContext";
 import { TOOL_ICONS } from "@/data/ui-strings";
 import { cn } from "@/lib/utils";
@@ -53,16 +64,42 @@ function Connector({ delay }: { delay: number }) {
   );
 }
 
+/** Resting speed in % of the (doubled) row per second: the old 60s marquee. */
+const TICKER_SPEED = 50 / 60;
+
+/**
+ * Marquee that idles at a slow drift and surges with the page's scroll
+ * velocity, then settles back (after React Bits' ScrollVelocity).
+ */
 function SkillTicker({ items, reverse = false }: { items: readonly string[]; reverse?: boolean }) {
   const row = [...items, ...items];
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref);
+  const reduce = useReducedMotion();
+  const paused = useRef(false);
+  const base = useMotionValue(reverse ? -50 : 0);
+  const { scrollY } = useScroll();
+  const velocity = useSpring(useVelocity(scrollY), { damping: 50, stiffness: 400 });
+  const boost = useTransform(velocity, (v) => Math.min(Math.abs(v) / 400, 6));
+  const x = useTransform(base, (v) => `${v}%`);
+
+  useAnimationFrame((_, delta) => {
+    if (!inView || paused.current || reduce) return;
+    const step = (TICKER_SPEED * delta) / 1000;
+    let next = base.get() + (reverse ? 1 : -1) * step * (1 + boost.get());
+    if (next <= -50) next += 50;
+    else if (next > 0) next -= 50;
+    base.set(next);
+  });
+
   return (
-    <div className="group flex overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
-      <div
-        className={cn(
-          "animate-marquee flex w-max shrink-0 gap-3 pr-3 group-hover:[animation-play-state:paused]",
-          reverse && "[animation-direction:reverse]",
-        )}
-      >
+    <div
+      ref={ref}
+      onPointerEnter={() => (paused.current = true)}
+      onPointerLeave={() => (paused.current = false)}
+      className="flex overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]"
+    >
+      <motion.div style={{ x }} className="flex w-max shrink-0 gap-3 pr-3">
         {row.map((s, i) => (
           <span
             key={`${s}-${i}`}
@@ -76,7 +113,7 @@ function SkillTicker({ items, reverse = false }: { items: readonly string[]; rev
             {s}
           </span>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

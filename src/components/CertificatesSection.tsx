@@ -48,7 +48,7 @@ export function CertificatesSection() {
             {/* Featured viewer */}
             <div className="glass-solid overflow-hidden lg:col-span-7">
               <div className="relative bg-[linear-gradient(180deg,#0e2130,#07121a)] p-3 sm:p-7">
-                <div aria-hidden className="absolute inset-0 [background-image:linear-gradient(rgba(62,230,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(62,230,212,0.05)_1px,transparent_1px)] [background-size:32px_32px]" />
+                <div aria-hidden className="bg-grain absolute inset-0 opacity-[0.08]" />
                 <div className="relative aspect-[3300/2550] [perspective:1400px]">
                   <AnimatePresence initial={false} custom={dir} mode="popLayout">
                     <motion.button

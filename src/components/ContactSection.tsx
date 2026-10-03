@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { SOCIAL_ICONS } from "./icons/SocialIcons";
 import { Magnetic } from "./motion/Magnetic";
+import { Dock, DockScale } from "./motion/Dock";
 import { Reveal } from "./motion/Reveal";
 import { useLite } from "@/lib/perf";
 
@@ -194,7 +195,7 @@ function ContactTerminal() {
 
       <div className="border-t border-mist/10 p-3 sm:p-4">
         <p className="px-2 pb-2 text-[11px] tracking-[0.12em] text-slate uppercase">$ {ui.socials}</p>
-        <ul className="grid grid-cols-3 gap-2">
+        <Dock className="grid grid-cols-3 gap-2">
           {CONTACT.socials.map((s, i) => {
             const Icon = SOCIAL_ICONS[s.name];
             return (
@@ -208,21 +209,21 @@ function ContactTerminal() {
                   href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex min-w-0 flex-col items-center gap-2 rounded-lg border border-mist/10 bg-mist/[0.03] px-1.5 py-3 text-center sm:p-3 transition-all sm:flex-row sm:gap-3 sm:text-left hover:-translate-y-0.5 hover:border-signal/45 hover:bg-signal/[0.06]"
+                  className="group flex min-w-0 flex-col items-center gap-2 rounded-lg border border-mist/10 bg-mist/[0.03] px-1.5 py-3 text-center transition-all xl:flex-row xl:gap-3 xl:p-3 xl:text-left hover:-translate-y-0.5 hover:border-signal/45 hover:bg-signal/[0.06]"
                 >
-                  <span className="grid size-9 shrink-0 place-items-center rounded-md border border-mist/12 bg-abyss text-mist transition-colors group-hover:border-signal/50 group-hover:text-signal">
+                  <DockScale className="size-9 shrink-0 place-items-center rounded-md border border-mist/12 bg-abyss text-mist transition-colors group-hover:border-signal/50 group-hover:text-signal">
                     <Icon className="size-[18px]" />
-                  </span>
+                  </DockScale>
                   <span className="w-full min-w-0 flex-1 font-sans">
-                    <span className="block truncate text-[13px] font-medium text-white sm:text-sm">{s.name}</span>
-                    <span className="hidden truncate font-mono text-[11px] text-silver sm:block">@{s.handle}</span>
+                    <span className="block truncate text-[13px] font-medium text-white xl:text-sm">{s.name}</span>
+                    <span className="hidden truncate font-mono text-[11px] text-silver xl:block">@{s.handle}</span>
                   </span>
-                  <ArrowUpRight className="hidden size-4 shrink-0 text-slate transition-all sm:block group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-signal" />
+                  <ArrowUpRight className="hidden size-4 shrink-0 text-slate transition-all xl:block group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-signal" />
                 </a>
               </motion.li>
             );
           })}
-        </ul>
+        </Dock>
       </div>
     </div>
   );
@@ -253,10 +254,10 @@ export function ContactSection() {
               style={{ width: "calc(100% - 1px)", height: "calc(100% - 1px)" }}
             />
           </svg>
-          {/* Blueprint grid + glows */}
+          {/* Film grain + glows */}
           <div
             aria-hidden
-            className="absolute inset-0 [background-image:linear-gradient(rgba(62,230,212,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(62,230,212,0.06)_1px,transparent_1px)] [background-size:44px_44px] [mask-image:radial-gradient(ellipse_70%_80%_at_75%_50%,#000_25%,transparent_100%)]"
+            className="bg-grain absolute inset-0 opacity-[0.09] [mask-image:radial-gradient(ellipse_70%_80%_at_75%_50%,#000_25%,transparent_100%)]"
           />
           <div aria-hidden className="absolute -top-60 right-[-5%] h-[720px] w-[820px] bg-[radial-gradient(closest-side,rgba(62,230,212,0.13),transparent)]" />
           <div aria-hidden className="absolute -bottom-72 left-[-10%] h-[680px] w-[780px] bg-[radial-gradient(closest-side,rgba(124,140,255,0.11),transparent)]" />

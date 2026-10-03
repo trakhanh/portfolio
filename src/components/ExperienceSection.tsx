@@ -4,17 +4,17 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowUpRight, BadgeCheck, Check, ChevronDown, FileCheck2, Globe } from "lucide-react";
+import { ArrowUpRight, Check, ChevronDown, Globe } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { asset } from "@/data/ui-strings";
 import type { ExperienceItem } from "@/types/portfolio";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { SectionHeading } from "./SectionHeading";
 import { GlassCard } from "./motion/GlassCard";
 import { Reveal, EASE_OUT } from "./motion/Reveal";
 import { RecommendationModal } from "./RecommendationModal";
+import { RecommendationCard } from "./RecommendationCard";
 
 /** Highlights shown before "Show more" — keeps the panel short on phones. */
 const HIGHLIGHT_LIMIT = 3;
@@ -44,7 +44,7 @@ const rise = {
 };
 
 function DetailPanel({ item, index, total }: { item: ExperienceItem; index: number; total: number }) {
-  const { ui, content, cases, href } = useLanguage();
+  const { ui, content, href } = useLanguage();
   const [open, setOpen] = useState(false);
   const related = item.key ? content.projects.items.filter((p) => p.orgKey === item.key) : [];
   const months = duration(item);
@@ -119,7 +119,7 @@ function DetailPanel({ item, index, total }: { item: ExperienceItem; index: numb
         {related.length > 0 && (
           <motion.div variants={rise} className="mt-8">
             <p className="font-mono text-[11px] tracking-[0.12em] text-slate uppercase">
-              {cases.labels.related} · {String(related.length).padStart(2, "0")}
+              {ui.relatedProjects} · {String(related.length).padStart(2, "0")}
             </p>
             <ul className="mt-3 grid grid-cols-[minmax(0,1fr)] gap-3 sm:grid-cols-2">
               {related.map((p) => (
@@ -185,9 +185,8 @@ function DetailPanel({ item, index, total }: { item: ExperienceItem; index: numb
 }
 
 export function ExperienceSection() {
-  const { content, ui } = useLanguage();
+  const { content } = useLanguage();
   const { experience } = content;
-  const rec = experience.recommendation;
   const [active, setActive] = useState("0");
   const [letterOpen, setLetterOpen] = useState(false);
 
@@ -256,75 +255,7 @@ export function ExperienceSection() {
           </Tabs>
         </Reveal>
 
-        {/* Signed recommendation */}
-        <Reveal className="mt-10">
-          <GlassCard variant="deep" className="grid grid-cols-[minmax(0,1fr)] gap-10 overflow-hidden p-6 sm:p-12 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <div className="flex items-center gap-3">
-                <span className="grid size-8 place-items-center rounded-md bg-[rgba(20,56,76,0.5)]">
-                  <FileCheck2 className="size-4 text-signal" />
-                </span>
-                <p className="label-caps">{rec.eyebrow}</p>
-              </div>
-              <h3 className="mt-6 text-3xl leading-tight tracking-[-0.02em] sm:text-4xl">{rec.title}</h3>
-              <p className="mt-5 max-w-[62ch] text-silver">{rec.description}</p>
-              <ul className="mt-8 grid gap-2 sm:grid-cols-2">
-                {rec.highlights.map((h) => (
-                  <li key={h} className="glass-chip !text-sm">
-                    {h}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Button onClick={() => setLetterOpen(true)}>
-                  {ui.viewLetter}
-                  <ArrowUpRight />
-                </Button>
-                <p className="text-sm text-silver">
-                  <span className="text-white">{rec.issuer}</span> · {rec.issuerRole}
-                </p>
-              </div>
-            </div>
-            <motion.button
-              type="button"
-              onClick={() => setLetterOpen(true)}
-              aria-label={ui.viewLetter}
-              initial="rest"
-              animate="rest"
-              whileHover="spread"
-              whileFocus="spread"
-              className="group relative mx-auto h-[330px] w-full max-w-[380px] cursor-pointer sm:h-[440px] lg:col-span-5"
-            >
-              {/* Scaled down on phones: at full size the two tilted pages spilled past the card. */}
-              <span className="absolute inset-0 max-sm:scale-[0.78]">
-              {[
-                { src: "/img/thumbs/letter-page-2.webp", rest: { rotate: 7, x: 34, y: 10 }, spread: { rotate: 12, x: 92, y: 18 } },
-                { src: "/img/thumbs/letter-page-1.webp", rest: { rotate: -3, x: -10, y: 0 }, spread: { rotate: -8, x: -52, y: -8 } },
-              ].map((pg, i) => (
-                <motion.span
-                  key={pg.src}
-                  variants={{ rest: pg.rest, spread: pg.spread }}
-                  transition={{ type: "spring", stiffness: 180, damping: 18 }}
-                  className="absolute top-1/2 left-1/2 -mt-[190px] -ml-[134px] block w-[268px] overflow-hidden rounded-lg bg-white shadow-[0_30px_60px_-20px_rgba(0,0,0,0.85)] ring-1 ring-black/10 sm:-mt-[215px] sm:-ml-[150px] sm:w-[300px]"
-                  style={{ zIndex: i }}
-                >
-                  <Image src={pg.src} alt={i === 1 ? rec.previewAlt : ""} width={360} height={520} className="h-auto w-full" />
-                </motion.span>
-              ))}
-              </span>
-              <motion.span
-                variants={{ rest: { scale: 1, rotate: -8 }, spread: { scale: 1.08, rotate: 0 } }}
-                className="absolute right-2 bottom-6 z-10 flex items-center gap-1.5 rounded-full border border-signal/40 bg-deep/90 px-3.5 py-2 font-mono text-[11px] tracking-[0.08em] text-signal uppercase shadow-[0_10px_30px_-10px_rgba(62,230,212,0.6)] sm:right-0"
-              >
-                <BadgeCheck className="size-4" />
-                {ui.verifiedLetter}
-              </motion.span>
-              <span className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 rounded-md bg-deep/85 px-3 py-1.5 font-mono text-[11px] text-mist opacity-0 transition-opacity group-hover:opacity-100">
-                {ui.viewLetter} ↗
-              </span>
-            </motion.button>
-          </GlassCard>
-        </Reveal>
+        <RecommendationCard onOpen={() => setLetterOpen(true)} />
       </div>
 
       <RecommendationModal open={letterOpen} onOpenChange={setLetterOpen} />

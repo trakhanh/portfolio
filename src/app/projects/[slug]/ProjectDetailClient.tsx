@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, ViewTransition } from "react";
+import { useEffect, useState, ViewTransition, type MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -17,6 +17,9 @@ import { SplitText } from "@/components/motion/SplitText";
 import { cn } from "@/lib/utils";
 import type { ArchitectureDiagram } from "@/types/portfolio";
 import { clearCoverTransition, coverName, isCoverTransition, markCoverTransition } from "@/lib/cover-transition";
+import { goBackToHome } from "@/lib/home-return";
+import { PROJECT_CASES } from "@/data/project-cases";
+import type { CaseStudyData } from "@/types/portfolio";
 
 /* Icons for each technology entry in the case data */
 const TECH_ICONS: Record<string, string[]> = {
@@ -158,11 +161,20 @@ function CheckItem({ children }: { children: React.ReactNode }) {
 }
 
 export function ProjectDetailClient({ slug }: { slug: string }) {
-  const { content, cases, ui, href } = useLanguage();
+  const { content, locale, ui, href } = useLanguage();
+  const cases: CaseStudyData = PROJECT_CASES[locale] ?? PROJECT_CASES.vi;
   const [active, setActive] = useState<SectionId>("challenge");
   // Arrived from a card: the cover is flown in by the view transition, so it must not also fade in.
   const [handedOff] = useState(() => isCoverTransition(slug));
   useEffect(() => clearCoverTransition(), []);
+
+  // Opened from the home page: step back to that exact history entry so the browser's
+  // own Back keeps working and the page returns to the card it left (the cover flies
+  // home through the view transition). Without that, the plain link below still works.
+  const goBack = (e: MouseEvent) => {
+    const how = goBackToHome(href("/"));
+    if (how === "history") e.preventDefault();
+  };
 
   const all = content.projects.items;
   const idx = all.findIndex((p) => p.id === slug);
@@ -211,7 +223,7 @@ export function ProjectDetailClient({ slug }: { slug: string }) {
         <header className="container-auros max-w-[1200px]">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap items-center justify-between gap-4">
             <Button asChild variant="ghost" size="sm" className="-ml-3.5">
-              <Link href={`${href("/")}#projects`}>
+              <Link href={`${href("/")}#projects`} onClick={goBack}>
                 <ArrowLeft />
                 {L.back}
               </Link>

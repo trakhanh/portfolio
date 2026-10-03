@@ -215,7 +215,7 @@ function Orbit({ ready, delay }: { ready: boolean; delay: number }) {
     ry: Math.min(size.h * r.ry, r.maxRy),
     rad: (r.tilt * Math.PI) / 180,
   }));
-  const cy = size.h * 0.44;
+  const cy = size.h * 0.38;
   const perRing = RINGS.map((_, ri) => ORBITERS.filter((o) => o.ring === ri).length);
   const slotOf = ORBITERS.map((o, i) => ORBITERS.slice(0, i).filter((p) => p.ring === o.ring).length);
 
@@ -262,7 +262,7 @@ function Orbit({ ready, delay }: { ready: boolean; delay: number }) {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={ready ? { opacity: 1, scale: 1 } : undefined}
           transition={{ duration: 1.6, delay, ease: EASE_OUT }}
-          className="absolute inset-0 hidden size-full overflow-visible [mask-image:radial-gradient(ellipse_36%_40%_at_50%_46%,transparent_0,transparent_55%,rgba(0,0,0,0.35)_72%,#000_100%)] lg:block"
+          className="absolute inset-0 hidden size-full overflow-visible [mask-image:radial-gradient(ellipse_36%_40%_at_50%_43%,transparent_0,transparent_55%,rgba(0,0,0,0.35)_72%,#000_100%)] lg:block"
         >
           <defs>
             {RINGS.map((ring, ri) => (
@@ -305,9 +305,9 @@ function Orbit({ ready, delay }: { ready: boolean; delay: number }) {
                       ref={(el) => {
                         cometRefs.current[ri][k] = el;
                       }}
-                      r={k === 0 ? 3.2 : k === 1 ? 9 : Math.max(0.6, 2.6 - k * 0.14)}
+                      r={k === 0 ? 2.4 : Math.max(0.5, 2 - k * 0.11)}
                       fill={k === 0 ? "#ffffff" : `rgb(${rgb})`}
-                      opacity={k === 0 ? 1 : k === 1 ? 0.18 : Math.max(0.05, 0.85 - k * 0.05)}
+                      opacity={k === 0 ? 0.95 : Math.max(0.04, 0.7 - k * 0.045)}
                     />
                   ))}
                 </g>
@@ -425,6 +425,52 @@ function HudFrame({ ready, delay }: { ready: boolean; delay: number }) {
   );
 }
 
+/* ------------------------------------------------------------ status pill */
+
+const STATUS_TAGS = /^(.*?)(AI · ERP · R&D)(.*)$/;
+
+/**
+ * "Ready for AI · ERP · R&D roles" as a pill: gradient hairline, live dot, and
+ * the three focus areas lifted into their own tags. Splits the localized string
+ * around the tag run, so both languages keep their own wording.
+ */
+function StatusPill({ text }: { text: string }) {
+  const m = STATUS_TAGS.exec(text);
+  const [lead, tags, tail] = m ? [m[1].trim(), m[2].split(" · "), m[3].trim()] : [text, [], ""];
+  return (
+    <div className="inline-flex">
+      <span className="sr-only">{text}</span>
+      <div className="flex items-center gap-2.5 rounded-full bg-[rgba(5,13,20,0.6)] py-1.5 pr-2 pl-3.5 backdrop-blur-md max-sm:gap-2 max-sm:pl-3">
+        <span aria-hidden className="relative flex size-2 shrink-0">
+          <span className="absolute inline-flex size-full animate-ping rounded-full bg-signal opacity-60" />
+          <span className="relative inline-flex size-2 rounded-full bg-signal shadow-[0_0_8px_rgba(62,230,212,0.9)]" />
+        </span>
+        <span aria-hidden className="text-[13px] leading-none text-mist max-sm:text-xs">
+          {lead}
+        </span>
+        {tags.length > 0 && (
+          <span aria-hidden className="flex items-center gap-1">
+            {tags.map((t) => (
+              <span
+                key={t}
+                className="rounded-full border border-signal/25 bg-signal/10 px-2 py-1 font-mono text-[11px] leading-none tracking-[0.06em] text-signal max-sm:px-1.5 max-sm:text-[10px]"
+              >
+                {t}
+              </span>
+            ))}
+          </span>
+        )}
+        {tail && (
+          <span aria-hidden className="pr-1.5 text-[13px] leading-none text-mist max-sm:text-xs">
+            {tail}
+          </span>
+        )}
+        {!tail && <span aria-hidden className="w-0.5" />}
+      </div>
+    </div>
+  );
+}
+
 /* ------------------------------------------------------------------- hero */
 
 export function HeroSection({ ready = true }: { ready?: boolean }) {
@@ -483,14 +529,14 @@ export function HeroSection({ ready = true }: { ready?: boolean }) {
       >
         {/* Below lg the copy stacks tall, so the section's centre lands behind the
             CTAs; lift the orb to halo the name instead. */}
-        <div className="aspect-square h-[min(118vw,108svh)] max-lg:absolute max-lg:top-[34svh] max-lg:left-1/2 max-lg:-translate-x-1/2 max-lg:-translate-y-1/2">
+        <div className="absolute left-1/2 aspect-square h-[min(118vw,108svh)] -translate-x-1/2 -translate-y-1/2 top-[42%] max-lg:top-[34svh]">
           {go && <ParticleSphere intro={intro ? readGlyphs : null} />}
         </div>
         <motion.div
           initial={{ opacity: 0 }}
           animate={go ? { opacity: 1 } : undefined}
           transition={{ duration: 1.2, delay: intro ? INTRO_REVEAL_AT : 0 }}
-          className="absolute inset-0 bg-[radial-gradient(ellipse_46%_38%_at_center,rgba(5,13,20,0.6),transparent_74%)] max-lg:bg-[radial-gradient(ellipse_46%_26%_at_50%_34svh,rgba(5,13,20,0.5),transparent_74%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_46%_38%_at_50%_42%,rgba(5,13,20,0.6),transparent_74%)] max-lg:bg-[radial-gradient(ellipse_46%_26%_at_50%_34svh,rgba(5,13,20,0.5),transparent_74%)]"
         />
       </motion.div>
 
@@ -501,12 +547,8 @@ export function HeroSection({ ready = true }: { ready?: boolean }) {
         style={{ y: textY, opacity: textOpacity }}
         className="container-auros relative z-10 flex flex-1 flex-col items-center justify-center py-6 text-center"
       >
-        <motion.div {...rise(intro ? INTRO_REVEAL_AT : 0.1)} className="glass-chip">
-          <span className="relative flex size-2">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-signal opacity-60" />
-            <span className="relative inline-flex size-2 rounded-full bg-signal" />
-          </span>
-          {hero.status}
+        <motion.div {...rise(intro ? INTRO_REVEAL_AT : 0.1)}>
+          <StatusPill text={hero.status} />
         </motion.div>
 
         <h1

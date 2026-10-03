@@ -97,8 +97,8 @@
   --text-display--line-height: 1;
   --text-display--letter-spacing: -0.04em;
   --text-heading-lg: clamp(2.25rem, 1.5rem + 3vw, 3.8rem);
-  --text-heading-lg--line-height: 1;
-  --text-heading-lg--letter-spacing: -0.04em;
+  --text-heading-lg--line-height: 1.12;
+  --text-heading-lg--letter-spacing: -0.03em;
   --text-kinetic: clamp(3.5rem, 1rem + 10vw, 10.5rem);
   --text-kinetic--line-height: 1;
   --text-kinetic--letter-spacing: -0.046em;
@@ -107,6 +107,11 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+
+  /* Display headings: the tight tracking squeezes word gaps, so open them up a little. */
+  .text-heading-lg {
+    word-spacing: 0.16em;
   }
 
   html {
@@ -311,6 +316,13 @@ html.lenis, html.lenis body { height: auto; }
 }
 @utility animate-shimmer { animation: shimmer 1.6s ease-in-out infinite; }
 
+/* Fine film grain: replaces the engineering grid as the surface texture. Tile
+   is an SVG fractal-noise filter; opacity is set where it's used. */
+@utility bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
 @keyframes orbit-dash {
   to { stroke-dashoffset: -320; }
 }
@@ -393,6 +405,22 @@ html.lenis, html.lenis body { height: auto; }
   height: 100%;
   object-fit: cover;
   overflow: clip;
+}
+/* Language switch: a plain cross-fade with a slight settle. No blur: filtering a
+   full-page snapshot is what made the old switch stutter. */
+html[data-lang-switch]::view-transition-old(root) {
+  animation: lang-out 0.28s cubic-bezier(0.4, 0, 1, 1) both;
+  mix-blend-mode: normal;
+}
+html[data-lang-switch]::view-transition-new(root) {
+  animation: lang-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  mix-blend-mode: normal;
+}
+@keyframes lang-out {
+  to { opacity: 0; }
+}
+@keyframes lang-in {
+  from { opacity: 0; transform: translateY(6px); }
 }
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*),
